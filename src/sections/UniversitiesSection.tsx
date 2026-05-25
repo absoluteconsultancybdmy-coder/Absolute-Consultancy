@@ -246,7 +246,7 @@ export default function UniversitiesSection() {
 
           {/* Trust badges */}
           <div className="flex flex-wrap gap-4 mt-8">
-            {['Free Offer Letter', '99.9% Visa Rate', 'Certified Counsellors', 'End-to-End Support'].map((badge) => (
+            {['Free Offer Letter', '99% Visa Rate', 'Certified Counsellors', 'End-to-End Support'].map((badge) => (
               <span
                 key={badge}
                 className="px-4 py-2 rounded-full text-[11px] font-body uppercase tracking-wider"
@@ -268,7 +268,7 @@ export default function UniversitiesSection() {
         {/* Bottom CTA */}
         <div className="mt-20 text-center">
           <p className="font-serif font-light text-cream/40 mb-8" style={{ fontSize: '16px' }}>
-            Don't see your preferred university? We work with 30+ institutions.
+            Don't see your preferred university? We work with 30+ partner universities.
           </p>
           <button
             className="px-12 py-4 rounded-full font-body text-sm uppercase tracking-widest cursor-pointer"

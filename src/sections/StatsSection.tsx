@@ -5,10 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 99.9, suffix: '%', label: 'Visa Success Rate', sublabel: 'highest in Malaysia', isDecimal: true },
-  { value: 2000, suffix: '+', label: 'Students Placed', sublabel: 'at top Malaysian universities' },
+  { value: 99, suffix: "%", label: "Visa Approval Rate", sublabel: 'highest in Malaysia', isDecimal: false },
+  { value: 300, suffix: "+", label: "Students Placed", sublabel: 'at top Malaysian universities' },
   { value: 30, suffix: '+', label: 'Partner Universities', sublabel: 'across Malaysia' },
-  { value: 10, suffix: '+', label: 'Years of Excellence', sublabel: 'established in Kuala Lumpur' },
+  { value: 10, suffix: '+', label: 'Years of Excellence', sublabel: 'established in Malaysia' },
 ];
 
 export default function StatsSection() {

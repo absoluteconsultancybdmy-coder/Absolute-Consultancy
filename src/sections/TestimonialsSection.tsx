@@ -21,7 +21,7 @@ const testimonials = [
     university: 'UCSI University',
     programme: 'BEng Civil Engineering',
     year: '2023',
-    quote: 'From application to landing in KL — Absolute handled every single step. My visa was approved on the first try. That 99.9% success rate is real.',
+    quote: 'From application to landing in KL — Absolute handled every single step. My visa was approved on the first try. That 99% success rate is real.',
     initials: 'TH',
     color: '#1B5E20',
   },

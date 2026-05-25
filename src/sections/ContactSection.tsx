@@ -32,7 +32,7 @@ export default function ContactSection() {
     e.preventDefault();
     // WhatsApp redirect with form data
     const msg = `Hi, I'm ${formData.name}. I'm interested in ${formData.destination}. ${formData.message}`;
-    window.open(`https://wa.me/601756316210?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/60175631621?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -123,7 +123,7 @@ export default function ContactSection() {
 
             {/* Contact buttons */}
             <div className="space-y-3">
-              <a href="https://wa.me/601756316210" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/60175631621" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-5 py-4 rounded-2xl text-white text-sm font-body transition-all duration-300 hover:scale-[1.02]"
                 style={{ backgroundColor: '#25D366' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

@@ -5,8 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const polaroidData = [
-  { video: '/videos/polaroid-1.mp4', caption: '30+ countries', rotation: -2 },
-  { video: '/videos/polaroid-2.mp4', caption: '2,000+ students placed', rotation: 1.5 },
+  { video: '/videos/polaroid-1.mp4', caption: '30+ universities', rotation: -2 },
+  { video: '/videos/polaroid-2.mp4', caption: '300+ students placed', rotation: 1.5 },
   { video: '/videos/polaroid-3.mp4', caption: '98% visa approval', rotation: -1 },
   { video: '/videos/polaroid-4.mp4', caption: 'Free consultation', rotation: 2.5 },
   { video: '/videos/polaroid-5.mp4', caption: 'Your dream, our mission', rotation: -1.5 },

@@ -99,11 +99,11 @@ export default function AboutSection() {
               </h3>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
                 With over a decade of experience in Malaysian higher education consultancy, our COO personally
-                oversees every student's journey — from university selection to visa approval. His 99.9% visa
+                oversees every student's journey — from university selection to visa approval. His 99% visa
                 success rate speaks for itself.
               </p>
               <div className="grid grid-cols-3 gap-6 mb-10">
-                {[{ value: '99.9%', label: 'Visa Rate' }, { value: '2000+', label: 'Students' }, { value: '10+', label: 'Years' }].map(stat => (
+                {[{ value: '99%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '10+', label: 'Years' }].map(stat => (
                   <div key={stat.label}>
                     <p className="font-display font-bold text-gold" style={{ fontSize: '28px' }}>{stat.value}</p>
                     <p className="font-body text-mouse text-xs uppercase tracking-wider mt-1">{stat.label}</p>
@@ -111,7 +111,7 @@ export default function AboutSection() {
                 ))}
               </div>
               <a
-                href="https://wa.me/601756316210"
+                href="https://wa.me/60175631621"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-body text-sm uppercase tracking-widest w-fit"
@@ -146,9 +146,9 @@ export default function AboutSection() {
             <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(201,162,52,0.5)' }} />
             <div className="space-y-10">
               {[
-                { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
+                { year: 'Founded 2024', text: 'Started in Malaysia with a mission to help international students navigate Malaysian universities.' },
                 { year: '500 Students', text: 'Reached our first 500 students placed milestone within 3 years of operation.' },
-                { year: '2,000+ Placed', text: 'Over 2,000 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
+                { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99% visa approval.' },
                 { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
               ].map((item, i) => (
                 <div key={i} className="timeline-node relative">
