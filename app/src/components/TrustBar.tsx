@@ -1,4 +1,10 @@
+import { useEffect, useRef } from 'react';
+
 export default function TrustBar() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(0);
+  const rafRef = useRef<number>(0);
+
   const badges = [
     { icon: '✓', text: 'Certified Education Counsellors' },
     { icon: '🇲🇾', text: 'Malaysia Registered' },
@@ -8,11 +14,52 @@ export default function TrustBar() {
     { icon: '✓', text: 'Free Offer Letter Service' },
   ];
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const startAnimation = () => {
+      if (!track) return;
+      const singleWidth = track.scrollWidth / 2;
+      if (singleWidth === 0) {
+        requestAnimationFrame(startAnimation);
+        return;
+      }
+
+      posRef.current = -singleWidth;
+      const speed = 60;
+      let lastTime = performance.now();
+
+      const animate = (now: number) => {
+        const delta = (now - lastTime) / 1000;
+        lastTime = now;
+
+        posRef.current += speed * delta;
+
+        if (posRef.current >= 0) {
+          posRef.current = -singleWidth;
+        }
+
+        track.style.transform = `translateX(${posRef.current}px)`;
+        rafRef.current = requestAnimationFrame(animate);
+      };
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    const timer = setTimeout(startAnimation, 100);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   const renderBadges = (keyPrefix: string) =>
     badges.map((badge, i) => (
       <span
         key={`${keyPrefix}-${i}`}
-        className="inline-flex items-center gap-2 px-8 font-body uppercase"
+        className="inline-flex items-center gap-2 px-8 font-body uppercase flex-shrink-0"
         style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(201,162,52,0.85)' }}
       >
         <span>{badge.icon}</span>
@@ -30,24 +77,14 @@ export default function TrustBar() {
         height: '36px',
       }}
     >
-      <div className="flex items-center h-full w-full overflow-hidden">
-        <div className="flex items-center whitespace-nowrap animate-ticker">
-          {renderBadges('a')}
-          {renderBadges('b')}
-        </div>
+      <div
+        ref={trackRef}
+        className="flex items-center h-full whitespace-nowrap will-change-transform"
+        style={{ width: 'max-content' }}
+      >
+        {renderBadges('a')}
+        {renderBadges('b')}
       </div>
-
-      <style>{`
-        .animate-ticker {
-          display: flex;
-          flex-shrink: 0;
-          animation: ticker 30s linear infinite;
-        }
-        @keyframes ticker {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
     </div>
   );
 }

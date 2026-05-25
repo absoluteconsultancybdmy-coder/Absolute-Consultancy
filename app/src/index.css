@@ -403,6 +403,12 @@
   -webkit-overflow-scrolling: touch;
 }
 
+/* ── TrustBar marquee keyframes ── */
+@keyframes trust-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* ── Stats section counter ── */
 .stat-block {
   position: relative;
