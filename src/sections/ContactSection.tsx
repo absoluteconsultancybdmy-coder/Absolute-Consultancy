@@ -99,7 +99,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right — COO Contact Card */}
-          <div ref={cooCardRef} className="max-w-[360px] lg:ml-auto" style={{ opacity: 0 }}>
+          <div ref={cooCardRef} className="max-w-[360px] lg:ml-auto">
             {/* COO photo card */}
             <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
