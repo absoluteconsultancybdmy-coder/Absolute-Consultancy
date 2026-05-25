@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -258,8 +258,7 @@ export default function HeroSection() {
             }}
           >
             <div className="w-[140px] h-[100px] overflow-hidden rounded-sm bg-gray-100">
-              {'videoId' in item ? (
-                <iframe
+              <iframe
                   src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&mute=1&loop=1&playlist=${item.videoId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
                   title={item.caption}
                   className="w-full h-full object-cover"
@@ -268,14 +267,6 @@ export default function HeroSection() {
                   allowFullScreen
                   loading="lazy"
                 />
-              ) : (
-                <img
-                  src={item.image}
-                  alt={item.caption}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              )}
             </div>
             <p className="mt-2 text-[9px] text-gray-500 font-body uppercase tracking-wider text-center">
               {item.caption}
