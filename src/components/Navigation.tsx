@@ -47,7 +47,7 @@ export default function Navigation() {
             onClick={() => scrollTo('#hero')}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <img src="/images/logo.png" alt="Absolute Consultancy Firm" className="h-10 w-auto" />
+            <img src="/Absolute-Consultancy/images/logo.png" alt="Absolute Consultancy Firm" className="h-10 w-auto" />
             <span className="small-caps text-kimono hidden sm:inline tracking-wider" style={{ fontSize: '12px' }}>
               ABSOLUTE CONSULTANCY
             </span>

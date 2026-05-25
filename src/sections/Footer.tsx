@@ -42,7 +42,7 @@ export default function Footer() {
           {/* Left — Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/images/logo.png" alt="Absolute Consultancy Firm" className="h-12 w-auto" />
+              <img src="/Absolute-Consultancy/images/logo.png" alt="Absolute Consultancy Firm" className="h-12 w-auto" />
             </div>
             <p className="small-caps text-mouse mb-4" style={{ fontSize: '11px', lineHeight: 1.7 }}>
               Kuala Lumpur, Malaysia<br />

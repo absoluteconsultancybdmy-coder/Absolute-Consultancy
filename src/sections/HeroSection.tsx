@@ -24,7 +24,7 @@ export default function HeroSection() {
 
   // Preload images
   useEffect(() => {
-    const images = ['/images/hero-bg.jpg', '/images/hero-graduate.png'];
+    const images = ['/Absolute-Consultancy/images/hero-bg.jpg', '/Absolute-Consultancy/images/hero-graduate.png'];
     let loaded = 0;
     images.forEach((src) => {
       const img = new Image();
@@ -160,7 +160,7 @@ export default function HeroSection() {
         style={{ opacity: 0, willChange: 'transform' }}
       >
         <img
-          src="/images/hero-bg.jpg"
+          src="/Absolute-Consultancy/images/hero-bg.jpg"
           alt="University campus backdrop"
           className="w-full h-[120%] object-cover"
           style={{ objectPosition: 'center 30%' }}
@@ -228,7 +228,7 @@ export default function HeroSection() {
         style={{ opacity: 0, willChange: 'transform' }}
       >
         <img
-          src="/images/hero-graduate.png"
+          src="/Absolute-Consultancy/images/hero-graduate.png"
           alt="Graduate silhouette — campus foreground"
           className="h-[78vh] w-auto object-contain"
           style={{

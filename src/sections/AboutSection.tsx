@@ -9,22 +9,22 @@ gsap.registerPlugin(ScrollTrigger);
 const milestones = [
   {
     year: 'Founded 2014',
-    images: ['/images/about-1a.jpg', '/images/about-1b.jpg'],
+    images: ['/Absolute-Consultancy/images/about-1a.jpg', '/Absolute-Consultancy/images/about-1b.jpg'],
     rotation: [-3, 3],
   },
   {
     year: '500 Students',
-    images: ['/images/about-2a.jpg', '/images/about-2b.jpg'],
+    images: ['/Absolute-Consultancy/images/about-2a.jpg', '/Absolute-Consultancy/images/about-2b.jpg'],
     rotation: [-2, 2],
   },
   {
     year: '2,000+ Placed',
-    images: ['/images/about-3a.jpg', '/images/about-3b.jpg'],
+    images: ['/Absolute-Consultancy/images/about-3a.jpg', '/Absolute-Consultancy/images/about-3b.jpg'],
     rotation: [-4, 4],
   },
   {
     year: 'Global Reach',
-    images: ['/images/about-4a.jpg', '/images/about-4b.jpg'],
+    images: ['/Absolute-Consultancy/images/about-4a.jpg', '/Absolute-Consultancy/images/about-4b.jpg'],
     rotation: [-3, 3],
   },
 ];

@@ -76,7 +76,7 @@ export default function ContactSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/contact-bg.jpg"
+          src="/Absolute-Consultancy/images/contact-bg.jpg"
           alt="University campus at golden hour"
           className="w-full h-full object-cover"
         />
@@ -219,7 +219,7 @@ export default function ContactSection() {
             {/* Logo */}
             <div className="flex items-center gap-3 mb-6">
               <img
-                src="/images/logo.png"
+                src="/Absolute-Consultancy/images/logo.png"
                 alt="Absolute Consultancy Firm"
                 className="h-14 w-auto"
               />

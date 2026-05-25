@@ -16,7 +16,7 @@ const pathways = [
       'Oxford, Cambridge, Imperial, LSE, UCL — centuries of academic tradition forged into world-leading research environments. The UK offers 1–2 year Masters and globally recognised undergraduate degrees that open every door.',
     highlights: ['Russell Group Universities', 'Post-Study Work Visa', 'Chevening Scholarships'],
     universities: ['University of Oxford', 'Imperial College London', 'London School of Economics', 'University College London', 'University of Edinburgh'],
-    image: '/images/dest-singapore.jpg',
+    image: '/Absolute-Consultancy/images/dest-singapore.jpg',
   },
   {
     region: 'Australia & New Zealand',
@@ -28,7 +28,7 @@ const pathways = [
       'A top-8 global destination for international students. World-class research universities, an extraordinary quality of life, and post-study work rights of up to four years make ANZ a strategically exceptional choice.',
     highlights: ['Go8 Universities', '2–4 Year Post-Study Visa', 'Australia Awards'],
     universities: ['Australian National University', 'University of Melbourne', 'University of Sydney', 'University of Auckland', 'Monash University'],
-    image: '/images/dest-bali.jpg',
+    image: '/Absolute-Consultancy/images/dest-bali.jpg',
   },
   {
     region: 'North America',
@@ -40,7 +40,7 @@ const pathways = [
       'Harvard, MIT, Stanford, UBC, Toronto — the names that define global excellence. A North American degree is the ultimate signal of intellectual achievement, opening doors to Silicon Valley, Wall Street, and beyond.',
     highlights: ['Ivy League Access', 'OPT / STEM Extension', 'Merit Scholarships'],
     universities: ['Massachusetts Institute of Technology', 'Harvard University', 'Stanford University', 'University of Toronto', 'University of British Columbia'],
-    image: '/images/dest-bangkok.jpg',
+    image: '/Absolute-Consultancy/images/dest-bangkok.jpg',
   },
 ];
 
