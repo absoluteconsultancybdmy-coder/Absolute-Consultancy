@@ -121,7 +121,7 @@ export default function TestimonialsSection() {
 
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="testimonials"
-      style={{ backgroundImage: 'url(/images/Ginting_Highland.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/Ginting_Highland.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
           <div className="w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
