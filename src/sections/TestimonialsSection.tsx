@@ -220,7 +220,7 @@ export default function TestimonialsSection() {
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseUp}
       >
-        {testimonials.map((t, i) => (
+        {testimonials.map((t) => (
           <div
             key={t.name}
             className="testimonial-card flex-shrink-0 rounded-2xl p-8 flex flex-col justify-between"
