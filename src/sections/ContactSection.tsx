@@ -103,7 +103,7 @@ export default function ContactSection() {
             {/* COO photo card */}
             <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
-                <img src="/Absolute-Consultancy/images/coo-photo2.png" alt="COO"
+                <img src="/Absolute-Consultancy/images/coo-profile2.png" alt="COO"
                   className="w-full h-full object-cover object-top" />
               </div>
               <div className="p-6" style={{ background: 'rgba(11,30,66,0.95)', backdropFilter: 'blur(16px)' }}>
