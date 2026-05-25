@@ -86,10 +86,20 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-mist py-32 lg:py-40"
+      className="relative w-full py-32 lg:py-40 overflow-hidden"
       id="services"
     >
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/Absolute-Consultancy/images/services-section.jpg"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         {/* Heading with hairline rule */}
         <div className="flex items-center gap-6 mb-16">
           <h2

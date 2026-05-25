@@ -8,7 +8,7 @@ const stats = [
   { value: 99, suffix: "%", label: "Visa Approval Rate", sublabel: 'highest in Malaysia', isDecimal: false },
   { value: 300, suffix: "+", label: "Students Placed", sublabel: 'at top Malaysian universities' },
   { value: 30, suffix: '+', label: 'Partner Universities', sublabel: 'across Malaysia' },
-  { value: 10, suffix: '+', label: 'Years of Excellence', sublabel: 'established in Malaysia' },
+  { value: 2, suffix: '+', label: 'Years of Excellence', sublabel: 'established in Malaysia' },
 ];
 
 export default function StatsSection() {
@@ -114,7 +114,7 @@ export default function StatsSection() {
         <div className="flex items-center gap-6 mb-16">
           <div ref={lineRef} className="hairline flex-1" style={{ transform: 'scaleX(0)' }} />
           <p className="small-caps text-gold/70 whitespace-nowrap" style={{ fontSize: '11px' }}>
-            A DECADE OF OUTCOMES
+            YEARS OF OUTCOMES
           </p>
           <div className="hairline flex-1" />
         </div>

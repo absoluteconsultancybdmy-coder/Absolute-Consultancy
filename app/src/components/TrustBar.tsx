@@ -8,6 +8,19 @@ export default function TrustBar() {
     { icon: '✓', text: 'Free Offer Letter Service' },
   ];
 
+  const renderBadges = (keyPrefix: string) =>
+    badges.map((badge, i) => (
+      <span
+        key={`${keyPrefix}-${i}`}
+        className="inline-flex items-center gap-2 px-8 font-body uppercase"
+        style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(201,162,52,0.85)' }}
+      >
+        <span>{badge.icon}</span>
+        <span>{badge.text}</span>
+        <span style={{ color: 'rgba(201,162,52,0.3)', marginLeft: '16px' }}>·</span>
+      </span>
+    ));
+
   return (
     <div
       className="fixed top-20 left-0 right-0 z-40 overflow-hidden"
@@ -17,29 +30,19 @@ export default function TrustBar() {
         height: '36px',
       }}
     >
-      {/* Scrolling ticker */}
-      <div
-        className="flex items-center h-full"
-        style={{
-          animation: 'ticker 30s linear infinite',
-          whiteSpace: 'nowrap',
-          width: 'max-content',
-        }}
-      >
-        {[...badges, ...badges].map((badge, i) => (
-          <span
-            key={i}
-            className="inline-flex items-center gap-2 px-8 font-body uppercase"
-            style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(201,162,52,0.85)' }}
-          >
-            <span>{badge.icon}</span>
-            <span>{badge.text}</span>
-            <span style={{ color: 'rgba(201,162,52,0.3)', marginLeft: '16px' }}>·</span>
-          </span>
-        ))}
+      <div className="flex items-center h-full w-full overflow-hidden">
+        <div className="flex items-center whitespace-nowrap animate-ticker">
+          {renderBadges('a')}
+          {renderBadges('b')}
+        </div>
       </div>
 
       <style>{`
+        .animate-ticker {
+          display: flex;
+          flex-shrink: 0;
+          animation: ticker 30s linear infinite;
+        }
         @keyframes ticker {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
