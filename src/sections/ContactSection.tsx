@@ -32,7 +32,7 @@ export default function ContactSection() {
     e.preventDefault();
     // WhatsApp redirect with form data
     const msg = `Hi, I'm ${formData.name}. I'm interested in ${formData.destination}. ${formData.message}`;
-    window.open(`https://wa.me/60175631621?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/601756316210?text=${encodeURIComponent(msg)}`, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -99,11 +99,11 @@ export default function ContactSection() {
           </div>
 
           {/* Right — COO Contact Card */}
-          <div ref={cooCardRef} className="max-w-[360px] lg:ml-auto">
+          <div ref={cooCardRef} className="max-w-[360px] lg:ml-auto" style={{ opacity: 0 }}>
             {/* COO photo card */}
             <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
-                <img src="/Absolute-Consultancy/images/coo-profile2.png" alt="COO"
+                <img src="/Absolute-Consultancy/images/coo-photo2.jpg" alt="COO"
                   className="w-full h-full object-cover object-top" />
               </div>
               <div className="p-6" style={{ background: 'rgba(11,30,66,0.95)', backdropFilter: 'blur(16px)' }}>
@@ -116,14 +116,14 @@ export default function ContactSection() {
                 </h3>
                 <p className="font-body text-gold text-sm">Chief Operating Officer</p>
                 <p className="small-caps text-mouse mt-2" style={{ fontSize: '10px' }}>
-                  Certified Education Counsellor · 10+ Years Experience
+                  Certified Education Counsellor · 2+ Years Experience
                 </p>
               </div>
             </div>
 
             {/* Contact buttons */}
             <div className="space-y-3">
-              <a href="https://wa.me/60175631621" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/601756316210" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-5 py-4 rounded-2xl text-white text-sm font-body transition-all duration-300 hover:scale-[1.02]"
                 style={{ backgroundColor: '#25D366' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
