@@ -53,7 +53,7 @@ export default function AboutSection() {
           <h2
             ref={headingRef}
             className="font-display font-bold text-kimono text-center whitespace-nowrap"
-            style={{ fontSize: 'clamp(36px, 7vw, 84px)', opacity: 0, letterSpacing: '0.05em' }}
+            style={{ fontSize: 'clamp(36px, 7vw, 84px)', letterSpacing: '0.05em' }}
           >
             ABOUT THE FIRM
           </h2>
@@ -64,7 +64,7 @@ export default function AboutSection() {
         <div
           ref={bioRef}
           className="relative rounded-3xl overflow-hidden mb-24"
-          style={{ opacity: 0, background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.2)' }}
+          style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.2)' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
