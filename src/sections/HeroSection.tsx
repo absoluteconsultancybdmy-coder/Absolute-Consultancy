@@ -21,6 +21,7 @@ export default function HeroSection() {
   const ctaRef = useRef<HTMLButtonElement>(null);
   const polaroidRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
 
   // Preload images
   useEffect(() => {
@@ -244,6 +245,7 @@ export default function HeroSection() {
               transition: 'transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1)',
               willChange: 'transform',
             }}
+            onClick={() => setActiveVideo(item.videoId)}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = `rotate(${item.rotation}deg) translateY(-14px) scale(1.03)`;
@@ -325,6 +327,58 @@ export default function HeroSection() {
           style={{ animation: 'pulse 2s ease-in-out infinite' }}
         />
       </div>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
+          onClick={() => setActiveVideo(null)}
+        >
+          <div
+            className="relative w-[90vw] max-w-[960px] rounded-2xl overflow-hidden"
+            style={{ background: '#0A0A0A', border: '1px solid rgba(201,162,52,0.3)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-5 py-3" style={{ background: 'rgba(201,162,52,0.1)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}>
+              <span className="font-body uppercase tracking-widest text-gold text-[11px]">Watch on Website</span>
+              <div className="flex items-center gap-3">
+                <a
+                  href={`https://www.youtube.com/watch?v=${activeVideo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-body text-[10px] uppercase tracking-widest"
+                  style={{ background: '#FF0000', color: 'white', transition: 'opacity 200ms ease' }}
+                  onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; }}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = '1'; }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  YouTube
+                </a>
+                <button
+                  onClick={() => setActiveVideo(null)}
+                  className="w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
+                  style={{ background: 'rgba(255,255,255,0.1)', color: '#F5E8D3', fontSize: '16px', lineHeight: 1 }}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            <div style={{ aspectRatio: '16/9' }}>
+              <iframe
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1&mute=0&rel=0&modestbranding=1`}
+                title="COO Video"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

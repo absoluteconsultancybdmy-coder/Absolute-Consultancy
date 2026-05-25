@@ -44,8 +44,9 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-mist py-32 lg:py-40" id="about">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+    <section ref={sectionRef} className="relative w-full py-32 lg:py-40" id="about" style={{ backgroundImage: 'url(/Absolute-Consultancy/images/Firm.avif)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="absolute inset-0 bg-black/70" />
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
 
         {/* Section heading */}
         <div className="flex items-center justify-center gap-6 mb-20">
@@ -53,7 +54,7 @@ export default function AboutSection() {
           <h2
             ref={headingRef}
             className="font-display font-bold text-kimono text-center whitespace-nowrap"
-            style={{ fontSize: 'clamp(36px, 7vw, 84px)', opacity: 0, letterSpacing: '0.05em' }}
+            style={{ fontSize: 'clamp(36px, 7vw, 84px)', letterSpacing: '0.05em' }}
           >
             ABOUT THE FIRM
           </h2>
@@ -64,7 +65,7 @@ export default function AboutSection() {
         <div
           ref={bioRef}
           className="relative rounded-3xl overflow-hidden mb-24"
-          style={{ opacity: 0, background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.2)' }}
+          style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.2)' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
@@ -76,7 +77,7 @@ export default function AboutSection() {
                 className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0" style={{
-                background: 'linear-gradient(to right, transparent 60%, rgba(11,30,66,0.95) 100%), linear-gradient(to top, rgba(11,30,66,0.6) 0%, transparent 50%)',
+                background: 'linear-gradient(to right, transparent 60%, rgba(10,10,10,0.85) 100%), linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%)',
               }} />
               <div className="absolute top-6 left-6">
                 <span className="px-4 py-2 rounded-full text-[10px] font-body uppercase tracking-widest"
@@ -98,12 +99,12 @@ export default function AboutSection() {
                 <span style={{ color: '#C9A234' }}>Every Success Story</span>
               </h3>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
-                With over a decade of experience in Malaysian higher education consultancy, our COO personally
+                With over a year's experience in Malaysian higher education consultancy, our COO personally
                 oversees every student's journey — from university selection to visa approval. His 99.9% visa
                 success rate speaks for itself.
               </p>
               <div className="grid grid-cols-3 gap-6 mb-10">
-                {[{ value: '99.9%', label: 'Visa Rate' }, { value: '2000+', label: 'Students' }, { value: '10+', label: 'Years' }].map(stat => (
+                {[{ value: '99.9%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '2+', label: 'Years' }].map(stat => (
                   <div key={stat.label}>
                     <p className="font-display font-bold text-gold" style={{ fontSize: '28px' }}>{stat.value}</p>
                     <p className="font-body text-mouse text-xs uppercase tracking-wider mt-1">{stat.label}</p>
@@ -112,7 +113,7 @@ export default function AboutSection() {
               </div>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/601756316210"
+                  href="https://wa.me/60175631621"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-body text-sm uppercase tracking-widest"
@@ -144,46 +145,56 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Bottom text + timeline */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
-          <div>
-            <p className="text-kimono/90 font-body font-light text-lg mb-8" style={{ lineHeight: 1.7 }}>
-              We've spent over a decade helping students from Bangladesh and Malaysia reach the best universities
-              in Malaysia. Our counsellors don't just process applications — they{' '}
-              <HighlightText delay={0}>invest in your future</HighlightText>.
-            </p>
-            <p className="text-kimono/90 font-body font-light text-lg" style={{ lineHeight: 1.7 }}>
-              No need to worry about university choices, visa paperwork, or offer letters — everything is
-              handled with precision and care. We'll show you which university fits you best and{' '}
-              <HighlightText delay={1}>walk with you every step of the way</HighlightText>.
-            </p>
+        {/* Bottom text + video */}
+        <div className="relative rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.2)' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 p-10 lg:p-14">
+            <div>
+              <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '17px', lineHeight: 1.8 }}>
+                We've spent over a year helping students from Bangladesh and Malaysia reach the best universities
+                in Malaysia. Our counsellors don't just process applications — they{' '}
+                <HighlightText delay={0}>invest in your future</HighlightText>.
+              </p>
+              <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '17px', lineHeight: 1.8 }}>
+                No need to worry about university choices, visa paperwork, or offer letters — everything is
+                handled with precision and care. We'll show you which university fits you best and{' '}
+                <HighlightText delay={1}>walk with you every step of the way</HighlightText>.
+              </p>
 
-            {/* YouTube Video */}
-            <div className="mt-6 rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', maxWidth: '560px' }}>
-              <iframe
-                src="https://www.youtube.com/embed/zDkIeGlfhsk?autoplay=0&mute=0&rel=0&modestbranding=1"
-                title="The Mahir - Campus Tour"
-                className="w-full h-full"
-                style={{ border: 'none' }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-          <div className="relative pl-8">
-            <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(201,162,52,0.5)' }} />
-            <div className="space-y-10">
-              {[
-                { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
-                { year: '500 Students', text: 'Reached our first 500 students placed milestone within 3 years of operation.' },
-                { year: '2,000+ Placed', text: 'Over 2,000 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
-                { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
-              ].map((item, i) => (
-                <div key={i} className="timeline-node relative">
-                  <span className="small-caps text-gold block mb-2">{item.year}</span>
-                  <p className="font-body font-light text-kimono/70 text-sm" style={{ lineHeight: 1.7 }}>{item.text}</p>
+              {/* YouTube Video */}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="font-body uppercase tracking-widest text-gold text-[11px] font-semibold">
+                    Latest Video From COO
+                  </span>
                 </div>
-              ))}
+                <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', maxWidth: '560px', border: '1px solid rgba(201,162,52,0.2)' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/tdCG0MCL0V0?autoplay=0&mute=0&rel=0&modestbranding=1"
+                    title="COO - Latest Video"
+                    className="w-full h-full"
+                    style={{ border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="relative pl-8">
+              <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(201,162,52,0.5)' }} />
+              <div className="space-y-10">
+                {[
+                  { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
+                  { year: '100+ Students', text: 'Reached our first 100 students placed milestone within 3 years of operation.' },
+                  { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
+                  { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
+                ].map((item, i) => (
+                  <div key={i} className="timeline-node relative">
+                    <span className="small-caps text-gold block mb-2">{item.year}</span>
+                    <p className="font-body font-light text-cream/50 text-sm" style={{ lineHeight: 1.7 }}>{item.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
