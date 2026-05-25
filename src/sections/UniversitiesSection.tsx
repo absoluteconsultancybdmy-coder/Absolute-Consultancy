@@ -181,7 +181,6 @@ const universities: University[] = [
     ranking: 'SETARA Tier 5',
     description: 'One of Malaysia\'s oldest private institutions, SEGi offers affordable education across medicine, dentistry, engineering and business. Multiple campuses across Malaysia make it accessible to students nationwide.',
     highlights: ['Established 1977', 'Affordable Fees', 'Top Dentistry School', 'Multiple Campuses', 'Medicine & Pharmacy', 'Strong Industry Links'],
-    campasImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
     campusImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
     logoColor: '#006400',
     campusTourVideo: 'https://www.youtube.com/embed/6mnJu2Oy7OI',
