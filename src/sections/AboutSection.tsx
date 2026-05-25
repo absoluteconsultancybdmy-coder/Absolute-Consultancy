@@ -71,7 +71,7 @@ export default function AboutSection() {
             {/* Left — COO Photo */}
             <div className="relative h-[400px] lg:h-[520px] overflow-hidden">
               <img
-                src="/images/coo-photo.PNG"
+                src="/Absolute-Consultancy/images/coo-photo.PNG"
                 alt="COO - Absolute Consultancy Firm"
                 className="w-full h-full object-cover object-top"
               />
