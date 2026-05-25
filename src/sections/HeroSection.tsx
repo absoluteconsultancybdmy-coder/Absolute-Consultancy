@@ -67,9 +67,9 @@ export default function HeroSection() {
         )
         .fromTo(
           polaroidRefs.current.filter(Boolean),
-          { opacity: 0, y: 50, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.15 },
-          0.8
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.18, ease: 'power2.out' },
+          1.2
         )
         .fromTo(
           ctaRef.current,
@@ -77,28 +77,6 @@ export default function HeroSection() {
           { opacity: 1, y: 0, duration: 0.7 },
           1.6
         );
-
-      // ── Bird flying animation: fly across sky in 6s then vanish ──
-      if (birdRef.current) {
-        const bird = birdRef.current;
-        // Set up the flight path: start top-left, fly to top-right
-        gsap.set(bird, { opacity: 1, x: '-10%', y: '8%', scale: 0.8 });
-        const birdTl = gsap.timeline({ delay: 1.5 });
-        birdTl
-          .to(bird, {
-            x: '110vw',
-            y: '5%',
-            scale: 1.1,
-            duration: 6,
-            ease: 'power1.inOut',
-            onStart: () => { bird.play().catch(() => {}); },
-          })
-          .to(bird, {
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power2.out',
-          }, '-=0.8');
-      }
 
       // ── Scroll-linked Parallax with smooth scrub ──
       gsap.to(bgRef.current, {
@@ -186,25 +164,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Bird flying animation */}
-        <video
-          ref={birdRef}
-          className="absolute pointer-events-none"
-          style={{
-            top: '8%',
-            left: '-10%',
-            width: '180px',
-            height: 'auto',
-            opacity: 0,
-            objectFit: 'contain',
-            filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))',
-          }}
-          muted
-          playsInline
-          preload="auto"
-        >
-          <source src="https://cdn.pixabay.com/video/2024/02/23/201547-916052507_large.mp4" type="video/mp4" />
-        </video>
       </div>
 
       {/* Layer 2: ABSOLUTE Typography */}
