@@ -15,6 +15,8 @@ export default function CustomCursor() {
   const targetRef = useRef({ x: 0, y: 0 });
   const isHoveringRef = useRef(false);
   const rafRef = useRef<number>(0);
+  const lastMoveAtRef = useRef<number>(0);
+  const idleThresholdMs = 500;
 
   useEffect(() => {
     // Disable on touch / coarse-pointer devices (mobile)
@@ -31,6 +33,11 @@ export default function CustomCursor() {
 
     const handleMouseMove = (e: MouseEvent) => {
       targetRef.current = { x: e.clientX, y: e.clientY };
+      lastMoveAtRef.current = performance.now();
+      // Resume rAF loop if it was idled out
+      if (rafRef.current === 0) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -68,10 +75,25 @@ export default function CustomCursor() {
     };
 
     // rAF loop: smooth lerp at 0.12 lag coefficient
+    // Idles out when the mouse hasn't moved for >500ms; resumes on next mousemove.
     const animate = () => {
       const LERP = 0.12;
-      posRef.current.x += (targetRef.current.x - posRef.current.x) * LERP;
-      posRef.current.y += (targetRef.current.y - posRef.current.y) * LERP;
+      const dx = targetRef.current.x - posRef.current.x;
+      const dy = targetRef.current.y - posRef.current.y;
+
+      // Skip frames once the cursor has effectively reached the target
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+        posRef.current.x = targetRef.current.x;
+        posRef.current.y = targetRef.current.y;
+        const now = performance.now();
+        if (now - lastMoveAtRef.current > idleThresholdMs) {
+          rafRef.current = 0;
+          return;
+        }
+      } else {
+        posRef.current.x += dx * LERP;
+        posRef.current.y += dy * LERP;
+      }
 
       const x = posRef.current.x;
       const y = posRef.current.y;

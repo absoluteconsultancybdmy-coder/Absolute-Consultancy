@@ -17,13 +17,13 @@ const services = [
     icon: GraduationCap,
     title: 'University Admissions',
     description:
-      'Personalised shortlisting and end-to-end application support for 200+ partner universities worldwide.',
+      'Personalised shortlisting and end-to-end application support for 30+ partner universities worldwide.',
   },
   {
     icon: ShieldCheck,
     title: 'Visa Assistance',
     description:
-      '98% approval rate. We handle every document, interview prep, and submission — stress-free.',
+      '99% approval rate. We handle every document, interview prep, and submission — stress-free.',
   },
   {
     icon: PenTool,

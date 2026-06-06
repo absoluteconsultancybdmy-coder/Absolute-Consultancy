@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HighlightText from '@/components/HighlightText';
@@ -6,6 +6,7 @@ import HighlightText from '@/components/HighlightText';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const lineLeftRef = useRef<HTMLDivElement>(null);
@@ -100,11 +101,11 @@ export default function AboutSection() {
               </h3>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
                 With over a year's experience in Malaysian higher education consultancy, our COO personally
-                oversees every student's journey — from university selection to visa approval. His 99.9% visa
+                oversees every student's journey — from university selection to visa approval. His 99% visa
                 success rate speaks for itself.
               </p>
               <div className="grid grid-cols-3 gap-6 mb-10">
-                {[{ value: '99.9%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '2+', label: 'Years' }].map(stat => (
+                {[{ value: '99%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '2+', label: 'Years' }].map(stat => (
                   <div key={stat.label}>
                     <p className="font-display font-bold text-gold" style={{ fontSize: '28px' }}>{stat.value}</p>
                     <p className="font-body text-mouse text-xs uppercase tracking-wider mt-1">{stat.label}</p>
@@ -184,14 +185,26 @@ export default function AboutSection() {
               <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(201,162,52,0.5)' }} />
               <div className="space-y-10">
                 {[
-                  { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
-                  { year: '100+ Students', text: 'Reached our first 100 students placed milestone within 3 years of operation.' },
-                  { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
-                  { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
+                  { year: 'Founded 2024', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
+                  { year: '100+ Students', text: 'Reached our first 100+ in 11 Months.' },
+                  { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99% visa approval.' },
+                  { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors', cta: 'CLICK THE YELLOW BOX TO GET 100% SCHOLARSHIP WITHOUT PASSPORT' },
                 ].map((item, i) => (
                   <div key={i} className="timeline-node relative">
                     <span className="small-caps text-gold block mb-2">{item.year}</span>
                     <p className="font-body font-light text-cream/50 text-sm" style={{ lineHeight: 1.7 }}>{item.text}</p>
+                    {'cta' in item && item.cta && (
+                      <button
+                        onClick={() => setShowVideoModal(true)}
+                        className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,162,52,0.4)]"
+                        style={{ background: 'linear-gradient(135deg, #C9A234 0%, #E8C36A 100%)', color: '#0A0A0A', fontWeight: 700, animation: 'pulse-gold 2s ease-in-out infinite' }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        {item.cta}
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -200,6 +213,69 @@ export default function AboutSection() {
         </div>
 
       </div>
+
+      {/* Video Popup Modal */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(12px)' }}
+          onClick={() => setShowVideoModal(false)}
+        >
+          <div
+            className="relative w-full max-w-[1000px] rounded-3xl overflow-hidden"
+            style={{ background: '#0A0A0A', border: '1px solid rgba(201,162,52,0.3)', boxShadow: '0 0 60px rgba(201,162,52,0.15)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(201,162,52,0.15) 0%, rgba(201,162,52,0.05) 100%)', borderBottom: '1px solid rgba(201,162,52,0.2)' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #C9A234, #E8C36A)' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A0A0A">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-body uppercase tracking-widest text-gold text-[11px] font-semibold">100% SCHOLARSHIP WITHOUT ACADEMIC CERTIFICATE</p>
+                  <p className="font-body text-cream/40 text-[10px] uppercase tracking-wider">From Our Certified Counsellors</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="group w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-red-500/20 hover:scale-110"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5E8D3" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+            <div style={{ aspectRatio: '16/9', background: '#000' }}>
+              <iframe
+                src="https://www.youtube.com/embed/dHER3Vc9GBI?autoplay=1&mute=0&rel=0&modestbranding=1"
+                title="Scholarship Video"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(201,162,52,0.08) 0%, rgba(0,0,0,0.5) 100%)', borderTop: '1px solid rgba(201,162,52,0.15)' }}>
+              <p className="font-body text-cream/30 text-[10px] uppercase tracking-wider">Press ESC or click outside to close</p>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-body text-[11px] uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-white/10"
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#F5E8D3' }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Close Video
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

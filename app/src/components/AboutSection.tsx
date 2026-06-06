@@ -105,13 +105,13 @@ export default function AboutSection() {
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
                 With over 2 years of experience in Malaysian higher education consultancy,
                 our COO personally oversees every student's journey — from university selection
-                to visa approval. His 99.9% visa success rate speaks for itself.
+                to visa approval. His 99% visa success rate speaks for itself.
               </p>
 
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-6 mb-10">
                 {[
-                  { value: '99.9%', label: 'Visa Rate' },
+                  { value: '99%', label: 'Visa Rate' },
                   { value: '300+', label: 'Students' },
                   { value: '2+', label: 'Years' },
                 ].map((s) => (
@@ -178,8 +178,8 @@ export default function AboutSection() {
               {[
                 { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
                 { year: '500 Students', text: 'Reached our first 100 students placed milestone within 1 year of operation.' },
-                { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
-                { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
+                { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99% visa approval.' },
+                { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors' },
               ].map((m, i) => (
                 <div key={i} className="timeline-node relative">
                   <span className="small-caps text-gold block mb-2">{m.year}</span>

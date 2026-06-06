@@ -5,39 +5,35 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 99, suffix: "%", label: "Visa Approval Rate", sublabel: 'highest in Malaysia', isDecimal: false },
-  { value: 300, suffix: "+", label: "Students Placed", sublabel: 'at top Malaysian universities' },
-  { value: 30, suffix: '+', label: 'Partner Universities', sublabel: 'across Malaysia' },
-  { value: 2, suffix: '+', label: 'Years of Excellence', sublabel: 'established in Malaysia' },
+  { value: 300, suffix: '+', label: 'Students Placed' },
+  { value: 30, suffix: '+', label: 'Partner Universities' },
+  { value: 99, suffix: '%', label: 'Visa Success Rate' },
+  { value: 2, suffix: '+', label: 'Years of Experience' },
 ];
 
 export default function StatsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const lineRef = useRef<HTMLDivElement>(null);
+  const statRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const vDividerRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const hDividerRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        lineRef.current,
-        { scaleX: 0, transformOrigin: 'left center' },
-        {
-          scaleX: 1,
-          duration: 1.2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+      const scrollTrigger = {
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      };
+
+      const lastValues = new Map<HTMLElement, string>();
 
       stats.forEach((stat, i) => {
         const el = counterRefs.current[i];
-        if (!el) return;
+        const blockEl = statRefs.current[i];
+        if (!el || !blockEl) return;
 
         const obj = { val: 0 };
         gsap.fromTo(
@@ -45,22 +41,23 @@ export default function StatsSection() {
           { val: 0 },
           {
             val: stat.value,
-            duration: 1.8,
+            duration: 2.4,
             ease: 'power2.out',
             delay: i * 0.15,
             onUpdate() {
-              el.textContent = stat.isDecimal ? obj.val.toFixed(1) : Math.round(obj.val).toString();
+              const v = String(Math.round(obj.val));
+              const last = lastValues.get(el) || '';
+              if (v !== last) {
+                el.textContent = v;
+                lastValues.set(el, v);
+              }
             },
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 70%',
-              toggleActions: 'play none none none',
-            },
+            scrollTrigger,
           }
         );
 
         gsap.fromTo(
-          el.closest('.stat-block'),
+          blockEl,
           { opacity: 0, y: 30 },
           {
             opacity: 1,
@@ -68,14 +65,42 @@ export default function StatsSection() {
             duration: 0.7,
             delay: i * 0.15,
             ease: 'power2.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 70%',
-              toggleActions: 'play none none none',
-            },
+            scrollTrigger,
           }
         );
       });
+
+      const vDivs = vDividerRefs.current.filter(Boolean);
+      if (vDivs.length) {
+        gsap.fromTo(
+          vDivs,
+          { scaleY: 0, transformOrigin: 'center center' },
+          {
+            scaleY: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            delay: 0.5,
+            ease: 'power2.out',
+            scrollTrigger,
+          }
+        );
+      }
+
+      const hDivs = hDividerRefs.current.filter(Boolean);
+      if (hDivs.length) {
+        gsap.fromTo(
+          hDivs,
+          { scaleX: 0, transformOrigin: 'center center' },
+          {
+            scaleX: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            delay: 0.5,
+            ease: 'power2.out',
+            scrollTrigger,
+          }
+        );
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -84,18 +109,13 @@ export default function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-24 lg:py-32 overflow-hidden"
       id="stats"
-      style={{
-        background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 50%, #0A1630 100%)',
-      }}
+      className="relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
     >
-      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.25)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.25)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
+      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
 
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
-      >
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
           className="font-display font-bold uppercase"
           style={{
@@ -106,46 +126,78 @@ export default function StatsSection() {
             lineHeight: 1,
           }}
         >
-          RESULTS
+          NUMBERS
         </span>
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
-        <div className="flex items-center gap-6 mb-16">
-          <div ref={lineRef} className="hairline flex-1" style={{ transform: 'scaleX(0)' }} />
-          <p className="small-caps text-gold/70 whitespace-nowrap" style={{ fontSize: '11px' }}>
-            YEARS OF OUTCOMES
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,162,52,0.05) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="text-center mb-16 lg:mb-20">
+          <p
+            className="font-body uppercase tracking-[0.4em] text-gold/70 mb-4"
+            style={{ fontSize: '11px' }}
+          >
+            By the Numbers
           </p>
-          <div className="hairline flex-1" />
+          <h2
+            className="font-display font-bold text-kimono leading-[0.95]"
+            style={{ fontSize: 'clamp(36px, 6vw, 64px)' }}
+          >
+            Results That <span className="text-gold">Speak</span>
+          </h2>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => (
-            <div key={stat.label} className="stat-block text-center lg:text-left" style={{ opacity: 0 }}>
+            <div
+              key={stat.label}
+              ref={(el) => {
+                statRefs.current[i] = el;
+              }}
+              className="relative text-center px-4 py-12 lg:py-0"
+              style={{ opacity: 0 }}
+            >
               <div
-                className="font-display font-bold text-gold leading-none mb-3"
-                style={{ fontSize: 'clamp(52px, 8vw, 88px)' }}
+                className="font-display font-bold text-gold leading-none mb-4"
+                style={{ fontSize: 'clamp(48px, 8vw, 96px)' }}
               >
                 <span ref={(el) => { counterRefs.current[i] = el; }}>0</span>
                 <span>{stat.suffix}</span>
               </div>
-              <p className="font-body text-kimono uppercase tracking-widest mb-1" style={{ fontSize: '12px' }}>
+              <p
+                className="text-cream/60 small-caps"
+                style={{ fontSize: '11px', letterSpacing: '0.22em' }}
+              >
                 {stat.label}
               </p>
-              <p className="font-body font-light text-mouse" style={{ fontSize: '13px' }}>
-                {stat.sublabel}
-              </p>
+
+              {i < stats.length - 1 && i !== 1 && (
+                <span
+                  ref={(el) => {
+                    vDividerRefs.current[i] = el;
+                  }}
+                  className="hidden lg:block absolute right-0 top-[15%] h-[70%] w-px bg-gold/30"
+                  aria-hidden="true"
+                />
+              )}
+
+              {i === 1 && (
+                <span
+                  ref={(el) => {
+                    hDividerRefs.current[0] = el;
+                  }}
+                  className="lg:hidden absolute bottom-0 left-[15%] w-[70%] h-px bg-gold/30"
+                  aria-hidden="true"
+                />
+              )}
             </div>
           ))}
-        </div>
-
-        <div className="mt-20 text-center">
-          <p className="font-serif font-light text-cream/45 italic" style={{ fontSize: 'clamp(16px, 2vw, 22px)', lineHeight: 1.7 }}>
-            "Every number represents a student who dared to dream bigger than their postcode."
-          </p>
-          <p className="small-caps text-gold/50 mt-3" style={{ fontSize: '10px' }}>
-            — Absolute Consultancy Firm, KL
-          </p>
         </div>
       </div>
     </section>

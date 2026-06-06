@@ -8,7 +8,7 @@ export default function TrustBar() {
   const badges = [
     { icon: '✓', text: 'Certified Education Counsellors' },
     { icon: '🇲🇾', text: 'Malaysia Registered' },
-    { icon: '★', text: '99.9% Visa Success Rate' },
+    { icon: '★', text: '99% Visa Success Rate' },
     { icon: '🎓', text: '2,000+ Students Placed' },
     { icon: '🏛️', text: '30+ Partner Universities' },
     { icon: '✓', text: 'Free Offer Letter Service' },

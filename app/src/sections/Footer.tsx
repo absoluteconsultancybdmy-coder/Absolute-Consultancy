@@ -20,7 +20,7 @@ const socialLinks = [
   },
   {
     label: 'Facebook',
-    href: 'https://facebook.com/AbsoluteConsultancyFirm',
+    href: 'https://www.facebook.com/share/18bRc7r8cA/?mibextid=wwXIfr',
     icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
   },
 ];
@@ -103,6 +103,56 @@ export default function Footer() {
                 +60 17-563 1621
               </a>
             </div>
+          </div>
+        </div>
+
+        {/* Business Verification */}
+        <div
+          className="mb-10 p-6 rounded-lg"
+          style={{ background: 'rgba(201,162,52,0.06)', border: '1px solid rgba(201,162,52,0.15)' }}
+        >
+          <p className="font-body uppercase tracking-[0.2em] text-gold/80 mb-4" style={{ fontSize: '10px' }}>
+            ✦ Business Verification
+          </p>
+          <p className="font-display text-cream/80 mb-4" style={{ fontSize: '16px', letterSpacing: '0.02em' }}>
+            Official Status Confirmation — Absolute Consultancy Firm
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mb-4">
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Company Name</span><br />
+              Absolute Consultancy Firm
+            </p>
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Registered Trade License</span><br />
+              04-046-18947
+            </p>
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Head Office</span><br />
+              Old Kachari Road, Naogaon Sadar, Naogaon-6500
+            </p>
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Sub Office</span><br />
+              Persiaran Multimedia, Cyber 11, 63000 Cyberjaya, Selangor
+            </p>
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Email</span><br />
+              <span className="text-gold/60">contact@absoluteconsultancyfirm.com</span>
+            </p>
+            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse/40">Phone</span><br />
+              <span className="text-gold/60">+60 17-563 1621</span>
+            </p>
+          </div>
+          <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+            <span className="text-mouse/40">Operating Hours:</span> 24/7
+          </p>
+          <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(201,162,52,0.1)' }}>
+            <p className="font-body text-mouse/50" style={{ fontSize: '11px', lineHeight: 1.7 }}>
+              <span className="text-gold/50 font-semibold">Verification Statement</span> — Absolute Consultancy Firm is a legally registered consultancy service permitted to operate student application and support activities for international education.
+            </p>
+            <p className="font-body text-mouse/40 mt-2" style={{ fontSize: '11px' }}>
+              Issued 2025
+            </p>
           </div>
         </div>
 

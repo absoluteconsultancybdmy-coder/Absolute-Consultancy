@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrambledText from '../components/ScrambledText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,9 +85,10 @@ export default function TestimonialsSection() {
   const headingRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const isDragging = useRef(false);
+  const [cursorStyle, setCursorStyle] = useState<'grab' | 'grabbing'>('grab');
   const dragStart = useRef(0);
   const scrollStart = useRef(0);
+  const dragging = useRef(false);
 
   useEffect(() => {
     if (!headingRef.current) return;
@@ -109,26 +111,41 @@ export default function TestimonialsSection() {
   }, []);
 
   const onMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
+    dragging.current = true;
+    setCursorStyle('grabbing');
     dragStart.current = e.clientX;
     scrollStart.current = trackRef.current?.scrollLeft ?? 0;
+    e.preventDefault();
   };
   const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !trackRef.current) return;
+    if (!dragging.current || !trackRef.current) return;
     trackRef.current.scrollLeft = scrollStart.current - (e.clientX - dragStart.current);
   };
-  const onMouseUp = () => { isDragging.current = false; };
+  const onMouseUp = () => {
+    dragging.current = false;
+    setCursorStyle('grab');
+  };
+  const onMouseLeave = () => {
+    dragging.current = false;
+    setCursorStyle('grab');
+  };
 
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="testimonials"
-      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/Ginting_Highland.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+      style={{
+        backgroundImage: 'url(/images/Ginting_Highland.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}>
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.7) 100%)' }} />
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
-          <div className="w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
+          <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
           <h2 className="font-display font-bold text-kimono uppercase"
             style={{ fontSize: 'clamp(36px, 6vw, 76px)', letterSpacing: '0.05em', lineHeight: 1.05 }}>
-            STUDENT{' '}
-            <span style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}>STORIES</span>
+            <ScrambledText text="STUDENT" />{' '}
+            <ScrambledText text="STORIES" style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }} />
           </h2>
           <p className="font-serif font-light text-cream/50 mt-5 max-w-[480px]"
             style={{ fontSize: 'clamp(15px, 1.6vw, 19px)', lineHeight: 1.75 }}>
@@ -141,17 +158,17 @@ export default function TestimonialsSection() {
       {/* Horizontal scroll track */}
       <div
         ref={trackRef}
-        className="flex gap-6 overflow-x-auto pb-4 select-none"
+        className="relative z-10 flex gap-6 overflow-x-auto pb-4 select-none"
         style={{
           paddingLeft: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
           paddingRight: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
           scrollbarWidth: 'none',
-          cursor: isDragging.current ? 'grabbing' : 'grab',
+          cursor: cursorStyle,
         }}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
+        onMouseLeave={onMouseLeave}
       >
         {testimonials.map((t) => (
           <div
@@ -160,7 +177,7 @@ export default function TestimonialsSection() {
             style={{
               width: 'clamp(300px, 38vw, 420px)',
               minHeight: '340px',
-              background: 'rgba(255,255,255,0.03)',
+              background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.07)',
               opacity: 0,
               transition: 'border-color 300ms ease, transform 300ms ease',
@@ -169,11 +186,13 @@ export default function TestimonialsSection() {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = 'rgba(201,162,52,0.25)';
               el.style.transform = 'translateY(-4px)';
+              el.style.boxShadow = '0 8px 32px rgba(201,162,52,0.15)';
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = 'rgba(255,255,255,0.07)';
               el.style.transform = 'translateY(0)';
+              el.style.boxShadow = 'none';
             }}
           >
             <div className="flex items-center justify-between mb-6">
@@ -200,14 +219,15 @@ export default function TestimonialsSection() {
       </div>
 
       {/* Dots */}
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-10 mt-8">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10 mt-8">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             {testimonials.map((_, i) => (
               <button key={i}
                 onClick={() => {
                   if (!trackRef.current) return;
-                  trackRef.current.scrollTo({ left: i * (420 + 24), behavior: 'smooth' });
+                  const cardWidth = (trackRef.current.children[0] as HTMLElement)?.offsetWidth || 420;
+                  trackRef.current.scrollTo({ left: i * (cardWidth + 24), behavior: 'smooth' });
                   setActiveIndex(i);
                 }}
                 className="h-px transition-all duration-300"

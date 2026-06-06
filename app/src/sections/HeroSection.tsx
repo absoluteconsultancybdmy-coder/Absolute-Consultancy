@@ -1,15 +1,17 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const VIDEO_SRC = '/Absolute-Consultancy/video/WhatsApp%20Video%202026-05-28%20at%2012.31.02%20AM.mp4';
+
 const polaroidData = [
   { videoId: 'BexESh9MWO4', caption: '30+ universities', rotation: -2 },
   { videoId: 'tdCG0MCL0V0', caption: '300+ students placed', rotation: 1.5 },
-  { videoId: 'vaFIhaK0cds', caption: '98% visa approval', rotation: -1 },
+  { videoId: 'vaFIhaK0cds', caption: '99% visa approval', rotation: -1 },
   { videoId: 'xMFKnBwvuyU', caption: 'Free consultation', rotation: 2.5 },
-  { videoId: 'aPx3G5lgnxY', caption: 'Your dream, our mission', rotation: -1.5 },
+  { videoId: 'oZiIppJrRt4', caption: 'Your dream, our mission', rotation: -1.5 },
 ];
 
 export default function HeroSection() {
@@ -20,10 +22,44 @@ export default function HeroSection() {
   const polaroidStripRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   const polaroidRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoReadyRef = useRef(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
-  // Preload images
+  // Seed video element once on mount - optimized for smooth playback
+  useEffect(() => {
+    if (isMobile) return;
+    const video = videoRef.current;
+    if (!video || videoReadyRef.current) return;
+    videoReadyRef.current = true;
+
+    video.src = VIDEO_SRC;
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.preload = 'metadata';
+    if ('disableRemotePlayback' in video) {
+      (video as HTMLVideoElement & { disableRemotePlayback: boolean }).disableRemotePlayback = true;
+    }
+
+    const tryPlay = () => {
+      video.play().catch(() => {
+        const resume = () => { video.play().catch(() => {}); window.removeEventListener('scroll', resume); window.removeEventListener('click', resume); };
+        window.addEventListener('scroll', resume, { once: false });
+        window.addEventListener('click', resume, { once: false });
+      });
+    };
+
+    if (video.readyState >= 3) {
+      tryPlay();
+    } else {
+      video.addEventListener('loadeddata', tryPlay, { once: true });
+    }
+  }, [isMobile]);
+
+  // Preload critical images
   useEffect(() => {
     const images = ['/Absolute-Consultancy/images/hero-bg.jpg', '/Absolute-Consultancy/images/hero-graduate.png'];
     let loaded = 0;
@@ -41,92 +77,102 @@ export default function HeroSection() {
     });
   }, []);
 
-  // Entrance animation + parallax
+  // Entrance animation + parallax - smooth performance
   useEffect(() => {
     if (!imagesLoaded || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Entrance timeline — eased with slower timing for buttery feel
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      // Use smoothChildTiming for better performance
+      const tl = gsap.timeline({ 
+        defaults: { ease: 'power2.out' },
+        smoothChildTiming: true 
+      });
 
+      // Optimized staggered entrance
       tl.fromTo(
         bgRef.current,
-        { opacity: 0, scale: 1.1 },
-        { opacity: 1, scale: 1, duration: 1.8 }
+        { opacity: 0 },
+        { opacity: 1, duration: isMobile ? 0.5 : 1.2 }
       )
         .fromTo(
           textRef.current,
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 1.4 },
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: isMobile ? 0.4 : 0.8 },
           0.2
         )
         .fromTo(
           figureRef.current,
-          { opacity: 0, x: 30 },
-          { opacity: 1, x: 0, duration: 1.2 },
+          { opacity: 0, x: 15 },
+          { opacity: 1, x: 0, duration: isMobile ? 0.4 : 0.7 },
           0.4
         )
         .fromTo(
           polaroidRefs.current.filter(Boolean),
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.18, ease: 'power2.out' },
-          1.2
+          { opacity: 0, y: 20 },
+          { 
+            opacity: 1, 
+            y: 0, 
+            duration: 0.5, 
+            stagger: 0.12, 
+            ease: 'power1.out' 
+          },
+          0.8
         )
         .fromTo(
           ctaRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.7 },
-          1.6
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          1.2
         );
 
-      // ── Scroll-linked Parallax with smooth scrub ──
+      // Reduced parallax for better performance
       gsap.to(bgRef.current, {
-        yPercent: -15,
+        yPercent: isMobile ? -8 : -15,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.2,
+          scrub: isMobile ? 0.5 : 1.2,
         },
       });
 
       gsap.to(textRef.current, {
-        yPercent: -45,
+        yPercent: isMobile ? -25 : -45,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.5,
+          scrub: isMobile ? 0.7 : 1.5,
         },
       });
 
       gsap.to(figureRef.current, {
-        yPercent: -5,
+        yPercent: isMobile ? -3 : -5,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.2,
+          scrub: isMobile ? 0.5 : 1.2,
         },
       });
 
       gsap.to(polaroidStripRef.current, {
-        xPercent: -35,
+        xPercent: isMobile ? -15 : -35,
         ease: 'none',
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.8,
+          scrub: isMobile ? 0.8 : 1.8,
         },
       });
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [imagesLoaded]);
+  }, [imagesLoaded, isMobile]);
 
   const scrollToContact = () => {
     const el = document.querySelector('#contact');
@@ -139,18 +185,49 @@ export default function HeroSection() {
       className="relative w-full h-screen overflow-hidden bg-mist"
       id="hero"
     >
-      {/* Layer 1: Background */}
+      {/* Layer 1: Background — video on desktop, image on mobile */}
       <div
         ref={bgRef}
         className="absolute inset-0 z-[1]"
         style={{ opacity: 0, willChange: 'transform' }}
       >
-        <img
-          src="/Absolute-Consultancy/images/hero-bg.jpg"
-          alt="University campus backdrop"
-          className="w-full h-[120%] object-cover"
-          style={{ objectPosition: 'center 30%' }}
-        />
+        {!isMobile && (
+          <>
+            {/* Video background for desktop */}
+            <video
+              ref={videoRef}
+              className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover"
+              style={{ objectPosition: 'center 30%' }}
+              aria-hidden="true"
+            />
+            {/* Poster fallback */}
+            <img
+              src="/Absolute-Consultancy/images/hero-bg.jpg"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover transition-opacity duration-1000"
+              style={{ objectPosition: 'center 30%', opacity: 1 }}
+              onLoad={(e) => {
+                const v = videoRef.current;
+                if (!v) return;
+                const hidePoster = () => { (e.currentTarget as HTMLElement).style.opacity = '0'; };
+                const poll = setInterval(() => {
+                  if (v.readyState >= 2 && v.videoWidth > 0) { hidePoster(); clearInterval(poll); }
+                }, 200);
+                setTimeout(() => { clearInterval(poll); hidePoster(); }, 4000);
+              }}
+            />
+          </>
+        )}
+        {isMobile && (
+          <img
+            src="/Absolute-Consultancy/images/hero-bg.jpg"
+            alt="University campus backdrop"
+            className="w-full h-[120%] object-cover"
+            style={{ objectPosition: 'center 30%' }}
+            loading="eager"
+          />
+        )}
         <div
           className="absolute inset-0"
           style={{
@@ -164,16 +241,15 @@ export default function HeroSection() {
             background: 'linear-gradient(to right, rgba(10,10,10,0.45) 0%, transparent 100%)',
           }}
         />
-
       </div>
 
-      {/* Layer 2: ABSOLUTE Typography */}
+      {/* Layer 2: Typography - always present */}
       <div
         ref={textRef}
         className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none"
         style={{ opacity: 0, willChange: 'transform' }}
       >
-        <div className="relative flex flex-col items-center">
+        <div className="relative flex flex-col items-center text-center px-4">
           <p
             className="font-body uppercase tracking-[0.45em] text-gold/70 mb-4"
             style={{ fontSize: '11px', letterSpacing: '0.45em' }}
@@ -183,7 +259,7 @@ export default function HeroSection() {
           <h1
             className="font-display font-bold select-none whitespace-nowrap"
             style={{
-              fontSize: 'clamp(110px, 19vw, 270px)',
+              fontSize: 'clamp(60px, 12vw, 180px)',
               lineHeight: 0.85,
               WebkitTextStroke: '1.5px rgba(201, 162, 52, 0.55)',
               color: 'transparent',
@@ -194,15 +270,15 @@ export default function HeroSection() {
             ABSOLUTE
           </h1>
           <p
-            className="font-serif text-cream/60 mt-5 tracking-widest"
-            style={{ fontSize: 'clamp(13px, 1.5vw, 18px)', fontWeight: 300 }}
+            className="font-serif text-cream/60 mt-5 tracking-widest px-4"
+            style={{ fontSize: 'clamp(13px, 2vw, 18px)', fontWeight: 300 }}
           >
             Where ambition meets the world's finest universities
           </p>
         </div>
       </div>
 
-      {/* Layer 3: Foreground Figure */}
+      {/* Layer 3: Foreground Figure - always present */}
       <div
         ref={figureRef}
         className="absolute bottom-0 right-[4%] z-[3] pointer-events-none"
@@ -215,6 +291,7 @@ export default function HeroSection() {
           style={{
             filter: 'drop-shadow(-8px 0 60px rgba(201, 162, 52, 0.18))',
           }}
+          loading={isMobile ? 'eager' : 'lazy'}
         />
         <div
           className="absolute top-[15%] -left-[80px] w-[280px] h-[280px] rounded-full pointer-events-none"
@@ -225,10 +302,10 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Layer 4: Polaroid Cards */}
+      {/* Layer 4: Polaroid Cards - bottom left on desktop, centered bottom on mobile */}
       <div
         ref={polaroidStripRef}
-        className="absolute bottom-[9%] left-[3%] z-[4] flex gap-4"
+        className={`absolute z-[4] flex gap-3 ${isMobile ? 'bottom-[22%] left-1/2 -translate-x-1/2' : 'bottom-[9%] left-[3%]'}`}
         style={{ willChange: 'transform' }}
       >
         {polaroidData.map((item, index) => (
@@ -258,7 +335,14 @@ export default function HeroSection() {
             }}
           >
             <div className="w-[140px] h-[100px] overflow-hidden rounded-sm bg-gray-100">
-              {'videoId' in item ? (
+              {isMobile ? (
+                <img
+                  src={`https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`}
+                  alt={item.caption}
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+              ) : (
                 <iframe
                   src={`https://www.youtube.com/embed/${item.videoId}?autoplay=1&mute=1&loop=1&playlist=${item.videoId}&controls=0&modestbranding=1&rel=0&showinfo=0&playsinline=1`}
                   title={item.caption}
@@ -267,13 +351,6 @@ export default function HeroSection() {
                   allow="autoplay; encrypted-media"
                   allowFullScreen
                   loading="lazy"
-                />
-              ) : (
-                <img
-                  src={item.image}
-                  alt={item.caption}
-                  className="w-full h-full object-cover"
-                  loading="eager"
                 />
               )}
             </div>
@@ -284,11 +361,11 @@ export default function HeroSection() {
         ))}
       </div>
 
-      {/* Layer 5: CTA Button */}
+      {/* Layer 5: CTA Button - centered on mobile, right side on desktop */}
       <button
         ref={ctaRef}
         onClick={scrollToContact}
-        className="absolute bottom-[13%] right-[22%] z-[5] px-10 py-4 rounded-full font-body text-sm uppercase tracking-widest cursor-pointer"
+        className="absolute z-[5] px-10 py-4 rounded-full font-body text-sm uppercase tracking-widest cursor-pointer"
         style={{
           background: 'rgba(245, 232, 211, 0.92)',
           backdropFilter: 'blur(10px)',
@@ -297,24 +374,40 @@ export default function HeroSection() {
           transition: 'all 500ms cubic-bezier(0.22, 1, 0.36, 1)',
           border: '1px solid rgba(201, 162, 52, 0.3)',
           willChange: 'transform',
+          ...(isMobile ? {
+            bottom: '13%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          } : {
+            bottom: '13%',
+            right: '22%',
+          })
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = 'linear-gradient(135deg, #C9A234 0%, #E8C36A 100%)';
           e.currentTarget.style.color = '#0A0A0A';
-          e.currentTarget.style.transform = 'translateY(-3px)';
+          if (isMobile) {
+            e.currentTarget.style.transform = 'translateX(-50%) translateY(-3px)';
+          } else {
+            e.currentTarget.style.transform = 'translateY(-3px)';
+          }
           e.currentTarget.style.boxShadow = '0 12px 32px rgba(201,162,52,0.35)';
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = 'rgba(245, 232, 211, 0.92)';
           e.currentTarget.style.color = '#0A0A0A';
-          e.currentTarget.style.transform = 'translateY(0)';
+          if (isMobile) {
+            e.currentTarget.style.transform = 'translateX(-50%) translateY(0)';
+          } else {
+            e.currentTarget.style.transform = 'translateY(0)';
+          }
           e.currentTarget.style.boxShadow = 'none';
         }}
       >
         Start Your Journey
       </button>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - always present */}
       <div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[5] flex flex-col items-center gap-1 opacity-40"
         style={{ animation: 'fadeInUp 1s 2s both' }}

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HighlightText from '@/components/HighlightText';
@@ -11,6 +11,24 @@ export default function AboutSection() {
   const lineLeftRef = useRef<HTMLDivElement>(null);
   const lineRightRef = useRef<HTMLDivElement>(null);
   const bioRef = useRef<HTMLDivElement>(null);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
+  useEffect(() => {
+    if (showVideoModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [showVideoModal]);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showVideoModal) setShowVideoModal(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [showVideoModal]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -44,8 +62,11 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 lg:py-40" id="about" style={{ backgroundImage: 'url(/Absolute-Consultancy/images/Firm.avif)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-      <div className="absolute inset-0 bg-black/70" />
+    <section ref={sectionRef} className="relative w-full py-32 lg:py-44" id="about">
+      <div className="absolute inset-0 z-0">
+        <img src="/images/Firm.avif" alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
 
         {/* Section heading */}
@@ -53,7 +74,7 @@ export default function AboutSection() {
           <div ref={lineLeftRef} className="hairline flex-1" style={{ transform: 'scaleX(0)' }} />
           <h2
             ref={headingRef}
-            className="font-display font-bold text-kimono text-center whitespace-nowrap"
+            className="font-display font-bold text-kimono text-center"
             style={{ fontSize: 'clamp(36px, 7vw, 84px)', letterSpacing: '0.05em' }}
           >
             ABOUT THE FIRM
@@ -72,9 +93,14 @@ export default function AboutSection() {
             {/* Left — COO Photo */}
             <div className="relative h-[400px] lg:h-[520px] overflow-hidden">
               <img
-                src="/Absolute-Consultancy/images/coo-profile.png"
+                src="/images/coo-profile.png"
                 alt="COO - Absolute Consultancy Firm"
+                width={520}
+                height={520}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-top"
+                onError={(e) => { e.currentTarget.style.opacity = '0.2'; }}
               />
               <div className="absolute inset-0" style={{
                 background: 'linear-gradient(to right, transparent 60%, rgba(10,10,10,0.85) 100%), linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%)',
@@ -89,7 +115,7 @@ export default function AboutSection() {
 
             {/* Right — COO Bio */}
             <div className="flex flex-col justify-center p-10 lg:p-14">
-              <div className="w-12 h-px mb-8" style={{ background: '#C9A234' }} />
+              <div className="hairline-draw w-12 h-px mb-8" style={{ background: '#C9A234' }} />
               <p className="small-caps text-gold/70 mb-3" style={{ fontSize: '11px' }}>Chief Operating Officer</p>
               <h3
                 className="font-display font-bold text-kimono mb-6"
@@ -100,11 +126,11 @@ export default function AboutSection() {
               </h3>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
                 With over a year's experience in Malaysian higher education consultancy, our COO personally
-                oversees every student's journey — from university selection to visa approval. His 99.9% visa
+                oversees every student's journey — from university selection to visa approval. His 99% visa
                 success rate speaks for itself.
               </p>
               <div className="grid grid-cols-3 gap-6 mb-10">
-                {[{ value: '99.9%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '2+', label: 'Years' }].map(stat => (
+                {[{ value: '99%', label: 'Visa Rate' }, { value: '300+', label: 'Students' }, { value: '2+', label: 'Years' }].map(stat => (
                   <div key={stat.label}>
                     <p className="font-display font-bold text-gold" style={{ fontSize: '28px' }}>{stat.value}</p>
                     <p className="font-body text-mouse text-xs uppercase tracking-wider mt-1">{stat.label}</p>
@@ -139,6 +165,19 @@ export default function AboutSection() {
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                   </svg>
                   YouTube
+                </a>
+                <a
+                  href="mailto:coo@absoluteconsultancyfirm.com"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-body text-sm uppercase tracking-widest"
+                  style={{ background: 'rgba(201,162,52,0.15)', color: '#C9A234', border: '1px solid rgba(201,162,52,0.3)', transition: 'transform 300ms ease, box-shadow 300ms ease' }}
+                  onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(201,162,52,0.2)'; }}
+                  onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  Email COO
                 </a>
               </div>
             </div>
@@ -184,14 +223,26 @@ export default function AboutSection() {
               <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(201,162,52,0.5)' }} />
               <div className="space-y-10">
                 {[
-                  { year: 'Founded 2014', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
-                  { year: '100+ Students', text: 'Reached our first 100 students placed milestone within 3 years of operation.' },
-                  { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99.9% visa approval.' },
-                  { year: 'Certified Counsellors', text: 'Our team are fully certified education counsellors recognised by Malaysian institutions.' },
+                  { year: 'Founded 2024', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
+                  { year: '100+ Students', text: 'Reached our first 100+ in 11 Months.' },
+                  { year: '300+ Placed', text: 'Over 300 students successfully admitted to top Malaysian universities with 99% visa approval.' },
+                  { year: 'Certified Counsellors', text: 'Our team is fully certified education counsellors', cta: 'CLICK THE YELLOW BOX TO GET 100% SCHOLARSHIP WITHOUT PASSPORT' },
                 ].map((item, i) => (
                   <div key={i} className="timeline-node relative">
                     <span className="small-caps text-gold block mb-2">{item.year}</span>
                     <p className="font-body font-light text-cream/50 text-sm" style={{ lineHeight: 1.7 }}>{item.text}</p>
+                    {'cta' in item && item.cta && (
+                      <button
+                        onClick={() => setShowVideoModal(true)}
+                        className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(201,162,52,0.4)]"
+                        style={{ background: 'var(--color-cream)', color: 'var(--color-mist)', fontWeight: 700, animation: 'pulse-gold 2s ease-in-out infinite' }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        {item.cta}
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>
@@ -200,6 +251,76 @@ export default function AboutSection() {
         </div>
 
       </div>
+
+      {/* Video Popup Modal */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+          style={{ background: 'rgba(0,0,0,0.92)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
+          onClick={() => setShowVideoModal(false)}
+        >
+          <div
+            className="relative w-full max-w-[1000px] rounded-3xl overflow-hidden"
+            style={{ background: '#0A0A0A', border: '1px solid rgba(201,162,52,0.3)', boxShadow: '0 0 60px rgba(201,162,52,0.15)' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(201,162,52,0.15) 0%, rgba(201,162,52,0.05) 100%)', borderBottom: '1px solid rgba(201,162,52,0.2)' }}>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--color-gold)' }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A0A0A">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-body uppercase tracking-widest text-gold text-[11px] font-semibold">100% SCHOLARSHIP WITHOUT ACADEMIC CERTIFICATE</p>
+                  <p className="font-body text-cream/70 text-[10px] uppercase tracking-wider">From Our Certified Counsellors</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                aria-label="Close video"
+                className="group w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-red-500/20 hover:scale-110"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5E8D3" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Video Player */}
+            <div style={{ aspectRatio: '16/9', background: '#000' }}>
+              <iframe
+                src="https://www.youtube.com/embed/dHER3Vc9GBI?autoplay=1&mute=0&rel=0&modestbranding=1"
+                title="Scholarship Video"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(201,162,52,0.08) 0%, rgba(0,0,0,0.5) 100%)', borderTop: '1px solid rgba(201,162,52,0.15)' }}>
+              <p className="font-body text-cream/70 text-[10px] uppercase tracking-wider">Press ESC or click outside to close</p>
+              <button
+                onClick={() => setShowVideoModal(false)}
+                aria-label="Close video"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-body text-[11px] uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-white/10"
+                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#F5E8D3' }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                Close Video
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

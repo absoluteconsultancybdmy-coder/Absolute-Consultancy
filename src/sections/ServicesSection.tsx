@@ -9,6 +9,7 @@ import {
   Home,
   Plane,
 } from 'lucide-react';
+import ScrambledText from '../components/ScrambledText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,13 +18,13 @@ const services = [
     icon: GraduationCap,
     title: 'University Admissions',
     description:
-      'Personalised shortlisting and end-to-end application support for 200+ partner universities worldwide.',
+      'Personalised shortlisting and end-to-end application support for 30+ partner universities in Malaysia.',
   },
   {
     icon: ShieldCheck,
     title: 'Visa Assistance',
     description:
-      '98% approval rate. We handle every document, interview prep, and submission — stress-free.',
+      '99% approval rate. We handle every document, interview prep, and submission — stress-free.',
   },
   {
     icon: PenTool,
@@ -86,15 +87,20 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-32 lg:py-40 overflow-hidden"
+      className="relative w-full py-32 lg:py-44 overflow-hidden"
       id="services"
     >
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/Absolute-Consultancy/images/services-section.jpg"
+          src="/images/services-section.jpg"
           alt=""
+          width={1920}
+          height={1080}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
+          onError={(e) => { e.currentTarget.style.opacity = '0'; }}
         />
         <div className="absolute inset-0 bg-black/70" />
       </div>
@@ -103,15 +109,15 @@ export default function ServicesSection() {
         {/* Heading with hairline rule */}
         <div className="flex items-center gap-6 mb-16">
           <h2
-            className="font-display font-bold text-kimono whitespace-nowrap"
+            className="font-display font-bold text-kimono"
             style={{
               fontSize: 'clamp(36px, 7vw, 84px)',
               letterSpacing: '0.05em',
             }}
           >
-            OUR SERVICES
+            <ScrambledText text="OUR SERVICES" />
           </h2>
-          <div className="hairline flex-1" />
+          <div className="hairline hairline-draw flex-1" />
         </div>
 
         {/* Bento Grid */}

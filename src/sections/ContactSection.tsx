@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrambledText from '../components/ScrambledText';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const destinations = ['UiTM', 'MMU', 'UCSI University', 'APU', 'Sunway University', "Taylor's University", 'HELP University', 'INTI University', 'University of Cyberjaya', 'SEGi University', 'Limkokwing', 'Other'];
 
 export default function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,17 +30,21 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // WhatsApp redirect with form data
-    const msg = `Hi, I'm ${formData.name}. I'm interested in ${formData.destination}. ${formData.message}`;
-    window.open(`https://wa.me/60175631621?text=${encodeURIComponent(msg)}`, '_blank');
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitted(false);
+    try {
+      const msg = `Hi, I'm ${formData.name}. I'm interested in ${formData.destination}. ${formData.message}`;
+      window.open(`https://wa.me/60175631621?text=${encodeURIComponent(msg)}`, '_blank');
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch {
+      setSubmitted(false);
+    }
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 lg:py-40 overflow-hidden" id="contact">
+    <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="contact">
       <div className="absolute inset-0 z-0">
-        <img src="/Absolute-Consultancy/images/contact-bg.jpg" alt="Campus" className="w-full h-full object-cover" />
+        <img src="/images/contact-bg.jpg" alt="Campus" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.75) 100%)' }} />
       </div>
 
@@ -50,7 +54,7 @@ export default function ContactSection() {
           {/* Left — Form */}
           <div ref={formPanelRef} className="glass-panel p-10 lg:p-12 max-w-[480px]" style={{ opacity: 0 }}>
             <h2 className="font-serif font-light text-kimono mb-3" style={{ fontSize: 'clamp(28px, 4vw, 36px)' }}>
-              Ready to study in Malaysia?
+              <ScrambledText text="Ready to study in Malaysia?" />
             </h2>
             <p className="small-caps text-mouse mb-10">
               Leave your details — our COO will personally reach out within 24 hours.
@@ -78,13 +82,9 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })} required />
                 </div>
                 <div>
-                  <select className="form-input-underline cursor-pointer appearance-none bg-transparent"
-                    value={formData.destination} onChange={(e) => setFormData({ ...formData, destination: e.target.value })} required>
-                    <option value="" disabled className="bg-mist text-mouse">Preferred University</option>
-                    {destinations.map((dest) => (
-                      <option key={dest} value={dest} className="bg-mist text-kimono">{dest}</option>
-                    ))}
-                  </select>
+                  <input type="text" placeholder="Preferred University (type any university name)"
+                    className="form-input-underline" value={formData.destination}
+                    onChange={(e) => setFormData({ ...formData, destination: e.target.value })} required />
                 </div>
                 <div>
                   <textarea placeholder="Tell us about your academic background and goals"
@@ -103,10 +103,10 @@ export default function ContactSection() {
             {/* COO photo card */}
             <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
-                <img src="/Absolute-Consultancy/images/coo-profile2.png" alt="COO"
-                  className="w-full h-full object-cover object-top" />
+                <img src="/images/coo-profile2.png" alt="COO" width={360} height={280} loading="lazy" decoding="async"
+                  className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.style.opacity = '0.2'; }} />
               </div>
-              <div className="p-6" style={{ background: 'rgba(11,30,66,0.95)', backdropFilter: 'blur(16px)' }}>
+              <div className="p-6" style={{ background: 'rgba(11,30,66,0.95)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full" style={{ background: '#25D366' }} />
                   <span className="small-caps text-mouse" style={{ fontSize: '10px' }}>Available Now</span>
@@ -135,7 +135,7 @@ export default function ContactSection() {
                 </div>
               </a>
 
-              <a href="https://www.facebook.com/share/1YXW4n6zKN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.facebook.com/share/18bRc7r8cA/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-3 px-5 py-4 rounded-2xl text-white text-sm font-body transition-all duration-300 hover:scale-[1.02]"
                 style={{ backgroundColor: '#1877F2' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { getLenis } from '../hooks/useLenis';
+import ScrambledText from '../components/ScrambledText';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +13,7 @@ interface University {
   location: string;
   type: string;
   programmes: string[];
+  studyLevels: string[];
   accent: string;
   tag: string;
   founded: string;
@@ -25,83 +29,12 @@ interface University {
 
 const universities: University[] = [
   {
-    name: 'Multimedia University (MMU)',
-    shortName: 'MMU',
-    location: 'Cyberjaya, Selangor',
-    type: 'Private',
-    programmes: ['Computer Science', 'Engineering', 'Creative Multimedia', 'Business', 'Law', 'Cinematic Arts'],
-    accent: '#7B0000',
-    tag: 'Tech Leader',
-    founded: '1994',
-    students: '18,000+',
-    ranking: 'QS Asia #207 (2025)',
-    description: "Malaysia's first private university, founded by Telekom Malaysia. MMU is a premier research institution at the heart of the Multimedia Super Corridor (MSC), renowned for engineering, IT, creative multimedia, and strong industry connections.",
-    highlights: ['Malaysia\'s First Private University', 'QS Asia Top 250', 'Olympic-sized Swimming Pool', '200-acre Campus', '13 Research Centres', 'Strong Tech Industry Links'],
-    campusImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80',
-    logoColor: '#7B0000',
-    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
-    website: 'https://www.mmu.edu.my',
-  },
-  {
-    name: 'UCSI University',
-    shortName: 'UCSI',
-    location: 'Kuala Lumpur',
-    type: 'Private',
-    programmes: ['Medicine', 'Pharmacy', 'Architecture', 'Music', 'Business', 'Engineering', 'Computer Science'],
-    accent: '#1B5E20',
-    tag: 'QS Ranked',
-    founded: '1986',
-    students: '10,000+',
-    ranking: 'QS World Top 601+',
-    description: 'A leading private university in KL offering over 100 programmes. UCSI is especially renowned for its Medicine, Pharmacy, and Architecture programmes, and boasts a rooftop bar and vibrant student life.',
-    highlights: ['QS World Ranked', 'Top Medicine & Pharmacy', 'Award-Winning Architecture', 'Rooftop Campus Facilities', 'Strong Alumni Network', 'Located in KL'],
-    campusImage: 'https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=800&q=80',
-    logoColor: '#1B5E20',
-    campusTourVideo: 'https://www.youtube.com/embed/07RlVINKWU4',
-    website: 'https://www.ucsiuniversity.edu.my',
-  },
-  {
-    name: 'Asia Pacific University (APU)',
-    shortName: 'APU',
-    location: 'Kuala Lumpur',
-    type: 'Private',
-    programmes: ['IT', 'Engineering', 'Business', 'Computing', 'Design', 'Actuarial Science'],
-    accent: '#1A3A6B',
-    tag: '5-Star SETARA',
-    founded: '1993',
-    students: '12,000+',
-    ranking: 'QS World Top 401+ | 5-Star SETARA',
-    description: 'One of Malaysia\'s highest-rated universities with a 5-Star SETARA rating. APU is especially strong in technology and computing, with students from over 130 countries making it one of the most diverse campuses in Malaysia.',
-    highlights: ['5-Star SETARA Rating', '130+ Nationalities on Campus', 'QS Top 401+', 'Strong IT & Computing', 'Excellent Graduate Employability', 'Modern KL Campus'],
-    campusImage: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
-    logoColor: '#1A3A6B',
-    campusTourVideo: 'https://www.youtube.com/embed/OhmGgJV9qNI',
-    website: 'https://www.apu.edu.my',
-  },
-  {
-    name: 'Sunway University',
-    shortName: 'Sunway',
-    location: 'Petaling Jaya, Selangor',
-    type: 'Private',
-    programmes: ['Business', 'Sciences', 'Arts', 'Computing', 'Law', 'Medical Sciences'],
-    accent: '#B8860B',
-    tag: 'Premier Private',
-    founded: '1987',
-    students: '9,000+',
-    ranking: 'QS World #253 (2026)',
-    description: 'Ranked #253 globally in QS 2026, Sunway University is one of Malaysia\'s most prestigious private universities. Located within the integrated Sunway City, students enjoy world-class facilities including a FIFA-certified football field.',
-    highlights: ['QS World #253 (2026)', 'FIFA-Certified Football Field', 'Canopy Walk', 'Integrated Smart City Campus', 'Strong Medical Sciences', 'Top Business School'],
-    campusImage: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80',
-    logoColor: '#B8860B',
-    campusTourVideo: 'https://www.youtube.com/embed/g5RhGYuzu-s',
-    website: 'https://sunwayuniversity.edu.my',
-  },
-  {
     name: "Taylor's University",
     shortName: "Taylor's",
     location: 'Subang Jaya, Selangor',
     type: 'Private',
     programmes: ['Hospitality', 'Law', 'Architecture', 'Business', 'Medicine', 'Engineering'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
     accent: '#4A0080',
     tag: 'Award Winning',
     founded: '1969',
@@ -109,28 +42,67 @@ const universities: University[] = [
     ranking: 'QS World #253 (2026)',
     description: "One of Malaysia's oldest and most reputable private institutions. Taylor's is globally recognised for its Hospitality, Law, and Architecture programmes, and offers award-winning degrees in a beautiful Subang Jaya campus.",
     highlights: ['Established 1969', 'Award-Winning Hospitality School', 'MyQUEST 2022 Competitive', 'QS World #253', 'Beautiful Campus', 'Strong Industry Partnerships'],
-    campusImage: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800&q=80',
+    campusImage: '/images/TaylorUniversity.jpeg',
     logoColor: '#4A0080',
     campusTourVideo: 'https://www.youtube.com/embed/NSuKhrtt9zo',
     website: 'https://university.taylors.edu.my',
   },
   {
-    name: 'HELP University',
-    shortName: 'HELP',
+    name: 'Sunway University',
+    shortName: 'Sunway',
+    location: 'Petaling Jaya, Selangor',
+    type: 'Private',
+    programmes: ['Business', 'Sciences', 'Arts', 'Computing', 'Law', 'Medical Sciences'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
+    accent: '#B8860B',
+    tag: 'Premier Private',
+    founded: '1987',
+    students: '9,000+',
+    ranking: 'QS World #253 (2026)',
+    description: 'Ranked #253 globally in QS 2026, Sunway University is one of Malaysia\'s most prestigious private universities. Located within the integrated Sunway City, students enjoy world-class facilities including a FIFA-certified football field.',
+    highlights: ['QS World #253 (2026)', 'FIFA-Certified Football Field', 'Canopy Walk', 'Integrated Smart City Campus', 'Strong Medical Sciences', 'Top Business School'],
+    campusImage: '/images/SunWayUniversity.jpeg',
+    logoColor: '#B8860B',
+    campusTourVideo: 'https://www.youtube.com/embed/g5RhGYuzu-s',
+    website: 'https://sunwayuniversity.edu.my',
+  },
+  {
+    name: 'Monash University Malaysia',
+    shortName: 'Monash',
+    location: 'Bandar Sunway, Selangor',
+    type: 'Private',
+    programmes: ['Medicine', 'Engineering', 'Business', 'Pharmacy', 'Computer Science', 'Arts & Sciences'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
+    accent: '#005A8B',
+    tag: 'Group of Eight',
+    founded: '1998',
+    students: '9,000+',
+    ranking: 'QS World #57 (2026)',
+    description: 'Monash University Malaysia is the first foreign university campus in Malaysia and a branch of Australia\'s prestigious Group of Eight. Students earn the same degree as the main campus in Melbourne, with globally recognised programmes in medicine, engineering, business, and pharmacy on a state-of-the-art campus in Bandar Sunway.',
+    highlights: ['QS World #57 (2026)', 'Australian Group of Eight', 'Same Degree as Melbourne Campus', 'Top Medicine & Engineering', 'Global Exchange Opportunities', 'Research-Intensive University'],
+    campusImage: '/images/MonashUniversity.jpeg',
+    logoColor: '#005A8B',
+    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
+    website: 'https://www.monash.edu.my',
+  },
+  {
+    name: 'Asia Pacific University of Technology & Innovation (APU)',
+    shortName: 'APU',
     location: 'Kuala Lumpur',
     type: 'Private',
-    programmes: ['Psychology', 'Business', 'Law', 'IT', 'Economics', 'Social Sciences'],
-    accent: '#8B0000',
-    tag: 'Established 1986',
-    founded: '1986',
-    students: '5,000+',
-    ranking: 'Top KL Private University',
-    description: 'Established in 1986, HELP University is one of KL\'s most respected institutions especially known for Psychology, Law, and Business. It offers a personal, nurturing environment with strong academic rigour.',
-    highlights: ['Founded 1986', 'Malaysia\'s Top Psychology School', 'Strong Law Programme', 'Personal Learning Environment', 'Located in KL City', 'Affordable Fees'],
-    campusImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
-    logoColor: '#8B0000',
-    campusTourVideo: 'https://www.youtube.com/embed/NSuKhrtt9zo',
-    website: 'https://www.help.edu.my',
+    programmes: ['IT', 'Engineering', 'Business', 'Computing', 'Design', 'Actuarial Science'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
+    accent: '#1A3A6B',
+    tag: '5-Star SETARA',
+    founded: '1993',
+    students: '12,000+',
+    ranking: 'QS World Top 401+ | 5-Star SETARA',
+    description: 'One of Malaysia\'s highest-rated universities with a 5-Star SETARA rating. APU is especially strong in technology and computing, with students from over 130 countries making it one of the most diverse campuses in Malaysia.',
+    highlights: ['5-Star SETARA Rating', '130+ Nationalities on Campus', 'QS Top 401+', 'Strong IT & Computing', 'Excellent Graduate Employability', 'Modern KL Campus'],
+    campusImage: '/images/AsiaPacificUniversity.jpeg',
+    logoColor: '#1A3A6B',
+    campusTourVideo: 'https://www.youtube.com/embed/OhmGgJV9qNI',
+    website: 'https://www.apu.edu.my',
   },
   {
     name: 'INTI International University',
@@ -138,6 +110,7 @@ const universities: University[] = [
     location: 'Nilai, Negeri Sembilan',
     type: 'Private',
     programmes: ['Business', 'Engineering', 'Computing', 'Hospitality', 'Health Sciences'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
     accent: '#CC4400',
     tag: 'International Network',
     founded: '1986',
@@ -145,28 +118,10 @@ const universities: University[] = [
     ranking: 'Top 5 Private Universities in Malaysia',
     description: 'With campuses in Nilai and Subang Jaya, INTI offers globally recognised qualifications through its international university partnerships. Students can transfer credits or complete degrees at partner universities worldwide.',
     highlights: ['International Transfer Programmes', 'Partner Universities Worldwide', 'Nilai & Subang Campuses', 'Top 5 Private Universities', 'Strong Hospitality School', 'Hope Education Group'],
-    campusImage: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=800&q=80',
+    campusImage: '/images/INTIUniversity.jpeg',
     logoColor: '#CC4400',
     campusTourVideo: 'https://www.youtube.com/embed/W1himgzsyLQ',
     website: 'https://newinti.edu.my',
-  },
-  {
-    name: 'University of Cyberjaya (UoC)',
-    shortName: 'UoC',
-    location: 'Cyberjaya, Selangor',
-    type: 'Private',
-    programmes: ['Medicine', 'Pharmacy', 'IT', 'Business', 'Health Sciences', 'Nursing', 'Biomedical Engineering'],
-    accent: '#005A8B',
-    tag: 'Health Focus',
-    founded: '2005',
-    students: '4,000+',
-    ranking: 'QS Top 601+ | 5-Star SETARA',
-    description: "Located in Malaysia's smart city Cyberjaya, UoC is a premier health sciences university with a 5-Star SETARA rating. It excels in Medicine, Pharmacy, and Nursing with a state-of-the-art eco-friendly campus.",
-    highlights: ['5-Star SETARA Rating', 'Top Medicine & Health Sciences', 'Eco-Friendly Smart Campus', 'QS Top 601+', 'Top 200 Global Health SDG Ranking', 'Located in Cyberjaya'],
-    campusImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
-    logoColor: '#005A8B',
-    campusTourVideo: 'https://www.youtube.com/embed/irmFggZ7DN4',
-    website: 'https://cyberjaya.edu.my',
   },
   {
     name: 'SEGi University',
@@ -174,6 +129,7 @@ const universities: University[] = [
     location: 'Petaling Jaya, Selangor',
     type: 'Private',
     programmes: ['Medicine', 'Dentistry', 'Business', 'Engineering', 'IT', 'Pharmacy'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
     accent: '#006400',
     tag: 'Affordable',
     founded: '1977',
@@ -181,72 +137,58 @@ const universities: University[] = [
     ranking: 'SETARA Tier 5',
     description: 'One of Malaysia\'s oldest private institutions, SEGi offers affordable education across medicine, dentistry, engineering and business. Multiple campuses across Malaysia make it accessible to students nationwide.',
     highlights: ['Established 1977', 'Affordable Fees', 'Top Dentistry School', 'Multiple Campuses', 'Medicine & Pharmacy', 'Strong Industry Links'],
-    campusImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    campusImage: '/images/SEGiUniversity.jpeg',
     logoColor: '#006400',
     campusTourVideo: 'https://www.youtube.com/embed/6mnJu2Oy7OI',
     website: 'https://www.segi.edu.my',
   },
   {
-    name: 'Limkokwing University',
-    shortName: 'LUCT',
+    name: 'University of Cyberjaya (UOC)',
+    shortName: 'UoC',
     location: 'Cyberjaya, Selangor',
     type: 'Private',
-    programmes: ['Design', 'Architecture', 'Communication', 'Business', 'Fashion', 'Multimedia'],
-    accent: '#1A1A2E',
-    tag: 'Creative Hub',
-    founded: '1991',
-    students: '30,000+',
-    ranking: '150+ Countries Represented',
-    description: 'The most internationally diverse university in Malaysia with students from 150+ countries. Limkokwing is the go-to institution for creative arts, design, fashion, and communication — with a visually stunning campus.',
-    highlights: ['150+ Countries on Campus', 'Top Creative Arts University', 'Award-Winning Architecture Campus', 'Fashion & Design Hub', 'Global Campuses Network', 'Affordable Programmes'],
-    campusImage: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-    logoColor: '#1A1A2E',
-    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
-    website: 'https://www.limkokwing.net',
+    programmes: ['Medicine', 'Pharmacy', 'IT', 'Business', 'Health Sciences', 'Nursing', 'Biomedical Engineering'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
+    accent: '#005A8B',
+    tag: 'Health Focus',
+    founded: '2005',
+    students: '4,000+',
+    ranking: 'QS Top 601+ | 5-Star SETARA',
+    description: "Located in Malaysia's smart city Cyberjaya, UoC is a premier health sciences university with a 5-Star SETARA rating. It excels in Medicine, Pharmacy, and Nursing with a state-of-the-art eco-friendly campus.",
+    highlights: ['5-Star SETARA Rating', 'Top Medicine & Health Sciences', 'Eco-Friendly Smart Campus', 'QS Top 601+', 'Top 200 Global Health SDG Ranking', 'Located in Cyberjaya'],
+    campusImage: '/images/UniversityOfCyberjaya.jpeg',
+    logoColor: '#005A8B',
+    campusTourVideo: 'https://www.youtube.com/embed/irmFggZ7DN4',
+    website: 'https://cyberjaya.edu.my',
   },
   {
-    name: 'KDU University College',
-    shortName: 'KDU',
-    location: 'Utama, Selangor',
+    name: 'UCSI University',
+    shortName: 'UCSI',
+    location: 'Kuala Lumpur',
     type: 'Private',
-    programmes: ['Culinary Arts', 'Business', 'Engineering', 'Computing', 'Hospitality', 'Design'],
-    accent: '#B8600A',
-    tag: 'Swiss Partner',
-    founded: '1983',
-    students: '3,500+',
-    ranking: 'Top Culinary School Malaysia',
-    description: "Malaysia's top culinary arts institution with a partnership with Swiss schools. KDU offers world-class hospitality and culinary programmes, alongside strong engineering and business faculties in a modern Selangor campus.",
-    highlights: ['Swiss Culinary Partnership', 'Top Culinary Arts School', 'Modern Selangor Campus', 'Strong Hospitality', 'Industry-Ready Graduates', 'Established 1983'],
-    campusImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-    logoColor: '#B8600A',
-    campusTourVideo: 'https://www.youtube.com/embed/g5RhGYuzu-s',
-    website: 'https://kdu.edu.my',
+    programmes: ['Medicine', 'Pharmacy', 'Architecture', 'Music', 'Business', 'Engineering', 'Computer Science'],
+    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
+    accent: '#1B5E20',
+    tag: 'QS Ranked',
+    founded: '1986',
+    students: '10,000+',
+    ranking: 'QS World Top 601+',
+    description: 'A leading private university in KL offering over 100 programmes. UCSI is especially renowned for its Medicine, Pharmacy, and Architecture programmes, and boasts a rooftop bar and vibrant student life.',
+    highlights: ['QS World Ranked', 'Top Medicine & Pharmacy', 'Award-Winning Architecture', 'Rooftop Campus Facilities', 'Strong Alumni Network', 'Located in KL'],
+    campusImage: '/images/UCSIUniversity.jpeg',
+    logoColor: '#1B5E20',
+    campusTourVideo: 'https://www.youtube.com/embed/07RlVINKWU4',
+    website: 'https://www.ucsiuniversity.edu.my',
   },
-  {
-    name: 'Universiti Teknologi MARA (UiTM)',
-    shortName: 'UiTM',
-    location: 'Shah Alam, Selangor',
-    type: 'Public',
-    programmes: ['Business', 'Engineering', 'Law', 'Medicine', 'IT', 'Art & Design', 'Sciences'],
-    accent: '#1A3A6B',
-    tag: 'Top Public',
-    founded: '1956',
-    students: '150,000+',
-    ranking: "Malaysia's Largest University",
-    description: "Malaysia's largest public university with over 150,000 students across 35 campuses nationwide. UiTM is a prestigious public institution known for its Business, Law, and Engineering faculties with strong government recognition.",
-    highlights: ["Malaysia's Largest University", '35 Campuses Nationwide', '150,000+ Students', 'Prestigious Public Status', 'Strong Government Recognition', 'Established 1956'],
-    campusImage: 'https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=800&q=80',
-    logoColor: '#1A3A6B',
-    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
-    website: 'https://www.uitm.edu.my',
-  },
-];
+  ];
 
 function UniversityModal({ uni, onClose }: { uni: University; onClose: () => void }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
-  }, []);
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+  }, [onClose]);
 
   return (
     <div
@@ -255,13 +197,14 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[900px] max-h-[90vh] overflow-y-auto rounded-3xl"
-        style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.3)' }}
+        className="relative w-full max-w-[900px] max-h-[85dvh] overflow-y-auto rounded-3xl"
+        style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
+          aria-label="Close university details"
           className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-cream/70 hover:text-cream transition-colors"
           style={{ background: 'rgba(255,255,255,0.1)' }}
         >
@@ -270,7 +213,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
 
         {/* Hero image */}
         <div className="relative h-[220px] overflow-hidden rounded-t-3xl">
-          <img src={uni.campusImage} alt={uni.name} className="w-full h-full object-cover" />
+          <img src={uni.campusImage} alt={uni.name} width={900} height={220} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-[600ms] ease-out hover:scale-[1.08]" onError={(e) => { e.currentTarget.style.opacity = '0.15'; }} />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,30,66,1) 0%, transparent 60%)' }} />
           <div className="absolute bottom-4 left-6 right-16">
             <span className="px-3 py-1 rounded-full text-[10px] font-body uppercase tracking-widest mb-2 inline-block"
@@ -310,6 +253,13 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
                 ))}
               </div>
 
+              <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Study Levels</h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {uni.studyLevels.map(s => (
+                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>{s}</span>
+                ))}
+              </div>
+
               <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Highlights</h3>
               <ul className="space-y-2">
                 {uni.highlights.map(h => (
@@ -322,16 +272,6 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
 
             {/* Right - Video */}
             <div>
-              <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Campus Tour</h3>
-              <div className="rounded-2xl overflow-hidden mb-6" style={{ aspectRatio: '16/9' }}>
-                <iframe
-                  src={uni.campusTourVideo}
-                  title={`${uni.name} Campus Tour`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
 
               <a
                 href={`https://wa.me/60175631621?text=Hi, I'm interested in studying at ${uni.name}. Please help me with the application.`}
@@ -344,15 +284,6 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                 </svg>
                 Apply via WhatsApp
-              </a>
-              <a
-                href={uni.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl font-body text-sm uppercase tracking-widest transition-all duration-300 hover:scale-[1.02]"
-                style={{ border: '1px solid rgba(201,162,52,0.4)', color: '#C9A234' }}
-              >
-                Visit Official Website ↗
               </a>
             </div>
           </div>
@@ -441,7 +372,7 @@ function UniversityCard({ uni, index, onClick }: { uni: University; index: numbe
 }
 
 export default function UniversitiesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const navigate = useNavigate();
   const headerRef = useRef<HTMLDivElement>(null);
   const [selectedUni, setSelectedUni] = useState<University | null>(null);
 
@@ -459,17 +390,17 @@ export default function UniversitiesSection() {
     <>
       {selectedUni && <UniversityModal uni={selectedUni} onClose={() => setSelectedUni(null)} />}
 
-      <section ref={sectionRef} className="relative w-full py-32 lg:py-44" id="destinations"
+      <section className="relative w-full py-32 lg:py-44" id="destinations"
         style={{ backgroundColor: '#0B1A33', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 
           {/* Header */}
           <div ref={headerRef} className="mb-16" style={{ opacity: 0 }}>
-            <div className="w-16 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
+            <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
             <h2 className="font-display font-bold text-kimono uppercase"
               style={{ fontSize: 'clamp(36px, 6.5vw, 80px)', letterSpacing: '0.05em', lineHeight: 1.05 }}>
-              OUR PARTNER<br />
-              <span style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}>UNIVERSITIES</span>
+              <ScrambledText text="OUR PARTNER" /><br />
+              <ScrambledText text="UNIVERSITIES" style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }} />
             </h2>
             <p className="font-serif font-light text-cream/55 mt-6 max-w-[560px]" style={{ fontSize: 'clamp(16px, 1.8vw, 20px)', lineHeight: 1.75 }}>
               We are officially partnered with Malaysia's leading universities. Click any university to explore campus photos, programmes, and watch the campus tour video.
@@ -491,17 +422,32 @@ export default function UniversitiesSection() {
             ))}
           </div>
 
+          {/* Explore More Universities */}
+          <div className="mt-16 text-center">
+            <button
+              onClick={() => { window.scrollTo({ top: 0 }); navigate('/explore'); }}
+              className="pill-button pill-button-outline"
+            >
+              Explore More Universities ▼
+            </button>
+            <p className="font-body text-cream/70 text-xs mt-3">30+ Universities available</p>
+          </div>
+
           {/* CTA */}
           <div className="mt-20 text-center">
-            <p className="font-serif font-light text-cream/40 mb-8" style={{ fontSize: '16px' }}>
-              Don't see your preferred university? We work with 30+ partner universities.
+            <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px' }}>
+              Don't see your preferred university? We work with 30+ partner universities in Malaysia.
             </p>
             <button
-              className="px-12 py-4 rounded-full font-body text-sm uppercase tracking-widest cursor-pointer"
-              style={{ border: '1px solid rgba(201,162,52,0.5)', color: '#C9A234', background: 'transparent', transition: 'all 300ms cubic-bezier(0.16,1,0.3,1)' }}
-              onMouseEnter={e => { const el = e.currentTarget; el.style.background = '#C9A234'; el.style.color = '#0A0A0A'; }}
-              onMouseLeave={e => { const el = e.currentTarget; el.style.background = 'transparent'; el.style.color = '#C9A234'; }}
-              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="pill-button pill-button-outline"
+              onClick={() => {
+                const el = document.querySelector('#contact') as HTMLElement | null;
+                if (el) {
+                  const lenis = getLenis();
+                  if (lenis) lenis.scrollTo(el, { offset: -80 });
+                  else el.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
             >
               Ask About Your University
             </button>

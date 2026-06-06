@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
   const headingRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const isDragging = useRef(false);
+  const [cursorStyle, setCursorStyle] = useState<'grab' | 'grabbing'>('grab');
   const dragStart = useRef(0);
   const scrollStart = useRef(0);
 
@@ -109,19 +109,19 @@ export default function TestimonialsSection() {
   }, []);
 
   const onMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
+    setCursorStyle('grabbing');
     dragStart.current = e.clientX;
     scrollStart.current = trackRef.current?.scrollLeft ?? 0;
   };
   const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !trackRef.current) return;
+    if (!trackRef.current) return;
     trackRef.current.scrollLeft = scrollStart.current - (e.clientX - dragStart.current);
   };
-  const onMouseUp = () => { isDragging.current = false; };
+  const onMouseUp = () => { setCursorStyle('grab'); };
 
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="testimonials"
-      style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/Ginting_Highland.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+      style={{ backgroundImage: 'url(/images/Ginting_Highland.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
           <div className="w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
@@ -146,7 +146,7 @@ export default function TestimonialsSection() {
           paddingLeft: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
           paddingRight: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
           scrollbarWidth: 'none',
-          cursor: isDragging.current ? 'grabbing' : 'grab',
+          cursor: cursorStyle,
         }}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
