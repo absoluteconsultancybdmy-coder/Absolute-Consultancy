@@ -33,6 +33,22 @@
     <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-bg.jpg" fetchpriority="high" />
     <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-graduate.png" fetchpriority="high" />
 
+    <script>
+      (function () {
+        var path = location.pathname;
+        var base = path.indexOf('/Absolute-Consultancy/') === 0 ? '/Absolute-Consultancy/' : '/';
+        var imgs = [base + 'images/hero-bg.jpg', base + 'images/hero-graduate.png'];
+        for (var i = 0; i < imgs.length; i++) {
+          var l = document.createElement('link');
+          l.rel = 'preload';
+          l.as = 'image';
+          l.href = imgs[i];
+          l.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(l);
+        }
+      })();
+    </script>
+
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Absolute Consultancy Firm" />
     <meta property="og:url" content="https://www.absoluteconsultancyfirm.com/" />
@@ -234,12 +250,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/Absolute-Consultancy/assets/index-D5CRlKFw.js"></script>
+    <script type="module" crossorigin src="/Absolute-Consultancy/assets/index-8RZs-UHN.js"></script>
     <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/react-vendor-BcCkRB6J.js">
     <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/radix-vendor-BThKwR8U.js">
     <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/ui-vendor-BA0h2HrJ.js">
     <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/animation-vendor-xgxdCp6f.js">
-    <link rel="stylesheet" crossorigin href="/Absolute-Consultancy/assets/index-CrBhXooG.css">
+    <link rel="stylesheet" crossorigin href="/Absolute-Consultancy/assets/index-BaqPVzYQ.css">
   </head>
   <body>
     <div id="root"></div>
