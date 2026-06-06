@@ -75,6 +75,7 @@ export default function ChatWidget() {
             role: 'assistant',
             content:
               data.message ||
+              data.reply ||
               "I'm currently at capacity. Please try again shortly, or reach us on WhatsApp at +60 17-563 1621 for immediate help. 🙏",
             timestamp: new Date(),
           };
@@ -92,10 +93,35 @@ export default function ChatWidget() {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+
+      if (data.offline) {
+        setError(null);
+      }
     } catch (err) {
-      const message =
-        err instanceof Error ? err.message : 'Something went wrong. Please try again.';
-      setError(message);
+      const isNetworkError =
+        err instanceof TypeError && /fetch|network|failed/i.test(err.message);
+      const fallbackContent =
+        "I'm currently offline while my AI brain is being upgraded. For immediate help, please reach our team on WhatsApp at +60 17-563 1621 — they're available 7 days a week and respond fast. 🙏";
+
+      if (isNetworkError) {
+        const assistantMessage: Message = {
+          id: `assistant-${Date.now()}`,
+          role: 'assistant',
+          content: fallbackContent,
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, assistantMessage]);
+        setError(null);
+      } else {
+        const assistantMessage: Message = {
+          id: `assistant-${Date.now()}`,
+          role: 'assistant',
+          content: fallbackContent,
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, assistantMessage]);
+        setError(null);
+      }
     } finally {
       setIsLoading(false);
     }

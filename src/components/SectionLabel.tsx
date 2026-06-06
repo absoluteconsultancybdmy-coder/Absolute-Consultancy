@@ -15,7 +15,7 @@ function toKebabCase(str: string): string {
 }
 
 export default function SectionLabel({ name, className = '' }: SectionLabelProps) {
-  const id = toKebabCase(name);
+  const id = `label-${toKebabCase(name)}`;
 
   const handleClick = useCallback(() => {
     const el = document.getElementById(id);

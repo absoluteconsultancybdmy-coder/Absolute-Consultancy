@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/use-mobile';
-import { getLenis } from '../hooks/useLenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +19,6 @@ export default function HeroSection() {
   const textRef = useRef<HTMLDivElement>(null);
   const figureRef = useRef<HTMLDivElement>(null);
   const polaroidStripRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
   const polaroidRefs = useRef<(HTMLDivElement | null)[]>([]);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -30,7 +28,8 @@ export default function HeroSection() {
 
   // Preload critical images first
   useEffect(() => {
-    const images = ['/images/hero-bg.jpg', '/images/hero-graduate.png'];
+    const base = import.meta.env.BASE_URL;
+    const images = [`${base}images/hero-bg.jpg`, `${base}images/hero-graduate.png`];
     let loaded = 0;
     images.forEach((src) => {
       const img = new Image();
@@ -86,12 +85,6 @@ export default function HeroSection() {
             ease: 'power1.out' 
           },
           isMobile ? 0.8 : 1.2
-        )
-        .fromTo(
-          ctaRef.current,
-          { opacity: 0, y: 15 },
-          { opacity: 1, y: 0, duration: 0.5 },
-          isMobile ? 1.2 : 1.5
         );
 
       // Reduced parallax on mobile for performance
@@ -263,14 +256,6 @@ export default function HeroSection() {
       if (tween) tween.kill();
     };
   }, [isMobile]);
-
-  const scrollToContact = () => {
-    const el = document.querySelector('#contact') as HTMLElement | null;
-    if (!el) return;
-    const lenis = getLenis();
-    if (lenis) lenis.scrollTo(el, { offset: -80 });
-    else el.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const togglePlay = (videoId: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -498,53 +483,6 @@ export default function HeroSection() {
           </div>
         ))}
       </div>
-
-      {/* Layer 5: CTA Button - centered on mobile, right side on desktop */}
-      <button
-        ref={ctaRef}
-        onClick={scrollToContact}
-        className="absolute z-[5] px-10 py-4 rounded-full font-body text-sm uppercase tracking-widest cursor-pointer"
-        style={{
-          background: 'rgba(245, 232, 211, 0.92)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
-          color: '#0A0A0A',
-          opacity: 0,
-          transition: 'all 500ms cubic-bezier(0.22, 1, 0.36, 1)',
-          border: '1px solid rgba(201, 162, 52, 0.3)',
-          willChange: 'transform',
-          ...(isMobile ? {
-            bottom: '13%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-          } : {
-            bottom: '13%',
-            right: '22%',
-          })
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = '#D4F87A';
-          e.currentTarget.style.color = '#0B2A5C';
-          if (isMobile) {
-            e.currentTarget.style.transform = 'translateX(-50%) translateY(-3px)';
-          } else {
-            e.currentTarget.style.transform = 'translateY(-3px)';
-          }
-          e.currentTarget.style.boxShadow = '0 12px 32px rgba(201,162,52,0.35)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(245, 232, 211, 0.92)';
-          e.currentTarget.style.color = '#0A0A0A';
-          if (isMobile) {
-            e.currentTarget.style.transform = 'translateX(-50%) translateY(0)';
-          } else {
-            e.currentTarget.style.transform = 'translateY(0)';
-          }
-          e.currentTarget.style.boxShadow = 'none';
-        }}
-      >
-        Start Your Journey
-      </button>
 
       {/* Scroll indicator - always present */}
       <div

@@ -31,7 +31,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Kazi Mahir Muhtasib',
     role: 'Chief Operating Officer',
-    photo: '/images/coo-profile.png',
+    photo: `${import.meta.env.BASE_URL}images/coo-profile.png`,
     monogram: 'KM',
     bio: 'Mahir founded Absolute Consultancy Firm after experiencing the Malaysian education system firsthand. A graduate of Multimedia University (MMU), he has personally guided 200+ students through their journey from Bangladesh to Malaysia. Speaks Bengali, English, and Malay.',
     credentials: 'MMU Alumnus | 6+ years in education consulting',

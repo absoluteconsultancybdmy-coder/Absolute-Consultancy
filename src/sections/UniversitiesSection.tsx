@@ -215,7 +215,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
 
         {/* Hero image */}
         <div className="relative h-[220px] overflow-hidden rounded-t-3xl">
-          <img src={uni.campusImage} alt={uni.name} width={900} height={220} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-[600ms] ease-out hover:scale-[1.08]" onError={(e) => { e.currentTarget.style.opacity = '0.15'; }} />
+          <img src={uni.campusImage} alt={uni.name} width={900} height={220} loading="lazy" decoding="async" className="w-full h-full object-cover transition-transform duration-600 ease-out hover:scale-[1.08]" onError={(e) => { e.currentTarget.style.opacity = '0.15'; }} />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,30,66,1) 0%, transparent 60%)' }} />
           <div className="absolute bottom-4 left-6 right-16">
             <span className="px-3 py-1 rounded-full text-[10px] font-body uppercase tracking-widest mb-2 inline-block"

@@ -49,13 +49,18 @@
   }
 
   [data-theme="light"] {
-    --bg-base: #FAFAFA;
+    --bg-base: #F5E8D3;
     --bg-section: #F5E8D3;
     --text-primary: #0A0A0A;
-    --text-secondary: #444444;
-    --text-muted: #777777;
-    --color-mist: #FAFAFA;
-    --color-surface: #FAFAFA;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+    --color-mist: #F5E8D3;
+    --color-surface: #F5E8D3;
+    /* Flip the brand "light" tokens to dark so any element using
+       var(--color-kimono) or var(--color-cream) in inline styles
+       automatically becomes readable on the cream background. */
+    --color-kimono: #0A0A0A;
+    --color-cream: #0A0A0A;
   }
 
   /* Smooth background-color transition when toggling theme */
@@ -203,6 +208,211 @@
   [data-theme="light"] .pill-button-primary:hover {
     background-color: var(--color-navy);
     color: #F5E8D3;
+  }
+
+  /* ── Light mode: comprehensive overrides for hardcoded inline styles ──
+     Most section components use inline `style={{ background: '#0A0A0A' }}`,
+     `style={{ color: '#F5E8D3' }}`, etc. that bypass the CSS-variable system.
+     React serializes these into the DOM style attribute (browsers normalise
+     hex → rgb()), so we target both forms with attribute substring matches.
+     This keeps the fix scoped to src/index.css — no source-file rewrites. */
+
+  /* Force the body & outer .bg-mist sections to cream */
+  [data-theme="light"] body,
+  [data-theme="light"] .bg-mist {
+    background-color: #F5E8D3 !important;
+    color: #0A0A0A !important;
+  }
+
+  /* Hardcoded solid-dark backgrounds → cream */
+  [data-theme="light"] [style*="background: #0A0A0A"],
+  [data-theme="light"] [style*="background:#0A0A0A"],
+  [data-theme="light"] [style*="background: rgb(10, 10, 10)"],
+  [data-theme="light"] [style*="background:rgb(10, 10, 10)"],
+  [data-theme="light"] [style*="background-color: #0A0A0A"],
+  [data-theme="light"] [style*="background-color:#0A0A0A"],
+  [data-theme="light"] [style*="background-color: rgb(10, 10, 10)"],
+  [data-theme="light"] [style*="background-color:rgb(10, 10, 10)"],
+  [data-theme="light"] [style*="background: #0B1A33"],
+  [data-theme="light"] [style*="background:#0B1A33"],
+  [data-theme="light"] [style*="background: rgb(11, 26, 51)"],
+  [data-theme="light"] [style*="background:rgb(11, 26, 51)"],
+  [data-theme="light"] [style*="background-color: #0B1A33"],
+  [data-theme="light"] [style*="background-color:#0B1A33"],
+  [data-theme="light"] [style*="background-color: rgb(11, 26, 51)"],
+  [data-theme="light"] [style*="background: #050505"],
+  [data-theme="light"] [style*="background:#050505"],
+  [data-theme="light"] [style*="background: rgb(5, 5, 5)"] {
+    background-color: #F5E8D3 !important;
+    background: #F5E8D3 !important;
+    color: #0A0A0A !important;
+  }
+
+  /* Hardcoded dark navy gradients → light cream gradients (e.g. University
+     cards, About "stats panel", Hero video wrapper, Explore page hero) */
+  [data-theme="light"] [style*="linear-gradient(135deg, #0B1E42"],
+  [data-theme="light"] [style*="linear-gradient(135deg, rgb(11, 30, 66)"],
+  [data-theme="light"] [style*="linear-gradient(135deg, #0B2A5C"],
+  [data-theme="light"] [style*="linear-gradient(135deg, rgb(11, 42, 92)"],
+  [data-theme="light"] [style*="linear-gradient(135deg, #0A0A0A"],
+  [data-theme="light"] [style*="linear-gradient(180deg, #050505"],
+  [data-theme="light"] [style*="linear-gradient(180deg, #0A0A0A"],
+  [data-theme="light"] [style*="radial-gradient(ellipse at 20% 50%, rgba(11,42,92"] {
+    background: linear-gradient(135deg, #F5E8D3 0%, #FFF7E6 100%) !important;
+    color: #0A0A0A !important;
+  }
+
+  /* Translucent dark overlays (rgba(10,10,10,*) / rgba(0,0,0,*)) → light */
+  [data-theme="light"] [style*="rgba(10, 10, 10"],
+  [data-theme="light"] [style*="rgba(10,10,10"],
+  [data-theme="light"] [style*="rgba(0, 0, 0, 0."],
+  [data-theme="light"] [style*="rgba(0,0,0,0."] {
+    background: rgba(255, 247, 230, 0.92) !important;
+  }
+
+  /* Hardcoded light text → dark text (cream, kimono, near-white) */
+  [data-theme="light"] [style*="color: #F5E8D3"],
+  [data-theme="light"] [style*="color:#F5E8D3"],
+  [data-theme="light"] [style*="color: rgb(245, 232, 211)"],
+  [data-theme="light"] [style*="color:rgb(245, 232, 211)"],
+  [data-theme="light"] [style*="color: #FAFAFA"],
+  [data-theme="light"] [style*="color:#FAFAFA"],
+  [data-theme="light"] [style*="color: rgb(250, 250, 250)"],
+  [data-theme="light"] [style*="color: #FFFFFF"],
+  [data-theme="light"] [style*="color:#FFFFFF"],
+  [data-theme="light"] [style*="color: rgb(255, 255, 255)"] {
+    color: #0A0A0A !important;
+  }
+
+  /* Translucent cream / white text on dark cards → dark translucent text */
+  [data-theme="light"] [style*="color: rgba(245, 232, 211"],
+  [data-theme="light"] [style*="color: rgba(245,232,211"],
+  [data-theme="light"] [style*="color: rgba(255, 255, 255,"],
+  [data-theme="light"] [style*="color: rgba(255,255,255,"] {
+    color: rgba(10, 10, 10, 0.85) !important;
+  }
+
+  /* Tailwind utility classes that resolve to light text */
+  [data-theme="light"] .text-cream,
+  [data-theme="light"] .text-kimono,
+  [data-theme="light"] .text-white {
+    color: #0A0A0A !important;
+  }
+
+  /* text-mouse (#888) is muted gray — in light mode use a darker muted gray */
+  [data-theme="light"] .text-mouse {
+    color: #555555 !important;
+  }
+
+  /* ── Preserve brand accents ───────────────────────────────────────── */
+  [data-theme="light"] .text-gold,
+  [data-theme="light"] [style*="color: #C9A234"],
+  [data-theme="light"] [style*="color:#C9A234"],
+  [data-theme="light"] [style*="color: rgb(201, 162, 52)"] {
+    color: #C9A234 !important;
+  }
+
+  /* Lime accent (#D4F87A) is too light on cream — deepen for contrast */
+  [data-theme="light"] .text-lime,
+  [data-theme="light"] [style*="color: #D4F87A"],
+  [data-theme="light"] [style*="color:#D4F87A"],
+  [data-theme="light"] [style*="color: rgb(212, 248, 122)"] {
+    color: #5A7A0E !important;
+  }
+
+  /* Navy brand color stays as-is for emphasis (it's already dark) */
+  [data-theme="light"] .text-navy,
+  [data-theme="light"] [style*="color: #0B2A5C"],
+  [data-theme="light"] [style*="color: rgb(11, 42, 92)"] {
+    color: #0B2A5C !important;
+  }
+
+  /* ── Gold-backed buttons keep their dark text, but the button itself
+     must stay gold so the call-to-action pops on cream. */
+  [data-theme="light"] .bg-gold,
+  [data-theme="light"] [style*="background: #C9A234"],
+  [data-theme="light"] [style*="background-color: #C9A234"] {
+    background-color: #C9A234 !important;
+    color: #0A0A0A !important;
+  }
+
+  /* ── Glass cards: dark translucent → light translucent ────────────── */
+  [data-theme="light"] .glass-card {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(201, 162, 52, 0.4) !important;
+    color: #0A0A0A !important;
+  }
+  [data-theme="light"] .glass-panel {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(201, 162, 52, 0.5) !important;
+    color: #0A0A0A !important;
+  }
+
+  /* ── Navigation: light, with gold underline accents ────────────────── */
+  [data-theme="light"] nav,
+  [data-theme="light"] .theme-aware-nav {
+    background-color: rgba(245, 232, 211, 0.95) !important;
+    color: #0A0A0A !important;
+  }
+  [data-theme="light"] .nav-link,
+  [data-theme="light"] .nav-text {
+    color: rgba(10, 10, 10, 0.75) !important;
+  }
+
+  /* ── Footer ────────────────────────────────────────────────────────── */
+  [data-theme="light"] footer {
+    background-color: #F5E8D3 !important;
+    color: #0A0A0A !important;
+  }
+  [data-theme="light"] footer .text-mouse,
+  [data-theme="light"] footer [style*="color: rgba(212,248,122"] {
+    color: #555555 !important;
+  }
+
+  /* ── Form inputs (in light cards) ──────────────────────────────────── */
+  [data-theme="light"] .form-input-underline {
+    color: #0A0A0A !important;
+    border-bottom-color: rgba(201, 162, 52, 0.6) !important;
+  }
+  [data-theme="light"] .form-input-underline::placeholder {
+    color: rgba(10, 10, 10, 0.4) !important;
+  }
+
+  /* ── Pill buttons: invert for light surfaces ──────────────────────── */
+  [data-theme="light"] .pill-button-primary {
+    background-color: #0A0A0A !important;
+    color: #F5E8D3 !important;
+  }
+  [data-theme="light"] .pill-button-primary:hover {
+    background-color: var(--color-navy) !important;
+    color: #F5E8D3 !important;
+  }
+  [data-theme="light"] .pill-button-outline {
+    background-color: transparent !important;
+    color: #0A0A0A !important;
+    border-color: #0A0A0A !important;
+  }
+  [data-theme="light"] .pill-button-outline:hover {
+    background-color: #0A0A0A !important;
+    color: #F5E8D3 !important;
+  }
+
+  /* ── Skip link stays readable ─────────────────────────────────────── */
+  [data-theme="light"] .skip-link {
+    background: #F5E8D3 !important;
+    color: #0A0A0A !important;
+  }
+
+  /* ── Polaroid photo frames stay white (they hold photos) ──────────── */
+  [data-theme="light"] .polaroid,
+  [data-theme="light"] .polaroid-hero {
+    background: #FFFFFF !important;
+    color: #0A0A0A !important;
+  }
+
+  /* ── WebKit scrollbar track inside light cards ───────────────────── */
+  [data-theme="light"] .dest-scroll::-webkit-scrollbar-track {
+    background: rgba(201, 162, 52, 0.15) !important;
   }
 }
 

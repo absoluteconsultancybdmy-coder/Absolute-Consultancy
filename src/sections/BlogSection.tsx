@@ -21,7 +21,7 @@ const POSTS: BlogPost[] = [
   {
     slug: 'visa-guide-2026',
     category: 'GUIDE',
-    cover: '/images/Ginting_Highland.jpg',
+    cover: `${import.meta.env.BASE_URL}images/Ginting_Highland.jpg`,
     date: '18 May 2026',
     title: '2026 Malaysia Student Visa Guide for Bangladeshi Applicants',
     excerpt:
@@ -32,7 +32,7 @@ const POSTS: BlogPost[] = [
   {
     slug: 'malaysia-qs-2026',
     category: 'NEWS',
-    cover: '/images/services-section.jpg',
+    cover: `${import.meta.env.BASE_URL}images/services-section.jpg`,
     date: '04 May 2026',
     title: 'Malaysia Rises to #12 in QS Best Student Cities 2026',
     excerpt:
@@ -43,7 +43,7 @@ const POSTS: BlogPost[] = [
   {
     slug: 'nusrat-taylors-story',
     category: 'STUDENT STORY',
-    cover: '/images/hero-graduate.png',
+    cover: `${import.meta.env.BASE_URL}images/hero-graduate.png`,
     date: '21 Apr 2026',
     title: 'From Dhaka to Taylor\u2019s: How Nusrat Built Her Dream Career',
     excerpt:

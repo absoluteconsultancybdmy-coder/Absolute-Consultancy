@@ -7,6 +7,8 @@ import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const gentingBgUrl = `${import.meta.env.BASE_URL}images/Ginting_Highland.jpg`;
+
 const testimonials = [
   {
     name: 'Arisha Rahman',
@@ -135,7 +137,7 @@ export default function TestimonialsSection() {
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="testimonials"
       style={{
-        backgroundImage: 'url(/images/Ginting_Highland.jpg)',
+        backgroundImage: `url(${gentingBgUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

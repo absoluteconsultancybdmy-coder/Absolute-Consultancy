@@ -9,6 +9,7 @@ import TrustStrip from './components/TrustStrip';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import ChatWidget from './components/ChatWidget';
 import BackToTop from './components/BackToTop';
+import NextPageButton from './components/NextPageButton';
 import CookieConsent from './components/CookieConsent';
 import QuickApply from './components/QuickApply';
 import HeroSection from './sections/HeroSection';
@@ -204,6 +205,7 @@ export default function App() {
       <WhatsAppWidget />
       <ChatWidget />
       <BackToTop />
+      <NextPageButton />
       <CookieConsent />
       <QuickApply />
       <ThemeToggle />

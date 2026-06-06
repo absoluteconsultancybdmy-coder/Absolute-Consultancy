@@ -65,6 +65,9 @@ module.exports = {
         "gold-lg": "0 12px 40px rgba(201,162,52,0.25)",
         glass: "0 4px 24px rgba(0,0,0,0.15)",
       },
+      transitionDuration: {
+        600: "600ms",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

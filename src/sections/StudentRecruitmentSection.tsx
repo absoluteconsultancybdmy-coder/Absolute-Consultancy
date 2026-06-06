@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MagneticButton from '../components/MagneticButton';
 import ScrambledText from '../components/ScrambledText';
 import Constellation from '../components/Constellation';
 import SectionLabel from '../components/SectionLabel';
@@ -341,13 +340,6 @@ export default function StudentRecruitmentSection() {
           >
             — Kazi Mahir Muhtasib, COO
           </p>
-        </div>
-
-        {/* CTA */}
-        <div className="mt-20">
-          <MagneticButton href="#contact" className="text-[14px]">
-            START YOUR JOURNEY
-          </MagneticButton>
         </div>
       </div>
 

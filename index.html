@@ -30,8 +30,24 @@
     <link rel="dns-prefetch" href="https://youtube.com" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
 
-    <link rel="preload" as="image" href="/images/hero-bg.jpg" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/hero-graduate.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-bg.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-graduate.png" fetchpriority="high" />
+
+    <script>
+      (function () {
+        var path = location.pathname;
+        var base = path.indexOf('/Absolute-Consultancy/') === 0 ? '/Absolute-Consultancy/' : '/';
+        var imgs = [base + 'images/hero-bg.jpg', base + 'images/hero-graduate.png'];
+        for (var i = 0; i < imgs.length; i++) {
+          var l = document.createElement('link');
+          l.rel = 'preload';
+          l.as = 'image';
+          l.href = imgs[i];
+          l.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(l);
+        }
+      })();
+    </script>
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Absolute Consultancy Firm" />

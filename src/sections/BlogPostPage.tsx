@@ -47,14 +47,14 @@ const POSTS: ReadonlyArray<BlogPostMeta> = [
   {
     slug: 'visa-guide-2026',
     category: 'GUIDE',
-    cover: '/images/Ginting_Highland.jpg',
+    cover: `${import.meta.env.BASE_URL}images/Ginting_Highland.jpg`,
     date: '18 May 2026',
     title: '2026 Malaysia Student Visa Guide for Bangladeshi Applicants',
     excerpt:
       'Step-by-step breakdown of the EMGS application process, document requirements, processing times, and how to avoid the most common rejection reasons.',
     author: 'Kazi Mahir Muhtasib',
     authorIsTeam: false,
-    authorPhoto: '/images/coo-profile.png',
+    authorPhoto: `${import.meta.env.BASE_URL}images/coo-profile.png`,
     authorRole: 'Chief Operating Officer',
     authorBio:
       'Mahir founded Absolute Consultancy Firm after experiencing the Malaysian education system firsthand. A graduate of Multimedia University (MMU), he has personally guided 200+ students through their journey from Bangladesh to Malaysia.',
@@ -64,7 +64,7 @@ const POSTS: ReadonlyArray<BlogPostMeta> = [
   {
     slug: 'malaysia-qs-2026',
     category: 'NEWS',
-    cover: '/images/services-section.jpg',
+    cover: `${import.meta.env.BASE_URL}images/services-section.jpg`,
     date: '04 May 2026',
     title: 'Malaysia Rises to #12 in QS Best Student Cities 2026',
     excerpt:
@@ -81,14 +81,14 @@ const POSTS: ReadonlyArray<BlogPostMeta> = [
   {
     slug: 'nusrat-taylors-story',
     category: 'STUDENT STORY',
-    cover: '/images/hero-graduate.png',
+    cover: `${import.meta.env.BASE_URL}images/hero-graduate.png`,
     date: '21 Apr 2026',
     title: "From Dhaka to Taylor's: How Nusrat Built Her Dream Career",
     excerpt:
       'A first-person account of the application journey, arriving in Malaysia, finding community, and landing a marketing internship at a top KL firm within six months.',
     author: 'Kazi Mahir Muhtasib',
     authorIsTeam: false,
-    authorPhoto: '/images/coo-profile.png',
+    authorPhoto: `${import.meta.env.BASE_URL}images/coo-profile.png`,
     authorRole: 'Chief Operating Officer',
     authorBio:
       'Mahir founded Absolute Consultancy Firm after experiencing the Malaysian education system firsthand. A graduate of Multimedia University (MMU), he has personally guided 200+ students through their journey from Bangladesh to Malaysia.',
@@ -553,6 +553,8 @@ export default function BlogPostPage() {
   useEffect(() => {
     if (post) {
       document.title = `${post.title} | Absolute Consultancy Firm`;
+    } else {
+      document.title = 'Article Not Found | Absolute Consultancy Firm';
     }
     return () => {
       document.title = 'Absolute Consultancy Firm | Study Abroad Consultants — Malaysia & Bangladesh';

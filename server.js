@@ -11,8 +11,6 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-
 const SYSTEM_PROMPT = `You are a friendly AI assistant for Absolute Consultancy Firm, a Malaysia-based education consultancy that helps international students (primarily from Bangladesh) gain admission to universities.
 
 ## About Absolute Consultancy
@@ -60,36 +58,48 @@ const SYSTEM_PROMPT = `You are a friendly AI assistant for Absolute Consultancy 
 - You can use markdown formatting for readability (bold, bullet points)
 - Focus on education consulting — don't answer unrelated topics`;
 
+const FALLBACK_REPLY = "I'm currently offline while my AI brain is being upgraded. For immediate help, please reach our team on WhatsApp at +60 17-563 1621 — they're available 7 days a week and respond fast. 🙏";
+
+const looksLikeGeminiKey = (key) => typeof key === 'string' && key.startsWith('AIza') && key.length > 20;
+
+const apiKey = process.env.GEMINI_API_KEY || '';
+const keyIsValid = looksLikeGeminiKey(apiKey);
+const genAI = keyIsValid ? new GoogleGenerativeAI(apiKey) : null;
+
+console.log(`🤖 Chat API key configured: ${keyIsValid ? 'yes (Gemini)' : 'no — using offline fallback'}`);
+
+async function generateReply(messages) {
+  if (!keyIsValid) {
+    return { reply: FALLBACK_REPLY, offline: true };
+  }
+
+  const model = genAI.getGenerativeModel({
+    model: 'gemini-2.0-flash',
+    systemInstruction: SYSTEM_PROMPT,
+  });
+
+  const history = messages.slice(0, -1).map((msg) => ({
+    role: msg.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: msg.content }],
+  }));
+
+  const chat = model.startChat({ history });
+  const lastMessage = messages[messages.length - 1].content;
+
+  const result = await chat.sendMessage(lastMessage);
+  return { reply: result.response.text(), offline: false };
+}
+
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages } = req.body;
 
-    if (!messages || !Array.isArray(messages)) {
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Messages array is required' });
     }
 
-    if (!process.env.GEMINI_API_KEY) {
-      return res.status(500).json({ error: 'GEMINI_API_KEY not configured. Add it to your .env file.' });
-    }
-
-    const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
-      systemInstruction: SYSTEM_PROMPT,
-    });
-
-    const history = messages.slice(0, -1).map((msg) => ({
-      role: msg.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: msg.content }],
-    }));
-
-    const chat = model.startChat({ history });
-    const lastMessage = messages[messages.length - 1].content;
-
-    const result = await chat.sendMessage(lastMessage);
-    const response = result.response;
-    const text = response.text();
-
-    res.json({ reply: text });
+    const { reply, offline } = await generateReply(messages);
+    res.json({ reply, offline });
   } catch (error) {
     console.error('Chat API error:', error);
 
@@ -103,18 +113,21 @@ app.post('/api/chat', async (req, res) => {
         error: 'rate_limit',
         message:
           "I'm currently at capacity. Please try again in a moment, or contact us directly on WhatsApp at +60 17-563 1621 for immediate assistance.",
+        reply:
+          "I'm currently at capacity. Please try again in a moment, or contact us directly on WhatsApp at +60 17-563 1621 for immediate assistance.",
       });
     }
 
     res.status(500).json({
       error: 'server_error',
-      message: 'Something went wrong. Please try again or reach us on WhatsApp at +60 17-563 1621.',
+      message: FALLBACK_REPLY,
+      reply: FALLBACK_REPLY,
     });
   }
 });
 
 app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', keyConfigured: !!process.env.GEMINI_API_KEY });
+  res.json({ status: 'ok', keyConfigured: keyIsValid, mode: keyIsValid ? 'gemini' : 'offline' });
 });
 
 app.listen(PORT, () => {
