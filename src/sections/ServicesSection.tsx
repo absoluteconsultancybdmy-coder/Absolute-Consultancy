@@ -10,6 +10,7 @@ import {
   Plane,
 } from 'lucide-react';
 import ScrambledText from '../components/ScrambledText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +94,7 @@ export default function ServicesSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/services-section.jpg"
+          src={`${import.meta.env.BASE_URL}images/services-section.jpg`}
           alt=""
           width={1920}
           height={1080}
@@ -104,6 +105,15 @@ export default function ServicesSection() {
         />
         <div className="absolute inset-0 bg-black/70" />
       </div>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         {/* Heading with hairline rule */}

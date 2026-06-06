@@ -296,7 +296,7 @@ export default function Footer() {
           {/* Left — Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/images/logo.png" alt="Absolute Consultancy Firm" width={192} height={48} loading="lazy" decoding="async" className="h-12 w-auto" />
+              <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Absolute Consultancy Firm" width={192} height={48} loading="lazy" decoding="async" className="h-12 w-auto" />
             </div>
             <p className="small-caps text-mouse mb-4" style={{ fontSize: '11px', lineHeight: 1.7 }}>
               Malaysia<br />

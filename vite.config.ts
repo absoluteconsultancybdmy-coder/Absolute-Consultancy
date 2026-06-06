@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { inspectAttr } from 'kimi-plugin-inspect-react'
 
-export default defineConfig({
-  base: '/Absolute-Consultancy/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/Absolute-Consultancy/' : '/',
   plugins: [inspectAttr(), react()],
   server: {
     port: 3000,
@@ -71,4 +71,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

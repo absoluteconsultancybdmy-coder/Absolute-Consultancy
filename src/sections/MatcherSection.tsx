@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
 import { getLenis } from '../hooks/useLenis';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -481,6 +482,15 @@ export default function MatcherSection() {
           }}
         />
       </div>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
 
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-10">
         <div ref={headerRef} className="mb-14" style={{ opacity: 0 }}>

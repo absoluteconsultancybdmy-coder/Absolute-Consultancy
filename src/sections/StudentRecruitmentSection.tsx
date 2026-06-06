@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import ScrambledText from '../components/ScrambledText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -200,7 +201,7 @@ export default function StudentRecruitmentSection() {
       {/* Full background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/StudentRecruitment.jpg"
+          src={`${import.meta.env.BASE_URL}images/StudentRecruitment.jpg`}
           alt=""
           width={1920}
           height={1080}
@@ -211,6 +212,15 @@ export default function StudentRecruitmentSection() {
         />
         <div className="absolute inset-0 bg-black/65" />
       </div>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
 
       {/* Top gold hairline */}
       <div

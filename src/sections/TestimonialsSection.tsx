@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,6 +140,14 @@ export default function TestimonialsSection() {
         backgroundRepeat: 'no-repeat',
       }}>
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.7) 100%)' }} />
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
           <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />

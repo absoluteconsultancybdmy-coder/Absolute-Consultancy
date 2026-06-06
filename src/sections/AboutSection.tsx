@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HighlightText from '@/components/HighlightText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,9 +65,18 @@ export default function AboutSection() {
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44" id="about">
       <div className="absolute inset-0 z-0">
-        <img src="/images/Firm.avif" alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
+        <img src={`${import.meta.env.BASE_URL}images/Firm.avif`} alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
         <div className="absolute inset-0 bg-black/70" />
       </div>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
 
         {/* Section heading */}
@@ -93,7 +103,7 @@ export default function AboutSection() {
             {/* Left — COO Photo */}
             <div className="relative h-[400px] lg:h-[520px] overflow-hidden">
               <img
-                src="/images/coo-profile.png"
+                src={`${import.meta.env.BASE_URL}images/coo-profile.png`}
                 alt="COO - Absolute Consultancy Firm"
                 width={520}
                 height={520}

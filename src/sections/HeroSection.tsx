@@ -298,7 +298,7 @@ export default function HeroSection() {
         style={{ opacity: 0, willChange: 'transform' }}
       >
         <img
-          src="/images/hero-bg.jpg"
+          src={`${import.meta.env.BASE_URL}images/hero-bg.jpg`}
           alt="University campus backdrop"
           width={1920}
           height={1080}
@@ -366,7 +366,7 @@ export default function HeroSection() {
         style={{ opacity: 0, willChange: 'transform' }}
       >
         <img
-          src="/images/hero-graduate.png"
+          src={`${import.meta.env.BASE_URL}images/hero-graduate.png`}
           alt="Graduate silhouette — campus foreground"
           width={600}
           height={600}

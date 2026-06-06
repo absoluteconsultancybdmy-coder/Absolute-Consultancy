@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -326,6 +327,15 @@ export default function ScholarshipsSection() {
         </defs>
         <rect width="100%" height="100%" fill="url(#sch-grid)" mask="url(#sch-mask)" />
       </svg>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div ref={headerRef} className="max-w-[860px] mb-16 lg:mb-20">

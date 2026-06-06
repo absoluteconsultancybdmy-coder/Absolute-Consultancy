@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,9 +45,18 @@ export default function ContactSection() {
   return (
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="contact">
       <div className="absolute inset-0 z-0">
-        <img src="/images/contact-bg.jpg" alt="Campus" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
+        <img src={`${import.meta.env.BASE_URL}images/contact-bg.jpg`} alt="Campus" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.75) 100%)' }} />
       </div>
+
+      <Constellation
+        dotCount={30}
+        connectionDistance={100}
+        mouseRadius={120}
+        color="#C9A234"
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 0, mixBlendMode: 'screen' }}
+      />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -103,7 +113,7 @@ export default function ContactSection() {
             {/* COO photo card */}
             <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
-                <img src="/images/coo-profile2.png" alt="COO" width={360} height={280} loading="lazy" decoding="async"
+                <img src={`${import.meta.env.BASE_URL}images/coo-profile2.png`} alt="COO" width={360} height={280} loading="lazy" decoding="async"
                   className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.style.opacity = '0.2'; }} />
               </div>
               <div className="p-6" style={{ background: 'rgba(11,30,66,0.95)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>

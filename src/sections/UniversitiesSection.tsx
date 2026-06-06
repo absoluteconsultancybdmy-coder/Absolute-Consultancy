@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from '../hooks/useLenis';
 import ScrambledText from '../components/ScrambledText';
+import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -392,6 +393,14 @@ export default function UniversitiesSection() {
 
       <section className="relative w-full py-32 lg:py-44" id="destinations"
         style={{ backgroundColor: '#0B1A33', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
+        <Constellation
+          dotCount={30}
+          connectionDistance={100}
+          mouseRadius={120}
+          color="#C9A234"
+          className="absolute inset-0 pointer-events-none"
+          style={{ zIndex: 0, mixBlendMode: 'screen' }}
+        />
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 
           {/* Header */}
