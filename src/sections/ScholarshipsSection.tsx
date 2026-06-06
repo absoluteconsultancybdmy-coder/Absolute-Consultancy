@@ -255,6 +255,28 @@ export default function ScholarshipsSection() {
     return () => ctx.revert();
   }, [isMobile]);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const els = sectionRef.current?.querySelectorAll<HTMLElement>('[data-anim]');
+      els?.forEach((el) => {
+        if (el.style.opacity === '' || el.style.opacity === '0') {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+      stepRefs.current.forEach((el) => {
+        if (el && (el.style.opacity === '' || el.style.opacity === '0')) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+      if (connectorRef.current) {
+        connectorRef.current.style.transform = isMobile ? 'scaleY(1)' : 'scaleX(1)';
+      }
+    }, 2500);
+    return () => window.clearTimeout(timer);
+  }, [isMobile]);
+
   const whatsappHref = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_SCHOLARSHIP_TEXT)}`;
 
   return (
@@ -453,7 +475,7 @@ export default function ScholarshipsSection() {
             <p
               data-anim
               className="small-caps text-gold mb-4"
-              style={{ fontSize: '11px', letterSpacing: '0.32em', opacity: 0 }}
+              style={{ fontSize: '11px', letterSpacing: '0.32em' }}
             >
               How to win a scholarship
             </p>
@@ -464,7 +486,6 @@ export default function ScholarshipsSection() {
                 fontSize: 'clamp(24px, 3.4vw, 38px)',
                 letterSpacing: '0.04em',
                 lineHeight: 1.15,
-                opacity: 0,
               }}
             >
               Our 4-step approach
@@ -514,7 +535,6 @@ export default function ScholarshipsSection() {
                         ? 'relative flex gap-4 pl-14'
                         : 'relative flex flex-col items-center text-center'
                     }
-                    style={{ opacity: 0 }}
                   >
                     <div
                       className={
