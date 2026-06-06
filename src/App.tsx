@@ -15,25 +15,22 @@ import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import StatsSection from './sections/StatsSection';
 import ServicesSection from './sections/ServicesSection';
-import WhyMalaysiaSection from './sections/WhyMalaysiaSection';
 import ProcessTimeline from './sections/ProcessTimeline';
 import UniversitiesSection from './sections/UniversitiesSection';
 import ScholarshipsSection from './sections/ScholarshipsSection';
 import StudentRecruitmentSection from './sections/StudentRecruitmentSection';
-import MatcherSection from './sections/MatcherSection';
-import ArcSection from './sections/ArcSection';
-import BlogSection from './sections/BlogSection';
 import TestimonialsSection from './sections/TestimonialsSection';
-import FaqSection from './sections/FaqSection';
 import ParentVoicesSection from './sections/ParentVoicesSection';
 import ContactSection from './sections/ContactSection';
 import Footer from './sections/Footer';
 import PlacedNotification from './components/PlacedNotification';
 import ScrollProgress from './components/ScrollProgress';
+import ThemeToggle from './components/ThemeToggle';
 
 const ExploreUniversitiesPage = lazy(() => import('./sections/ExploreUniversitiesPage'));
 const TeamPage = lazy(() => import('./sections/TeamPage'));
 const ResourcesPage = lazy(() => import('./sections/ResourcesPage'));
+const JourneyPage = lazy(() => import('./sections/JourneyPage'));
 const NotFoundPage = lazy(() => import('./sections/NotFoundPage'));
 const PrivacyPage = lazy(() => import('./sections/PrivacyPage'));
 const TermsPage = lazy(() => import('./sections/TermsPage'));
@@ -41,6 +38,7 @@ const BlogPostPage = lazy(() => import('./sections/BlogPostPage'));
 
 const PAGE_TITLES: Record<string, string> = {
   '/': 'Absolute Consultancy Firm | Study Abroad Consultants — Malaysia & Bangladesh',
+  '/journey': 'Your Journey | Absolute Consultancy Firm',
   '/explore': 'All Partner Universities | Absolute Consultancy Firm',
   '/resources': 'Resources Hub | Absolute Consultancy Firm',
   '/team': 'Meet The Team | Absolute Consultancy Firm',
@@ -114,16 +112,11 @@ function HomePage() {
         <StatsSection />
         <TrustStrip />
         <ServicesSection />
-        <WhyMalaysiaSection />
         <ProcessTimeline />
+        <StudentRecruitmentSection />
         <UniversitiesSection />
         <ScholarshipsSection />
-        <StudentRecruitmentSection />
-        <MatcherSection />
-        <ArcSection />
-        <BlogSection />
         <TestimonialsSection />
-        <FaqSection />
         <ParentVoicesSection />
         <ContactSection />
       </main>
@@ -147,6 +140,14 @@ export default function App() {
             element={
               <Suspense fallback={<SectionFallback />}>
                 <ExploreUniversitiesPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/journey"
+            element={
+              <Suspense fallback={<SectionFallback />}>
+                <JourneyPage />
               </Suspense>
             }
           />
@@ -205,6 +206,7 @@ export default function App() {
       <BackToTop />
       <CookieConsent />
       <QuickApply />
+      <ThemeToggle />
     </>
   );
 }

@@ -37,6 +37,31 @@
     --color-mouse: #888888;
   }
 
+  /* ── Theme variables ──────────────────────────────────────────────── */
+  [data-theme="dark"] {
+    --bg-base: #0A0A0A;
+    --bg-section: #0B1A33;
+    --text-primary: #F5E8D3;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --color-mist: #0A0A0A;
+    --color-surface: #0A0A0A;
+  }
+
+  [data-theme="light"] {
+    --bg-base: #FAFAFA;
+    --bg-section: #F5E8D3;
+    --text-primary: #0A0A0A;
+    --text-secondary: #444444;
+    --text-muted: #777777;
+    --color-mist: #FAFAFA;
+    --color-surface: #FAFAFA;
+  }
+
+  /* Smooth background-color transition when toggling theme */
+  html { transition: background-color 350ms ease; }
+  body { transition: background-color 350ms ease, color 350ms ease; }
+
   html {
     scroll-behavior: auto;
   }
@@ -86,7 +111,8 @@
   }
 
   body {
-    @apply bg-mist text-kimono;
+    background-color: var(--color-mist);
+    color: var(--text-primary);
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     overflow-x: clip;
@@ -112,6 +138,71 @@
 
   .lenis.lenis-scrolling iframe {
     pointer-events: none;
+  }
+
+  /* ── Light mode: hide dark-only decorative layers ─────────────── */
+  [data-theme="light"] .film-grain-overlay,
+  [data-theme="light"] .constellation-canvas {
+    display: none !important;
+  }
+
+  /* ── Light mode: re-color page-level text & nav ───────────────── */
+  [data-theme="light"] .nav-link,
+  [data-theme="light"] .nav-text {
+    color: rgba(10, 10, 10, 0.75);
+  }
+  [data-theme="light"] .nav-link:hover {
+    color: #0A0A0A;
+  }
+  [data-theme="light"] .nav-link[aria-current="page"] {
+    color: var(--color-gold);
+  }
+
+  /* Sections that use bg-mist as their outer page background:
+     in light mode, the bg-mist flips to cream via the CSS variable,
+     so the text-kimono headings inside must also flip to dark to
+     stay readable. v1 limitation: this also affects text inside any
+     hardcoded dark cards nested in those sections. */
+  [data-theme="light"] .bg-mist,
+  [data-theme="light"] .bg-mist[class*="text-"] {
+    color: var(--text-primary);
+  }
+  [data-theme="light"] .bg-mist .text-kimono,
+  [data-theme="light"] .bg-mist.text-kimono {
+    color: var(--text-primary);
+  }
+  [data-theme="light"] .bg-mist .text-mouse,
+  [data-theme="light"] .bg-mist.text-mouse {
+    color: var(--text-muted);
+  }
+  [data-theme="light"] .text-kimono\/75 { color: rgba(10, 10, 10, 0.75) !important; }
+  [data-theme="light"] .text-kimono\/80 { color: rgba(10, 10, 10, 0.8) !important; }
+  [data-theme="light"] .text-kimono\/60 { color: rgba(10, 10, 10, 0.6) !important; }
+  [data-theme="light"] .text-kimono\/50 { color: rgba(10, 10, 10, 0.5) !important; }
+
+  /* Light mode: navigation bar uses bg-mist/95 (translucent dark).
+     After the variable flip, this becomes a translucent light cream
+     surface, so we lighten the gold border for contrast. */
+  [data-theme="light"] nav.theme-aware-nav {
+    border-bottom: 1px solid rgba(201, 162, 52, 0.25);
+  }
+
+  /* Light mode: form inputs that inherit kimono text */
+  [data-theme="light"] .form-input-underline {
+    color: var(--text-primary);
+  }
+  [data-theme="light"] .form-input-underline::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Light mode: nav pill button outline stays readable on light bg */
+  [data-theme="light"] .pill-button-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-base);
+  }
+  [data-theme="light"] .pill-button-primary:hover {
+    background-color: var(--color-navy);
+    color: #F5E8D3;
   }
 }
 
@@ -511,4 +602,12 @@
     font-size: 10px;
     padding: 10px 18px;
   }
+}
+
+/* ── Theme toggle: light-mode styling ───────────────────────────── */
+[data-theme="light"] .theme-toggle {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(201, 162, 52, 0.7) !important;
+  color: #0B2A5C !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }

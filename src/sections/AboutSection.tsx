@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HighlightText from '@/components/HighlightText';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,6 +79,10 @@ export default function AboutSection() {
         style={{ zIndex: 0, mixBlendMode: 'screen' }}
       />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="COO" />
+        </div>
 
         {/* Section heading */}
         <div className="flex items-center justify-center gap-6 mb-20">

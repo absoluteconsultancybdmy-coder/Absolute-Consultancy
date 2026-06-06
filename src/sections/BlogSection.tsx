@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -172,6 +173,9 @@ export default function BlogSection() {
       <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Blog" />
+        </div>
         <div ref={headerRef} className="flex flex-col items-center text-center mb-14 lg:mb-20">
           <p
             data-anim

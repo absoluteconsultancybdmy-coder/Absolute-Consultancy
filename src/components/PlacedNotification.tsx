@@ -20,12 +20,33 @@ const notifications: Placed[] = [
 
 const INITIAL_DELAY = 5000;
 const VISIBLE_DURATION = 6000;
-const MIN_GAP = 12000;
-const MAX_GAP = 18000;
+const POPUP_INTERVAL_MS = 15 * 60 * 1000;
+const MAX_POPUPS_PER_DAY = 2;
+const RESET_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+const LS_LAST_POPUP = 'lastPopupTime';
+const LS_POPUP_COUNT = 'popupCount';
+const LS_COUNT_RESET_AT = 'popupCountResetAt';
 
 function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function readNumber(key: string): number {
+  if (typeof window === 'undefined') return 0;
+  const raw = window.localStorage.getItem(key);
+  const n = raw ? parseInt(raw, 10) : 0;
+  return Number.isFinite(n) ? n : 0;
+}
+
+function writeNumber(key: string, value: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(key, String(value));
+  } catch {
+    // ignore quota / privacy errors
+  }
 }
 
 export default function PlacedNotification() {
@@ -47,10 +68,32 @@ export default function PlacedNotification() {
 
   useEffect(() => {
     if (prefersReducedMotion()) return;
+    if (typeof window === 'undefined') return;
+
+    const now = Date.now();
+
+    const resetAt = readNumber(LS_COUNT_RESET_AT);
+    if (!resetAt || now - resetAt >= RESET_WINDOW_MS) {
+      writeNumber(LS_POPUP_COUNT, 0);
+      writeNumber(LS_COUNT_RESET_AT, now);
+      writeNumber(LS_LAST_POPUP, 0);
+    }
+
+    const popupCount = readNumber(LS_POPUP_COUNT);
+    if (popupCount >= MAX_POPUPS_PER_DAY) {
+      return;
+    }
+
+    const lastPopupTime = readNumber(LS_LAST_POPUP);
+    if (lastPopupTime && now - lastPopupTime < POPUP_INTERVAL_MS) {
+      return;
+    }
 
     scheduleTimeout(() => {
       setCurrent(indexRef.current);
       setVisible(true);
+      writeNumber(LS_LAST_POPUP, Date.now());
+      writeNumber(LS_POPUP_COUNT, readNumber(LS_POPUP_COUNT) + 1);
     }, INITIAL_DELAY);
 
     return clearTimers;
@@ -70,12 +113,25 @@ export default function PlacedNotification() {
     if (visible) return;
     if (current === null) return;
 
-    const delay = MIN_GAP + Math.random() * (MAX_GAP - MIN_GAP);
+    if (typeof window === 'undefined') return;
+
+    const popupCount = readNumber(LS_POPUP_COUNT);
+    if (popupCount >= MAX_POPUPS_PER_DAY) {
+      return;
+    }
+
     const nextTimeout = scheduleTimeout(() => {
+      const lastPopupTime = readNumber(LS_LAST_POPUP);
+      const now = Date.now();
+      if (lastPopupTime && now - lastPopupTime < POPUP_INTERVAL_MS) {
+        return;
+      }
       indexRef.current = (indexRef.current + 1) % notifications.length;
       setCurrent(indexRef.current);
       setVisible(true);
-    }, delay);
+      writeNumber(LS_LAST_POPUP, Date.now());
+      writeNumber(LS_POPUP_COUNT, readNumber(LS_POPUP_COUNT) + 1);
+    }, POPUP_INTERVAL_MS);
 
     return () => clearTimeout(nextTimeout);
   }, [visible, current]);

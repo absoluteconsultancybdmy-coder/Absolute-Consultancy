@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -149,6 +150,9 @@ export default function TestimonialsSection() {
         style={{ zIndex: 0, mixBlendMode: 'screen' }}
       />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="STUDENT STORIES" />
+        </div>
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
           <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
           <h2 className="font-display font-bold text-kimono uppercase"

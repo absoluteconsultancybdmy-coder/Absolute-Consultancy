@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Pathways', href: '#destinations' },
   { label: 'Recruit', href: '#recruitment' },
-  { label: 'Journey', href: '#journey' },
+  { label: 'Your Journey', href: '/journey' },
   { label: 'Stories', href: '#testimonials' },
   { label: 'Resources', href: '/resources' },
   { label: 'Contact', href: '#contact' },

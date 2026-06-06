@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from '../components/MagneticButton';
 import ScrambledText from '../components/ScrambledText';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -279,6 +280,9 @@ export default function StudentRecruitmentSection() {
       </div>
 
       <div className="relative z-20 max-w-[1100px] mx-auto px-6 lg:px-10 text-center py-32">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Student Recruitment" />
+        </div>
         {/* Motivational Quote — Eleanor Roosevelt */}
         <div className="mb-16">
           <p

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import ScrambledText from '../components/ScrambledText';
+import SectionLabel from '../components/SectionLabel';
 
 interface Faq {
   q: string;
@@ -269,6 +270,9 @@ export default function FaqSection() {
       <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
 
       <div className="relative z-10 max-w-[920px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="FAQ" />
+        </div>
         <div ref={headingRef} className="text-center mb-14 lg:mb-20" style={{ opacity: 0 }}>
           <p
             className="font-body uppercase tracking-[0.4em] text-gold/70 mb-6"

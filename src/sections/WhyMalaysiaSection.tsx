@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 import {
   Globe,
   Coins,
@@ -285,6 +286,9 @@ export default function WhyMalaysiaSection() {
       />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Why Malaysia" />
+        </div>
         <div ref={headerRef} className="max-w-[820px] mb-16 lg:mb-20">
           <p
             data-anim

@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,9 @@ export default function ContactSection() {
       />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Ready to study in Malaysia" />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* Left — Form */}

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
 import { getLenis } from '../hooks/useLenis';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -493,6 +494,9 @@ export default function MatcherSection() {
       />
 
       <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Match Me" />
+        </div>
         <div ref={headerRef} className="mb-14" style={{ opacity: 0 }}>
           <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
           <p

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -138,6 +139,9 @@ export default function StatsSection() {
       />
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Results That Speak" />
+        </div>
         <div className="text-center mb-16 lg:mb-20">
           <p
             className="font-body uppercase tracking-[0.4em] text-gold/70 mb-4"

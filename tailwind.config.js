@@ -39,7 +39,7 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         // Custom brand colors
-        mist: "#0A0A0A",
+        mist: "var(--color-mist, #0A0A0A)",
         navy: "#0B2A5C",
         gold: "#C9A234",
         cream: "#F5E8D3",

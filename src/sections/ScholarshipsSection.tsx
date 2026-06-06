@@ -1,15 +1,10 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 import {
-  Landmark,
   GraduationCap,
-  Globe2,
   Trophy,
-  ClipboardCheck,
-  Target,
-  PenLine,
-  MessageCircle,
   ArrowRight,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -32,27 +27,11 @@ interface Category {
 
 const categories: Category[] = [
   {
-    Icon: Landmark,
-    title: 'Malaysian Government Scholarships',
-    description:
-      "The Malaysian International Scholarship (MIS) covers Master's and PhD students from selected countries, including Bangladesh. Includes tuition, living allowance, and airfare.",
-    value: 'Tuition + stipend + airfare',
-    eligible: 'Depends',
-  },
-  {
     Icon: GraduationCap,
     title: 'University Merit Scholarships',
     description:
       'Most partner universities offer partial tuition waivers (10%–50%) for students with strong academic records (GPA 3.5+, IELTS 6.5+). Awarded at admission time — no separate application.',
     value: '10%–50% tuition waiver',
-    eligible: 'Depends',
-  },
-  {
-    Icon: Globe2,
-    title: 'Country-Specific Awards',
-    description:
-      'Some universities (e.g. Monash, Heriot-Watt, UOW) maintain dedicated South Asian scholarship funds. Limited seats, application deadlines vary — we track these for you.',
-    value: 'Varies by university',
     eligible: 'Depends',
   },
   {
@@ -65,48 +44,10 @@ const categories: Category[] = [
   },
 ];
 
-interface Step {
-  num: string;
-  title: string;
-  description: string;
-  Icon: LucideIcon;
-}
-
-const steps: Step[] = [
-  {
-    num: '01',
-    title: 'Profile Review',
-    description: 'We assess your GPA, IELTS score, extracurriculars, and financial situation to gauge your scholarship fit.',
-    Icon: ClipboardCheck,
-  },
-  {
-    num: '02',
-    title: 'Matching',
-    description: 'We shortlist universities and scholarships that align with your profile, ambitions, and eligibility.',
-    Icon: Target,
-  },
-  {
-    num: '03',
-    title: 'Application Support',
-    description: 'We help you craft a compelling scholarship essay and prepare a strong application package.',
-    Icon: PenLine,
-  },
-  {
-    num: '04',
-    title: 'Interview Prep',
-    description: 'We coach you for university scholarship interviews, including mock sessions and personalised feedback.',
-    Icon: MessageCircle,
-  },
-];
-
 export default function ScholarshipsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const stepperRef = useRef<HTMLDivElement>(null);
-  const connectorRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const ctaRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
@@ -123,9 +64,6 @@ export default function ScholarshipsSection() {
           el.style.opacity = '1';
           el.style.transform = 'none';
         });
-      if (connectorRef.current) {
-        connectorRef.current.style.transform = isMobile ? 'scaleY(1)' : 'scaleX(1)';
-      }
       return;
     }
 
@@ -174,66 +112,6 @@ export default function ScholarshipsSection() {
         }
       }
 
-      if (timelineRef.current) {
-        const tEls = timelineRef.current.querySelectorAll<HTMLElement>('[data-anim]');
-        if (tEls.length) {
-          gsap.fromTo(
-            tEls,
-            { opacity: 0, y: 24 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.7,
-              stagger: 0.08,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: timelineRef.current,
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        }
-      }
-
-      if (connectorRef.current) {
-        gsap.fromTo(
-          connectorRef.current,
-          isMobile ? { scaleY: 0 } : { scaleX: 0 },
-          {
-            scaleX: 1,
-            scaleY: 1,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: stepperRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      }
-
-      const stepEls = stepRefs.current.filter((el): el is HTMLDivElement => el !== null);
-      stepEls.forEach((el, i) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: isMobile ? 20 : 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            delay: 0.15 * i,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: stepperRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
-
       if (ctaRef.current) {
         gsap.fromTo(
           ctaRef.current,
@@ -265,15 +143,6 @@ export default function ScholarshipsSection() {
           el.style.transform = 'none';
         }
       });
-      stepRefs.current.forEach((el) => {
-        if (el && (el.style.opacity === '' || el.style.opacity === '0')) {
-          el.style.opacity = '1';
-          el.style.transform = 'none';
-        }
-      });
-      if (connectorRef.current) {
-        connectorRef.current.style.transform = isMobile ? 'scaleY(1)' : 'scaleX(1)';
-      }
     }, 2500);
     return () => window.clearTimeout(timer);
   }, [isMobile]);
@@ -338,6 +207,9 @@ export default function ScholarshipsSection() {
       />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="Scholarships for Bangladeshi Students" />
+        </div>
         <div ref={headerRef} className="max-w-[860px] mb-16 lg:mb-20">
           <p
             data-anim
@@ -370,7 +242,7 @@ export default function ScholarshipsSection() {
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-5"
         >
           {categories.map((cat) => {
             const Icon = cat.Icon;
@@ -468,127 +340,6 @@ export default function ScholarshipsSection() {
               </article>
             );
           })}
-        </div>
-
-        <div
-          ref={timelineRef}
-          className="mt-20 lg:mt-24 rounded-2xl p-8 lg:p-12"
-          style={{
-            background: 'linear-gradient(135deg, rgba(11,42,92,0.65) 0%, rgba(10,10,10,0.85) 100%)',
-            border: '1px solid rgba(201,162,52,0.4)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            boxShadow: '0 16px 48px rgba(11,42,92,0.25)',
-          }}
-        >
-          <div className="text-center mb-12 lg:mb-16 max-w-[680px] mx-auto">
-            <p
-              data-anim
-              className="small-caps text-gold mb-4"
-              style={{ fontSize: '11px', letterSpacing: '0.32em' }}
-            >
-              How to win a scholarship
-            </p>
-            <h3
-              data-anim
-              className="font-display font-bold text-cream"
-              style={{
-                fontSize: 'clamp(24px, 3.4vw, 38px)',
-                letterSpacing: '0.04em',
-                lineHeight: 1.15,
-              }}
-            >
-              Our 4-step approach
-            </h3>
-          </div>
-
-          <div ref={stepperRef} className="relative">
-            <div
-              ref={connectorRef}
-              aria-hidden="true"
-              className="absolute bg-gold/50"
-              style={
-                isMobile
-                  ? {
-                      left: '16px',
-                      top: 0,
-                      bottom: 0,
-                      width: 1,
-                      transformOrigin: 'top center',
-                    }
-                  : {
-                      left: 0,
-                      right: 0,
-                      top: '20px',
-                      height: 1,
-                      transformOrigin: 'left center',
-                    }
-              }
-            />
-            <div
-              className={
-                isMobile
-                  ? 'flex flex-col gap-10'
-                  : 'grid grid-cols-4 gap-6 lg:gap-8'
-              }
-            >
-              {steps.map((step, i) => {
-                const Icon = step.Icon;
-                return (
-                  <div
-                    key={step.num}
-                    ref={(el) => {
-                      stepRefs.current[i] = el;
-                    }}
-                    className={
-                      isMobile
-                        ? 'relative flex gap-4 pl-14'
-                        : 'relative flex flex-col items-center text-center'
-                    }
-                  >
-                    <div
-                      className={
-                        isMobile
-                          ? 'absolute left-0 top-0 flex items-center justify-center w-8 h-8 rounded-full z-10'
-                          : 'flex items-center justify-center w-10 h-10 rounded-full z-10 mb-5'
-                      }
-                      style={{
-                        background: '#0A0A0A',
-                        border: '2px solid #C9A234',
-                        boxShadow: '0 0 12px rgba(201,162,52,0.4)',
-                      }}
-                    >
-                      <Icon size={16} strokeWidth={1.6} className="text-gold" />
-                    </div>
-                    <div className={isMobile ? 'flex-1 pt-0.5' : ''}>
-                      <span
-                        className="font-display font-bold leading-none block mb-2"
-                        style={{
-                          fontSize: 'clamp(20px, 1.8vw, 24px)',
-                          color: 'rgba(201,162,52,0.85)',
-                          letterSpacing: '0.06em',
-                        }}
-                      >
-                        {step.num}
-                      </span>
-                      <h4
-                        className="font-display font-bold text-cream mb-2 uppercase"
-                        style={{ fontSize: 'clamp(14px, 1.4vw, 16px)', letterSpacing: '0.04em' }}
-                      >
-                        {step.title}
-                      </h4>
-                      <p
-                        className="font-body font-light text-cream/70"
-                        style={{ fontSize: '13px', lineHeight: 1.6 }}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
         </div>
 
         <div

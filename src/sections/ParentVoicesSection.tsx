@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from '../hooks/useInView';
+import SectionLabel from '../components/SectionLabel';
 
 interface ParentTestimonial {
   rating: number;
@@ -86,9 +87,10 @@ const FRAME_INTERVAL_MS = 1000 / 30;
 function TestimonialCard({ t }: { t: ParentTestimonial }) {
   return (
     <div
-      className="flex-shrink-0 rounded-xl p-5 mx-3"
+      className="flex-shrink-0 rounded-xl p-5 mx-3 whitespace-normal break-words overflow-wrap-anywhere"
       style={{
         width: '360px',
+        maxWidth: '100%',
         background: 'rgba(255,255,255,0.04)',
         border: '1px solid rgba(201,162,52,0.15)',
         backdropFilter: 'blur(6px)',
@@ -110,14 +112,14 @@ function TestimonialCard({ t }: { t: ParentTestimonial }) {
         {'★'.repeat(t.rating)}
       </div>
       <p
-        className="font-serif font-light text-kimono/85 mb-4"
+        className="font-serif font-light text-kimono/85 mb-4 break-words"
         style={{ fontSize: '15px', lineHeight: 1.6 }}
       >
         &ldquo;{t.quote}&rdquo;
       </p>
       <div className="border-t border-gold/20 pt-3">
-        <p className="font-body text-kimono text-sm font-medium">{t.name}</p>
-        <p className="font-body text-gold/70 text-xs mt-0.5">
+        <p className="font-body text-kimono text-sm font-medium break-words">{t.name}</p>
+        <p className="font-body text-gold/70 text-xs mt-0.5 break-words">
           {t.relation}, {t.university}
         </p>
       </div>
@@ -248,6 +250,9 @@ export default function ParentVoicesSection() {
       className="relative w-full py-24 lg:py-32 overflow-hidden bg-mist"
     >
       <div className="max-w-[1280px] mx-auto px-6 lg:px-10 mb-12 lg:mb-16">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="What parents say about us" />
+        </div>
         <p
           className="font-body uppercase tracking-[0.4em] text-gold/70 mb-4"
           style={{ fontSize: '11px' }}

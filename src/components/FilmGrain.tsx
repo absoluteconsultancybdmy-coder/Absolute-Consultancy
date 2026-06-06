@@ -98,7 +98,7 @@ export default function FilmGrain() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none"
+      className="film-grain-overlay fixed inset-0 pointer-events-none"
       style={{ width: '100%', height: '100%', zIndex: 2, opacity: 0.4, mixBlendMode: 'overlay' }}
     />
   );

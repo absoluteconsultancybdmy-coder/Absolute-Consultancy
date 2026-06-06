@@ -254,7 +254,7 @@ const Constellation = ({
   return (
     <canvas
       ref={canvasRef}
-      className={className}
+      className={`constellation-canvas ${className}`.trim()}
       style={{ width: '100%', height: '100%', ...style }}
     />
   );

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 import {
   MessageCircle,
   ListChecks,
@@ -189,6 +190,9 @@ export default function ProcessTimeline() {
       <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="YOUR JOURNEY" />
+        </div>
         <div ref={headingRef} className="text-center mb-16 lg:mb-24" style={{ opacity: 0 }}>
           <p
             className="font-body uppercase tracking-[0.4em] text-gold/70 mb-6"

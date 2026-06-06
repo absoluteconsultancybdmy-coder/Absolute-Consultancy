@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SectionLabel from '../components/SectionLabel';
 import {
   GraduationCap,
   ShieldCheck,
@@ -116,6 +117,9 @@ export default function ServicesSection() {
       />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
+        <div className="mb-8 lg:mb-10">
+          <SectionLabel name="OUR SERVICES" />
+        </div>
         {/* Heading with hairline rule */}
         <div className="flex items-center gap-6 mb-16">
           <h2

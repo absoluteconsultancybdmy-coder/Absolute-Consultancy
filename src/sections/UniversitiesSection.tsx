@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from '../hooks/useLenis';
 import ScrambledText from '../components/ScrambledText';
 import Constellation from '../components/Constellation';
+import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -402,6 +403,10 @@ export default function UniversitiesSection() {
           style={{ zIndex: 0, mixBlendMode: 'screen' }}
         />
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
+
+          <div className="mb-8 lg:mb-10">
+            <SectionLabel name="OUR PARTNER UNIVERSITIES" />
+          </div>
 
           {/* Header */}
           <div ref={headerRef} className="mb-16" style={{ opacity: 0 }}>
