@@ -15,11 +15,11 @@
     <meta name="geo.position" content="2.9213;101.6559" />
     <meta name="ICBM" content="2.9213, 101.6559" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
-    <link rel="mask-icon" href="/favicon.svg" color="#C9A234" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/Absolute-Consultancy/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/Absolute-Consultancy/images/logo.png" />
+    <link rel="apple-touch-icon" href="/Absolute-Consultancy/images/logo.png" />
+    <link rel="mask-icon" href="/Absolute-Consultancy/favicon.svg" color="#C9A234" />
+    <link rel="manifest" href="/Absolute-Consultancy/manifest.json" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,8 +30,8 @@
     <link rel="dns-prefetch" href="https://youtube.com" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
 
-    <link rel="preload" as="image" href="/images/hero-bg.jpg" fetchpriority="high" />
-    <link rel="preload" as="image" href="/images/hero-graduate.png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-bg.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-graduate.png" fetchpriority="high" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Absolute Consultancy Firm" />
@@ -222,14 +222,28 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-kldmIfMI.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/react-vendor-BcCkRB6J.js">
-    <link rel="modulepreload" crossorigin href="/assets/radix-vendor-BThKwR8U.js">
-    <link rel="modulepreload" crossorigin href="/assets/ui-vendor-BwBjgD8X.js">
-    <link rel="modulepreload" crossorigin href="/assets/animation-vendor-xgxdCp6f.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DcV6uyX_.css">
+    <script type="module" crossorigin src="/Absolute-Consultancy/assets/index-BB8NW6Bq.js"></script>
+    <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/react-vendor-BcCkRB6J.js">
+    <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/radix-vendor-BThKwR8U.js">
+    <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/ui-vendor-BwBjgD8X.js">
+    <link rel="modulepreload" crossorigin href="/Absolute-Consultancy/assets/animation-vendor-xgxdCp6f.js">
+    <link rel="stylesheet" crossorigin href="/Absolute-Consultancy/assets/index-DcV6uyX_.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
   </body>
 </html>
