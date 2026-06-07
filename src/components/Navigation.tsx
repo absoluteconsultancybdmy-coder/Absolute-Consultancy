@@ -69,7 +69,23 @@ export default function Navigation() {
       }
       if (href === '#hero') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
       const el = document.querySelector(href);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+      // Target is lazy-mounted and not in the DOM yet.
+      // Progressively scroll down to trigger its IntersectionObserver,
+      // then smooth-scroll to the target.
+      const tryMountThenScroll = (attempt: number) => {
+        const targetEl = document.querySelector(href);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+        } else if (attempt < 40) {
+          window.scrollBy({ top: 500, behavior: 'auto' });
+          setTimeout(() => tryMountThenScroll(attempt + 1), 150);
+        }
+      };
+      tryMountThenScroll(0);
     }, 300);
   };
 

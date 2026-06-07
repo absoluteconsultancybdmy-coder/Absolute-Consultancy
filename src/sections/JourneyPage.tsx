@@ -11,7 +11,6 @@ import BlogSection from './BlogSection';
 import FaqSection from './FaqSection';
 import Footer from './Footer';
 import TrustStrip from '../components/TrustStrip';
-import ProcessTimeline from './ProcessTimeline';
 import ArcSection from './ArcSection';
 
 const JourneyHero = lazy(() => import('./JourneyHero'));
@@ -67,7 +66,6 @@ export default function JourneyPage() {
         <MatcherSection />
         <TrustStrip />
         <ArcSection />
-        <ProcessTimeline />
         <BlogSection />
         <FaqSection />
       </main>

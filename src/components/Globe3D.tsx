@@ -97,6 +97,14 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
     };
   }, [height, phi, theta]);
 
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const id = window.requestAnimationFrame(() => {
+      if (canvasRef.current) canvasRef.current.style.opacity = '1';
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, []);
+
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     pointerInteracting.current = e.clientX;
     pointerInteractionMovement.current = 0;
@@ -155,9 +163,6 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
         contain: 'layout paint size',
         opacity: 0,
         transition: 'opacity 800ms ease',
-      }}
-      onLoad={(e) => {
-        (e.target as HTMLCanvasElement).style.opacity = '1';
       }}
       className={className}
     />
