@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 
 // Pre-generated splash dot positions to avoid impure Math.random during render
@@ -798,7 +799,7 @@ export default function ExploreUniversitiesPage() {
   const [splashVisible, setSplashVisible] = useState(true);
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('All');
   const [headerCount, setHeaderCount] = useState(0);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   const typeCounts = useMemo(() => ({
     all: allUniversities.length,
@@ -891,20 +892,11 @@ export default function ExploreUniversitiesPage() {
     }
   }, [filteredUniversities.length, splashVisible, typeFilter]);
 
-  // Listen for prefers-reduced-motion
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mq.matches);
-    const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
   // Live counter for "30+ Partner Universities"
   useEffect(() => {
     if (splashVisible) return;
     if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHeaderCount(30);
       return;
     }

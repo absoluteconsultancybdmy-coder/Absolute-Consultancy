@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 interface Suggestion {
   label: string;
@@ -18,19 +19,10 @@ const SUGGESTIONS: Suggestion[] = [
 export default function NotFoundPage() {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     document.title = 'Page Not Found | Absolute Consultancy Firm';
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const onChange = () => setReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
   }, []);
 
   const matches = useMemo(() => {

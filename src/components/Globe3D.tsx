@@ -23,6 +23,7 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
   const fadeInRef = useRef(0);
   const rotationVelocity = useRef(0.0025);
   const [size, setSize] = useState({ width: 0, height: 0 });
+  const [cursorState, setCursorState] = useState<'grab' | 'grabbing'>('grab');
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -106,17 +107,20 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
     pointerInteracting.current = e.clientX;
     pointerInteractionMovement.current = 0;
     rotationVelocity.current = 0;
+    setCursorState('grabbing');
     (e.currentTarget as Element).setPointerCapture?.(e.pointerId);
   };
 
   const handlePointerUp = () => {
     pointerInteracting.current = null;
+    setCursorState('grab');
     if (Math.abs(pointerInteractionMovement.current) < 2) return;
     rotationVelocity.current = 0.0025 * Math.sign(pointerInteractionMovement.current);
   };
 
   const handlePointerOut = () => {
     pointerInteracting.current = null;
+    setCursorState('grab');
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
@@ -168,7 +172,7 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
         style={{
           width: '100%',
           height: '100%',
-          cursor: pointerInteracting.current !== null ? 'grabbing' : 'grab',
+          cursor: cursorState,
           contain: 'layout paint size',
           opacity: 0,
         }}

@@ -17,6 +17,7 @@ function NextPageButton() {
 
   useEffect(() => {
     if (!isHome) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setNearBottom(false);
       return;
     }

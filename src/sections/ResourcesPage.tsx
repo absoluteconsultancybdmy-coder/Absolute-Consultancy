@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { FULL_GUIDES, type Guide } from '../data/guides';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 const HERO_DOTS = Array.from({ length: 30 }, (_, i) => ({
   width: Math.random() * 4 + 2,
@@ -230,18 +231,9 @@ export default function ResourcesPage() {
   const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const [headerCount, setHeaderCount] = useState(0);
   const [openGuide, setOpenGuide] = useState<Guide | null>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mq.matches);
-    const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   useEffect(() => {
     if (heroRef.current) {
@@ -276,6 +268,7 @@ export default function ResourcesPage() {
 
   useEffect(() => {
     if (prefersReducedMotion) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHeaderCount(9);
       return;
     }

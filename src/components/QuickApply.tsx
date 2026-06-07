@@ -37,6 +37,7 @@ function QuickApply() {
 
   useEffect(() => {
     if (typeof window === 'undefined' || typeof IntersectionObserver === 'undefined') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setContactVisible(false);
       return;
     }
@@ -56,6 +57,7 @@ function QuickApply() {
   }, [location.pathname]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

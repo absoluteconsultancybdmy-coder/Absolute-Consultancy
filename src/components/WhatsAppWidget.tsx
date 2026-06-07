@@ -13,6 +13,7 @@ function WhatsAppWidget() {
 
   useEffect(() => {
     if (!isMobile) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setReady(true);
       return;
     }

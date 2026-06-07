@@ -25,7 +25,9 @@ const DEFAULT_TIMEOUT = 2000;
 export function useIdleCallback(fn: (() => void) | undefined, timeout: number = DEFAULT_TIMEOUT): boolean {
   const [fired, setFired] = useState(false);
   const fnRef = useRef(fn);
-  fnRef.current = fn;
+  useEffect(() => {
+    fnRef.current = fn;
+  });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
