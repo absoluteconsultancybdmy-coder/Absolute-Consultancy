@@ -31,6 +31,7 @@ const UniversitiesSection = lazy(() => import('./sections/UniversitiesSection'))
 const ScholarshipsSection = lazy(() => import('./sections/ScholarshipsSection'));
 const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
 const ParentVoicesSection = lazy(() => import('./sections/ParentVoicesSection'));
+const ContactSection = lazy(() => import('./sections/ContactSection'));
 const Footer = lazy(() => import('./sections/Footer'));
 
 // === Non-home routes ===
@@ -65,10 +66,15 @@ function ScrollHandler() {
       const scrollTo = sessionStorage.getItem('scrollToSection');
       if (scrollTo) {
         sessionStorage.removeItem('scrollToSection');
-        setTimeout(() => {
+        const tryScroll = (attempt: number) => {
           const el = document.getElementById(scrollTo);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else if (attempt < 20) {
+            setTimeout(() => tryScroll(attempt + 1), 200);
+          }
+        };
+        tryScroll(0);
       }
     } else {
       window.scrollTo(0, 0);
@@ -186,6 +192,9 @@ function HomePage() {
         </SectionBoundary>
         <SectionBoundary name="Parent Stories" minHeight="60vh">
           <ParentVoicesSection />
+        </SectionBoundary>
+        <SectionBoundary name="Contact" minHeight="80vh">
+          <ContactSection />
         </SectionBoundary>
       </main>
       <SectionBoundary name="Footer" minHeight="30vh">

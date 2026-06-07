@@ -59,7 +59,7 @@ function NextPageButton() {
     <button
       type="button"
       onClick={() => navigate('/journey')}
-      aria-label="Go to Your Journey page"
+      aria-label="Go to Why Malaysia? page"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="fixed inline-flex items-center gap-2 font-semibold tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
@@ -85,7 +85,7 @@ function NextPageButton() {
         whiteSpace: 'nowrap',
       }}
     >
-      <span>Your Journey</span>
+      <span>Why Malaysia?</span>
       <ArrowRight size={isMobile ? 16 : 18} strokeWidth={2.5} aria-hidden="true" />
     </button>
   );

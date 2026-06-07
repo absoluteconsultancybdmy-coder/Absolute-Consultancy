@@ -12,7 +12,7 @@ import FaqSection from './FaqSection';
 import Footer from './Footer';
 import TrustStrip from '../components/TrustStrip';
 import ProcessTimeline from './ProcessTimeline';
-import ContactSection from './ContactSection';
+import ArcSection from './ArcSection';
 
 const JourneyHero = lazy(() => import('./JourneyHero'));
 
@@ -66,10 +66,10 @@ export default function JourneyPage() {
         <WhyMalaysiaSection />
         <MatcherSection />
         <TrustStrip />
+        <ArcSection />
         <ProcessTimeline />
         <BlogSection />
         <FaqSection />
-        <ContactSection />
       </main>
       <Footer />
       <PlacedNotification />
