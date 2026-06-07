@@ -7,6 +7,10 @@ interface Message {
   timestamp: Date;
 }
 
+const CHAT_API_URL: string =
+  (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, '') ||
+  'http://localhost:3001';
+
 const INITIAL_MESSAGE: Message = {
   id: 'welcome',
   role: 'assistant',
@@ -60,7 +64,7 @@ export default function ChatWidget() {
         content: m.content,
       }));
 
-      const res = await fetch('http://localhost:3001/api/chat', {
+      const res = await fetch(`${CHAT_API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: apiMessages }),
@@ -127,14 +131,14 @@ export default function ChatWidget() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
-  };
+  }, []);
 
-  const formatContent = (content: string) => {
+  const formatContent = useCallback((content: string) => {
     return content.split('\n').map((line, i) => {
       let formatted = line;
       formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="text-kimono font-semibold">$1</strong>');
@@ -146,7 +150,7 @@ export default function ChatWidget() {
         </span>
       );
     });
-  };
+  }, []);
 
   return (
     <>

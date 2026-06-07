@@ -2,49 +2,154 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Absolute Consultancy Firm helps Bangladeshi students gain admission to top Malaysian universities. Free consultation, EMGS visa support, 99% visa success rate." />
     <meta name="keywords" content="education consultancy, study abroad, university admission consultants, Malaysia study abroad, Bangladesh study abroad, Absolute Consultancy Firm, student visa consultants, EMGS, study in Malaysia" />
     <meta name="author" content="Absolute Consultancy Firm" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-    <meta name="theme-color" content="#0A0A0A" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5E8D3" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light dark" />
     <meta name="format-detection" content="telephone=yes" />
     <meta name="geo.region" content="MY-10" />
     <meta name="geo.placename" content="Cyberjaya, Selangor" />
     <meta name="geo.position" content="2.9213;101.6559" />
     <meta name="ICBM" content="2.9213, 101.6559" />
 
+    <!-- PWA / Mobile web-app meta -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Absolute Consultancy" />
+    <meta name="application-name" content="Absolute Consultancy" />
+    <meta name="msapplication-TileColor" content="#0A0A0A" />
+    <meta name="msapplication-TileImage" content="/images/logo.png" />
+    <meta name="msapplication-config" content="none" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="rating" content="general" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" type="image/png" href="/images/logo.png" />
     <link rel="apple-touch-icon" href="/images/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png" />
     <link rel="mask-icon" href="/favicon.svg" color="#C9A234" />
     <link rel="manifest" href="/manifest.json" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Preconnect to Google Fonts: crossorigin hint on the CSS host enables early handshake -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.youtube.com" />
     <link rel="preconnect" href="https://i.ytimg.com" />
     <link rel="preconnect" href="https://wa.me" />
+    <link rel="preconnect" href="http://localhost:3001" crossorigin />
     <link rel="dns-prefetch" href="https://wa.me" />
     <link rel="dns-prefetch" href="https://youtube.com" />
     <link rel="dns-prefetch" href="https://www.facebook.com" />
+    <link rel="dns-prefetch" href="https://abscon-portal.com" />
 
+    <!-- Preload critical LCP images (hero) -->
+    <link
+      rel="preload"
+      as="image"
+      href="/Absolute-Consultancy/images/hero-bg.webp"
+      type="image/webp"
+      fetchpriority="high"
+      imagesrcset="/Absolute-Consultancy/images/hero-bg-768.webp 768w, /Absolute-Consultancy/images/hero-bg-1440.webp 1440w, /Absolute-Consultancy/images/hero-bg.webp 1440w"
+      imagesizes="100vw"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/Absolute-Consultancy/images/hero-graduate.webp"
+      type="image/webp"
+      fetchpriority="high"
+      imagesrcset="/Absolute-Consultancy/images/hero-graduate-768.webp 768w, /Absolute-Consultancy/images/hero-graduate-1024.webp 1024w, /Absolute-Consultancy/images/hero-graduate.webp 1024w"
+      imagesizes="(max-width: 768px) 100vw, 50vw"
+    />
     <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-bg.jpg" fetchpriority="high" />
     <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-graduate.png" fetchpriority="high" />
+
+    <!-- Preload the Vite main module so React boots without waiting on the parser -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+
+    <!--
+      Google Fonts: loaded with the print/all media swap trick so the CSS file
+      is fetched non-render-blocking. display=swap prevents FOIT. The
+      no-JS fallback <noscript> still applies the stylesheet directly.
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400;700&family=Oswald:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400;700&family=Oswald:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400;700&family=Oswald:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
 
     <script>
       (function () {
         var path = location.pathname;
         var base = path.indexOf('/Absolute-Consultancy/') === 0 ? '/Absolute-Consultancy/' : '/';
+        var webpPreloads = [
+          {
+            href: base + 'images/hero-bg.webp',
+            type: 'image/webp',
+            srcset: base + 'images/hero-bg-768.webp 768w, ' + base + 'images/hero-bg-1440.webp 1440w, ' + base + 'images/hero-bg.webp 1440w',
+            sizes: '100vw'
+          },
+          {
+            href: base + 'images/hero-graduate.webp',
+            type: 'image/webp',
+            srcset: base + 'images/hero-graduate-768.webp 768w, ' + base + 'images/hero-graduate-1024.webp 1024w, ' + base + 'images/hero-graduate.webp 1024w',
+            sizes: '(max-width: 768px) 100vw, 50vw'
+          }
+        ];
+        for (var i = 0; i < webpPreloads.length; i++) {
+          var p = webpPreloads[i];
+          var lw = document.createElement('link');
+          lw.rel = 'preload';
+          lw.as = 'image';
+          lw.href = p.href;
+          lw.type = p.type;
+          lw.setAttribute('imagesrcset', p.srcset);
+          lw.setAttribute('imagesizes', p.sizes);
+          lw.setAttribute('fetchpriority', 'high');
+          document.head.appendChild(lw);
+        }
         var imgs = [base + 'images/hero-bg.jpg', base + 'images/hero-graduate.png'];
-        for (var i = 0; i < imgs.length; i++) {
+        for (var j = 0; j < imgs.length; j++) {
           var l = document.createElement('link');
           l.rel = 'preload';
           l.as = 'image';
-          l.href = imgs[i];
+          l.href = imgs[j];
           l.setAttribute('fetchpriority', 'high');
           document.head.appendChild(l);
+        }
+      })();
+    </script>
+
+    <!-- Dev-only: load the Core Web Vitals observer (no-op in production) -->
+    <script>
+      (function () {
+        var h = location.hostname;
+        var isDev = h === 'localhost' || h === '127.0.0.1' || h === '' || h.endsWith('.local');
+        if (isDev) {
+          var s = document.createElement('script');
+          s.type = 'module';
+          s.src = '/performance-observer.js';
+          document.head.appendChild(s);
         }
       })();
     </script>
@@ -59,15 +164,21 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Absolute Consultancy Firm — guiding students to Malaysian universities" />
     <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="bn_BD" />
+    <meta property="og:locale:alternate" content="ms_MY" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Absolute Consultancy Firm | Study Abroad Consultants" />
     <meta name="twitter:description" content="Absolute Consultancy Firm helps Bangladeshi students gain admission to top Malaysian universities. Free consultation, EMGS visa support, 99% visa success rate." />
     <meta name="twitter:image" content="https://www.absoluteconsultancyfirm.com/images/hero-bg.jpg" />
     <meta name="twitter:image:alt" content="Absolute Consultancy Firm — guiding students to Malaysian universities" />
+    <meta name="twitter:site" content="@absoluteconsultancy" />
+    <meta name="twitter:creator" content="@absoluteconsultancy" />
 
     <link rel="canonical" href="https://www.absoluteconsultancyfirm.com/" />
     <link rel="alternate" hreflang="en" href="https://www.absoluteconsultancyfirm.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.absoluteconsultancyfirm.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <title>Absolute Consultancy Firm | Study Abroad Consultants — Malaysia & Bangladesh</title>
 
@@ -226,7 +337,15 @@
           "url": "https://www.absoluteconsultancyfirm.com/images/logo.png"
         }
       },
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.absoluteconsultancyfirm.com/resources?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 
@@ -247,6 +366,181 @@
           "name": "Explore Universities",
           "item": "https://www.absoluteconsultancyfirm.com/explore"
         }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Education Consultancy & Student Visa Advisory",
+      "name": "Study Abroad Consulting for Malaysian Universities",
+      "provider": {
+        "@type": "Organization",
+        "name": "Absolute Consultancy Firm",
+        "url": "https://www.absoluteconsultancyfirm.com/"
+      },
+      "areaServed": [
+        { "@type": "Country", "name": "Bangladesh" },
+        { "@type": "Country", "name": "Malaysia" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Education Consultancy Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "University Application Support",
+              "description": "End-to-end application assistance to MQA-accredited Malaysian universities."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "EMGS Student Visa Processing",
+              "description": "Complete Education Malaysia Global Services visa support with 99% approval rate."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Scholarship Guidance",
+              "description": "Merit and need-based scholarship identification and application support."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Career Counselling",
+              "description": "Programme and career pathway counselling for Bangladeshi students."
+            }
+          }
+        ]
+      },
+      "url": "https://www.absoluteconsultancyfirm.com/"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AggregateRating",
+      "itemReviewed": {
+        "@type": "EducationalOrganization",
+        "name": "Absolute Consultancy Firm",
+        "url": "https://www.absoluteconsultancyfirm.com/"
+      },
+      "ratingValue": "4.9",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Rahim Ahmed"
+      },
+      "datePublished": "2026-04-12",
+      "reviewBody": "Absolute Consultancy made the entire EMGS process painless. From university shortlisting to arrival in Cyberjaya, the team was responsive, honest, and incredibly well-organised. Highly recommend to any Bangladeshi student.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "itemReviewed": {
+        "@type": "EducationalOrganization",
+        "name": "Absolute Consultancy Firm",
+        "url": "https://www.absoluteconsultancyfirm.com/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Bachelor of Computer Science (Hons) — Malaysia Pathway",
+      "description": "Three- or four-year honours programme at MQA-accredited Malaysian universities with credit-transfer options to UK, Australia, and Canada. Ideal for Bangladeshi students seeking a globally recognised CS degree at an affordable cost.",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "Absolute Consultancy Firm",
+        "url": "https://www.absoluteconsultancyfirm.com/"
+      },
+      "educationalCredentialAwarded": "Bachelor's Degree",
+      "inLanguage": "en",
+      "availableLanguage": ["en", "ms"],
+      "offers": {
+        "@type": "Offer",
+        "category": "Tuition",
+        "priceCurrency": "USD",
+        "priceRange": "$$",
+        "url": "https://www.absoluteconsultancyfirm.com/explore"
+      },
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "onsite",
+        "location": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "MY",
+            "addressRegion": "Selangor",
+            "addressLocality": "Cyberjaya"
+          }
+        }
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Free Consultation Webinar — Study in Malaysia 2026",
+      "description": "Live Q&A webinar for prospective Bangladeshi students: programme selection, EMGS visa timelines, scholarships, and post-study work options.",
+      "startDate": "2026-07-15T18:00:00+06:00",
+      "endDate": "2026-07-15T19:30:00+06:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://www.absoluteconsultancyfirm.com/contact"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Absolute Consultancy Firm",
+        "url": "https://www.absoluteconsultancyfirm.com/"
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Absolute Consultancy Firm"
+      },
+      "isAccessibleForFree": true,
+      "inLanguage": "en"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.absoluteconsultancyfirm.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Explore Universities", "item": "https://www.absoluteconsultancyfirm.com/explore" },
+        { "@type": "ListItem", "position": 3, "name": "Your Journey", "item": "https://www.absoluteconsultancyfirm.com/journey" },
+        { "@type": "ListItem", "position": 4, "name": "Team", "item": "https://www.absoluteconsultancyfirm.com/team" },
+        { "@type": "ListItem", "position": 5, "name": "Resources", "item": "https://www.absoluteconsultancyfirm.com/resources" }
       ]
     }
     </script>

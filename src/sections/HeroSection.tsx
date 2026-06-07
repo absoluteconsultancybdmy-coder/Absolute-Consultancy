@@ -289,8 +289,9 @@ export default function HeroSection() {
           height={1080}
           className="w-full h-[120%] object-cover"
           style={{ objectPosition: 'center 30%' }}
-          loading={isMobile ? 'eager' : 'lazy'}
+          loading="eager"
           decoding="async"
+          fetchPriority="high"
           onError={(e) => { e.currentTarget.style.opacity = '0.15'; }}
         />
         <div
@@ -359,8 +360,9 @@ export default function HeroSection() {
           style={{
             filter: 'drop-shadow(-8px 0 60px rgba(201, 162, 52, 0.18))',
           }}
-          loading={isMobile ? 'eager' : 'lazy'}
+          loading="eager"
           decoding="async"
+          fetchPriority="high"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
         <div

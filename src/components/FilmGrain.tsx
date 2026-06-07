@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
-export default function FilmGrain() {
+function FilmGrain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -103,3 +103,5 @@ export default function FilmGrain() {
     />
   );
 }
+
+export default memo(FilmGrain);

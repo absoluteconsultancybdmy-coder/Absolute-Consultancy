@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 interface GooeyBlobProps {
   blobCount?: number;
@@ -7,7 +7,7 @@ interface GooeyBlobProps {
   filterId?: string;
 }
 
-export default function GooeyBlob({
+function GooeyBlob({
   blobCount = 4,
   colors = [
     'rgba(201,162,52,0.3)',
@@ -118,3 +118,5 @@ export default function GooeyBlob({
     </svg>
   );
 }
+
+export default memo(GooeyBlob);

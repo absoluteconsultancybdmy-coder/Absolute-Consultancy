@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 
 type Placed = {
   name: string;
@@ -49,7 +49,7 @@ function writeNumber(key: string, value: number): void {
   }
 }
 
-export default function PlacedNotification() {
+function PlacedNotification() {
   const [current, setCurrent] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
   const indexRef = useRef(0);
@@ -197,3 +197,5 @@ export default function PlacedNotification() {
     </div>
   );
 }
+
+export default memo(PlacedNotification);

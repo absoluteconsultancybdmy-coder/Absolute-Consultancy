@@ -910,6 +910,10 @@ export default function BlogPostPage() {
                 <img
                   src={post.authorPhoto}
                   alt={post.author}
+                  width={56}
+                  height={56}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -952,6 +956,9 @@ export default function BlogPostPage() {
               alt={post.title}
               width={1180}
               height={600}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="blog-cover-img w-full h-full object-cover"
               style={{ transition: 'transform 700ms cubic-bezier(0.16, 1, 0.3, 1)' }}
               onError={(e) => {
@@ -1029,6 +1036,10 @@ export default function BlogPostPage() {
                     <img
                       src={post.authorPhoto}
                       alt={post.author}
+                      width={96}
+                      height={96}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover object-top"
                       onError={(e) => {
                         e.currentTarget.style.opacity = '0.2';

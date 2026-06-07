@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Flag, Award, Building2, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -13,7 +14,7 @@ const items: TrustItem[] = [
   { icon: Users, label: '300+ Students Placed' },
 ];
 
-export default function TrustStrip() {
+function TrustStrip() {
   return (
     <div
       className="relative w-full overflow-hidden"
@@ -57,3 +58,5 @@ export default function TrustStrip() {
     </div>
   );
 }
+
+export default memo(TrustStrip);

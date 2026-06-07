@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { getLenis } from '../hooks/useLenis';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
-export default function ScrollProgress() {
+function ScrollProgress() {
   const [progress, setProgress] = useState(0);
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateReduce = () => setReduceMotion(mq.matches);
-    updateReduce();
-    mq.addEventListener('change', updateReduce);
-    return () => mq.removeEventListener('change', updateReduce);
-  }, []);
+  const reduceMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -75,3 +66,5 @@ export default function ScrollProgress() {
     </div>
   );
 }
+
+export default memo(ScrollProgress);

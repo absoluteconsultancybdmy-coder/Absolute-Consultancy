@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
 
 const BOTTOM_THRESHOLD = 200;
 
-export default function NextPageButton() {
+function NextPageButton() {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
@@ -64,7 +64,7 @@ export default function NextPageButton() {
       className="fixed inline-flex items-center gap-2 font-semibold tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       style={{
         left: '50%',
-        bottom: isMobile ? 24 : 40,
+        bottom: isMobile ? 76 : 92,
         transform: `translateX(-50%) translateY(${visible ? '0px' : '20px'}) scale(${
           visible && hovered ? 1.05 : 1
         })`,
@@ -89,3 +89,5 @@ export default function NextPageButton() {
     </button>
   );
 }
+
+export default memo(NextPageButton);

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useInView } from '../hooks/useInView';
 
 interface HighlightTextProps {
@@ -7,7 +7,7 @@ interface HighlightTextProps {
   className?: string;
 }
 
-export default function HighlightText({ children, delay = 0, className = '' }: HighlightTextProps) {
+function HighlightText({ children, delay = 0, className = '' }: HighlightTextProps) {
   const [ref, isInView] = useInView<HTMLSpanElement>({ threshold: 0.5 });
 
   useEffect(() => {
@@ -25,3 +25,5 @@ export default function HighlightText({ children, delay = 0, className = '' }: H
     </span>
   );
 }
+
+export default memo(HighlightText);

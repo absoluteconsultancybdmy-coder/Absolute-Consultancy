@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -184,7 +184,7 @@ const universities: University[] = [
   },
   ];
 
-function UniversityModal({ uni, onClose }: { uni: University; onClose: () => void }) {
+const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: University; onClose: () => void }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -293,9 +293,9 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
       </div>
     </div>
   );
-}
+});
 
-function UniversityCard({ uni, index, onClick }: { uni: University; index: number; onClick: () => void }) {
+const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { uni: University; index: number; onClick: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -332,6 +332,7 @@ function UniversityCard({ uni, index, onClick }: { uni: University; index: numbe
         el.style.background = 'rgba(255,255,255,0.03)';
       }}
     >
+
       <div className="flex items-start justify-between gap-2">
         <span className="px-2 py-1 rounded-full text-[9px] font-body uppercase tracking-wider flex-shrink-0"
           style={{ background: `${uni.accent}30`, color: '#C9A234', border: `1px solid ${uni.accent}40` }}>
@@ -371,7 +372,7 @@ function UniversityCard({ uni, index, onClick }: { uni: University; index: numbe
       </div>
     </div>
   );
-}
+});
 
 export default function UniversitiesSection() {
   const navigate = useNavigate();
@@ -388,9 +389,13 @@ export default function UniversitiesSection() {
     );
   }, []);
 
+  const closeModal = useCallback(() => setSelectedUni(null), []);
+  const handleCardClick = useCallback((uni: University) => () => setSelectedUni(uni), []);
+  const goExplore = useCallback(() => { window.scrollTo({ top: 0 }); navigate('/explore'); }, [navigate]);
+
   return (
     <>
-      {selectedUni && <UniversityModal uni={selectedUni} onClose={() => setSelectedUni(null)} />}
+      {selectedUni && <UniversityModal uni={selectedUni} onClose={closeModal} />}
 
       <section className="relative w-full py-32 lg:py-44" id="destinations"
         style={{ backgroundColor: '#0B1A33', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
@@ -432,14 +437,14 @@ export default function UniversitiesSection() {
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {universities.map((uni, i) => (
-              <UniversityCard key={uni.name} uni={uni} index={i} onClick={() => setSelectedUni(uni)} />
+              <UniversityCard key={uni.name} uni={uni} index={i} onClick={handleCardClick(uni)} />
             ))}
           </div>
 
           {/* Explore More Universities */}
           <div className="mt-16 text-center">
             <button
-              onClick={() => { window.scrollTo({ top: 0 }); navigate('/explore'); }}
+              onClick={goExplore}
               className="pill-button pill-button-outline"
             >
               Explore More Universities ▼

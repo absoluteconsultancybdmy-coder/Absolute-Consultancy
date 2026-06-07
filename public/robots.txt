@@ -1,4 +1,68 @@
+# Absolute Consultancy Firm — robots.txt
+# Allow all well-behaved crawlers; block noisy / internal paths.
+
 User-agent: *
 Allow: /
+Allow: /explore
+Allow: /journey
+Allow: /team
+Allow: /resources
+Allow: /privacy
+Allow: /terms
+Allow: /blog/
 
+# Block private / dev / asset paths from indexing
+Disallow: /404
+Disallow: /404.html
+Disallow: /assets/
+Disallow: /*.json$
+Disallow: /api/
+
+# Crawl-delay is a hint; only respected by some bots (e.g. Bing, Yandex).
+# Google ignores it. Keep it modest to stay friendly to smaller crawlers.
+Crawl-delay: 1
+
+# Host directive (Yandex-specific, ignored by Google but harmless)
+Host: https://www.absoluteconsultancyfirm.com
+
+# Sitemaps
 Sitemap: https://www.absoluteconsultancyfirm.com/sitemap.xml
+
+# ── AI / LLM crawlers — explicit guidance ────────────────────────────
+# Most major AI crawlers honour robots.txt. We allow them with the same
+# rules as regular crawlers. Opt out here if you ever want to block
+# a specific bot from training on public content.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# ── Aggressive scrapers — block ──────────────────────────────────────
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

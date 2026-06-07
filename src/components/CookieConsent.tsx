@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 const STORAGE_KEY = 'cookie-consent';
 const SHOW_DELAY_MS = 1500;
@@ -26,19 +27,10 @@ function writeConsent(value: ConsentValue) {
   }
 }
 
-export default function CookieConsent() {
+function CookieConsent() {
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const onChange = () => setReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
+  const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (readConsent() !== null) return;
@@ -163,3 +155,5 @@ export default function CookieConsent() {
     </div>
   );
 }
+
+export default memo(CookieConsent);

@@ -1,6 +1,7 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, type ReactNode } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
+import { useIdleCallback } from './hooks/useIdleCallback';
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
 import FilmGrain from './components/FilmGrain';
@@ -13,21 +14,29 @@ import NextPageButton from './components/NextPageButton';
 import CookieConsent from './components/CookieConsent';
 import QuickApply from './components/QuickApply';
 import HeroSection from './sections/HeroSection';
-import AboutSection from './sections/AboutSection';
-import StatsSection from './sections/StatsSection';
-import ServicesSection from './sections/ServicesSection';
-import ProcessTimeline from './sections/ProcessTimeline';
-import UniversitiesSection from './sections/UniversitiesSection';
-import ScholarshipsSection from './sections/ScholarshipsSection';
-import StudentRecruitmentSection from './sections/StudentRecruitmentSection';
-import TestimonialsSection from './sections/TestimonialsSection';
-import ParentVoicesSection from './sections/ParentVoicesSection';
-import ContactSection from './sections/ContactSection';
-import Footer from './sections/Footer';
-import PlacedNotification from './components/PlacedNotification';
+import { LazySection } from './components/LazySection';
+import ErrorBoundary from './components/ErrorBoundary';
 import ScrollProgress from './components/ScrollProgress';
 import ThemeToggle from './components/ThemeToggle';
 
+// === Home page sections (below the fold) ===
+// Each is split into its own JS chunk and only mounted when the section
+// is within 300px of the viewport. Wrapped in ErrorBoundary for resilience.
+const AboutSection = lazy(() => import('./sections/AboutSection'));
+const StatsSection = lazy(() => import('./sections/StatsSection'));
+const ServicesSection = lazy(() => import('./sections/ServicesSection'));
+const ProcessTimeline = lazy(() => import('./sections/ProcessTimeline'));
+const StudentRecruitmentSection = lazy(
+  () => import('./sections/StudentRecruitmentSection')
+);
+const UniversitiesSection = lazy(() => import('./sections/UniversitiesSection'));
+const ScholarshipsSection = lazy(() => import('./sections/ScholarshipsSection'));
+const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
+const ParentVoicesSection = lazy(() => import('./sections/ParentVoicesSection'));
+const ContactSection = lazy(() => import('./sections/ContactSection'));
+const Footer = lazy(() => import('./sections/Footer'));
+
+// === Non-home routes ===
 const ExploreUniversitiesPage = lazy(() => import('./sections/ExploreUniversitiesPage'));
 const TeamPage = lazy(() => import('./sections/TeamPage'));
 const ResourcesPage = lazy(() => import('./sections/ResourcesPage'));
@@ -36,6 +45,9 @@ const NotFoundPage = lazy(() => import('./sections/NotFoundPage'));
 const PrivacyPage = lazy(() => import('./sections/PrivacyPage'));
 const TermsPage = lazy(() => import('./sections/TermsPage'));
 const BlogPostPage = lazy(() => import('./sections/BlogPostPage'));
+
+// === Non-critical widget ===
+const PlacedNotification = lazy(() => import('./components/PlacedNotification'));
 
 const PAGE_TITLES: Record<string, string> = {
   '/': 'Absolute Consultancy Firm | Study Abroad Consultants — Malaysia & Bangladesh',
@@ -98,6 +110,47 @@ function SectionFallback() {
   );
 }
 
+/**
+ * IdlePlacedNotification — wraps the lazy PlacedNotification widget and
+ * only begins to fetch / mount it once the browser is idle. Until then a
+ * zero-height placeholder is rendered so layout is unaffected.
+ */
+function IdlePlacedNotification() {
+  const ready = useIdleCallback(undefined, 4000);
+  // The hook always runs, but we only render after it's been scheduled.
+  // The 4s timeout ensures the chunk is requested within 4s regardless
+  // of idle state. The first render returns null; once idle, we mount.
+  if (!ready) return null;
+  return (
+    <Suspense fallback={null}>
+      <PlacedNotification />
+    </Suspense>
+  );
+}
+
+interface SectionBoundaryProps {
+  name: string;
+  children: ReactNode;
+  minHeight?: string;
+}
+
+/**
+ * SectionBoundary — single Suspense + ErrorBoundary pair so each lazy
+ * section is independently resilient and a failure in one doesn't break
+ * the rest of the home page.
+ */
+function SectionBoundary({ name, children, minHeight = '60vh' }: SectionBoundaryProps) {
+  return (
+    <ErrorBoundary name={name}>
+      <Suspense fallback={<SectionFallback />}>
+        <LazySection minHeight={minHeight} rootMargin="300px">
+          {children}
+        </LazySection>
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
 function HomePage() {
   useLenis();
 
@@ -108,21 +161,45 @@ function HomePage() {
       <Navigation />
       <TrustBar />
       <main id="main-content">
+        {/* Above the fold — eager */}
         <HeroSection />
-        <AboutSection />
-        <StatsSection />
+        <SectionBoundary name="About" minHeight="80vh">
+          <AboutSection />
+        </SectionBoundary>
+        <SectionBoundary name="Stats" minHeight="40vh">
+          <StatsSection />
+        </SectionBoundary>
+        {/* TrustStrip is above the fold in the original layout — keep eager */}
         <TrustStrip />
-        <ServicesSection />
-        <ProcessTimeline />
-        <StudentRecruitmentSection />
-        <UniversitiesSection />
-        <ScholarshipsSection />
-        <TestimonialsSection />
-        <ParentVoicesSection />
-        <ContactSection />
+        <SectionBoundary name="Services" minHeight="70vh">
+          <ServicesSection />
+        </SectionBoundary>
+        <SectionBoundary name="Process" minHeight="70vh">
+          <ProcessTimeline />
+        </SectionBoundary>
+        <SectionBoundary name="Recruitment" minHeight="60vh">
+          <StudentRecruitmentSection />
+        </SectionBoundary>
+        <SectionBoundary name="Universities" minHeight="90vh">
+          <UniversitiesSection />
+        </SectionBoundary>
+        <SectionBoundary name="Scholarships" minHeight="60vh">
+          <ScholarshipsSection />
+        </SectionBoundary>
+        <SectionBoundary name="Testimonials" minHeight="60vh">
+          <TestimonialsSection />
+        </SectionBoundary>
+        <SectionBoundary name="ParentVoices" minHeight="60vh">
+          <ParentVoicesSection />
+        </SectionBoundary>
+        <SectionBoundary name="Contact" minHeight="80vh">
+          <ContactSection />
+        </SectionBoundary>
       </main>
-      <Footer />
-      <PlacedNotification />
+      <SectionBoundary name="Footer" minHeight="30vh">
+        <Footer />
+      </SectionBoundary>
+      <IdlePlacedNotification />
     </div>
   );
 }

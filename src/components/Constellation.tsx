@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 
 interface ConstellationProps {
+  /** Number of dots. If omitted, defaults to 60 on desktop / 24 on mobile. */
   dotCount?: number;
   connectionDistance?: number;
   mouseRadius?: number;
@@ -54,7 +55,7 @@ function teardownSharedListener() {
 }
 
 const Constellation = ({
-  dotCount = 60,
+  dotCount,
   connectionDistance = 150,
   mouseRadius = 150,
   color = 'rgba(201, 162, 52, 0.95)',
@@ -76,6 +77,8 @@ const Constellation = ({
     if (!ctx) return;
 
     const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
+    // Auto-reduce density on mobile when caller didn't specify a value.
+    const effectiveDotCount = dotCount ?? (isMobile ? 24 : 60);
     const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.5) : Math.min(window.devicePixelRatio || 1, 2);
 
     let animationId = 0;
@@ -101,7 +104,7 @@ const Constellation = ({
     const initDots = () => {
       dots = [];
       const rect = updateRect();
-      for (let i = 0; i < dotCount; i++) {
+      for (let i = 0; i < effectiveDotCount; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = 0.2 + Math.random() * 0.3;
         dots.push({
@@ -260,4 +263,4 @@ const Constellation = ({
   );
 };
 
-export default Constellation;
+export default memo(Constellation);

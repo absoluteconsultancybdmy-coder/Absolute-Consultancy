@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 
 interface SectionLabelProps {
   name: string;
@@ -14,7 +14,7 @@ function toKebabCase(str: string): string {
     .replace(/^-|-$/g, '');
 }
 
-export default function SectionLabel({ name, className = '' }: SectionLabelProps) {
+function SectionLabel({ name, className = '' }: SectionLabelProps) {
   const id = `label-${toKebabCase(name)}`;
 
   const handleClick = useCallback(() => {
@@ -56,3 +56,6 @@ export default function SectionLabel({ name, className = '' }: SectionLabelProps
     </div>
   );
 }
+
+export default memo(SectionLabel);
+

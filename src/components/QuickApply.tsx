@@ -1,35 +1,38 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 const SCROLL_THRESHOLD = 800;
 const CONTACT_VISIBLE_THRESHOLD = 0.15;
 
-export default function QuickApply() {
+function QuickApply() {
   const isMobile = useIsMobile();
   const location = useLocation();
   const navigate = useNavigate();
   const [contactVisible, setContactVisible] = useState(false);
   const [pastThreshold, setPastThreshold] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const onChange = () => setReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const onScroll = () => setPastThreshold(window.scrollY > SCROLL_THRESHOLD);
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setPastThreshold(window.scrollY > SCROLL_THRESHOLD);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(update);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -127,3 +130,5 @@ export default function QuickApply() {
     </button>
   );
 }
+
+export default memo(QuickApply);

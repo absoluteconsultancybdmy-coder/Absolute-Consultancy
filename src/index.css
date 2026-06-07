@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Lato:wght@300;400;700&family=Oswald:wght@400;500;600;700&display=swap');
+/* Google Fonts (Oswald, Lato, Cormorant Garamond) are loaded
+   non-render-blocking from index.html with the print/all media swap trick.
+   Keep this file free of render-blocking @import rules. */
 
 @tailwind base;
 @tailwind components;

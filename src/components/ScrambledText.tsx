@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { memo, useEffect, useRef, useState, type CSSProperties } from 'react';
 
 interface ScrambledTextProps {
   text: string;
@@ -10,7 +10,7 @@ interface ScrambledTextProps {
 
 const SCRAMBLE_CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export default function ScrambledText({
+function ScrambledText({
   text,
   className,
   style,
@@ -109,3 +109,5 @@ export default function ScrambledText({
     </span>
   );
 }
+
+export default memo(ScrambledText);

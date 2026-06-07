@@ -1,17 +1,28 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { getLenis } from '../hooks/useLenis';
 
 const SHOW_THRESHOLD = 1000;
 
-export default function BackToTop() {
+function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const onScroll = () => setVisible(window.scrollY > SHOW_THRESHOLD);
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setVisible(window.scrollY > SHOW_THRESHOLD);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(update);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) window.cancelAnimationFrame(raf);
+    };
   }, []);
 
   const handleClick = () => {
@@ -62,3 +73,5 @@ export default function BackToTop() {
     </button>
   );
 }
+
+export default memo(BackToTop);

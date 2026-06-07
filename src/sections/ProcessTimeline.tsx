@@ -158,13 +158,24 @@ export default function ProcessTimeline() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
+      className="relative w-full py-32 lg:py-44 overflow-hidden"
+      style={{ background: '#0A0A0A' }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
+          backgroundImage: 'url(/images/YourJourney.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.25,
+        }}
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,162,52,0.05) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,162,52,0.08) 0%, transparent 60%), linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.7) 100%)',
         }}
       />
 

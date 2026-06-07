@@ -1,23 +1,15 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useIsMobile } from '../hooks/use-mobile';
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 
 const WA_NUMBER = '60175631621';
 const WA_TEXT = "Hi! I'm interested in studying in Malaysia. Can you help me?";
 
-export default function WhatsAppWidget() {
+function WhatsAppWidget() {
   const isMobile = useIsMobile();
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = usePrefersReducedMotion();
   const [ready, setReady] = useState(false);
   const [showDot, setShowDot] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const onChange = () => setReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
 
   useEffect(() => {
     if (!isMobile) {
@@ -117,3 +109,5 @@ export default function WhatsAppWidget() {
     </div>
   );
 }
+
+export default memo(WhatsAppWidget);
