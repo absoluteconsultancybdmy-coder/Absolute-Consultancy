@@ -45,10 +45,7 @@ const faqs: Faq[] = [
     q: 'Can I bring my family (spouse/children)?',
     a: 'Postgraduate students (Master\u2019s and PhD) may apply for dependent passes for their spouse and children. Undergraduate students typically cannot. We help you plan the right time and pathway for family inclusion.',
   },
-  {
-    q: 'What happens after I graduate?',
-    a: 'Many Malaysian universities have strong industry partnerships. The Graduate Pass allows graduates from selected countries to remain in Malaysia for up to 12 months to work, travel, or further study. We will advise on post-study pathways.',
-  },
+
 ];
 
 interface FaqItemProps {

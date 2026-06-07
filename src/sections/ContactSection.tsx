@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
-import Constellation from '../components/Constellation';
 import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -50,14 +49,7 @@ export default function ContactSection() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.75) 100%)' }} />
       </div>
 
-      <Constellation
-        dotCount={30}
-        connectionDistance={100}
-        mouseRadius={120}
-        color="#C9A234"
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0, mixBlendMode: 'screen' }}
-      />
+
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import Constellation from '../components/Constellation';
 
 
 // Pre-generated splash dot positions to avoid impure Math.random during render
@@ -1066,14 +1065,6 @@ export default function ExploreUniversitiesPage() {
 
       {/* Main Content — always rendered underneath */}
       <div ref={contentRef} style={{ opacity: splashVisible ? 0 : 1, minHeight: '100vh', background: '#0B1A33' }}>
-        {/* Decorative corner constellation */}
-        <Constellation
-          dotCount={18}
-          connectionDistance={70}
-          mouseRadius={0}
-          className="pointer-events-none"
-          style={{ position: 'fixed', top: 60, right: 0, width: 360, height: 320, zIndex: 0, mixBlendMode: 'screen' }}
-        />
         {/* Top bar */}
         <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}>
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">

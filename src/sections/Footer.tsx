@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import Constellation from '../components/Constellation';
 import GooeyBlob from '../components/GooeyBlob';
 
 const navLinks = [
@@ -287,7 +286,7 @@ export default function Footer() {
   return (
     <footer className="relative w-full bg-mist pt-16 pb-10 overflow-hidden">
       <GooeyBlob blobCount={4} className="absolute inset-0 -z-10 pointer-events-none hidden md:block" />
-      <Constellation dotCount={50} connectionDistance={100} className="absolute inset-0 -z-10 pointer-events-none" />
+
       {/* Top gold hairline */}
       <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.3)' }} />
 

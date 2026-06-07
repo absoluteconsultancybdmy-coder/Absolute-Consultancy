@@ -319,47 +319,4 @@ export const FULL_GUIDES: Guide[] = [
       },
     ],
   },
-  {
-    category: 'CAREER',
-    title: 'Career Paths After Graduation',
-    description: 'Graduate Pass, in-demand industries, networking, building your CV during studies.',
-    readingTime: '7 min read',
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="7" width="18" height="13" rx="2" />
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-        <path d="M3 13h18" />
-      </svg>
-    ),
-    sections: [
-      {
-        heading: 'The Graduate Pass: a bridge, not a guarantee',
-        body: 'The Graduate Pass allows international students who have completed a degree at a Malaysian institution to remain in the country for a period after graduation, typically twelve months, to look for work or start a business. It is not a work visa. It is a transition period during which you can apply for jobs, attend interviews, and convert to an Employment Pass if you receive an offer that meets the relevant criteria. Your university\u2019s international office can advise on the exact timeline.',
-      },
-      {
-        heading: 'Industries with real demand',
-        body: 'The Malaysian job market is strongest in technology, finance, engineering, healthcare, and the digital economy. Technology roles, including software development, data science, cybersecurity, and product management, are particularly active in Kuala Lumpur, and multinational companies have a growing presence in Cyberjaya. Finance and accounting roles are concentrated in KLCC. Engineering, especially in oil and gas, manufacturing, and renewable energy, is strong in Selangor. The right industry for you depends on your degree, interests, and willingness to specialise.',
-      },
-      {
-        heading: 'Networking while you are still a student',
-        body: 'The most valuable career moves often come through people you meet, not job boards. University career fairs, industry talks, alumni events, and student organisation activities are all networking opportunities in disguise. Build a LinkedIn profile early, connect with classmates and lecturers, and follow up with people you meet in person. A short, polite message after a conversation is often all it takes to turn an introduction into a relationship. Most senior professionals are happy to talk to students who are genuinely curious about their work.',
-      },
-      {
-        heading: 'Building a strong CV during your studies',
-        body: 'Employers look for more than a degree transcript. Internships, part-time work, volunteer roles, leadership positions in student organisations, and personal projects all add up. Aim to leave university with at least one internship on your CV, ideally with a recognisable company. The first internship is the hardest to get: subsequent ones are easier because you can point to your previous experience. Choose a final-year project that is genuinely interesting to industry, and you may find recruiters reaching out before you graduate.',
-      },
-      {
-        heading: 'Internship tips that actually work',
-        body: 'Apply to internships early, even if you do not yet feel ready. Treat the application process as practice: the more applications you write, the better they get. Customise your CV for each role, highlighting the skills and experiences most relevant to that company. In the internship itself, show up on time, ask good questions, and finish what you start. A strong internship often converts into a full-time offer, and even when it does not, the reference and experience will serve you for years.',
-      },
-      {
-        heading: 'Returning to Bangladesh vs. staying in Malaysia',
-        body: 'There is no universal right answer, and the best path depends on your field, your family circumstances, and your long-term goals. Returning to Bangladesh works well for graduates in business, finance, the development sector, and entrepreneurship, where the local network matters and the Malaysian degree is well-recognised. Staying in Malaysia works well for graduates in technology, engineering, and specialised healthcare, where the local job market is active and the Graduate Pass provides a real bridge. The two paths are not mutually exclusive.',
-      },
-      {
-        heading: 'A closing thought on your career',
-        body: 'Your degree is a foundation, not a destination. The students who build the strongest careers are the ones who treat their time at university as the beginning of a longer journey, not the end of an academic one. Stay curious, keep learning, and put yourself in rooms where you do not yet belong. The Malaysian degree will open the first door. The habits you build during your studies will open the rest.',
-      },
-    ],
-  },
 ];

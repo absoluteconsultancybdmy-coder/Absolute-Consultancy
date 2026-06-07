@@ -241,10 +241,9 @@ function PostMalaysiaQS() {
       <p className="blog-p">
         The "Big Four" destinations — the United Kingdom, the United States, Australia, and Canada —
         have all, in their own way, become harder for Bangladeshi students in the last three years.
-        Visa rules have tightened, post-study work pathways have narrowed, and total cost of attendance
-        has climbed sharply. Malaysia offers something the Big Four increasingly do not: a
-        recognised degree, taught in English, in a time zone close to Bangladesh, at a fraction of the
-        cost, with a clear route into regional employment.
+        Visa rules have tightened and total cost of attendance has climbed sharply. Malaysia offers
+        a recognised degree, taught in English, in a time zone close to Bangladesh, at a fraction of
+        the cost, with clear routes to world-class campuses.
       </p>
 
       <h2 className="blog-h2">The factors driving Malaysia's rise</h2>

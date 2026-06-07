@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
-import Constellation from '../components/Constellation';
 import SectionLabel from '../components/SectionLabel';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -213,14 +212,7 @@ export default function StudentRecruitmentSection() {
         <div className="absolute inset-0 bg-black/65" />
       </div>
 
-      <Constellation
-        dotCount={30}
-        connectionDistance={100}
-        mouseRadius={120}
-        color="#C9A234"
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0, mixBlendMode: 'screen' }}
-      />
+
 
       {/* Top gold hairline */}
       <div

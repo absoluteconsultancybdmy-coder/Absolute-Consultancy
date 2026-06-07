@@ -8,7 +8,6 @@ import FilmGrain from './components/FilmGrain';
 import TrustBar from './components/TrustBar';
 import TrustStrip from './components/TrustStrip';
 import WhatsAppWidget from './components/WhatsAppWidget';
-import ChatWidget from './components/ChatWidget';
 import BackToTop from './components/BackToTop';
 import NextPageButton from './components/NextPageButton';
 import CookieConsent from './components/CookieConsent';
@@ -280,7 +279,6 @@ export default function App() {
         </Routes>
       </div>
       <WhatsAppWidget />
-      <ChatWidget />
       <BackToTop />
       <NextPageButton />
       <CookieConsent />

@@ -9,11 +9,9 @@ import {
   HeartHandshake,
   Plane,
   ShieldCheck,
-  Briefcase,
   Compass,
 } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
-import Constellation from '../components/Constellation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,12 +57,6 @@ const benefits: Benefit[] = [
     title: 'Safe & Peaceful',
     description:
       'Ranked among the most peaceful countries globally. Modern cities, reliable public transport, low crime.',
-  },
-  {
-    icon: Briefcase,
-    title: 'Work While You Study',
-    description:
-      '20 hours per week during semester, full-time during breaks. Gain real-world experience and offset living costs.',
   },
   {
     icon: Compass,
@@ -243,6 +235,27 @@ export default function WhyMalaysiaSection() {
         }}
       />
 
+      <picture className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/Absolute-Consultancy/images/Pathway.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          className="w-full h-full object-cover"
+          style={{ opacity: 0.35, objectPosition: 'center 40%' }}
+        />
+      </picture>
+
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.75) 100%)',
+        }}
+      />
+
       <svg
         className="absolute inset-0 z-0 pointer-events-none"
         width="100%"
@@ -276,14 +289,7 @@ export default function WhyMalaysiaSection() {
         <rect width="100%" height="100%" fill="url(#why-grid)" mask="url(#why-mask)" />
       </svg>
 
-      <Constellation
-        dotCount={30}
-        connectionDistance={100}
-        mouseRadius={120}
-        color="#C9A234"
-        className="absolute inset-0 pointer-events-none"
-        style={{ zIndex: 0, mixBlendMode: 'screen' }}
-      />
+
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">

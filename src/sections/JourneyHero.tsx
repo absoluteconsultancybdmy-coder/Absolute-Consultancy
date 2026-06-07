@@ -27,11 +27,23 @@ export default function JourneyHero() {
       className="relative w-full overflow-hidden bg-mist"
       style={{ minHeight: '62vh' }}
     >
+      <picture className="absolute inset-0 z-0">
+        <source srcSet="/Absolute-Consultancy/images/YourJourney.webp" type="image/webp" />
+        <img
+          src="/Absolute-Consultancy/images/YourJourney.jpg"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          decoding="async"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: 'center 35%' }}
+        />
+      </picture>
       <div
         className="absolute inset-0 z-0"
         style={{
           background:
-            'radial-gradient(ellipse 70% 60% at 20% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 85% 100%, rgba(201,162,52,0.12) 0%, transparent 60%), linear-gradient(180deg, #0A0A0A 0%, #0B1A33 100%)',
+            'radial-gradient(ellipse 70% 60% at 20% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 85% 100%, rgba(201,162,52,0.12) 0%, transparent 60%), linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(11,26,51,0.7) 100%)',
         }}
       />
       <div
