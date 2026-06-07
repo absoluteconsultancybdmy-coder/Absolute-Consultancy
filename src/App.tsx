@@ -6,7 +6,6 @@ import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
 import FilmGrain from './components/FilmGrain';
 import TrustBar from './components/TrustBar';
-import TrustStrip from './components/TrustStrip';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import BackToTop from './components/BackToTop';
 import NextPageButton from './components/NextPageButton';
@@ -23,8 +22,8 @@ import ThemeToggle from './components/ThemeToggle';
 // is within 300px of the viewport. Wrapped in ErrorBoundary for resilience.
 const AboutSection = lazy(() => import('./sections/AboutSection'));
 const StatsSection = lazy(() => import('./sections/StatsSection'));
+const ArcSection = lazy(() => import('./sections/ArcSection'));
 const ServicesSection = lazy(() => import('./sections/ServicesSection'));
-const ProcessTimeline = lazy(() => import('./sections/ProcessTimeline'));
 const StudentRecruitmentSection = lazy(
   () => import('./sections/StudentRecruitmentSection')
 );
@@ -32,7 +31,6 @@ const UniversitiesSection = lazy(() => import('./sections/UniversitiesSection'))
 const ScholarshipsSection = lazy(() => import('./sections/ScholarshipsSection'));
 const TestimonialsSection = lazy(() => import('./sections/TestimonialsSection'));
 const ParentVoicesSection = lazy(() => import('./sections/ParentVoicesSection'));
-const ContactSection = lazy(() => import('./sections/ContactSection'));
 const Footer = lazy(() => import('./sections/Footer'));
 
 // === Non-home routes ===
@@ -50,7 +48,7 @@ const PlacedNotification = lazy(() => import('./components/PlacedNotification'))
 
 const PAGE_TITLES: Record<string, string> = {
   '/': 'Absolute Consultancy Firm | Study Abroad Consultants — Malaysia & Bangladesh',
-  '/journey': 'Your Journey | Absolute Consultancy Firm',
+  '/journey': 'Why Malaysia? | Absolute Consultancy Firm',
   '/explore': 'All Partner Universities | Absolute Consultancy Firm',
   '/resources': 'Resources Hub | Absolute Consultancy Firm',
   '/team': 'Meet The Team | Absolute Consultancy Firm',
@@ -162,37 +160,32 @@ function HomePage() {
       <main id="main-content">
         {/* Above the fold — eager */}
         <HeroSection />
-        <SectionBoundary name="About" minHeight="80vh">
+        <SectionBoundary name="About the Firm" minHeight="80vh">
           <AboutSection />
         </SectionBoundary>
-        <SectionBoundary name="Stats" minHeight="40vh">
+        <SectionBoundary name="Result" minHeight="40vh">
           <StatsSection />
         </SectionBoundary>
-        {/* TrustStrip is above the fold in the original layout — keep eager */}
-        <TrustStrip />
-        <SectionBoundary name="Services" minHeight="70vh">
-          <ServicesSection />
+        <SectionBoundary name="Your Journey" minHeight="70vh">
+          <ArcSection />
         </SectionBoundary>
-        <SectionBoundary name="Process" minHeight="70vh">
-          <ProcessTimeline />
-        </SectionBoundary>
-        <SectionBoundary name="Recruitment" minHeight="60vh">
+        <SectionBoundary name="Student Recruitment" minHeight="60vh">
           <StudentRecruitmentSection />
         </SectionBoundary>
-        <SectionBoundary name="Universities" minHeight="90vh">
+        <SectionBoundary name="Our Partner Uni" minHeight="90vh">
           <UniversitiesSection />
         </SectionBoundary>
-        <SectionBoundary name="Scholarships" minHeight="60vh">
+        <SectionBoundary name="Scholarship" minHeight="60vh">
           <ScholarshipsSection />
         </SectionBoundary>
-        <SectionBoundary name="Testimonials" minHeight="60vh">
+        <SectionBoundary name="Service" minHeight="70vh">
+          <ServicesSection />
+        </SectionBoundary>
+        <SectionBoundary name="Student Stories" minHeight="60vh">
           <TestimonialsSection />
         </SectionBoundary>
-        <SectionBoundary name="ParentVoices" minHeight="60vh">
+        <SectionBoundary name="Parent Stories" minHeight="60vh">
           <ParentVoicesSection />
-        </SectionBoundary>
-        <SectionBoundary name="Contact" minHeight="80vh">
-          <ContactSection />
         </SectionBoundary>
       </main>
       <SectionBoundary name="Footer" minHeight="30vh">

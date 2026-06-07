@@ -11,136 +11,9 @@ const COOO_LINE_TWO = 'We build futures — one placement at a time.';
 export default function StudentRecruitmentSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const quoteRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const hasAnimated = useRef(false);
   const [typewriterActive, setTypewriterActive] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
-
-  // Live rain animation
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-    const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.5) : Math.min(window.devicePixelRatio || 1, 2);
-
-    let animationId = 0;
-    let drops: { x: number; y: number; length: number; speed: number; opacity: number }[] = [];
-    let isVisible = true;
-    let lastFrameTime = 0;
-    const frameInterval = isMobile ? 1000 / 24 : 1000 / 30;
-
-    const spritePad = 6;
-    const spriteW = 4 + spritePad * 2;
-    const spriteH = 30 + spritePad * 2;
-    const sprite = document.createElement('canvas');
-    sprite.width = spriteW;
-    sprite.height = spriteH;
-    const sctx = sprite.getContext('2d');
-    if (sctx) {
-      sctx.shadowColor = 'rgba(201,162,52,0.6)';
-      sctx.shadowBlur = 4;
-      const grad = sctx.createLinearGradient(0, spritePad, 0, spriteH - spritePad);
-      grad.addColorStop(0, 'rgba(201,162,52,0)');
-      grad.addColorStop(1, 'rgba(201,162,52,1)');
-      sctx.strokeStyle = grad;
-      sctx.lineWidth = 2;
-      sctx.lineCap = 'round';
-      sctx.beginPath();
-      sctx.moveTo(spriteW / 2, spritePad);
-      sctx.lineTo(spriteW / 2, spriteH - spritePad);
-      sctx.stroke();
-    }
-
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
-      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    const initDrops = () => {
-      drops = [];
-      const rect = canvas.getBoundingClientRect();
-      const count = isMobile
-        ? Math.floor((rect.width * rect.height) / 9000)
-        : Math.floor((rect.width * rect.height) / 4500);
-      for (let i = 0; i < count; i++) {
-        drops.push({
-          x: Math.random() * rect.width,
-          y: Math.random() * rect.height,
-          length: 25 + Math.random() * 45,
-          speed: 10 + Math.random() * 14,
-          opacity: 0.45 + Math.random() * 0.5,
-        });
-      }
-    };
-
-    const draw = (now: number) => {
-      animationId = requestAnimationFrame(draw);
-
-      if (!isVisible) return;
-
-      const elapsed = now - lastFrameTime;
-      if (elapsed < frameInterval) return;
-      lastFrameTime = now - (elapsed % frameInterval);
-
-      const rect = canvas.getBoundingClientRect();
-      ctx.clearRect(0, 0, rect.width, rect.height);
-
-      for (const drop of drops) {
-        ctx.globalAlpha = drop.opacity;
-        ctx.drawImage(
-          sprite,
-          drop.x - spriteW / 2,
-          drop.y - spritePad,
-          spriteW,
-          drop.speed + spritePad * 2
-        );
-
-        drop.x -= 2;
-        drop.y += drop.speed;
-
-        if (drop.y > rect.height || drop.x < 0) {
-          drop.x = Math.random() * rect.width + 50;
-          drop.y = -drop.length;
-        }
-      }
-      ctx.globalAlpha = 1;
-    };
-
-    resize();
-    initDrops();
-    animationId = requestAnimationFrame(draw);
-
-    const onResize = () => {
-      resize();
-      initDrops();
-    };
-
-    window.addEventListener('resize', onResize);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          isVisible = entry.isIntersecting;
-        }
-      },
-      { threshold: 0 }
-    );
-    observer.observe(canvas);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', onResize);
-      observer.disconnect();
-    };
-  }, []);
 
   // Animated quote reveal
   useEffect(() => {
@@ -228,12 +101,7 @@ export default function StudentRecruitmentSection() {
         }}
       />
 
-      {/* Live Rain Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-10 pointer-events-none"
-        style={{ width: '100%', height: '100%' }}
-      />
+      {/* Live Rain Canvas removed */}
 
       {/* Floating gold particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">

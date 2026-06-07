@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Pathways', href: '#destinations' },
   { label: 'Recruit', href: '#recruitment' },
-  { label: 'Your Journey', href: '/journey' },
+  { label: 'Why Malaysia?', href: '/journey' },
   { label: 'Stories', href: '#testimonials' },
   { label: 'Resources', href: '/resources' },
   { label: 'Contact', href: '#contact' },

@@ -7,10 +7,12 @@ import TrustBar from '../components/TrustBar';
 import PlacedNotification from '../components/PlacedNotification';
 import WhyMalaysiaSection from './WhyMalaysiaSection';
 import MatcherSection from './MatcherSection';
-import ArcSection from './ArcSection';
 import BlogSection from './BlogSection';
 import FaqSection from './FaqSection';
 import Footer from './Footer';
+import TrustStrip from '../components/TrustStrip';
+import ProcessTimeline from './ProcessTimeline';
+import ContactSection from './ContactSection';
 
 const JourneyHero = lazy(() => import('./JourneyHero'));
 
@@ -63,9 +65,11 @@ export default function JourneyPage() {
         </Suspense>
         <WhyMalaysiaSection />
         <MatcherSection />
-        <ArcSection />
+        <TrustStrip />
+        <ProcessTimeline />
         <BlogSection />
         <FaqSection />
+        <ContactSection />
       </main>
       <Footer />
       <PlacedNotification />
