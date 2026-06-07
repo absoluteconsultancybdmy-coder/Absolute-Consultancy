@@ -336,6 +336,7 @@ export default function ScholarshipsSection() {
 
         <div
           ref={ctaRef}
+          data-anim
           className="mt-12 lg:mt-16 rounded-2xl p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10"
           style={{
             background: 'rgba(255,255,255,0.04)',
@@ -372,11 +373,11 @@ export default function ScholarshipsSection() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 font-body whitespace-nowrap flex-shrink-0"
+            className="inline-flex items-center justify-center gap-2 font-body whitespace-normal text-center lg:whitespace-nowrap w-full lg:w-auto lg:flex-shrink-0"
             style={{
               background: 'linear-gradient(135deg, #C9A234 0%, #D4AF37 100%)',
               color: '#0A0A0A',
-              padding: '14px 28px',
+              padding: '12px 20px',
               borderRadius: 9999,
               fontSize: 12,
               fontWeight: 700,

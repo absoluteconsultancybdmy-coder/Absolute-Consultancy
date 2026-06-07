@@ -15,14 +15,14 @@ import HeroSection from './sections/HeroSection';
 import { LazySection } from './components/LazySection';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollProgress from './components/ScrollProgress';
-import ThemeToggle from './components/ThemeToggle';
+// import ThemeToggle from './components/ThemeToggle';
 
 // === Home page sections (below the fold) ===
 // Each is split into its own JS chunk and only mounted when the section
 // is within 300px of the viewport. Wrapped in ErrorBoundary for resilience.
 const AboutSection = lazy(() => import('./sections/AboutSection'));
 const StatsSection = lazy(() => import('./sections/StatsSection'));
-const ArcSection = lazy(() => import('./sections/ArcSection'));
+const ProcessTimeline = lazy(() => import('./sections/ProcessTimeline'));
 const ServicesSection = lazy(() => import('./sections/ServicesSection'));
 const StudentRecruitmentSection = lazy(
   () => import('./sections/StudentRecruitmentSection')
@@ -167,7 +167,7 @@ function HomePage() {
           <StatsSection />
         </SectionBoundary>
         <SectionBoundary name="Your Journey" minHeight="70vh">
-          <ArcSection />
+          <ProcessTimeline />
         </SectionBoundary>
         <SectionBoundary name="Student Recruitment" minHeight="60vh">
           <StudentRecruitmentSection />
@@ -276,7 +276,7 @@ export default function App() {
       <NextPageButton />
       <CookieConsent />
       <QuickApply />
-      <ThemeToggle />
+      {/* <ThemeToggle /> hidden — theme toggle not final */}
     </>
   );
 }

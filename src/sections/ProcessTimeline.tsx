@@ -118,15 +118,26 @@ export default function ProcessTimeline() {
         { scaleY: 0 },
         {
           scaleY: 1,
-          duration: 1.4,
-          ease: 'power2.out',
+          ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 70%',
-            toggleActions: 'play none none none',
+            end: 'bottom 80%',
+            scrub: 0.6,
           },
         }
       );
+
+      gsap.to(lineRef.current, {
+        yPercent: -8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
 
       const items = stepsRef.current.filter((el): el is HTMLDivElement => el !== null);
       items.forEach((el, i) => {
