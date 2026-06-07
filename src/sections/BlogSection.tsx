@@ -64,15 +64,21 @@ export default function BlogSection() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    if (prefersReducedMotion) {
+    const showAll = () => {
       sectionRef.current
-        .querySelectorAll<HTMLElement>('[data-anim]')
+        ?.querySelectorAll<HTMLElement>('[data-anim], .blog-card')
         .forEach((el) => {
           el.style.opacity = '1';
           el.style.transform = 'none';
         });
+    };
+
+    if (prefersReducedMotion) {
+      showAll();
       return;
     }
+
+    const safetyTimer = window.setTimeout(showAll, 2500);
 
     const ctx = gsap.context(() => {
       if (headerRef.current) {
@@ -111,7 +117,7 @@ export default function BlogSection() {
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: gridRef.current,
-                start: 'top 80%',
+                start: 'top 90%',
                 toggleActions: 'play none none none',
               },
             }
@@ -120,7 +126,10 @@ export default function BlogSection() {
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      window.clearTimeout(safetyTimer);
+      ctx.revert();
+    };
   }, [prefersReducedMotion]);
 
   const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {

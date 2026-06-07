@@ -9,17 +9,16 @@ interface Globe3DProps {
   height?: number;
 }
 
+const SPIN_SPEED = 0.0035;
+
 export default function Globe3D({ className = '', height = 520 }: Globe3DProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
-  const [{ phi, theta }, setRotation] = useState({
-    phi: Math.PI / 2.4,
-    theta: 0,
-  });
-  const [cursorState, setCursorState] = useState<'grab' | 'grabbing'>('grab');
+  const phiRef = useRef(Math.PI / 2.4);
+  const thetaRef = useRef(0);
   const fadeInRef = useRef(0);
   const lastTimeRef = useRef(performance.now());
+  const [cursorState, setCursorState] = useState<'grab' | 'grabbing'>('grab');
 
   useEffect(() => {
     let width = 0;
@@ -35,10 +34,10 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: width * 2,
+      width: Math.max(width * 2, 600),
       height: height * 2,
-      phi: phi,
-      theta: theta,
+      phi: phiRef.current,
+      theta: thetaRef.current,
       dark: 1,
       diffuse: 1.2,
       mapSamples: 16000,
@@ -73,19 +72,10 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
       }
 
       if (pointerInteracting.current === null) {
-        setRotation((prev) => {
-          const newPhi = Math.min(
-            Math.PI / 2,
-            Math.max(Math.PI / 4, prev.phi + fadeInRef.current * 0.0006 * delta)
-          );
-          const newTheta = prev.theta + fadeInRef.current * 0.0008 * delta;
-          globe.update({ phi: newPhi, theta: newTheta });
-          return { phi: newPhi, theta: newTheta };
-        });
-      } else {
-        globe.update({ phi, theta });
+        thetaRef.current -= fadeInRef.current * SPIN_SPEED * (delta / 16);
       }
 
+      globe.update({ phi: phiRef.current, theta: thetaRef.current });
       raf = requestAnimationFrame(animate);
     };
     raf = requestAnimationFrame(animate);
@@ -95,7 +85,7 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
       cancelAnimationFrame(raf);
       globe.destroy();
     };
-  }, [height, phi, theta]);
+  }, [height]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -107,16 +97,12 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
 
   const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     pointerInteracting.current = e.clientX;
-    pointerInteractionMovement.current = 0;
     setCursorState('grabbing');
   };
 
   const handlePointerUp = () => {
-    if (pointerInteracting.current !== null) {
-      pointerInteractionMovement.current = 0;
-      pointerInteracting.current = null;
-      setCursorState('grab');
-    }
+    pointerInteracting.current = null;
+    setCursorState('grab');
   };
 
   const handlePointerOut = () => {
@@ -127,24 +113,18 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
   const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (pointerInteracting.current !== null) {
       const delta = e.clientX - pointerInteracting.current;
-      pointerInteractionMovement.current = delta;
       pointerInteracting.current = e.clientX;
-      setRotation((prev) => ({
-        phi: prev.phi,
-        theta: prev.theta + delta * 0.005,
-      }));
+      thetaRef.current += delta * 0.005;
     }
   };
 
   const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
     e.preventDefault();
-    setRotation((prev) => ({
-      phi: Math.min(
-        Math.PI / 2,
-        Math.max(Math.PI / 4, prev.phi + e.deltaY * 0.003)
-      ),
-      theta: prev.theta + e.deltaX * 0.003,
-    }));
+    phiRef.current = Math.min(
+      Math.PI / 2,
+      Math.max(Math.PI / 4, phiRef.current + e.deltaY * 0.003)
+    );
+    thetaRef.current += e.deltaX * 0.003;
   };
 
   return (
