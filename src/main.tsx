@@ -8,7 +8,7 @@ import { ThemeProvider } from './contexts/ThemeContext.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-      <BrowserRouter basename="/Absolute-Consultancy">
+      <BrowserRouter basename="/">
         <App />
       </BrowserRouter>
     </ThemeProvider>

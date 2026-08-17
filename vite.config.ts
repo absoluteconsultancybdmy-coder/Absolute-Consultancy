@@ -74,8 +74,8 @@ function previewCacheHeaders(): Plugin {
   }
 }
 
-export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/Absolute-Consultancy/' : '/',
+export default defineConfig(() => ({
+  base: '/',
   plugins: [
     inspectAttr(),
     react(),
@@ -118,16 +118,11 @@ export default defineConfig(({ mode }) => ({
     reportCompressedSize: false,
     assetsInlineLimit: 4096,
     chunkSizeWarningLimit: 800,
+    // Vite resolves preload dependencies against `base` on its own. A custom
+    // resolveDependencies here previously hardcoded a project-pages prefix,
+    // which dropped every real preload and emitted 404ing hrefs instead.
     modulePreload: {
       polyfill: true,
-      resolveDependencies: (filename, _importer, _options) => {
-        const deps = new Set<string>()
-        if (filename.includes('react-vendor') ||
-            filename.includes('mobile-critical')) {
-          deps.add('/Absolute-Consultancy/' + filename)
-        }
-        return Array.from(deps)
-      },
     },
     rollupOptions: {
       output: {
@@ -160,6 +155,18 @@ export default defineConfig(({ mode }) => ({
 
           if (id.includes('lenis')) {
             return 'lenis-vendor'
+          }
+
+          // three + globe renderers dominate the JourneyPage chunk (1.7MB).
+          // Splitting them out lets the page shell stream while the globe
+          // loads, and keeps the payload cacheable across route chunks.
+          if (
+            id.includes('/node_modules/three/') ||
+            id.includes('/node_modules/three-') ||
+            id.includes('globe.gl') ||
+            id.includes('/node_modules/cobe/')
+          ) {
+            return 'globe-vendor'
           }
 
           for (const pkg of RADIX_PACKAGES) {

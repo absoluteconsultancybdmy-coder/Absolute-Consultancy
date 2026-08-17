@@ -32,3 +32,11 @@ pandoc.exe
 *.zip
 *.exe
 
+# Scratch media in public/ — unreferenced by the app but copied into dist/
+# verbatim by Vite, so keep it out of the repo and out of the deploy.
+public/ERROR VIDEO/
+public/ERROR pic/
+public/Screenshot/
+public/splash-preview.mp4
+public/splash-slowmo.mp4
+

@@ -31,11 +31,11 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/images/logo.webp" />
     <link rel="alternate icon" type="image/png" href="/images/logo.png" />
-    <link rel="apple-touch-icon" href="/images/logo.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png" />
-    <link rel="mask-icon" href="/favicon.svg" color="#C9A234" />
+    <link rel="apple-touch-icon" href="/images/logo.webp" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.webp" />
+    <link rel="mask-icon" href="/images/logo.webp" color="#C9A234" />
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Preconnect to Google Fonts: crossorigin hint on the CSS host enables early handshake -->
@@ -50,30 +50,12 @@
     <link rel="dns-prefetch" href="https://www.facebook.com" />
     <link rel="dns-prefetch" href="https://abscon-portal.com" />
 
-    <!-- Preload critical LCP images (hero) -->
-    <link
-      rel="preload"
-      as="image"
-      href="/Absolute-Consultancy/images/hero-bg.webp"
-      type="image/webp"
-      fetchpriority="high"
-      imagesrcset="/Absolute-Consultancy/images/hero-bg-768.webp 768w, /Absolute-Consultancy/images/hero-bg-1440.webp 1440w, /Absolute-Consultancy/images/hero-bg.webp 1440w"
-      imagesizes="100vw"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="/Absolute-Consultancy/images/hero-graduate.webp"
-      type="image/webp"
-      fetchpriority="high"
-      imagesrcset="/Absolute-Consultancy/images/hero-graduate-768.webp 768w, /Absolute-Consultancy/images/hero-graduate-1024.webp 1024w, /Absolute-Consultancy/images/hero-graduate.webp 1024w"
-      imagesizes="(max-width: 768px) 100vw, 50vw"
-    />
-    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-bg.jpg" fetchpriority="high" />
-    <link rel="preload" as="image" href="/Absolute-Consultancy/images/hero-graduate.png" fetchpriority="high" />
-
-    <!-- Preload the Vite main module so React boots without waiting on the parser -->
-    <link rel="modulepreload" href="/src/main.tsx" />
+    <!--
+      Critical LCP hero images are preloaded by the base-aware inline script
+      below. Static <link rel="preload"> tags are deliberately not used here:
+      they cannot resolve the deploy base, and the hardcoded project-pages
+      path they previously carried 404'd on the production root domain.
+    -->
 
     <!--
       Google Fonts: loaded with the print/all media swap trick so the CSS file
@@ -100,8 +82,7 @@
 
     <script>
       (function () {
-        var path = location.pathname;
-        var base = path.indexOf('/Absolute-Consultancy/') === 0 ? '/Absolute-Consultancy/' : '/';
+        var base = '/';
         var webpPreloads = [
           {
             href: base + 'images/hero-bg.webp',

@@ -13,6 +13,15 @@ export function getLenis() {
 
 export function useLenis() {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    // On mobile/touch devices Lenis is pure overhead: syncTouch is false
+    // (touch bypasses it), smoothWheel is unused (no mouse wheel), and the
+    // rAF loop still runs every frame. Skip entirely and let the native
+    // scroll handle it. ScrollTrigger falls back to native scroll events.
+    if (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches) {
+      return;
+    }
+
     // Spec: duration 1.2, exponential ease, no touch smooth-scroll
     const lenis = new Lenis({
       duration: 1.2,

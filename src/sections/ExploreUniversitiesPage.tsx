@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import MalaysiaMap from '../components/MalaysiaMap';
 
 
 // Pre-generated splash dot positions to avoid impure Math.random during render
@@ -798,8 +799,23 @@ export default function ExploreUniversitiesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [splashVisible, setSplashVisible] = useState(true);
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('All');
+  const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [headerCount, setHeaderCount] = useState(0);
   const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    return () => {
+      if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
 
   const typeCounts = useMemo(() => ({
     all: allUniversities.length,
@@ -811,7 +827,10 @@ export default function ExploreUniversitiesPage() {
     const byType = typeFilter === 'All'
       ? [...allUniversities]
       : allUniversities.filter(u => u.type === typeFilter);
-    const sorted = byType.sort((a, b) => a.name.localeCompare(b.name));
+    const byCity = selectedCity
+      ? byType.filter(u => u.location.toLowerCase().includes(selectedCity.toLowerCase()))
+      : byType;
+    const sorted = byCity.sort((a, b) => a.name.localeCompare(b.name));
     if (!searchQuery.trim()) return sorted;
     const q = searchQuery.toLowerCase();
     return sorted.filter(uni =>
@@ -821,7 +840,7 @@ export default function ExploreUniversitiesPage() {
       uni.programmes.some(p => p.toLowerCase().includes(q)) ||
       uni.studyLevels.some(s => s.toLowerCase().includes(q))
     );
-  }, [searchQuery, typeFilter]);
+  }, [searchQuery, typeFilter, selectedCity]);
 
   useEffect(() => {
     if (!splashRef.current) return;
@@ -979,7 +998,7 @@ export default function ExploreUniversitiesPage() {
 
   return (
     <>
-      <style>{`@keyframes kenBurnsFeatured { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.12) translate(-2%, -1.5%); } } .uni-image { transition: transform 500ms ease-out; } .uni-card:hover .uni-image { transform: scale(1.05); } @media (prefers-reduced-motion: reduce) { .uni-image { transition: none; } .uni-card:hover .uni-image { transform: none; } }`}</style>
+      <style>{`@keyframes kenBurnsFeatured { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.12) translate(-2%, -1.5%); } } .uni-image { transition: transform 500ms ease-out; } .uni-card:hover .uni-image { transform: scale(1.05); } @keyframes cityBannerIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } } @media (prefers-reduced-motion: reduce) { .uni-image { transition: none; } .uni-card:hover .uni-image { transform: none; } }`}</style>
       {selectedUni && <UniversityModal uni={selectedUni} onClose={() => setSelectedUni(null)} />}
 
       {/* Splash Screen */}
@@ -1125,23 +1144,50 @@ export default function ExploreUniversitiesPage() {
         </div>
 
         {/* Page header */}
-        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-12 pb-8">
-          <div className="w-16 h-px mb-6" style={{ background: 'rgba(201,162,52,0.5)' }} />
-          <h2 className="font-display font-bold text-kimono uppercase"
-            style={{ fontSize: 'clamp(28px, 5vw, 52px)', letterSpacing: '0.05em', lineHeight: 1.1 }}>
-            ALL PARTNER<br />
-            <span style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}>UNIVERSITIES</span>
-          </h2>
-          <p className="font-serif font-light text-cream/50 mt-4 max-w-[500px]" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: 1.7 }}>
-            Browse all{' '}
-            <span
-              className="font-display font-bold text-gold"
-              style={{ display: 'inline-block', minWidth: '1.6em', textAlign: 'left' }}
-            >
-              {headerCount}
-            </span>
-            + partner universities. Search by name, programme, or course to find your perfect match.
-          </p>
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-12 pb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div className="flex-1 min-w-0">
+            <div className="w-16 h-px mb-6" style={{ background: 'rgba(201,162,52,0.5)' }} />
+            <h2 className="font-display font-bold text-kimono uppercase"
+              style={{ fontSize: 'clamp(28px, 5vw, 52px)', letterSpacing: '0.05em', lineHeight: 1.1 }}>
+              ALL PARTNER<br />
+              <span style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}>UNIVERSITIES</span>
+            </h2>
+            <p className="font-serif font-light text-cream/50 mt-4 max-w-[500px]" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: 1.7 }}>
+              Browse all{' '}
+              <span
+                className="font-display font-bold text-gold"
+                style={{ display: 'inline-block', minWidth: '1.6em', textAlign: 'left' }}
+              >
+                {headerCount}
+              </span>
+              + partner universities. Search by name, programme, or course to find your perfect match.
+            </p>
+          </div>
+          <div className="flex-shrink-0 hidden md:flex items-center gap-6">
+            <MalaysiaMap
+              selectedPin={selectedCity}
+              onPinSelect={(label) => {
+                setSelectedCity(label);
+                if (label && gridRef.current) {
+                  window.setTimeout(() => {
+                    gridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }, 60);
+                }
+              }}
+            />
+            <img
+              src={`${import.meta.env.BASE_URL}images/logo.webp`}
+              alt="Absolute Consultancy"
+              width="180"
+              height="180"
+              loading="lazy"
+              decoding="async"
+              className="w-36 h-36 lg:w-44 lg:h-44 object-contain"
+              style={{
+                filter: 'drop-shadow(0 0 24px rgba(201,162,52,0.18))',
+              }}
+            />
+          </div>
         </div>
 
         {/* Recently placed marquee (md+) */}
@@ -1194,6 +1240,35 @@ export default function ExploreUniversitiesPage() {
 
         {/* Universities Grid */}
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pb-20">
+          {/* Active city banner */}
+          {selectedCity && (
+            <div
+              className="mb-5 flex items-center justify-between gap-3 px-4 py-2.5 rounded-full"
+              style={{
+                background: 'linear-gradient(90deg, rgba(201,162,52,0.12) 0%, rgba(201,162,52,0.04) 100%)',
+                border: '1px solid rgba(201,162,52,0.4)',
+                animation: 'cityBannerIn 350ms ease-out',
+              }}
+            >
+              <span className="font-body text-xs text-cream/80 flex items-center gap-2" style={{ letterSpacing: '0.08em' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A234" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span className="text-gold font-semibold uppercase">{selectedCity}</span>
+                <span className="text-cream/40">·</span>
+                <span>{filteredUniversities.length} {filteredUniversities.length === 1 ? 'university' : 'universities'}</span>
+              </span>
+              <button
+                onClick={() => setSelectedCity(null)}
+                className="font-body text-xs uppercase tracking-wider text-cream/50 hover:text-gold cursor-pointer flex items-center gap-1.5 transition-colors duration-200"
+                aria-label="Clear city filter"
+              >
+                Clear
+                <span aria-hidden>✕</span>
+              </button>
+            </div>
+          )}
           {/* Type filter pills */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
             {(['All', 'Private', 'Public'] as const).map(filter => {
@@ -1231,8 +1306,9 @@ export default function ExploreUniversitiesPage() {
                 No universities found
                 {searchQuery && ` matching "${searchQuery}"`}
                 {typeFilter !== 'All' && ` in ${typeFilter}`}
+                {selectedCity && ` in ${selectedCity}`}
               </p>
-              <div className="mt-4 flex items-center justify-center gap-3">
+              <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
@@ -1249,6 +1325,15 @@ export default function ExploreUniversitiesPage() {
                     style={{ border: '1px solid rgba(201,162,52,0.4)', color: '#C9A234' }}
                   >
                     Show All Types
+                  </button>
+                )}
+                {selectedCity && (
+                  <button
+                    onClick={() => setSelectedCity(null)}
+                    className="px-6 py-2 rounded-full font-body text-sm uppercase tracking-wider cursor-pointer"
+                    style={{ border: '1px solid rgba(201,162,52,0.4)', color: '#C9A234' }}
+                  >
+                    Show All Cities
                   </button>
                 )}
               </div>

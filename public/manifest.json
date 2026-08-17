@@ -2,8 +2,8 @@
   "name": "Absolute Consultancy Firm",
   "short_name": "Absolute",
   "description": "Bangladeshi students to Malaysian universities — free consultation, EMGS visa support, 99% visa success rate.",
-  "start_url": "/Absolute-Consultancy/",
-  "scope": "/Absolute-Consultancy/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "portrait",
@@ -74,7 +74,7 @@
       "name": "Apply Now",
       "short_name": "Apply",
       "description": "Start your university application in under 2 minutes",
-      "url": "/Absolute-Consultancy/contact?source=apply",
+      "url": "/?source=apply#contact",
       "icons": [
         { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
       ]
@@ -83,7 +83,7 @@
       "name": "Explore Universities",
       "short_name": "Explore",
       "description": "Browse all 25+ partner Malaysian universities",
-      "url": "/Absolute-Consultancy/explore",
+      "url": "/explore",
       "icons": [
         { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
       ]
@@ -92,7 +92,7 @@
       "name": "Talk to an Advisor",
       "short_name": "Contact",
       "description": "WhatsApp our admissions team in seconds",
-      "url": "/Absolute-Consultancy/contact",
+      "url": "/#contact",
       "icons": [
         { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
       ]
@@ -101,7 +101,7 @@
       "name": "Your Journey",
       "short_name": "Journey",
       "description": "See the step-by-step admission process",
-      "url": "/Absolute-Consultancy/journey",
+      "url": "/journey",
       "icons": [
         { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
       ]
@@ -124,7 +124,7 @@
     }
   ],
   "share_target": {
-    "action": "/Absolute-Consultancy/contact?source=share",
+    "action": "/contact?source=share",
     "method": "POST",
     "enctype": "multipart/form-data",
     "params": {

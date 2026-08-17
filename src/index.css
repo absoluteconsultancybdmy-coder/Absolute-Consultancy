@@ -803,6 +803,11 @@
   100% { transform: translateX(-50%); }
 }
 
+/* ── FilmGrain CSS-only shimmer ── */
+@keyframes grainShift {
+  to { background-position: -192px -192px; }
+}
+
 /* ── Stats section counter ── */
 .stat-block {
   position: relative;

@@ -1,6 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useLenis } from '../hooks/useLenis';
 import Navigation from '../components/Navigation';
 import CustomCursor from '../components/CustomCursor';
 import TrustBar from '../components/TrustBar';
@@ -35,8 +34,6 @@ function JourneyScrollHandler() {
 }
 
 export default function JourneyPage() {
-  useLenis();
-
   return (
     <div className="relative min-h-[100dvh] bg-mist">
       <JourneyScrollHandler />

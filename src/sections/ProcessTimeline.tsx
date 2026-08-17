@@ -9,6 +9,7 @@ import {
   Stamp,
   Plane,
   MapPin,
+  Rocket,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import ScrambledText from '../components/ScrambledText';
@@ -79,6 +80,9 @@ export default function ProcessTimeline() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const rocketRef = useRef<HTMLDivElement>(null);
+  const rocketGlowRef = useRef<HTMLDivElement>(null);
+  const flameRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
   const isMobile = useIsMobile();
 
@@ -93,6 +97,7 @@ export default function ProcessTimeline() {
     if (prefersReducedMotion) {
       gsap.set(stepsRef.current.filter(Boolean), { opacity: 1, y: 0, x: 0 });
       if (lineRef.current) gsap.set(lineRef.current, { scaleY: 1 });
+      if (rocketRef.current) gsap.set(rocketRef.current, { y: '70%' });
       return;
     }
 
@@ -139,6 +144,39 @@ export default function ProcessTimeline() {
         },
       });
 
+      const rocketAnim = gsap.fromTo(
+        rocketRef.current,
+        { y: 0 },
+        {
+          y: () => {
+            if (!lineRef.current || !sectionRef.current) return 0;
+            return lineRef.current.offsetHeight - 36;
+          },
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 70%',
+            end: 'bottom 80%',
+            scrub: 0.6,
+          },
+        }
+      );
+
+      gsap.to(rocketGlowRef.current, {
+        scale: 1.6,
+        opacity: 0.25,
+        duration: 1.2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+
+      const flameTl = gsap.timeline({ repeat: -1 });
+      flameTl
+        .to(flameRef.current, { scaleY: 1.1, scaleX: 0.85, duration: 0.12, ease: 'power1.out' })
+        .to(flameRef.current, { scaleY: 0.85, scaleX: 1.05, duration: 0.18, ease: 'power1.in' })
+        .to(flameRef.current, { scaleY: 1, scaleX: 1, duration: 0.15, ease: 'power1.inOut' });
+
       const items = stepsRef.current.filter((el): el is HTMLDivElement => el !== null);
       items.forEach((el, i) => {
         const isLeft = i % 2 === 0;
@@ -160,6 +198,11 @@ export default function ProcessTimeline() {
           }
         );
       });
+
+      return () => {
+        rocketAnim.kill();
+        flameTl.kill();
+      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -251,6 +294,48 @@ export default function ProcessTimeline() {
             }}
             aria-hidden="true"
           />
+
+          <div
+            ref={rocketRef}
+            className="absolute left-[19px] lg:left-1/2 -translate-x-1/2 z-20"
+            style={{ top: 0, width: '36px', height: '36px' }}
+            aria-hidden="true"
+          >
+            <div
+              ref={rocketGlowRef}
+              className="absolute inset-0 rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(201,162,52,0.55) 0%, rgba(201,162,52,0) 70%)',
+                transform: 'scale(1)',
+                opacity: 0.45,
+                filter: 'blur(4px)',
+              }}
+            />
+            <div
+              ref={flameRef}
+              className="absolute"
+              style={{
+                top: 'calc(100% - 4px)',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '8px',
+                height: '14px',
+                background: 'linear-gradient(to bottom, rgba(255,180,60,0.95) 0%, rgba(255,120,30,0.7) 50%, rgba(255,80,20,0) 100%)',
+                borderRadius: '50% 50% 50% 50% / 30% 30% 70% 70%',
+                filter: 'blur(1.5px)',
+              }}
+            />
+            <div
+              className="absolute inset-0 flex items-center justify-center rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(11,30,66,0.95) 0%, rgba(11,30,66,0.85) 100%)',
+                border: '1.5px solid #C9A234',
+                boxShadow: '0 0 16px rgba(201,162,52,0.45), inset 0 0 8px rgba(201,162,52,0.25)',
+              }}
+            >
+              <Rocket size={16} strokeWidth={1.8} className="text-gold" style={{ transform: 'rotate(45deg)' }} />
+            </div>
+          </div>
 
           {steps.map((step, i) => {
             const Icon = step.Icon;

@@ -15,6 +15,7 @@ import HeroSection from './sections/HeroSection';
 import { LazySection } from './components/LazySection';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollProgress from './components/ScrollProgress';
+import SplashScreen from './components/SplashScreen';
 // import ThemeToggle from './components/ThemeToggle';
 
 // === Home page sections (below the fold) ===
@@ -39,10 +40,10 @@ const ExploreUniversitiesPage = lazy(() => import('./sections/ExploreUniversitie
 const TeamPage = lazy(() => import('./sections/TeamPage'));
 const ResourcesPage = lazy(() => import('./sections/ResourcesPage'));
 const JourneyPage = lazy(() => import('./sections/JourneyPage'));
-const NotFoundPage = lazy(() => import('./sections/NotFoundPage'));
 const PrivacyPage = lazy(() => import('./sections/PrivacyPage'));
 const TermsPage = lazy(() => import('./sections/TermsPage'));
 const BlogPostPage = lazy(() => import('./sections/BlogPostPage'));
+const NotFoundPage = lazy(() => import('./sections/NotFoundPage'));
 
 // === Non-critical widget ===
 const PlacedNotification = lazy(() => import('./components/PlacedNotification'));
@@ -55,13 +56,16 @@ const PAGE_TITLES: Record<string, string> = {
   '/team': 'Meet The Team | Absolute Consultancy Firm',
   '/privacy': 'Privacy Policy | Absolute Consultancy Firm',
   '/terms': 'Terms of Service | Absolute Consultancy Firm',
-  '/404': 'Page Not Found | Absolute Consultancy Firm',
 };
 
 function ScrollHandler() {
   const location = useLocation();
 
   useEffect(() => {
+    if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
     if (location.pathname === '/') {
       const scrollTo = sessionStorage.getItem('scrollToSection');
       if (scrollTo) {
@@ -75,14 +79,30 @@ function ScrollHandler() {
           }
         };
         tryScroll(0);
+      } else {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        const hero = document.getElementById('hero');
+        if (hero) hero.scrollIntoView({ behavior: 'auto', block: 'start' });
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
       }
     } else {
       window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      const el = document.getElementById('main-content');
+      if (el) el.scrollTop = 0;
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
     }
   }, [location.pathname]);
 
   useEffect(() => {
-    const title = PAGE_TITLES[location.pathname] ?? PAGE_TITLES['/404'];
+    const title = PAGE_TITLES[location.pathname] ?? PAGE_TITLES['/'];
     document.title = title;
   }, [location.pathname]);
 
@@ -155,8 +175,6 @@ function SectionBoundary({ name, children, minHeight = '60vh' }: SectionBoundary
 }
 
 function HomePage() {
-  useLenis();
-
   return (
     <div className="relative min-h-[100dvh] bg-mist">
       <ScrollHandler />
@@ -206,8 +224,10 @@ function HomePage() {
 }
 
 export default function App() {
+  useLenis();
   return (
     <>
+      <SplashScreen />
       <ScrollProgress />
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <FilmGrain />

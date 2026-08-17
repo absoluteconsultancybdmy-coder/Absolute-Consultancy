@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import createGlobe from 'cobe';
+import Globe, { type GlobeMethods } from 'react-globe.gl';
 
 const DHAKA: [number, number] = [90.4125, 23.8103];
 const KL: [number, number] = [101.6869, 3.139];
@@ -9,142 +9,93 @@ interface Globe3DProps {
   height?: number;
 }
 
-const SPIN_SPEED = 0.0035;
+const GOLD = '#C9A234';
+const GOLD_BRIGHT = '#FFE3A0';
 
 export default function Globe3D({ className = '', height = 520 }: Globe3DProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerInteracting = useRef<number | null>(null);
-  const phiRef = useRef(Math.PI / 2.4);
-  const thetaRef = useRef(0);
-  const fadeInRef = useRef(0);
-  const lastTimeRef = useRef(performance.now());
-  const [cursorState, setCursorState] = useState<'grab' | 'grabbing'>('grab');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const globeEl = useRef<GlobeMethods | undefined>(undefined);
+  const [size, setSize] = useState<{ width: number; height: number }>({ width: 600, height });
 
   useEffect(() => {
-    let width = 0;
-    const onResize = () => {
-      if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
-      }
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    const apply = () => {
+      setSize({ width: el.offsetWidth, height });
     };
-    window.addEventListener('resize', onResize);
-    onResize();
-
-    if (!canvasRef.current) return;
-
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: Math.max(width * 2, 600),
-      height: height * 2,
-      phi: phiRef.current,
-      theta: thetaRef.current,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 16000,
-      mapBrightness: 4,
-      baseColor: [0.12, 0.12, 0.15],
-      markerColor: [0.79, 0.64, 0.2],
-      glowColor: [0.08, 0.08, 0.1],
-      markers: [
-        { location: DHAKA, size: 0.08 },
-        { location: KL, size: 0.08 },
-      ],
-      arcs: [
-        {
-          from: DHAKA,
-          to: KL,
-          color: [0.79, 0.64, 0.2],
-        },
-      ],
-      arcColor: [0.79, 0.64, 0.2],
-      arcWidth: 0.4,
-      arcHeight: 0.6,
-    });
-
-    let raf = 0;
-    const animate = () => {
-      const now = performance.now();
-      const delta = now - lastTimeRef.current;
-      lastTimeRef.current = now;
-
-      if (fadeInRef.current < 1) {
-        fadeInRef.current = Math.min(1, fadeInRef.current + delta / 800);
-      }
-
-      if (pointerInteracting.current === null) {
-        thetaRef.current -= fadeInRef.current * SPIN_SPEED * (delta / 16);
-      }
-
-      globe.update({ phi: phiRef.current, theta: thetaRef.current });
-      raf = requestAnimationFrame(animate);
-    };
-    raf = requestAnimationFrame(animate);
-
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    window.addEventListener('resize', apply);
     return () => {
-      window.removeEventListener('resize', onResize);
-      cancelAnimationFrame(raf);
-      globe.destroy();
+      ro.disconnect();
+      window.removeEventListener('resize', apply);
     };
   }, [height]);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
-    const id = window.requestAnimationFrame(() => {
-      if (canvasRef.current) canvasRef.current.style.opacity = '1';
-    });
-    return () => window.cancelAnimationFrame(id);
-  }, []);
+    if (!globeEl.current) return;
+    const g = globeEl.current;
+    g.pointOfView({ lat: 13, lng: 96, altitude: 2.4 }, 0);
+    const controls = g.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.35;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 180;
+    controls.maxDistance = 600;
+    controls.enablePan = false;
+  }, [size.width]);
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    pointerInteracting.current = e.clientX;
-    setCursorState('grabbing');
-  };
+  const points = [
+    { lat: DHAKA[1], lng: DHAKA[0], color: GOLD, size: 0.55, label: 'Dhaka' },
+    { lat: KL[1], lng: KL[0], color: GOLD_BRIGHT, size: 0.7, label: 'Kuala Lumpur' },
+  ];
 
-  const handlePointerUp = () => {
-    pointerInteracting.current = null;
-    setCursorState('grab');
-  };
-
-  const handlePointerOut = () => {
-    pointerInteracting.current = null;
-    setCursorState('grab');
-  };
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
-    if (pointerInteracting.current !== null) {
-      const delta = e.clientX - pointerInteracting.current;
-      pointerInteracting.current = e.clientX;
-      thetaRef.current += delta * 0.005;
-    }
-  };
-
-  const handleWheel = (e: React.WheelEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    phiRef.current = Math.min(
-      Math.PI / 2,
-      Math.max(Math.PI / 4, phiRef.current + e.deltaY * 0.003)
-    );
-    thetaRef.current += e.deltaX * 0.003;
-  };
+  const arcs = [
+    {
+      startLat: DHAKA[1],
+      startLng: DHAKA[0],
+      endLat: KL[1],
+      endLng: KL[0],
+      color: ['rgba(255, 227, 160, 0.9)', 'rgba(201, 162, 52, 0.6)'],
+    },
+  ];
 
   return (
-    <canvas
-      ref={canvasRef}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-      onPointerOut={handlePointerOut}
-      onPointerMove={handlePointerMove}
-      onWheel={handleWheel}
-      style={{
-        width: '100%',
-        height: `${height}px`,
-        maxWidth: '100%',
-        cursor: cursorState,
-        contain: 'layout paint size',
-        opacity: 0,
-        transition: 'opacity 800ms ease',
-      }}
+    <div
+      ref={containerRef}
       className={className}
-    />
+      style={{ width: '100%', height: `${height}px`, position: 'relative' }}
+    >
+      <Globe
+        ref={globeEl}
+        width={size.width}
+        height={size.height}
+        backgroundColor="rgba(0,0,0,0)"
+        globeImageUrl={`${import.meta.env.BASE_URL}textures/earth-night-2048.jpg`}
+        showAtmosphere
+        atmosphereColor={GOLD}
+        atmosphereAltitude={0.18}
+        pointsData={points}
+        pointLat="lat"
+        pointLng="lng"
+        pointColor="color"
+        pointAltitude={0.01}
+        pointRadius="size"
+        pointLabel="label"
+        arcsData={arcs}
+        arcStartLat="startLat"
+        arcStartLng="startLng"
+        arcEndLat="endLat"
+        arcEndLng="endLng"
+        arcColor="color"
+        arcStroke={0.6}
+        arcAltitudeAutoScale={0.5}
+        arcDashLength={0.4}
+        arcDashGap={0.2}
+        arcDashAnimateTime={4000}
+      />
+    </div>
   );
 }
