@@ -15,6 +15,7 @@ import HeroSection from './sections/HeroSection';
 import { LazySection } from './components/LazySection';
 import ErrorBoundary from './components/ErrorBoundary';
 import ScrollProgress from './components/ScrollProgress';
+import RequireAuth from './components/RequireAuth';
 import SplashScreen from './components/SplashScreen';
 // import ThemeToggle from './components/ThemeToggle';
 
@@ -43,7 +44,14 @@ const JourneyPage = lazy(() => import('./sections/JourneyPage'));
 const PrivacyPage = lazy(() => import('./sections/PrivacyPage'));
 const TermsPage = lazy(() => import('./sections/TermsPage'));
 const BlogPostPage = lazy(() => import('./sections/BlogPostPage'));
+const CourseSearchPage = lazy(() => import('./sections/CourseSearchPage'));
 const NotFoundPage = lazy(() => import('./sections/NotFoundPage'));
+
+// === Portal (student / agent) ===
+const LoginPage = lazy(() => import('./sections/portal/LoginPage'));
+const SignUpPage = lazy(() => import('./sections/portal/SignUpPage'));
+const StudentDashboard = lazy(() => import('./sections/portal/StudentDashboard'));
+const AgentDashboard = lazy(() => import('./sections/portal/AgentDashboard'));
 
 // === Non-critical widget ===
 const PlacedNotification = lazy(() => import('./components/PlacedNotification'));
@@ -56,6 +64,11 @@ const PAGE_TITLES: Record<string, string> = {
   '/team': 'Meet The Team | Absolute Consultancy Firm',
   '/privacy': 'Privacy Policy | Absolute Consultancy Firm',
   '/terms': 'Terms of Service | Absolute Consultancy Firm',
+  '/courses': 'Search Courses | Absolute Consultancy Firm',
+  '/portal/login': 'Sign In | Absolute Consultancy Firm',
+  '/portal/signup': 'Create Account | Absolute Consultancy Firm',
+  '/portal/student': 'My Dashboard | Absolute Consultancy Firm',
+  '/portal/agent': 'Agent Dashboard | Absolute Consultancy Firm',
 };
 
 function ScrollHandler() {
@@ -288,6 +301,50 @@ export default function App() {
               <Suspense fallback={<SectionFallback />}>
                 <BlogPostPage />
               </Suspense>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <Suspense fallback={<SectionFallback />}>
+                <CourseSearchPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/portal/login"
+            element={
+              <Suspense fallback={<SectionFallback />}>
+                <LoginPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/portal/signup"
+            element={
+              <Suspense fallback={<SectionFallback />}>
+                <SignUpPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/portal/student/*"
+            element={
+              <RequireAuth role="student">
+                <Suspense fallback={<SectionFallback />}>
+                  <StudentDashboard />
+                </Suspense>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/portal/agent/*"
+            element={
+              <RequireAuth role="agent">
+                <Suspense fallback={<SectionFallback />}>
+                  <AgentDashboard />
+                </Suspense>
+              </RequireAuth>
             }
           />
           <Route

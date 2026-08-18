@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const navLinks = [
+  { label: 'Courses', href: '/courses' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Pathways', href: '#destinations' },
@@ -110,7 +111,7 @@ export default function Navigation() {
           </button>
 
           {/* Desktop nav links */}
-          <div className="hidden lg:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <button
                 key={link.label}
@@ -127,6 +128,12 @@ export default function Navigation() {
 
           {/* Desktop right side */}
           <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={() => scrollTo('/portal/login')}
+              className="nav-link small-caps cursor-pointer bg-transparent text-kimono/75 transition-colors duration-200 hover:text-kimono"
+            >
+              Sign In
+            </button>
             <button
               onClick={() => scrollTo('#contact')}
               className="pill-button pill-button-outline text-[11px] py-3 px-6"
@@ -224,6 +231,17 @@ export default function Navigation() {
           }}
         >
           Free Consultation
+        </button>
+
+        <button
+          onClick={() => scrollTo('/portal/login')}
+          className="mt-5 font-body text-sm uppercase tracking-wider text-kimono/70 transition-colors hover:text-gold"
+          style={{
+            opacity: menuOpen ? 1 : 0,
+            transition: 'opacity 400ms 400ms, color 200ms',
+          }}
+        >
+          Student &amp; Agent Sign In
         </button>
 
         {/* Social links row */}
