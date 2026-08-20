@@ -11,6 +11,7 @@ import {
   Plane,
 } from 'lucide-react';
 import ScrambledText from '../components/ScrambledText';
+import TiltCard from '../components/TiltCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -134,11 +135,10 @@ export default function ServicesSection() {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div
-                key={index}
-                className="service-card glass-card p-10 cursor-default group"
-                style={{ opacity: 0 }}
-              >
+              // GSAP owns the outer node's transform for the scroll-in, so the
+              // tilt lives on an inner element rather than fighting it.
+              <div key={index} className="service-card" style={{ opacity: 0 }}>
+              <TiltCard className="relative glass-card p-10 cursor-default group h-full" max={7}>
                 <Icon
                   className="w-8 h-8 text-lime mb-6 transition-transform duration-300 group-hover:scale-110"
                   style={{
@@ -155,6 +155,7 @@ export default function ServicesSection() {
                 >
                   {service.description}
                 </p>
+              </TiltCard>
               </div>
             );
           })}

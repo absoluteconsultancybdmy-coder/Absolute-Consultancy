@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TiltCard from '../components/TiltCard';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from '../hooks/useLenis';
@@ -315,27 +316,26 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
     );
   }, [index]);
 
+  // The reveal and the tilt are split across two elements on purpose: GSAP owns
+  // the wrapper's transform, so a pointer-driven tilt on the same node would
+  // fight it. The wrapper animates in; the card inside tilts.
   return (
-    <div
-      ref={ref}
+    <div ref={ref} style={{ opacity: 0 }}>
+    <TiltCard
       onClick={onClick}
-      className="rounded-xl p-6 flex flex-col gap-4 cursor-pointer group"
+      className="relative rounded-xl p-6 flex flex-col gap-4 cursor-pointer group h-full"
       style={{
-        opacity: 0,
         background: 'rgb(var(--color-gold) / 0.03)',
         border: '1px solid rgb(var(--color-gold) / 0.07)',
-        transition: 'border-color 300ms ease, transform 300ms ease, background 300ms ease',
       }}
       onMouseEnter={e => {
         const el = e.currentTarget;
         el.style.borderColor = `${uni.accent}60`;
-        el.style.transform = 'translateY(-6px)';
         el.style.background = 'rgb(var(--color-gold) / 0.06)';
       }}
       onMouseLeave={e => {
         const el = e.currentTarget;
         el.style.borderColor = 'rgb(var(--color-gold) / 0.07)';
-        el.style.transform = 'translateY(0)';
         el.style.background = 'rgb(var(--color-gold) / 0.03)';
       }}
     >
@@ -389,6 +389,7 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
         </span>
       </div>
+    </TiltCard>
     </div>
   );
 });

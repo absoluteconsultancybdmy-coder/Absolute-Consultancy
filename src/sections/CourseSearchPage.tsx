@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import Reveal from '../components/Reveal';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -261,9 +262,16 @@ export default function CourseSearchPage() {
               </div>
             ) : (
               <ul className="mt-4 space-y-3">
-                {results.map((c) => (
-                  <li
+                {results.map((c, i) => (
+                  <Reveal
                     key={c.id}
+                    as="li"
+                    variant="up"
+                    // Only the first screenful cascades; past that the delay
+                    // would outlast the scroll and rows would arrive late.
+                    index={Math.min(i, 7)}
+                    stagger={55}
+                    duration={520}
                     className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 transition-colors hover:border-gold/30 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="min-w-0">
@@ -301,7 +309,7 @@ export default function CourseSearchPage() {
                         </Link>
                       )}
                     </div>
-                  </li>
+                  </Reveal>
                 ))}
               </ul>
             )}
