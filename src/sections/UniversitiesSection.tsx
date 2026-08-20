@@ -397,7 +397,7 @@ export default function UniversitiesSection() {
       {selectedUni && <UniversityModal uni={selectedUni} onClose={closeModal} />}
 
       <section className="relative w-full py-32 lg:py-44" id="destinations"
-        style={{ backgroundColor: '#021635', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
+        style={{ backgroundColor: 'rgb(var(--color-mist))', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 
           <div className="mb-8 lg:mb-10">

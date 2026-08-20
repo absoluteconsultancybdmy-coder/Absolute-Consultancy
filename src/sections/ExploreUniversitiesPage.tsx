@@ -1075,7 +1075,7 @@ export default function ExploreUniversitiesPage() {
       )}
 
       {/* Main Content — always rendered underneath */}
-      <div ref={contentRef} style={{ opacity: splashVisible ? 0 : 1, minHeight: '100vh', background: '#021635' }}>
+      <div ref={contentRef} style={{ opacity: splashVisible ? 0 : 1, minHeight: '100vh', background: 'rgb(var(--color-mist))' }}>
         {/* Top bar */}
         <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}>
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">

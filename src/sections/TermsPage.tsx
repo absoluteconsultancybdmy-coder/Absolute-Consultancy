@@ -104,7 +104,7 @@ export default function TermsPage() {
   }, []);
 
   return (
-    <div style={{ minHeight: '100vh', background: '#021635' }}>
+    <div style={{ minHeight: '100vh', background: 'rgb(var(--color-mist))' }}>
       <div
         className="sticky top-0 z-50"
         style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}
