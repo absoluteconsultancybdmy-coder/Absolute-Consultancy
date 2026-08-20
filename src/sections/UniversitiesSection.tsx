@@ -23,6 +23,7 @@ interface University {
   description: string;
   highlights: string[];
   campusImage: string;
+  logo?: string;
   logoColor: string;
   campusTourVideo: string;
   website: string;
@@ -44,6 +45,7 @@ const universities: University[] = [
     description: "One of Malaysia's oldest and most reputable private institutions. Taylor's is globally recognised for its Hospitality, Law, and Architecture programmes, and offers award-winning degrees in a beautiful Subang Jaya campus.",
     highlights: ['Established 1969', 'Award-Winning Hospitality School', 'MyQUEST 2022 Competitive', 'QS World #253', 'Beautiful Campus', 'Strong Industry Partnerships'],
     campusImage: '/images/TaylorUniversity.jpeg',
+    logo: '/images/university-logos/taylors.webp',
     logoColor: '#4A0080',
     campusTourVideo: 'https://www.youtube.com/embed/NSuKhrtt9zo',
     website: 'https://university.taylors.edu.my',
@@ -63,6 +65,7 @@ const universities: University[] = [
     description: 'Ranked #253 globally in QS 2026, Sunway University is one of Malaysia\'s most prestigious private universities. Located within the integrated Sunway City, students enjoy world-class facilities including a FIFA-certified football field.',
     highlights: ['QS World #253 (2026)', 'FIFA-Certified Football Field', 'Canopy Walk', 'Integrated Smart City Campus', 'Strong Medical Sciences', 'Top Business School'],
     campusImage: '/images/SunWayUniversity.jpeg',
+    logo: '/images/university-logos/sunway.webp',
     logoColor: '#B8860B',
     campusTourVideo: 'https://www.youtube.com/embed/g5RhGYuzu-s',
     website: 'https://sunwayuniversity.edu.my',
@@ -101,6 +104,7 @@ const universities: University[] = [
     description: 'One of Malaysia\'s highest-rated universities with a 5-Star SETARA rating. APU is especially strong in technology and computing, with students from over 130 countries making it one of the most diverse campuses in Malaysia.',
     highlights: ['5-Star SETARA Rating', '130+ Nationalities on Campus', 'QS Top 401+', 'Strong IT & Computing', 'Excellent Graduate Employability', 'Modern KL Campus'],
     campusImage: '/images/AsiaPacificUniversity.jpeg',
+    logo: '/images/university-logos/apu.webp',
     logoColor: '#1A3A6B',
     campusTourVideo: 'https://www.youtube.com/embed/OhmGgJV9qNI',
     website: 'https://www.apu.edu.my',
@@ -120,6 +124,7 @@ const universities: University[] = [
     description: 'With campuses in Nilai and Subang Jaya, INTI offers globally recognised qualifications through its international university partnerships. Students can transfer credits or complete degrees at partner universities worldwide.',
     highlights: ['International Transfer Programmes', 'Partner Universities Worldwide', 'Nilai & Subang Campuses', 'Top 5 Private Universities', 'Strong Hospitality School', 'Hope Education Group'],
     campusImage: '/images/INTIUniversity.jpeg',
+    logo: '/images/university-logos/inti.webp',
     logoColor: '#CC4400',
     campusTourVideo: 'https://www.youtube.com/embed/W1himgzsyLQ',
     website: 'https://newinti.edu.my',
@@ -139,6 +144,7 @@ const universities: University[] = [
     description: 'One of Malaysia\'s oldest private institutions, SEGi offers affordable education across medicine, dentistry, engineering and business. Multiple campuses across Malaysia make it accessible to students nationwide.',
     highlights: ['Established 1977', 'Affordable Fees', 'Top Dentistry School', 'Multiple Campuses', 'Medicine & Pharmacy', 'Strong Industry Links'],
     campusImage: '/images/SEGiUniversity.jpeg',
+    logo: '/images/university-logos/segi.webp',
     logoColor: '#006400',
     campusTourVideo: 'https://www.youtube.com/embed/6mnJu2Oy7OI',
     website: 'https://www.segi.edu.my',
@@ -158,6 +164,7 @@ const universities: University[] = [
     description: "Located in Malaysia's smart city Cyberjaya, UoC is a premier health sciences university with a 5-Star SETARA rating. It excels in Medicine, Pharmacy, and Nursing with a state-of-the-art eco-friendly campus.",
     highlights: ['5-Star SETARA Rating', 'Top Medicine & Health Sciences', 'Eco-Friendly Smart Campus', 'QS Top 601+', 'Top 200 Global Health SDG Ranking', 'Located in Cyberjaya'],
     campusImage: '/images/UniversityOfCyberjaya.jpeg',
+    logo: '/images/university-logos/cyberjaya.webp',
     logoColor: '#005A8B',
     campusTourVideo: 'https://www.youtube.com/embed/irmFggZ7DN4',
     website: 'https://cyberjaya.edu.my',
@@ -177,6 +184,7 @@ const universities: University[] = [
     description: 'A leading private university in KL offering over 100 programmes. UCSI is especially renowned for its Medicine, Pharmacy, and Architecture programmes, and boasts a rooftop bar and vibrant student life.',
     highlights: ['QS World Ranked', 'Top Medicine & Pharmacy', 'Award-Winning Architecture', 'Rooftop Campus Facilities', 'Strong Alumni Network', 'Located in KL'],
     campusImage: '/images/UCSIUniversity.jpeg',
+    logo: '/images/university-logos/ucsi.webp',
     logoColor: '#1B5E20',
     campusTourVideo: 'https://www.youtube.com/embed/07RlVINKWU4',
     website: 'https://www.ucsiuniversity.edu.my',
@@ -342,6 +350,18 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
           {uni.type}
         </span>
       </div>
+
+      {uni.logo && (
+        <img
+          src={uni.logo}
+          alt=""
+          width={44}
+          height={44}
+          loading="lazy"
+          decoding="async"
+          className="h-11 w-auto max-w-[120px] object-contain object-left"
+        />
+      )}
 
       <div>
         <h3 className="font-body font-semibold text-kimono leading-snug" style={{ fontSize: 'clamp(14px, 1.5vw, 16px)' }}>{uni.name}</h3>
