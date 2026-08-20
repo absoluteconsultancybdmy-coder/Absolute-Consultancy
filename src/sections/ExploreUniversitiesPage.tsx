@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
 import MalaysiaMap from '../components/MalaysiaMap';
+import UniversityLogo from '../components/UniversityLogo';
 
 
 // Pre-generated splash dot positions to avoid impure Math.random during render
@@ -29,6 +30,8 @@ interface University {
   description: string;
   highlights: string[];
   campusImage: string;
+  /** Partner-catalogue mark; absent for the institutions it does not list. */
+  logo?: string;
   campusTourVideo: string;
   website: string;
 }
@@ -49,6 +52,7 @@ const allUniversities: University[] = [
     description: "One of Malaysia's highest-rated universities with a 5-Star SETARA rating. APU is especially strong in technology and computing, with students from over 130 countries making it one of the most diverse campuses in Malaysia.",
     highlights: ['5-Star SETARA Rating', '130+ Nationalities on Campus', 'QS Top 401+', 'Strong IT & Computing', 'Excellent Graduate Employability', 'Modern KL Campus'],
     campusImage: `${import.meta.env.BASE_URL}images/AsiaPacificUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/apu.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/OhmGgJV9qNI',
     website: 'https://www.apu.edu.my',
   },
@@ -67,6 +71,7 @@ const allUniversities: University[] = [
     description: 'With campuses in Nilai and Subang Jaya, INTI offers globally recognised qualifications through its international university partnerships. Students can transfer credits or complete degrees at partner universities worldwide.',
     highlights: ['International Transfer Programmes', 'Partner Universities Worldwide', 'Nilai & Subang Campuses', 'Top 5 Private Universities', 'Strong Hospitality School', 'Hope Education Group'],
     campusImage: `${import.meta.env.BASE_URL}images/INTIUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/inti.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/W1himgzsyLQ',
     website: 'https://newinti.edu.my',
   },
@@ -85,6 +90,7 @@ const allUniversities: University[] = [
     description: "One of Malaysia's oldest and most reputable private institutions. Taylor's is globally recognised for its Hospitality, Law, and Architecture programmes, and offers award-winning degrees in a beautiful Subang Jaya campus.",
     highlights: ['Established 1969', 'Award-Winning Hospitality School', 'MyQUEST 2022 Competitive', 'QS World #253', 'Beautiful Campus', 'Strong Industry Partnerships'],
     campusImage: `${import.meta.env.BASE_URL}images/TaylorUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/taylors.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/NSuKhrtt9zo',
     website: 'https://university.taylors.edu.my',
   },
@@ -103,6 +109,7 @@ const allUniversities: University[] = [
     description: 'A leading private university in KL offering over 100 programmes. UCSI is especially renowned for its Medicine, Pharmacy, and Architecture programmes, and boasts a rooftop bar and vibrant student life.',
     highlights: ['QS World Ranked', 'Top Medicine & Pharmacy', 'Award-Winning Architecture', 'Rooftop Campus Facilities', 'Strong Alumni Network', 'Located in KL'],
     campusImage: `${import.meta.env.BASE_URL}images/UCSIUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/ucsi.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/07RlVINKWU4',
     website: 'https://www.ucsiuniversity.edu.my',
   },
@@ -121,6 +128,7 @@ const allUniversities: University[] = [
     description: 'UOW Malaysia is a branch campus of the University of Wollongong, Australia, ranked among the top 1% of universities worldwide. Students earn an Australian degree in Malaysia with the option to transfer to Wollongong campus in Australia.',
     highlights: ['Australian University Degree', 'Transfer to Australia', 'QS World Top 500+', 'Strong Engineering & IT', 'Modern Glenmarie Campus', 'Global Recognition'],
     campusImage: `${import.meta.env.BASE_URL}images/UniversityOfWollong.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/uow.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.uow.edu.my',
   },
@@ -139,6 +147,7 @@ const allUniversities: University[] = [
     description: "Located in Malaysia's smart city Cyberjaya, UoC is a premier health sciences university with a 5-Star SETARA rating. It excels in Medicine, Pharmacy, and Nursing with a state-of-the-art eco-friendly campus.",
     highlights: ['5-Star SETARA Rating', 'Top Medicine & Health Sciences', 'Eco-Friendly Smart Campus', 'QS Top 601+', 'Top 200 Global Health SDG Ranking', 'Located in Cyberjaya'],
     campusImage: `${import.meta.env.BASE_URL}images/UniversityOfCyberjaya.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/cyberjaya.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/irmFggZ7DN4',
     website: 'https://cyberjaya.edu.my',
   },
@@ -175,6 +184,7 @@ const allUniversities: University[] = [
     description: 'KL University of Science & Technology (KLUST) focuses on applied science, technology, and engineering education. Located in Kajang, it offers practical, industry-oriented programmes with modern labs and facilities.',
     highlights: ['Applied Science Focus', 'Industry-Oriented Curriculum', 'Modern Labs & Facilities', 'Affordable Tuition', 'Small Class Sizes', 'Kajang Campus'],
     campusImage: `${import.meta.env.BASE_URL}images/IUKL.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/klust.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.klust.edu.my',
   },
@@ -193,6 +203,7 @@ const allUniversities: University[] = [
     description: 'MAHSA University specialises in medical and health sciences education, offering one of the most comprehensive ranges of health programmes in Malaysia. Located in Bandar Saujana Putra, it features modern simulation labs and clinical facilities.',
     highlights: ['5-Star SETARA Rating', 'Comprehensive Medical Programmes', 'Modern Simulation Labs', 'Strong Clinical Partnerships', 'Affordable Medical Education', 'Bandar Saujana Campus'],
     campusImage: `${import.meta.env.BASE_URL}images/Mahsa.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/mahsa.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.mahsa.edu.my',
   },
@@ -211,6 +222,7 @@ const allUniversities: University[] = [
     description: "Malaysia's first private university, founded by Telekom Malaysia. MMU is a premier research institution at the heart of the Multimedia Super Corridor (MSC), renowned for engineering, IT, creative multimedia, and strong industry connections.",
     highlights: ['Malaysia\'s First Private University', 'QS Asia Top 250', 'Olympic-sized Swimming Pool', '200-acre Campus', '13 Research Centres', 'Strong Tech Industry Links'],
     campusImage: `${import.meta.env.BASE_URL}images/MMU.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/mmu.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.mmu.edu.my',
   },
@@ -229,6 +241,7 @@ const allUniversities: University[] = [
     description: 'Nilai University is located in the student town of Nilai, offering a vibrant campus life with modern facilities. Programmes in business, engineering, and hospitality are popular, and the campus features excellent sports and residential facilities.',
     highlights: ['Vibrant Campus Life', 'Modern Sports Facilities', 'On-Campus Accommodation', 'Diverse Programmes', 'Student Town Location', 'Established 1997'],
     campusImage: `${import.meta.env.BASE_URL}images/NilaiUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/nilai.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.nilai.edu.my',
   },
@@ -247,6 +260,7 @@ const allUniversities: University[] = [
     description: 'One of Malaysia\'s oldest private institutions, SEGi offers affordable education across medicine, dentistry, engineering and business. Multiple campuses across Malaysia make it accessible to students nationwide.',
     highlights: ['Established 1977', 'Affordable Fees', 'Top Dentistry School', 'Multiple Campuses', 'Medicine & Pharmacy', 'Strong Industry Links'],
     campusImage: `${import.meta.env.BASE_URL}images/SEGiUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/segi.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/6mnJu2Oy7OI',
     website: 'https://www.segi.edu.my',
   },
@@ -265,6 +279,7 @@ const allUniversities: University[] = [
     description: 'UniKL is a multi-campus technical university owned by Majlis Amanah Rakyat (MARA). It specialises in engineering, aviation, and technical education with 14 institutes across Malaysia, producing highly skilled technical graduates.',
     highlights: ['MARA-Owned University', '14 Institutes Nationwide', 'Aviation & Aerospace Focus', 'Strong Technical Training', 'Industry Partnerships', 'Affordable Public Fees'],
     campusImage: `${import.meta.env.BASE_URL}images/UniversityKualaLumpur.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/unikl.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.unikl.edu.my',
   },
@@ -283,6 +298,7 @@ const allUniversities: University[] = [
     description: 'UNIRAZAK is a private university in KL known for its strong business, education, and accounting programmes. Named after Malaysia\'s second Prime Minister, it produces graduates with strong managerial and leadership skills.',
     highlights: ['Strong Business Programme', 'Education & Teaching Focus', 'Named After Tun Abdul Razak', 'Located in KL', 'Affordable Tuition', 'Leadership Development'],
     campusImage: `${import.meta.env.BASE_URL}images/UNIRAZAK.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/unirazak.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.unirazak.edu.my',
   },
@@ -319,6 +335,7 @@ const allUniversities: University[] = [
     description: 'UNITEN is Malaysia\'s premier energy university, owned by Tenaga Nasional Berhad (TNB). Located in Putrajaya, it specialises in power engineering, energy management, and IT, with unique programmes not available at other universities.',
     highlights: ['Owned by TNB', 'Power Engineering Specialty', 'Energy Management Focus', 'Putrajaya Campus', 'QS Asia Top 400', 'Strong Industry Links'],
     campusImage: `${import.meta.env.BASE_URL}images/UNITENUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/uniten.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.uniten.edu.my',
   },
@@ -392,6 +409,7 @@ const allUniversities: University[] = [
     description: 'City University Malaysia in Petaling Jaya is a multidisciplinary private university offering business, engineering, design, and communication programmes. With a 5-Star SETARA rating, it focuses on industry-ready graduates.',
     highlights: ['SETARA Tier 5', 'Multidisciplinary Programmes', 'Strong Industry Connections', 'Petaling Jaya Campus', 'Modern Facilities', 'Established 1984'],
     campusImage: `${import.meta.env.BASE_URL}images/CityUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/city.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.city.edu.my',
   },
@@ -410,6 +428,7 @@ const allUniversities: University[] = [
       description: 'Kings University College in Petaling Jaya offers business, engineering, and hospitality programmes. With a focus on practical education and industry readiness, it provides quality education at affordable fees.',
       highlights: ['Practical Education Focus', 'Engineering & Business', 'Industry-Ready Graduates', 'Affordable Fees', 'Petaling Jaya Campus', 'Growing Student Community'],
       campusImage: `${import.meta.env.BASE_URL}images/KingsUniversityCollage.jpeg`,
+      logo: `${import.meta.env.BASE_URL}images/university-logos/kings.webp`,
       campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
       website: 'https://www.kings.edu.my',
     },
@@ -428,6 +447,7 @@ const allUniversities: University[] = [
     description: 'Lincoln University College is a QS-ranked private institution offering medicine, dentistry, pharmacy, and business programmes. Located in Petaling Jaya, it provides affordable medical education with modern simulation labs.',
     highlights: ['QS World Top 501+', 'Affordable Medical Programmes', 'Simulation Lab Facilities', 'Modern Campus', 'Diverse Faculty', 'Petaling Jaya Location'],
     campusImage: `${import.meta.env.BASE_URL}images/LincolnUniversityCollage.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/lincoln.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.lincoln.edu.my',
   },
@@ -482,6 +502,7 @@ const allUniversities: University[] = [
     description: 'Ranked #253 globally in QS 2026, Sunway University is one of Malaysia\'s most prestigious private universities. Located within the integrated Sunway City, students enjoy world-class facilities including a FIFA-certified football field.',
     highlights: ['QS World #253 (2026)', 'FIFA-Certified Football Field', 'Canopy Walk', 'Integrated Smart City Campus', 'Strong Medical Sciences', 'Top Business School'],
     campusImage: `${import.meta.env.BASE_URL}images/SunWayUniversity.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/sunway.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/g5RhGYuzu-s',
     website: 'https://sunwayuniversity.edu.my',
   },
@@ -556,6 +577,7 @@ const allUniversities: University[] = [
     description: 'Heriot-Watt University Malaysia is a campus of the UK\'s Heriot-Watt University, ranked #256 globally. Students earn a British degree in Malaysia with the option to transfer to campuses in Edinburgh, Dubai or the UK.',
     highlights: ['British Degree in Malaysia', 'QS World #256', 'Global Campus Transfer', 'Top Engineering School', 'Putrajaya Campus', 'Industry-Focused Programmes'],
     campusImage: `${import.meta.env.BASE_URL}images/HeriotWatt.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/hw.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.hw.ac.uk/malaysia',
   },
@@ -574,6 +596,7 @@ const allUniversities: University[] = [
     description: 'UCMI is a private institution in Kuala Lumpur offering programmes in business, IT, hospitality, education and engineering. It provides quality education with a focus on industry readiness and practical skills.',
     highlights: ['Industry-Ready Graduates', 'Business & IT Focus', 'Practical Education', 'KL City Campus', 'Affordable Tuition', 'Growing Institution'],
     campusImage: `${import.meta.env.BASE_URL}images/UCMI.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/ucmi.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.ucmi.edu.my',
   },
@@ -592,6 +615,7 @@ const allUniversities: University[] = [
     description: 'UNIMY is a private institution in Kuala Lumpur focusing on engineering, IT, business, design and education. It offers quality programmes with practical training and strong industry partnerships.',
     highlights: ['Practical Training', 'Industry Partnerships', 'Engineering & IT Focus', 'KL Campus', 'Quality Education', 'Student Development'],
     campusImage: `${import.meta.env.BASE_URL}images/UniMY.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/unimy.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.unimy.edu.my',
   },
@@ -610,6 +634,7 @@ const allUniversities: University[] = [
     description: 'University Malaya Wales offers programmes in business, IT, engineering, accounting and education. With international partnerships, it provides quality education and pathways to global qualifications.',
     highlights: ['International Partnerships', 'Global Qualifications', 'Business & IT Focus', 'KL Campus', 'Affordable Education', 'Student Support'],
     campusImage: `${import.meta.env.BASE_URL}images/UniversityMalayaWales.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/umw.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://www.umw.edu.my',
   },
@@ -664,6 +689,7 @@ const allUniversities: University[] = [
     description: 'MAHSA Avenue International College offers diploma and certificate programmes in graphic design, mass communication, IT, business, multimedia, and animation in Kuala Lumpur.',
     highlights: ['Creative Programmes', 'Industry-Relevant Curriculum', 'Kuala Lumpur Campus', 'Affordable Tuition', 'Practical Training', 'MAHSA Group'],
     campusImage: `${import.meta.env.BASE_URL}images/Mahsa.jpeg`,
+    logo: `${import.meta.env.BASE_URL}images/university-logos/maic.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
     website: 'https://maic.edu.my',
   },
@@ -1449,7 +1475,30 @@ export default function ExploreUniversitiesPage() {
                         {uni.type}
                       </span>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="absolute bottom-0 left-0 right-0 flex items-end gap-3 p-4">
+                      {/* White tile behind the mark: most partner logos are dark
+                          artwork on transparent, which would vanish against the
+                          scrim. Institutions the catalogue does not carry fall
+                          back to the wordmark. Hidden from assistive tech — the
+                          name is right beside it. */}
+                      <div aria-hidden="true" className="shrink-0">
+                        {uni.logo ? (
+                          <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white p-1.5 shadow-md">
+                            <img
+                              src={uni.logo}
+                              alt=""
+                              width={44}
+                              height={44}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <UniversityLogo shortName={uni.shortName} accent={uni.accent} size={44} />
+                        )}
+                      </div>
+                      <div className="min-w-0">
                       <h3
                         className="font-display font-bold text-kimono leading-tight"
                         style={{ fontSize: 'clamp(15px, 1.5vw, 18px)', letterSpacing: '0.02em' }}
@@ -1465,6 +1514,7 @@ export default function ExploreUniversitiesPage() {
                         </svg>
                         {uni.location}
                       </p>
+                      </div>
                     </div>
                   </div>
 
