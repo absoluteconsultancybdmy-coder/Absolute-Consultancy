@@ -61,8 +61,13 @@ function QuickApply() {
     setMounted(true);
   }, []);
 
+  // The portal is a signed-in workspace, not a marketing page — a floating
+  // “Apply Now” that jumps back to the public contact form does not belong there.
+  const isPortal = location.pathname.startsWith('/portal');
   const shouldShow = isMobile ? pastThreshold : true;
   const visible = mounted && shouldShow && !contactVisible;
+
+  if (isPortal) return null;
 
   const handleClick = () => {
     if (location.pathname === '/') {
@@ -104,7 +109,7 @@ function QuickApply() {
         style={{
           padding: '12px 24px',
           borderRadius: 9999,
-          background: 'linear-gradient(135deg, rgb(var(--color-gold)) 0%, #D4AF37 100%)',
+          background: 'rgb(var(--color-gold))',
           color: 'rgb(var(--color-mist))',
           fontFamily: 'Lato, sans-serif',
           fontWeight: 700,
