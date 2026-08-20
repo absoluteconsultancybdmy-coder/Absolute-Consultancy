@@ -184,16 +184,30 @@ export default function Navigation() {
         </div>
       </nav>
 
-      {/* Full-screen overlay menu — shown at every size */}
+      {/* Dimmed backdrop — sits behind the drawer and closes it on click. */}
       <div
-        className="on-navy fixed inset-0 z-50 flex flex-col justify-center items-center"
+        aria-hidden="true"
+        onClick={() => setMenuOpen(false)}
+        className="fixed inset-0 z-40"
         style={{
-          background: 'rgba(2, 22, 53,0.97)',
-          backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)',
+          background: 'rgba(2, 22, 53, 0.55)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
           opacity: menuOpen ? 1 : 0,
           pointerEvents: menuOpen ? 'all' : 'none',
           transition: 'opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      />
+
+      {/* Slide-in drawer — a panel on the right rather than the whole screen. */}
+      <div
+        className="on-navy fixed top-0 right-0 z-50 flex h-[100dvh] w-[82vw] min-w-[280px] max-w-[420px] flex-col items-center justify-center overflow-y-auto px-8 py-20 sm:w-[38vw]"
+        style={{
+          background: 'rgba(2, 22, 53,0.97)',
+          boxShadow: '-24px 0 60px rgba(0,0,0,0.35)',
+          transform: menuOpen ? 'translateX(0)' : 'translateX(100%)',
+          pointerEvents: menuOpen ? 'all' : 'none',
+          transition: 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <button
@@ -207,10 +221,10 @@ export default function Navigation() {
           </svg>
         </button>
 
-        {/* Gold hairline top */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
+        {/* Accent hairline down the drawer's leading edge */}
+        <div className="absolute inset-y-0 left-0 w-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
 
-        <nav className="flex flex-col items-center gap-8">
+        <nav className="flex flex-col items-center gap-5">
           {navLinks.map((link, i) => (
             <button
               key={link.label}
@@ -222,7 +236,7 @@ export default function Navigation() {
                   : 'text-kimono/80 hover:text-gold'
               }`}
               style={{
-                fontSize: 'clamp(28px, 8vw, 48px)',
+                fontSize: 'clamp(22px, 2.4vw, 30px)',
                 letterSpacing: '0.08em',
                 transitionDelay: menuOpen ? `${i * 60}ms` : '0ms',
                 transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -238,7 +252,7 @@ export default function Navigation() {
         {/* Mobile CTA */}
         <button
           onClick={() => scrollTo('#contact')}
-          className="pill-button pill-button-outline mt-12"
+          className="pill-button pill-button-outline mt-10"
           style={{
             opacity: menuOpen ? 1 : 0,
             transform: menuOpen ? 'translateY(0)' : 'translateY(20px)',
@@ -279,7 +293,6 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
       </div>
     </>
   );
