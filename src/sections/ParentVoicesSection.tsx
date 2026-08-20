@@ -87,7 +87,7 @@ const FRAME_INTERVAL_MS = 1000 / 30;
 function TestimonialCard({ t }: { t: ParentTestimonial }) {
   return (
     <div
-      className="flex-shrink-0 rounded-xl p-5 mx-3 whitespace-normal break-words overflow-wrap-anywhere"
+      className="on-navy flex-shrink-0 rounded-xl p-5 mx-3 whitespace-normal break-words overflow-wrap-anywhere"
       style={{
         width: '360px',
         maxWidth: '100%',

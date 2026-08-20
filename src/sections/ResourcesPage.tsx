@@ -123,7 +123,7 @@ function GuideModal({ guide, onClose }: { guide: Guide; onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="guide-modal-title"
-        className="relative w-full max-w-[820px] max-h-[85vh] overflow-y-auto rounded-3xl"
+        className="on-navy relative w-full max-w-[820px] max-h-[85vh] overflow-y-auto rounded-3xl"
         style={{
           background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)',
           border: '1px solid rgb(var(--color-gold) / 0.3)',

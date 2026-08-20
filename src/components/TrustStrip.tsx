@@ -17,7 +17,7 @@ const items: TrustItem[] = [
 function TrustStrip() {
   return (
     <div
-      className="relative w-full overflow-hidden"
+      className="on-navy relative w-full overflow-hidden"
       style={{
         background: 'linear-gradient(90deg, #031D4C 0%, #052458 50%, #031D4C 100%)',
         height: '60px',

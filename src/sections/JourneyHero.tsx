@@ -24,7 +24,7 @@ export default function JourneyHero() {
     <section
       ref={heroRef}
       id="journey-hero"
-      className="relative w-full overflow-hidden bg-mist"
+      className="on-navy relative w-full overflow-hidden bg-mist"
       style={{ minHeight: '62vh' }}
     >
       <picture className="absolute inset-0 z-0">

@@ -273,7 +273,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-[100dvh] h-screen overflow-hidden bg-mist"
+      className="on-navy relative w-full min-h-[100dvh] h-screen overflow-hidden bg-mist"
       id="hero"
     >
       {/* Layer 1: Background - always present */}

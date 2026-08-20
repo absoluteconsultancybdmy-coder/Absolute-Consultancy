@@ -111,7 +111,7 @@ export default function StatsSection() {
     <section
       ref={sectionRef}
       id="stats"
-      className="relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
     >
       <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
       <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />

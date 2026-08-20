@@ -193,12 +193,12 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
 
   return (
     <div
-      className="fixed inset-0 z-[999] flex items-center justify-center p-4"
+      className="on-navy fixed inset-0 z-[999] flex items-center justify-center p-4"
       style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[900px] max-h-[85dvh] overflow-y-auto rounded-3xl"
+        className="on-navy relative w-full max-w-[900px] max-h-[85dvh] overflow-y-auto rounded-3xl"
         style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >

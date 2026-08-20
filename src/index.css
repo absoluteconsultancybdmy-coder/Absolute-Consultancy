@@ -44,17 +44,22 @@
   }
 
   /* Applied to the navy cards and bands. Children need no changes.
-     The attribute selector catches the inline navy-gradient blocks without
-     needing a class added to each one; #052458 is the gradient's second stop
-     and appears nowhere else. */
-  .on-navy,
-  [style*="#052458"] {
+     Applied as a real class, not an attribute selector on the inline
+     gradient: the browser normalises hex to rgb() when serialising the
+     style attribute, so [style*="#052458"] would never match. */
+  .on-navy {
     --color-mist: 3 29 76;
     --color-gold: 255 255 255;
     --color-kimono: 250 250 250;
     --color-cream: 232 238 247;
     --color-mouse: 147 164 192;
     --color-lime: 212 248 122;
+
+    /* The class must supply the dark ground too, not just flip the text:
+       sections that used to inherit a dark page canvas would otherwise end
+       up light-on-light. Inline backgrounds and bg-* utilities still win,
+       so image-backed sections and the navy cards are unaffected. */
+    background-color: rgb(var(--color-mist));
   }
 
   /* ── Theme variables ──────────────────────────────────────────────── */

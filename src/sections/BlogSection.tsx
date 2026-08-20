@@ -158,7 +158,7 @@ export default function BlogSection() {
     <section
       ref={sectionRef}
       id="blog"
-      className="relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
     >
       <style>{`@keyframes blogKenBurns { from { transform: scale(1) translate(0, 0); } to { transform: scale(1.15) translate(-2%, -1.5%); } } .blog-cover-img { transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1); } .blog-card:hover .blog-cover-img { animation: blogKenBurns 4.5s ease-in-out infinite alternate; } @media (prefers-reduced-motion: reduce) { .blog-cover-img { transition: none !important; animation: none !important; } .blog-card:hover .blog-cover-img { transform: none !important; animation: none !important; } }`}</style>
 

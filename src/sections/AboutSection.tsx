@@ -63,7 +63,7 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 lg:py-44" id="about">
+    <section ref={sectionRef} className="on-navy relative w-full py-32 lg:py-44" id="about">
       <div className="absolute inset-0 z-0">
         <img src={`${import.meta.env.BASE_URL}images/Firm.avif`} alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
         <div className="absolute inset-0 bg-cream/[0.06]" />
@@ -92,7 +92,7 @@ export default function AboutSection() {
         {/* COO Feature Card */}
         <div
           ref={bioRef}
-          className="relative rounded-3xl overflow-hidden mb-24"
+          className="on-navy relative rounded-3xl overflow-hidden mb-24"
           style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.2)' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
@@ -192,7 +192,7 @@ export default function AboutSection() {
         </div>
 
         {/* Bottom text + video */}
-        <div className="relative rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.2)' }}>
+        <div className="on-navy relative rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.2)' }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 p-10 lg:p-14">
             <div>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '17px', lineHeight: 1.8 }}>

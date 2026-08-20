@@ -88,7 +88,7 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-32 lg:py-44 overflow-hidden"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden"
       id="services"
     >
       {/* Background image */}

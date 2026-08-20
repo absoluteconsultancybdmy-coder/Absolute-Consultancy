@@ -1039,7 +1039,7 @@ export default function BlogPostPage() {
                   </div>
                 ) : (
                   <div
-                    className="w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
+                    className="on-navy w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
                     style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '2px solid rgb(var(--color-gold) / 0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
                     aria-hidden="true"
                   >

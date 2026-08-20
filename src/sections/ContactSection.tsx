@@ -43,7 +43,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="contact">
+    <section ref={sectionRef} className="on-navy relative w-full py-32 lg:py-44 overflow-hidden" id="contact">
       <div className="absolute inset-0 z-0">
         <img src={`${import.meta.env.BASE_URL}images/contact-bg.jpg`} alt="Campus" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(2, 22, 53,0.75) 0%, rgba(2, 22, 53,0.45) 50%, rgba(2, 22, 53,0.75) 100%)' }} />

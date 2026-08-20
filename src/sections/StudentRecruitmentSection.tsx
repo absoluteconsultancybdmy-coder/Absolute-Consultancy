@@ -67,7 +67,7 @@ export default function StudentRecruitmentSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+      className="on-navy relative w-full min-h-screen flex items-center justify-center overflow-hidden"
       id="recruitment"
     >
       {/* Full background image */}

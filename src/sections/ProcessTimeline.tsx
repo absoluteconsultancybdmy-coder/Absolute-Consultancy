@@ -212,7 +212,7 @@ export default function ProcessTimeline() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative w-full py-32 lg:py-44 overflow-hidden"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden"
       style={{ background: 'rgb(var(--color-mist))' }}
     >
       <div

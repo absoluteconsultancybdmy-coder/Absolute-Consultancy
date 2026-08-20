@@ -280,7 +280,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
 
   return (
     <div
-      className="rounded-2xl p-5 flex flex-col gap-3"
+      className="on-navy rounded-2xl p-5 flex flex-col gap-3"
       style={{
         background: 'rgb(var(--color-gold) / 0.04)',
         border: '1px solid rgb(var(--color-gold) / 0.25)',

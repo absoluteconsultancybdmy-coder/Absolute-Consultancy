@@ -684,7 +684,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-[900px] max-h-[85vh] overflow-y-auto rounded-3xl"
+        className="on-navy relative w-full max-w-[900px] max-h-[85vh] overflow-y-auto rounded-3xl"
         style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >

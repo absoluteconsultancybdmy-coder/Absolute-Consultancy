@@ -152,7 +152,7 @@ export default function ScholarshipsSection() {
     <section
       ref={sectionRef}
       id="scholarships"
-      className="relative w-full py-32 lg:py-44 overflow-hidden"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden"
     >
       <div
         className="absolute inset-0 z-0"

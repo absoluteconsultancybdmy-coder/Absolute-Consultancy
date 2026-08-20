@@ -71,7 +71,7 @@ export default function TrustBar() {
 
   return (
     <div
-      className="fixed top-20 left-0 right-0 z-40 overflow-hidden"
+      className="on-navy fixed top-20 left-0 right-0 z-40 overflow-hidden"
       style={{
         background: 'linear-gradient(90deg, #031D4C 0%, #052458 50%, #031D4C 100%)',
         borderBottom: '1px solid rgb(var(--color-gold) / 0.25)',
