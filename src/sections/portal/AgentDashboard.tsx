@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { supabase } from '../../lib/supabase';
+import Reveal from '../../components/Reveal';
+import TiltCard from '../../components/TiltCard';
 import {
   DashboardChrome,
   EmptyState,
@@ -171,8 +173,15 @@ export default function AgentDashboard() {
           />
         ) : (
           <ul className="space-y-3">
-            {applications.map((app) => (
-              <li key={app.id} className="rounded-lg border border-cream/10 bg-cream/[0.02] p-5">
+            {applications.map((app, i) => (
+              <Reveal
+                key={app.id}
+                as="li"
+                index={Math.min(i, 7)}
+                stagger={55}
+                duration={520}
+                className="rounded-lg border border-cream/10 bg-cream/[0.02] p-5"
+              >
                 <div className="flex flex-wrap items-center gap-3">
                   <p className="font-body text-base text-kimono">{app.courses?.name}</p>
                   <StatusPill status={app.status} />
@@ -181,7 +190,7 @@ export default function AgentDashboard() {
                   {app.profiles?.full_name ?? app.profiles?.email ?? 'Unknown student'} ·{' '}
                   {app.courses?.universities?.name} · started {formatDate(app.created_at)}
                 </p>
-              </li>
+              </Reveal>
             ))}
           </ul>
         )
@@ -192,11 +201,13 @@ export default function AgentDashboard() {
               { label: 'Pending', value: totals.pending },
               { label: 'Approved', value: totals.approved },
               { label: 'Paid', value: totals.paid },
-            ].map((card) => (
-              <div key={card.label} className="rounded-lg border border-cream/10 bg-cream/[0.02] p-5">
+            ].map((card, i) => (
+              <Reveal key={card.label} index={i} stagger={70}>
+                <TiltCard className="relative h-full rounded-lg border border-cream/10 bg-cream/[0.02] p-5" max={6} lift={8}>
                 <p className="font-body text-xs uppercase tracking-wider text-mouse">{card.label}</p>
                 <p className="mt-2 font-display text-2xl text-gold">{formatMoney(card.value)}</p>
-              </div>
+                </TiltCard>
+              </Reveal>
             ))}
           </div>
 

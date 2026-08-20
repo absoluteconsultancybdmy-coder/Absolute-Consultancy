@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
+import Reveal from '../../components/Reveal';
 import { useAuth } from '../../contexts/AuthContext';
 import {
   DashboardChrome,
@@ -169,9 +170,13 @@ export default function StudentDashboard() {
           />
         ) : (
           <ul className="space-y-3">
-            {shortlist.map((row) => (
-              <li
+            {shortlist.map((row, i) => (
+              <Reveal
                 key={row.id}
+                as="li"
+                index={Math.min(i, 7)}
+                stagger={55}
+                duration={520}
                 className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="min-w-0">
@@ -198,7 +203,7 @@ export default function StudentDashboard() {
                     Remove
                   </button>
                 </div>
-              </li>
+              </Reveal>
             ))}
           </ul>
         )
@@ -209,9 +214,13 @@ export default function StudentDashboard() {
         />
       ) : (
         <ul className="space-y-3">
-          {applications.map((app) => (
-            <li
+          {applications.map((app, i) => (
+            <Reveal
               key={app.id}
+              as="li"
+              index={Math.min(i, 7)}
+              stagger={55}
+              duration={520}
               className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="min-w-0">
@@ -233,7 +242,7 @@ export default function StudentDashboard() {
                   Submit
                 </button>
               )}
-            </li>
+            </Reveal>
           ))}
         </ul>
       )}

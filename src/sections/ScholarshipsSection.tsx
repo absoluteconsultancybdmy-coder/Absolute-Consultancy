@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SectionLabel from '../components/SectionLabel';
+import { useTilt } from '../hooks/useTilt';
 import {
   GraduationCap,
   Trophy,
@@ -44,6 +45,7 @@ const categories: Category[] = [
 ];
 
 export default function ScholarshipsSection() {
+  const tilt = useTilt({ max: 7, lift: 12 });
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -252,16 +254,16 @@ export default function ScholarshipsSection() {
                   transition:
                     'transform 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease, box-shadow 300ms ease, background 300ms ease',
                 }}
+                onPointerMove={tilt.onPointerMove}
+                onPointerLeave={tilt.onPointerLeave}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
-                  el.style.transform = 'translateY(-4px)';
                   el.style.borderColor = 'rgb(var(--color-gold) / 0.7)';
                   el.style.background = 'rgb(var(--color-gold) / 0.06)';
                   el.style.boxShadow = '0 12px 32px rgb(var(--color-gold) / 0.18)';
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
-                  el.style.transform = 'translateY(0)';
                   el.style.borderColor = 'rgb(var(--color-gold) / 0.25)';
                   el.style.background = 'rgb(var(--color-gold) / 0.04)';
                   el.style.boxShadow = 'none';

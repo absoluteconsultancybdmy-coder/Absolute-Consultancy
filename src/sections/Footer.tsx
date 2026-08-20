@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import GooeyBlob from '../components/GooeyBlob';
+import Reveal from '../components/Reveal';
 
 const navLinks = [
   { label: 'Home', href: '#hero' },
@@ -293,7 +294,7 @@ export default function Footer() {
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Left — Brand */}
-          <div>
+          <Reveal className="w-full" index={0}>
             <div className="flex items-center gap-3 mb-4">
               <img src={`${import.meta.env.BASE_URL}images/logo.png`} alt="Absolute Consultancy Firm" width={48} height={48} loading="lazy" decoding="async" className="h-12 w-auto" />
             </div>
@@ -306,10 +307,10 @@ export default function Footer() {
               and Bangladesh reach the world's<br />
               finest universities since 2024.
             </p>
-          </div>
+          </Reveal>
 
           {/* Center — Nav */}
-          <div className="flex flex-col items-start md:items-center">
+          <Reveal className="flex flex-col items-start md:items-center" index={1}>
             <p className="small-caps text-gold/60 mb-6" style={{ fontSize: '10px' }}>Navigate</p>
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -328,10 +329,10 @@ export default function Footer() {
                 </button>
               ))}
             </div>
-          </div>
+          </Reveal>
 
           {/* Right — Social + contact */}
-          <div className="flex flex-col items-start md:items-end">
+          <Reveal className="flex flex-col items-start md:items-end" index={2}>
             <p className="small-caps text-gold/60 mb-6" style={{ fontSize: '10px' }}>Connect</p>
             <div className="flex flex-col gap-3">
               {socialLinks.map(({ label, href, icon }) => (
@@ -361,7 +362,7 @@ export default function Footer() {
                 +60 17-563 1621
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Business Verification */}

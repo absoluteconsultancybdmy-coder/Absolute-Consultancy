@@ -238,13 +238,16 @@ function HomePage() {
 
 export default function App() {
   useLenis();
+  // Keying on the path remounts the tree on navigation, which restarts the
+  // enter animation — a plain class would only ever play once.
+  const { pathname } = useLocation();
   return (
     <>
       <SplashScreen />
       <ScrollProgress />
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <FilmGrain />
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div key={pathname} className="relative route-enter" style={{ zIndex: 1 }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route

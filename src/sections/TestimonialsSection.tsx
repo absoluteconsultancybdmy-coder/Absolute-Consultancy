@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ScrambledText from '../components/ScrambledText';
 import SectionLabel from '../components/SectionLabel';
+import { useTilt } from '../hooks/useTilt';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,6 +85,7 @@ function StarRating() {
 }
 
 export default function TestimonialsSection() {
+  const tilt = useTilt({ max: 6, lift: 10 });
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -189,16 +191,16 @@ export default function TestimonialsSection() {
               opacity: 0,
               transition: 'border-color 300ms ease, transform 300ms ease',
             }}
+            onPointerMove={tilt.onPointerMove}
+            onPointerLeave={tilt.onPointerLeave}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = 'rgb(var(--color-gold) / 0.25)';
-              el.style.transform = 'translateY(-4px)';
               el.style.boxShadow = '0 8px 32px rgb(var(--color-gold) / 0.15)';
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.borderColor = 'rgb(var(--color-gold) / 0.07)';
-              el.style.transform = 'translateY(0)';
               el.style.boxShadow = 'none';
             }}
           >

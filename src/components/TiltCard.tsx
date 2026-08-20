@@ -1,11 +1,5 @@
-import {
-  useCallback,
-  useRef,
-  type ComponentPropsWithoutRef,
-  type CSSProperties,
-  type ReactNode,
-} from 'react';
-import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion';
+import type { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react';
+import { useTilt } from '../hooks/useTilt';
 
 interface TiltCardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'style'> {
   children: ReactNode;
@@ -22,14 +16,11 @@ interface TiltCardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'style'> {
 const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
 
 /**
- * TiltCard — pointer-driven 3D tilt.
+ * TiltCard — a card that tilts in 3D toward the pointer.
  *
- * Writes transforms straight to the node instead of through state: a pointermove
- * handler that re-rendered would drop frames on a grid of these. Coalesced into
- * one rAF per frame for the same reason.
- *
- * Pointer type is checked rather than viewport width — a touch device fires
- * pointermove once on tap, which would leave the card stuck mid-tilt.
+ * The tilt itself lives in useTilt; this wraps it with the glare overlay and
+ * the transition so the card eases back on leave. Use the hook directly on
+ * elements that already have their own hover handlers.
  */
 export default function TiltCard({
   children,
@@ -40,60 +31,13 @@ export default function TiltCard({
   glare = true,
   ...rest
 }: TiltCardProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const glareRef = useRef<HTMLDivElement | null>(null);
-  const frameRef = useRef<number | null>(null);
-  const reducedMotion = usePrefersReducedMotion();
-
-  const handleMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      if (reducedMotion || e.pointerType !== 'mouse') return;
-      const el = ref.current;
-      if (!el) return;
-
-      const { clientX, clientY } = e;
-      if (frameRef.current !== null) return;
-
-      frameRef.current = window.requestAnimationFrame(() => {
-        frameRef.current = null;
-        const rect = el.getBoundingClientRect();
-        // -0.5..0.5 from the card's centre.
-        const px = (clientX - rect.left) / rect.width - 0.5;
-        const py = (clientY - rect.top) / rect.height - 0.5;
-
-        el.style.transform =
-          `perspective(1000px) rotateY(${(px * max * 2).toFixed(2)}deg) ` +
-          `rotateX(${(-py * max * 2).toFixed(2)}deg) translateZ(${lift}px)`;
-
-        const g = glareRef.current;
-        if (g) {
-          g.style.opacity = '1';
-          g.style.background =
-            `radial-gradient(circle at ${((px + 0.5) * 100).toFixed(1)}% ${((py + 0.5) * 100).toFixed(1)}%, ` +
-            'rgb(var(--color-gold) / 0.18), transparent 60%)';
-        }
-      });
-    },
-    [max, lift, reducedMotion]
-  );
-
-  const handleLeave = useCallback(() => {
-    if (frameRef.current !== null) {
-      window.cancelAnimationFrame(frameRef.current);
-      frameRef.current = null;
-    }
-    const el = ref.current;
-    if (el) el.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
-    const g = glareRef.current;
-    if (g) g.style.opacity = '0';
-  }, []);
+  const { onPointerMove, onPointerLeave, glareRef } = useTilt({ max, lift, glare });
 
   return (
     <div
       {...rest}
-      ref={ref}
-      onPointerMove={handleMove}
-      onPointerLeave={handleLeave}
+      onPointerMove={onPointerMove}
+      onPointerLeave={onPointerLeave}
       className={className}
       style={{
         ...style,
@@ -104,7 +48,7 @@ export default function TiltCard({
     >
       {glare && (
         <div
-          ref={glareRef}
+          ref={glareRef as React.RefObject<HTMLDivElement | null>}
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 rounded-[inherit]"
           style={{ opacity: 0, transition: `opacity 400ms ${EASE}` }}
