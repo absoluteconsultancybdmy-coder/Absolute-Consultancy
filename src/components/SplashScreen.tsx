@@ -70,7 +70,7 @@ export default function SplashScreen() {
           className="splash-bg-shift absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255,0.10) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(11,42,92,0.20) 0%, transparent 55%)',
+              'radial-gradient(ellipse at 30% 20%, rgb(var(--color-gold) / 0.10) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(11,42,92,0.20) 0%, transparent 55%)',
           }}
         />
 
@@ -81,7 +81,7 @@ export default function SplashScreen() {
               width: '640px',
               height: '640px',
               background:
-                'conic-gradient(from 0deg, rgba(255, 255, 255,0) 0%, rgba(255, 255, 255,0.22) 22%, rgba(255, 255, 255,0) 50%, rgba(11,42,92,0.22) 72%, rgba(255, 255, 255,0) 100%)',
+                'conic-gradient(from 0deg, rgb(var(--color-gold) / 0) 0%, rgb(var(--color-gold) / 0.22) 22%, rgb(var(--color-gold) / 0) 50%, rgba(11,42,92,0.22) 72%, rgb(var(--color-gold) / 0) 100%)',
               borderRadius: '50%',
               filter: 'blur(48px)',
             }}
@@ -90,11 +90,11 @@ export default function SplashScreen() {
 
         <div className="splash-bokeh absolute inset-0 pointer-events-none" aria-hidden>
           {[
-            { top: '14%', left: '18%', size: 140, dur: 9000, delay: 0, color: 'rgba(255, 255, 255,0.10)' },
+            { top: '14%', left: '18%', size: 140, dur: 9000, delay: 0, color: 'rgb(var(--color-gold) / 0.10)' },
             { top: '70%', left: '12%', size: 100, dur: 11000, delay: 1500, color: 'rgba(11,42,92,0.18)' },
-            { top: '22%', left: '78%', size: 180, dur: 13000, delay: 800, color: 'rgba(255, 255, 255,0.09)' },
+            { top: '22%', left: '78%', size: 180, dur: 13000, delay: 800, color: 'rgb(var(--color-gold) / 0.09)' },
             { top: '72%', left: '82%', size: 120, dur: 10000, delay: 2200, color: 'rgba(11,42,92,0.15)' },
-            { top: '46%', left: '50%', size: 90, dur: 8000, delay: 600, color: 'rgba(255, 255, 255,0.12)' },
+            { top: '46%', left: '50%', size: 90, dur: 8000, delay: 600, color: 'rgb(var(--color-gold) / 0.12)' },
           ].map((b, i) => (
             <div
               key={i}
@@ -120,7 +120,7 @@ export default function SplashScreen() {
           aria-hidden
           style={{
             background:
-              'linear-gradient(115deg, transparent 30%, rgba(245,226,168,0.10) 48%, rgba(255, 255, 255,0.18) 50%, rgba(245,226,168,0.10) 52%, transparent 70%)',
+              'linear-gradient(115deg, transparent 30%, rgba(245,226,168,0.10) 48%, rgb(var(--color-gold) / 0.18) 50%, rgba(245,226,168,0.10) 52%, transparent 70%)',
             mixBlendMode: 'screen',
             filter: 'blur(8px)',
           }}
@@ -131,7 +131,7 @@ export default function SplashScreen() {
           aria-hidden
           style={{
             backgroundImage:
-              'linear-gradient(rgba(255, 255, 255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255,0.04) 1px, transparent 1px)',
+              'linear-gradient(rgb(var(--color-gold) / 0.04) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--color-gold) / 0.04) 1px, transparent 1px)',
             backgroundSize: '40px 40px',
             maskImage: 'radial-gradient(ellipse at center, black 25%, transparent 75%)',
             WebkitMaskImage: 'radial-gradient(ellipse at center, black 25%, transparent 75%)',
@@ -159,7 +159,7 @@ export default function SplashScreen() {
                   height: i % 4 === 0 ? '3px' : '2px',
                   borderRadius: '50%',
                   background: 'rgba(245,226,168,0.6)',
-                  boxShadow: '0 0 6px rgba(255, 255, 255,0.5)',
+                  boxShadow: '0 0 6px rgb(var(--color-gold) / 0.5)',
                   animation: `dustFloat ${dur}ms ease-in-out ${delay}ms infinite alternate`,
                 }}
               />
@@ -182,7 +182,7 @@ export default function SplashScreen() {
             <defs>
               <linearGradient id="splashGoldTL" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#F5E2A8" />
-                <stop offset="50%" stopColor="#FFFFFF" />
+                <stop offset="50%" stopColor="rgb(var(--color-gold))" />
                 <stop offset="100%" stopColor="#8C6E1C" />
               </linearGradient>
             </defs>
@@ -204,7 +204,7 @@ export default function SplashScreen() {
             <defs>
               <linearGradient id="splashGoldTR" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#F5E2A8" />
-                <stop offset="50%" stopColor="#FFFFFF" />
+                <stop offset="50%" stopColor="rgb(var(--color-gold))" />
                 <stop offset="100%" stopColor="#8C6E1C" />
               </linearGradient>
             </defs>
@@ -226,7 +226,7 @@ export default function SplashScreen() {
             <defs>
               <linearGradient id="splashGoldBL" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#F5E2A8" />
-                <stop offset="50%" stopColor="#FFFFFF" />
+                <stop offset="50%" stopColor="rgb(var(--color-gold))" />
                 <stop offset="100%" stopColor="#8C6E1C" />
               </linearGradient>
             </defs>
@@ -248,7 +248,7 @@ export default function SplashScreen() {
             <defs>
               <linearGradient id="splashGoldBR" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#F5E2A8" />
-                <stop offset="50%" stopColor="#FFFFFF" />
+                <stop offset="50%" stopColor="rgb(var(--color-gold))" />
                 <stop offset="100%" stopColor="#8C6E1C" />
               </linearGradient>
             </defs>
@@ -285,12 +285,12 @@ export default function SplashScreen() {
                 letterSpacing: '0.01em',
                 margin: 0,
                 padding: '0 4px',
-                background: 'linear-gradient(180deg, #F5E2A8 0%, #FFFFFF 50%, #8C6E1C 100%)',
+                background: 'linear-gradient(180deg, #F5E2A8 0%, rgb(var(--color-gold)) 50%, #8C6E1C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 color: 'transparent',
-                filter: 'drop-shadow(0 0 28px rgba(255, 255, 255,0.35))',
+                filter: 'drop-shadow(0 0 28px rgb(var(--color-gold) / 0.35))',
                 clipPath: 'inset(0 calc((1 - var(--progress)) * 100%) 0 0)',
                 WebkitClipPath: 'inset(0 calc((1 - var(--progress)) * 100%) 0 0)',
                 whiteSpace: 'nowrap',
@@ -310,7 +310,7 @@ export default function SplashScreen() {
                 width: 'var(--pen-x, 0%)',
                 height: '8px',
                 transform: 'translateY(-50%)',
-                background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.45) 60%, rgba(255, 255, 255,0.7) 100%)',
+                background: 'linear-gradient(90deg, transparent 0%, rgb(var(--color-gold) / 0.45) 60%, rgb(var(--color-gold) / 0.7) 100%)',
                 filter: 'blur(2px)',
                 borderRadius: '4px',
                 pointerEvents: 'none',
@@ -337,10 +337,10 @@ export default function SplashScreen() {
             >
               <defs>
                 <linearGradient id="splashLine" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
-                  <stop offset="20%" stopColor="#FFFFFF" stopOpacity="1" />
-                  <stop offset="80%" stopColor="#FFFFFF" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+                  <stop offset="0%" stopColor="rgb(var(--color-gold))" stopOpacity="0" />
+                  <stop offset="20%" stopColor="rgb(var(--color-gold))" stopOpacity="1" />
+                  <stop offset="80%" stopColor="rgb(var(--color-gold))" stopOpacity="1" />
+                  <stop offset="100%" stopColor="rgb(var(--color-gold))" stopOpacity="0" />
                 </linearGradient>
               </defs>
               <path
@@ -385,13 +385,13 @@ export default function SplashScreen() {
                       <stop offset="100%" stopColor="#8C6E1C" />
                     </linearGradient>
                     <linearGradient id="penCap" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#031D4C" />
+                      <stop offset="0%" stopColor="#FFFFFF" />
                       <stop offset="50%" stopColor="#1a1208" />
-                      <stop offset="100%" stopColor="#031D4C" />
+                      <stop offset="100%" stopColor="#FFFFFF" />
                     </linearGradient>
                     <linearGradient id="penGrip" x1="0%" y1="0%" x2="0%" y2="100%">
                       <stop offset="0%" stopColor="#3a2410" />
-                      <stop offset="100%" stopColor="#031D4C" />
+                      <stop offset="100%" stopColor="#FFFFFF" />
                     </linearGradient>
                     <filter id="penGlow" x="-50%" y="-50%" width="200%" height="200%">
                       <feGaussianBlur stdDeviation="2.4" result="blur" />
@@ -410,7 +410,7 @@ export default function SplashScreen() {
                     }}
                   >
                     <rect x="10" y="-5" width="46" height="10" rx="1.5" fill="url(#penCap)" />
-                    <rect x="11" y="-11" width="2.2" height="22" rx="0.6" fill="#FFFFFF" opacity="0.9" />
+                    <rect x="11" y="-11" width="2.2" height="22" rx="0.6" fill="rgb(var(--color-gold))" opacity="0.9" />
                     <rect x="14" y="-11" width="1.2" height="22" rx="0.4" fill="#8C6E1C" opacity="0.7" />
                     <rect x="17" y="-11" width="0.8" height="22" rx="0.3" fill="#F5E2A8" opacity="0.5" />
 
@@ -420,7 +420,7 @@ export default function SplashScreen() {
                     <rect x="-48" y="-2.4" width="23" height="4.8" rx="0.6" fill="url(#penBody)" />
                     <rect x="-65" y="-1.8" width="17" height="3.6" rx="0.4" fill="url(#penBody)" />
 
-                    <circle cx="6" cy="0" r="1.4" fill="#FFFFFF" opacity="0.8" />
+                    <circle cx="6" cy="0" r="1.4" fill="rgb(var(--color-gold))" opacity="0.8" />
                     <circle cx="-30" cy="0" r="0.6" fill="#8C6E1C" opacity="0.7" />
                   </g>
 
@@ -442,7 +442,7 @@ export default function SplashScreen() {
                       cx="-22"
                       cy="0"
                       r="7"
-                      fill="rgba(255, 255, 255,0.32)"
+                      fill="rgb(var(--color-gold) / 0.32)"
                       className="splash-pen-nib-glow"
                     />
                     <circle
@@ -456,7 +456,7 @@ export default function SplashScreen() {
                       cx="-22"
                       cy="0"
                       r="1.2"
-                      fill="#FFFFFF"
+                      fill="rgb(var(--color-gold))"
                       className="splash-pen-nib-core"
                     />
                   </g>
@@ -507,7 +507,7 @@ export default function SplashScreen() {
             style={{
               width: '100%',
               height: '1px',
-              background: 'rgba(255, 255, 255,0.15)',
+              background: 'rgb(var(--color-gold) / 0.15)',
             }}
           >
             <div className="splash-progress" />
@@ -679,7 +679,7 @@ export default function SplashScreen() {
         .splash-progress {
           width: 0%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, #FFFFFF, transparent);
+          background: linear-gradient(90deg, transparent, rgb(var(--color-gold)), transparent);
           animation: splashProgressAnim 6500ms ease-out 600ms forwards;
         }
         @keyframes splashProgressAnim {

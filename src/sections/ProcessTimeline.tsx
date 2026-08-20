@@ -213,7 +213,7 @@ export default function ProcessTimeline() {
       ref={sectionRef}
       id="process"
       className="relative w-full py-32 lg:py-44 overflow-hidden"
-      style={{ background: '#031D4C' }}
+      style={{ background: 'rgb(var(--color-mist))' }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
@@ -229,7 +229,7 @@ export default function ProcessTimeline() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 50% 30%, rgba(255, 255, 255,0.08) 0%, transparent 60%), linear-gradient(180deg, rgba(2, 22, 53,0.85) 0%, rgba(2, 22, 53,0.7) 100%)',
+            'radial-gradient(ellipse 60% 50% at 50% 30%, rgb(var(--color-gold) / 0.08) 0%, transparent 60%), linear-gradient(180deg, rgba(2, 22, 53,0.85) 0%, rgba(2, 22, 53,0.7) 100%)',
         }}
       />
 
@@ -242,7 +242,7 @@ export default function ProcessTimeline() {
           style={{
             fontSize: 'clamp(120px, 22vw, 320px)',
             letterSpacing: '-0.02em',
-            WebkitTextStroke: '1px rgba(255, 255, 255,0.04)',
+            WebkitTextStroke: '1px rgb(var(--color-gold) / 0.04)',
             color: 'transparent',
             lineHeight: 1,
           }}
@@ -251,8 +251,8 @@ export default function ProcessTimeline() {
         </span>
       </div>
 
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
-      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
+      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">
@@ -272,7 +272,7 @@ export default function ProcessTimeline() {
             <ScrambledText text="YOUR" />{' '}
             <ScrambledText
               text="JOURNEY"
-              style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}
+              style={{ WebkitTextStroke: '1px rgb(var(--color-gold) / 0.5)', color: 'transparent' }}
             />
           </h2>
           <p
@@ -289,7 +289,7 @@ export default function ProcessTimeline() {
             className="absolute left-[19px] lg:left-1/2 top-0 bottom-0 w-px lg:-translate-x-1/2 origin-top"
             style={{
               background:
-                'linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255,0.6) 8%, rgba(255, 255, 255,0.6) 92%, transparent 100%)',
+                'linear-gradient(to bottom, transparent 0%, rgb(var(--color-gold) / 0.6) 8%, rgb(var(--color-gold) / 0.6) 92%, transparent 100%)',
               transform: isMobile ? 'scaleY(0)' : 'translateX(-50%) scaleY(0)',
             }}
             aria-hidden="true"
@@ -305,7 +305,7 @@ export default function ProcessTimeline() {
               ref={rocketGlowRef}
               className="absolute inset-0 rounded-full"
               style={{
-                background: 'radial-gradient(circle, rgba(255, 255, 255,0.55) 0%, rgba(255, 255, 255,0) 70%)',
+                background: 'radial-gradient(circle, rgb(var(--color-gold) / 0.55) 0%, rgb(var(--color-gold) / 0) 70%)',
                 transform: 'scale(1)',
                 opacity: 0.45,
                 filter: 'blur(4px)',
@@ -329,8 +329,8 @@ export default function ProcessTimeline() {
               className="absolute inset-0 flex items-center justify-center rounded-full"
               style={{
                 background: 'radial-gradient(circle, rgba(11,30,66,0.95) 0%, rgba(11,30,66,0.85) 100%)',
-                border: '1.5px solid #FFFFFF',
-                boxShadow: '0 0 16px rgba(255, 255, 255,0.45), inset 0 0 8px rgba(255, 255, 255,0.25)',
+                border: '1.5px solid rgb(var(--color-gold))',
+                boxShadow: '0 0 16px rgb(var(--color-gold) / 0.45), inset 0 0 8px rgb(var(--color-gold) / 0.25)',
               }}
             >
               <Rocket size={16} strokeWidth={1.8} className="text-gold" style={{ transform: 'rotate(45deg)' }} />
@@ -357,9 +357,9 @@ export default function ProcessTimeline() {
                   <div
                     className="w-3 h-3 rounded-full"
                     style={{
-                      background: '#031D4C',
-                      border: '2px solid #FFFFFF',
-                      boxShadow: '0 0 12px rgba(255, 255, 255,0.4)',
+                      background: 'rgb(var(--color-mist))',
+                      border: '2px solid rgb(var(--color-gold))',
+                      boxShadow: '0 0 12px rgb(var(--color-gold) / 0.4)',
                     }}
                   />
                 </div>
@@ -374,21 +374,21 @@ export default function ProcessTimeline() {
                   <article
                     className="group relative rounded-2xl p-6 lg:p-8 h-full"
                     style={{
-                      background: 'rgba(255,255,255,0.04)',
-                      border: '1px solid rgba(255, 255, 255,0.18)',
+                      background: 'rgb(var(--color-gold) / 0.04)',
+                      border: '1px solid rgb(var(--color-gold) / 0.18)',
                       backdropFilter: 'blur(6px)',
                       WebkitBackdropFilter: 'blur(6px)',
                       transition: 'border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease',
                     }}
                     onMouseEnter={(e) => {
                       const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = 'rgba(255, 255, 255,0.45)';
+                      el.style.borderColor = 'rgb(var(--color-gold) / 0.45)';
                       el.style.transform = 'translateY(-3px)';
-                      el.style.boxShadow = '0 12px 36px rgba(255, 255, 255,0.12)';
+                      el.style.boxShadow = '0 12px 36px rgb(var(--color-gold) / 0.12)';
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLElement;
-                      el.style.borderColor = 'rgba(255, 255, 255,0.18)';
+                      el.style.borderColor = 'rgb(var(--color-gold) / 0.18)';
                       el.style.transform = 'translateY(0)';
                       el.style.boxShadow = 'none';
                     }}
@@ -398,7 +398,7 @@ export default function ProcessTimeline() {
                         className="font-display font-bold leading-none"
                         style={{
                           fontSize: 'clamp(48px, 6vw, 72px)',
-                          WebkitTextStroke: '1.5px rgba(255, 255, 255,0.7)',
+                          WebkitTextStroke: '1.5px rgb(var(--color-gold) / 0.7)',
                           color: 'transparent',
                           letterSpacing: '-0.02em',
                         }}
@@ -408,8 +408,8 @@ export default function ProcessTimeline() {
                       <div
                         className="flex items-center justify-center w-10 h-10 rounded-full flex-shrink-0"
                         style={{
-                          background: 'rgba(255, 255, 255,0.12)',
-                          border: '1px solid rgba(255, 255, 255,0.3)',
+                          background: 'rgb(var(--color-gold) / 0.12)',
+                          border: '1px solid rgb(var(--color-gold) / 0.3)',
                         }}
                         aria-hidden="true"
                       >
@@ -434,7 +434,7 @@ export default function ProcessTimeline() {
                     <div className="flex items-center gap-2">
                       <span
                         className="inline-block w-1.5 h-1.5 rounded-full"
-                        style={{ background: '#FFFFFF' }}
+                        style={{ background: 'rgb(var(--color-gold))' }}
                         aria-hidden="true"
                       />
                       <span

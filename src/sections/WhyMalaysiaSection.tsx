@@ -229,9 +229,9 @@ export default function WhyMalaysiaSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundColor: '#031D4C',
+          backgroundColor: 'rgb(var(--color-mist))',
           backgroundImage:
-            'radial-gradient(ellipse 60% 50% at 20% 10%, rgba(255, 255, 255,0.10) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 90%, rgba(11,42,92,0.45) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 20% 10%, rgb(var(--color-gold) / 0.10) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 90%, rgba(11,42,92,0.45) 0%, transparent 60%)',
         }}
       />
 
@@ -274,13 +274,13 @@ export default function WhyMalaysiaSection() {
             <path
               d="M 64 0 L 0 0 0 64"
               fill="none"
-              stroke="rgba(255, 255, 255,0.05)"
+              stroke="rgb(var(--color-gold) / 0.05)"
               strokeWidth="1"
             />
           </pattern>
           <radialGradient id="why-fade" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stopColor="#031D4C" stopOpacity="0" />
-            <stop offset="100%" stopColor="#031D4C" stopOpacity="1" />
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="1" />
           </radialGradient>
           <mask id="why-mask">
             <rect width="100%" height="100%" fill="url(#why-fade)" />
@@ -314,7 +314,7 @@ export default function WhyMalaysiaSection() {
             }}
           >
             Your gateway to a{' '}
-            <span style={{ color: '#FFFFFF' }}>world-class degree</span>
+            <span style={{ color: 'rgb(var(--color-gold))' }}>world-class degree</span>
           </h2>
           <p
             data-anim
@@ -339,8 +339,8 @@ export default function WhyMalaysiaSection() {
                 className="why-card group relative rounded-2xl p-7 flex flex-col gap-4 cursor-default"
                 style={{
                   opacity: 0,
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255, 255, 255,0.25)',
+                  background: 'rgb(var(--color-gold) / 0.04)',
+                  border: '1px solid rgb(var(--color-gold) / 0.25)',
                   backdropFilter: 'blur(8px)',
                   WebkitBackdropFilter: 'blur(8px)',
                   transition:
@@ -349,15 +349,15 @@ export default function WhyMalaysiaSection() {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(-4px)';
-                  el.style.borderColor = 'rgba(255, 255, 255,0.7)';
-                  el.style.background = 'rgba(255,255,255,0.06)';
-                  el.style.boxShadow = '0 12px 32px rgba(255, 255, 255,0.18)';
+                  el.style.borderColor = 'rgb(var(--color-gold) / 0.7)';
+                  el.style.background = 'rgb(var(--color-gold) / 0.06)';
+                  el.style.boxShadow = '0 12px 32px rgb(var(--color-gold) / 0.18)';
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(0)';
-                  el.style.borderColor = 'rgba(255, 255, 255,0.25)';
-                  el.style.background = 'rgba(255,255,255,0.04)';
+                  el.style.borderColor = 'rgb(var(--color-gold) / 0.25)';
+                  el.style.background = 'rgb(var(--color-gold) / 0.04)';
                   el.style.boxShadow = 'none';
                 }}
               >
@@ -365,14 +365,14 @@ export default function WhyMalaysiaSection() {
                   className="absolute inset-0 pointer-events-none rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
                     background:
-                      'radial-gradient(circle at 50% 0%, rgba(255, 255, 255,0.10) 0%, transparent 60%)',
+                      'radial-gradient(circle at 50% 0%, rgb(var(--color-gold) / 0.10) 0%, transparent 60%)',
                   }}
                 />
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                   style={{
-                    background: 'rgba(255, 255, 255,0.12)',
-                    border: '1px solid rgba(255, 255, 255,0.35)',
+                    background: 'rgb(var(--color-gold) / 0.12)',
+                    border: '1px solid rgb(var(--color-gold) / 0.35)',
                     transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
                 >
@@ -399,8 +399,8 @@ export default function WhyMalaysiaSection() {
           ref={comparisonRef}
           className="mt-20 lg:mt-24 rounded-2xl overflow-hidden"
           style={{
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255, 255, 255,0.2)',
+            background: 'rgb(var(--color-gold) / 0.03)',
+            border: '1px solid rgb(var(--color-gold) / 0.2)',
             backdropFilter: 'blur(6px)',
             WebkitBackdropFilter: 'blur(6px)',
           }}
@@ -424,7 +424,7 @@ export default function WhyMalaysiaSection() {
               }}
             >
               Malaysia vs.{' '}
-              <span style={{ color: '#FFFFFF' }}>UK / Australia / Canada</span>
+              <span style={{ color: 'rgb(var(--color-gold))' }}>UK / Australia / Canada</span>
             </h3>
           </div>
 
@@ -437,7 +437,7 @@ export default function WhyMalaysiaSection() {
                 <tr
                   data-anim
                   className="compare-row"
-                  style={{ borderBottom: '1px solid rgba(255, 255, 255,0.2)', opacity: 0 }}
+                  style={{ borderBottom: '1px solid rgb(var(--color-gold) / 0.2)', opacity: 0 }}
                 >
                   <th
                     className="text-left font-body font-semibold text-cream/70 px-6 lg:px-8 py-4"
@@ -453,7 +453,7 @@ export default function WhyMalaysiaSection() {
                         fontSize: '11px',
                         letterSpacing: '0.2em',
                         textTransform: 'uppercase',
-                        color: i === 0 ? '#FFFFFF' : 'rgba(245,232,211,0.7)',
+                        color: i === 0 ? 'rgb(var(--color-gold))' : 'rgba(245,232,211,0.7)',
                       }}
                     >
                       {c}
@@ -467,7 +467,7 @@ export default function WhyMalaysiaSection() {
                     key={row.label}
                     data-anim
                     className="compare-row"
-                    style={{ borderTop: '1px solid rgba(255,255,255,0.05)', opacity: 0 }}
+                    style={{ borderTop: '1px solid rgb(var(--color-gold) / 0.05)', opacity: 0 }}
                   >
                     <td
                       className="font-body text-cream/80 px-6 lg:px-8 py-4"
@@ -500,16 +500,16 @@ function renderCell(cell: ComparisonCell, highlight: boolean) {
     return (
       <span
         className="inline-flex items-center gap-2 font-body"
-        style={{ color: highlight ? '#FFFFFF' : '#D4F87A' }}
+        style={{ color: highlight ? 'rgb(var(--color-gold))' : '#D4F87A' }}
       >
         <span
           className="inline-flex items-center justify-center w-5 h-5 rounded-full"
           style={{
             background: highlight
-              ? 'rgba(255, 255, 255,0.18)'
+              ? 'rgb(var(--color-gold) / 0.18)'
               : 'rgba(212,248,122,0.15)',
             border: highlight
-              ? '1px solid rgba(255, 255, 255,0.5)'
+              ? '1px solid rgb(var(--color-gold) / 0.5)'
               : '1px solid rgba(212,248,122,0.35)',
           }}
         >
@@ -528,8 +528,8 @@ function renderCell(cell: ComparisonCell, highlight: boolean) {
         <span
           className="inline-flex items-center justify-center w-5 h-5 rounded-full"
           style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.12)',
+            background: 'rgb(var(--color-gold) / 0.04)',
+            border: '1px solid rgb(var(--color-gold) / 0.12)',
           }}
         >
           <CrossGlyph />
@@ -542,13 +542,13 @@ function renderCell(cell: ComparisonCell, highlight: boolean) {
     <span
       className="font-body"
       style={{
-        color: highlight ? '#FFFFFF' : 'rgba(245,232,211,0.8)',
+        color: highlight ? 'rgb(var(--color-gold))' : 'rgba(245,232,211,0.8)',
         fontWeight: highlight ? 600 : 400,
       }}
     >
       <span
         className="mr-1"
-        style={{ color: highlight ? '#FFFFFF' : '#D4F87A' }}
+        style={{ color: highlight ? 'rgb(var(--color-gold))' : '#D4F87A' }}
       >
         ✓
       </span>

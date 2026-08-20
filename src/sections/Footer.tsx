@@ -210,7 +210,7 @@ function NewsletterSignup() {
             border:
               status.kind === 'error'
                 ? '1px solid rgba(220,90,90,0.6)'
-                : '1px solid rgba(255, 255, 255,0.35)',
+                : '1px solid rgb(var(--color-gold) / 0.35)',
             letterSpacing: '0.02em',
           }}
         />
@@ -284,11 +284,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative w-full bg-mist pt-16 pb-10 overflow-hidden">
+    <footer className="on-navy relative w-full bg-mist pt-16 pb-10 overflow-hidden">
       <GooeyBlob blobCount={4} className="absolute inset-0 -z-10 pointer-events-none hidden md:block" />
 
       {/* Top gold hairline */}
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
@@ -367,7 +367,7 @@ export default function Footer() {
         {/* Business Verification */}
         <div
           className="mb-10 p-6 rounded-lg"
-          style={{ background: 'rgba(255, 255, 255,0.06)', border: '1px solid rgba(255, 255, 255,0.15)' }}
+          style={{ background: 'rgb(var(--color-gold) / 0.06)', border: '1px solid rgb(var(--color-gold) / 0.15)' }}
         >
           <p className="font-body uppercase tracking-[0.2em] text-gold/80 mb-4" style={{ fontSize: '10px' }}>
             ✦ Business Verification
@@ -404,7 +404,7 @@ export default function Footer() {
           <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
             <span className="text-mouse">Operating Hours:</span> 24/7
           </p>
-          <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255, 255, 255,0.1)' }}>
+          <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgb(var(--color-gold) / 0.1)' }}>
             <p className="font-body text-mouse" style={{ fontSize: '11px', lineHeight: 1.7 }}>
               <span className="text-gold/50 font-semibold">Verification Statement</span> — Absolute Consultancy Firm is a legally registered consultancy service permitted to operate student application and support activities for international education.
             </p>
@@ -418,7 +418,7 @@ export default function Footer() {
         <div
           id="newsletter"
           className="mb-10 p-6 rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 scroll-mt-24"
-          style={{ background: 'rgba(11,42,92,0.18)', border: '1px solid rgba(255, 255, 255,0.25)' }}
+          style={{ background: 'rgba(11,42,92,0.18)', border: '1px solid rgb(var(--color-gold) / 0.25)' }}
         >
           <div className="flex-1 min-w-0">
             <p
@@ -447,7 +447,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+          style={{ borderTop: '1px solid rgb(var(--color-gold) / 0.05)' }}
         >
           <p className="text-mouse font-body" style={{ fontSize: '11px' }}>
             &copy; {new Date().getFullYear()} Absolute Consultancy Firm. All Rights Reserved.

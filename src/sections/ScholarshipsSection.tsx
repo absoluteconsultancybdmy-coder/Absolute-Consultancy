@@ -157,9 +157,9 @@ export default function ScholarshipsSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundColor: '#031D4C',
+          backgroundColor: 'rgb(var(--color-mist))',
           backgroundImage:
-            'radial-gradient(ellipse 60% 50% at 85% 15%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 10% 85%, rgba(255, 255, 255,0.08) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 85% 15%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 10% 85%, rgb(var(--color-gold) / 0.08) 0%, transparent 60%)',
         }}
       />
 
@@ -181,13 +181,13 @@ export default function ScholarshipsSection() {
             <path
               d="M 64 0 L 0 0 0 64"
               fill="none"
-              stroke="rgba(255, 255, 255,0.05)"
+              stroke="rgb(var(--color-gold) / 0.05)"
               strokeWidth="1"
             />
           </pattern>
           <radialGradient id="sch-fade" cx="50%" cy="50%" r="60%">
-            <stop offset="0%" stopColor="#031D4C" stopOpacity="0" />
-            <stop offset="100%" stopColor="#031D4C" stopOpacity="1" />
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="1" />
           </radialGradient>
           <mask id="sch-mask">
             <rect width="100%" height="100%" fill="url(#sch-fade)" />
@@ -221,7 +221,7 @@ export default function ScholarshipsSection() {
             }}
           >
             Real scholarship pathways for{' '}
-            <span style={{ color: '#FFFFFF' }}>Bangladeshi students</span>
+            <span style={{ color: 'rgb(var(--color-gold))' }}>Bangladeshi students</span>
           </h2>
           <p
             data-anim
@@ -245,8 +245,8 @@ export default function ScholarshipsSection() {
                 className="sch-card group relative rounded-2xl p-7 flex flex-col gap-5 cursor-default"
                 style={{
                   opacity: 0,
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255, 255, 255,0.25)',
+                  background: 'rgb(var(--color-gold) / 0.04)',
+                  border: '1px solid rgb(var(--color-gold) / 0.25)',
                   backdropFilter: 'blur(8px)',
                   WebkitBackdropFilter: 'blur(8px)',
                   transition:
@@ -255,15 +255,15 @@ export default function ScholarshipsSection() {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(-4px)';
-                  el.style.borderColor = 'rgba(255, 255, 255,0.7)';
-                  el.style.background = 'rgba(255,255,255,0.06)';
-                  el.style.boxShadow = '0 12px 32px rgba(255, 255, 255,0.18)';
+                  el.style.borderColor = 'rgb(var(--color-gold) / 0.7)';
+                  el.style.background = 'rgb(var(--color-gold) / 0.06)';
+                  el.style.boxShadow = '0 12px 32px rgb(var(--color-gold) / 0.18)';
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = 'translateY(0)';
-                  el.style.borderColor = 'rgba(255, 255, 255,0.25)';
-                  el.style.background = 'rgba(255,255,255,0.04)';
+                  el.style.borderColor = 'rgb(var(--color-gold) / 0.25)';
+                  el.style.background = 'rgb(var(--color-gold) / 0.04)';
                   el.style.boxShadow = 'none';
                 }}
               >
@@ -271,14 +271,14 @@ export default function ScholarshipsSection() {
                   className="absolute inset-0 pointer-events-none rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                   style={{
                     background:
-                      'radial-gradient(circle at 50% 0%, rgba(255, 255, 255,0.10) 0%, transparent 60%)',
+                      'radial-gradient(circle at 50% 0%, rgb(var(--color-gold) / 0.10) 0%, transparent 60%)',
                   }}
                 />
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
                   style={{
-                    background: 'rgba(255, 255, 255,0.12)',
-                    border: '1px solid rgba(255, 255, 255,0.35)',
+                    background: 'rgb(var(--color-gold) / 0.12)',
+                    border: '1px solid rgb(var(--color-gold) / 0.35)',
                     transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
                 >
@@ -298,7 +298,7 @@ export default function ScholarshipsSection() {
                 </p>
                 <div
                   className="mt-auto pt-4 flex flex-col gap-1.5"
-                  style={{ borderTop: '1px solid rgba(255, 255, 255,0.15)' }}
+                  style={{ borderTop: '1px solid rgb(var(--color-gold) / 0.15)' }}
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span
@@ -339,11 +339,11 @@ export default function ScholarshipsSection() {
           data-anim
           className="mt-12 lg:mt-16 rounded-2xl p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10"
           style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255, 255, 255,0.4)',
+            background: 'rgb(var(--color-gold) / 0.04)',
+            border: '1px solid rgb(var(--color-gold) / 0.4)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
-            boxShadow: '0 12px 40px rgba(255, 255, 255,0.08)',
+            boxShadow: '0 12px 40px rgb(var(--color-gold) / 0.08)',
             opacity: 0,
           }}
         >
@@ -352,7 +352,7 @@ export default function ScholarshipsSection() {
             className="absolute -top-px left-6 right-6 h-px lg:hidden"
             style={{
               background:
-                'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.5) 50%, transparent 100%)',
+                'linear-gradient(90deg, transparent 0%, rgb(var(--color-gold) / 0.5) 50%, transparent 100%)',
             }}
           />
           <div className="flex-1 min-w-0">
@@ -375,27 +375,27 @@ export default function ScholarshipsSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 font-body whitespace-normal text-center lg:whitespace-nowrap w-full lg:w-auto lg:flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%)',
-              color: '#031D4C',
+              background: 'linear-gradient(135deg, rgb(var(--color-gold)) 0%, #D4AF37 100%)',
+              color: 'rgb(var(--color-mist))',
               padding: '12px 20px',
               borderRadius: 9999,
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              boxShadow: '0 10px 28px rgba(255, 255, 255,0.3), 0 0 0 1px rgba(255, 255, 255,0.45)',
+              boxShadow: '0 10px 28px rgb(var(--color-gold) / 0.3), 0 0 0 1px rgb(var(--color-gold) / 0.45)',
               transition:
                 'transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms ease',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.boxShadow =
-                '0 14px 36px rgba(255, 255, 255,0.45), 0 0 0 1px rgba(255, 255, 255,0.7)';
+                '0 14px 36px rgb(var(--color-gold) / 0.45), 0 0 0 1px rgb(var(--color-gold) / 0.7)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow =
-                '0 10px 28px rgba(255, 255, 255,0.3), 0 0 0 1px rgba(255, 255, 255,0.45)';
+                '0 10px 28px rgb(var(--color-gold) / 0.3), 0 0 0 1px rgb(var(--color-gold) / 0.45)';
             }}
           >
             Get a Free Scholarship Assessment

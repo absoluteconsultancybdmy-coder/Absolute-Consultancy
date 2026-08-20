@@ -57,7 +57,7 @@ export default function NotFoundPage() {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255, 255, 255,0.08) 0%, transparent 70%)',
+              'radial-gradient(ellipse 60% 50% at 50% 50%, rgb(var(--color-gold) / 0.08) 0%, transparent 70%)',
           }}
         />
         <div
@@ -68,8 +68,8 @@ export default function NotFoundPage() {
             width: 4,
             height: 4,
             borderRadius: '50%',
-            background: 'rgba(255, 255, 255,0.4)',
-            boxShadow: '0 0 12px rgba(255, 255, 255,0.6)',
+            background: 'rgb(var(--color-gold) / 0.4)',
+            boxShadow: '0 0 12px rgb(var(--color-gold) / 0.6)',
             animation: reducedMotion ? undefined : 'nf-twinkle 4s ease-in-out infinite',
           }}
           aria-hidden="true"
@@ -95,7 +95,7 @@ export default function NotFoundPage() {
             width: 2,
             height: 2,
             borderRadius: '50%',
-            background: 'rgba(255, 255, 255,0.6)',
+            background: 'rgb(var(--color-gold) / 0.6)',
             animation: reducedMotion ? undefined : 'nf-twinkle 6s ease-in-out infinite 0.5s',
           }}
           aria-hidden="true"
@@ -140,8 +140,8 @@ export default function NotFoundPage() {
           <div
             className="absolute inset-0 rounded-full"
             style={{
-              border: '1.5px solid rgba(255, 255, 255,0.5)',
-              boxShadow: '0 0 30px rgba(255, 255, 255,0.15), inset 0 0 20px rgba(255, 255, 255,0.08)',
+              border: '1.5px solid rgb(var(--color-gold) / 0.5)',
+              boxShadow: '0 0 30px rgb(var(--color-gold) / 0.15), inset 0 0 20px rgb(var(--color-gold) / 0.08)',
               animation: reducedMotion ? undefined : 'nf-compass-spin 28s linear infinite',
             }}
           >
@@ -154,7 +154,7 @@ export default function NotFoundPage() {
           <div
             className="absolute inset-3 rounded-full"
             style={{
-              border: '1px dashed rgba(255, 255, 255,0.3)',
+              border: '1px dashed rgb(var(--color-gold) / 0.3)',
               animation: reducedMotion ? undefined : 'nf-compass-wobble 4s ease-in-out infinite',
             }}
           />
@@ -182,7 +182,7 @@ export default function NotFoundPage() {
 
           <div
             className="absolute left-1/2 top-1/2 w-3 h-3 -ml-1.5 -mt-1.5 rounded-full"
-            style={{ background: 'var(--color-gold)', boxShadow: '0 0 10px rgba(255, 255, 255,0.7)' }}
+            style={{ background: 'var(--color-gold)', boxShadow: '0 0 10px rgb(var(--color-gold) / 0.7)' }}
           />
         </div>
 
@@ -196,7 +196,7 @@ export default function NotFoundPage() {
           className="font-display font-bold text-kimono leading-[0.95] mb-6"
           style={{ fontSize: 'clamp(64px, 14vw, 160px)', letterSpacing: '0.02em' }}
         >
-          <span style={{ WebkitTextStroke: '1.5px rgba(255, 255, 255,0.55)', color: 'transparent' }}>404</span>
+          <span style={{ WebkitTextStroke: '1.5px rgb(var(--color-gold) / 0.55)', color: 'transparent' }}>404</span>
         </h1>
         <p
           className="font-serif font-light text-cream/70 mb-10 mx-auto"
@@ -208,8 +208,8 @@ export default function NotFoundPage() {
         <div
           className="mb-10 rounded-2xl p-5 sm:p-6 text-left"
           style={{
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255, 255, 255,0.2)',
+            background: 'rgb(var(--color-gold) / 0.03)',
+            border: '1px solid rgb(var(--color-gold) / 0.2)',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
           }}
@@ -247,7 +247,7 @@ export default function NotFoundPage() {
               style={{
                 background: 'rgba(2, 22, 53,0.6)',
                 color: 'var(--color-kimono)',
-                border: '1px solid rgba(255, 255, 255,0.35)',
+                border: '1px solid rgb(var(--color-gold) / 0.35)',
                 letterSpacing: '0.02em',
               }}
             />
@@ -275,16 +275,16 @@ export default function NotFoundPage() {
                   onClick={() => handleSuggestion(s.href)}
                   className="px-4 py-2 rounded-full font-body text-[11px] uppercase tracking-[0.16em] transition-colors duration-200"
                   style={{
-                    background: 'rgba(255, 255, 255,0.08)',
-                    border: '1px solid rgba(255, 255, 255,0.35)',
+                    background: 'rgb(var(--color-gold) / 0.08)',
+                    border: '1px solid rgb(var(--color-gold) / 0.35)',
                     color: 'var(--color-cream)',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255,0.18)';
+                    e.currentTarget.style.background = 'rgb(var(--color-gold) / 0.18)';
                     e.currentTarget.style.color = 'var(--color-gold)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.background = 'rgba(255, 255, 255,0.08)';
+                    e.currentTarget.style.background = 'rgb(var(--color-gold) / 0.08)';
                     e.currentTarget.style.color = 'var(--color-cream)';
                   }}
                 >

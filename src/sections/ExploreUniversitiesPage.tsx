@@ -11,7 +11,7 @@ const SPLASH_DOTS = Array.from({ length: 40 }, (_, i) => ({
   height: Math.random() * 6 + 2,
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
-  background: i % 3 === 0 ? '#FFFFFF' : i % 3 === 1 ? '#D4AF37' : '#FFD700',
+  background: i % 3 === 0 ? 'rgb(var(--color-gold))' : i % 3 === 1 ? '#D4AF37' : '#FFD700',
 }));
 
 interface University {
@@ -685,14 +685,14 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
     >
       <div
         className="relative w-full max-w-[900px] max-h-[85vh] overflow-y-auto rounded-3xl"
-        style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgba(255, 255, 255,0.3)', WebkitOverflowScrolling: 'touch' }}
+        style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >
         <button
           onClick={onClose}
           aria-label="Close university details"
           className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-cream/70 hover:text-cream transition-colors"
-          style={{ background: 'rgba(255,255,255,0.1)' }}
+          style={{ background: 'rgb(var(--color-gold) / 0.1)' }}
         >
           ✕
         </button>
@@ -702,7 +702,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,30,66,1) 0%, transparent 60%)' }} />
           <div className="absolute bottom-4 left-6 right-16">
             <span className="px-3 py-1 rounded-full text-[10px] font-body uppercase tracking-widest mb-2 inline-block"
-              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgba(255, 255, 255,0.2)', color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgba(255, 255, 255,0.4)'}` }}>
+              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgb(var(--color-gold) / 0.2)', color: uni.type === 'Public' ? '#D4F87A' : 'rgb(var(--color-gold))', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgb(var(--color-gold) / 0.4)'}` }}>
               {uni.type} University
             </span>
             <h2 className="font-display font-bold text-kimono" style={{ fontSize: 'clamp(20px, 3vw, 32px)', letterSpacing: '0.02em' }}>{uni.name}</h2>
@@ -711,7 +711,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
         </div>
 
         <div className="p-6 lg:p-8">
-          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgba(255, 255, 255,0.08)', border: '1px solid rgba(255, 255, 255,0.15)' }}>
+          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgb(var(--color-gold) / 0.08)', border: '1px solid rgb(var(--color-gold) / 0.15)' }}>
             {[
               { label: 'Founded', value: uni.founded },
               { label: 'Students', value: uni.students },
@@ -732,14 +732,14 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
               <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Programmes</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {uni.programmes.map(p => (
-                  <span key={p} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>{p}</span>
+                  <span key={p} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgb(var(--color-gold) / 0.07)', border: '1px solid rgb(var(--color-gold) / 0.1)' }}>{p}</span>
                 ))}
               </div>
 
               <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Study Levels</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {uni.studyLevels.map(s => (
-                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>{s}</span>
+                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgb(var(--color-gold) / 0.07)', border: '1px solid rgb(var(--color-gold) / 0.1)' }}>{s}</span>
                 ))}
               </div>
 
@@ -747,7 +747,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
               <ul className="space-y-2">
                 {uni.highlights.map(h => (
                   <li key={h} className="flex items-center gap-2 text-cream/70 text-sm font-body">
-                    <span style={{ color: '#FFFFFF' }}>✓</span> {h}
+                    <span style={{ color: 'rgb(var(--color-gold))' }}>✓</span> {h}
                   </li>
                 ))}
               </ul>
@@ -758,7 +758,7 @@ function UniversityModal({ uni, onClose }: { uni: University; onClose: () => voi
                 href={`https://wa.me/60175631621?text=Hi, I'm interested in studying at ${uni.name}. Please help me with the application.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-body text-sm uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] mb-3"
+                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-body text-sm uppercase tracking-widest text-kimono transition-all duration-300 hover:scale-[1.02] mb-3"
                 style={{ background: '#25D366' }}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -1006,7 +1006,7 @@ export default function ExploreUniversitiesPage() {
         <div
           ref={splashRef}
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-          style={{ background: 'linear-gradient(135deg, #031D4C 0%, #031D4C 50%, #031D4C 100%)' }}
+          style={{ background: 'rgb(var(--color-mist))' }}
         >
           {/* Magic particles */}
           <div className="absolute inset-0 overflow-hidden">
@@ -1020,14 +1020,14 @@ export default function ExploreUniversitiesPage() {
                   left: dot.left,
                   top: dot.top,
                   background: dot.background,
-                  boxShadow: '0 0 8px rgba(255, 255, 255,0.6)',
+                  boxShadow: '0 0 8px rgb(var(--color-gold) / 0.6)',
                 }}
               />
             ))}
           </div>
 
           {/* Radial glow */}
-          <div className="absolute w-[500px] h-[500px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255, 255, 255,0.15) 0%, transparent 70%)' }} />
+          <div className="absolute w-[500px] h-[500px] rounded-full" style={{ background: 'radial-gradient(circle, rgb(var(--color-gold) / 0.15) 0%, transparent 70%)' }} />
 
           {/* Text */}
           <div className="relative z-10 text-center px-6">
@@ -1037,11 +1037,11 @@ export default function ExploreUniversitiesPage() {
                 style={{
                   fontSize: 'clamp(32px, 8vw, 72px)',
                   letterSpacing: '0.15em',
-                  background: 'linear-gradient(135deg, #FFFFFF 0%, #FFD700 40%, #D4AF37 60%, #FFFFFF 100%)',
+                  background: 'linear-gradient(135deg, rgb(var(--color-gold)) 0%, #FFD700 40%, #D4AF37 60%, rgb(var(--color-gold)) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   textShadow: 'none',
-                  filter: 'drop-shadow(0 0 30px rgba(255, 255, 255,0.3))',
+                  filter: 'drop-shadow(0 0 30px rgb(var(--color-gold) / 0.3))',
                 }}
               >
                 PATHWAY TO
@@ -1051,7 +1051,7 @@ export default function ExploreUniversitiesPage() {
                 style={{
                   fontSize: 'clamp(36px, 9vw, 80px)',
                   letterSpacing: '0.2em',
-                  background: 'linear-gradient(135deg, #FFD700 0%, #FFFFFF 50%, #FFD700 100%)',
+                  background: 'linear-gradient(135deg, #FFD700 0%, rgb(var(--color-gold)) 50%, #FFD700 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   filter: 'drop-shadow(0 0 40px rgba(255,215,0,0.4))',
@@ -1065,9 +1065,9 @@ export default function ExploreUniversitiesPage() {
                 Explore 30+ Partner Universities
               </p>
               <div className="mt-4 flex items-center justify-center gap-2">
-                <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
-                <div className="w-2 h-2 rounded-full" style={{ background: '#FFFFFF' }} />
-                <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
+                <div className="w-12 h-px" style={{ background: 'rgb(var(--color-gold) / 0.4)' }} />
+                <div className="w-2 h-2 rounded-full" style={{ background: 'rgb(var(--color-gold))' }} />
+                <div className="w-12 h-px" style={{ background: 'rgb(var(--color-gold) / 0.4)' }} />
               </div>
             </div>
           </div>
@@ -1077,7 +1077,7 @@ export default function ExploreUniversitiesPage() {
       {/* Main Content — always rendered underneath */}
       <div ref={contentRef} style={{ opacity: splashVisible ? 0 : 1, minHeight: '100vh', background: '#021635' }}>
         {/* Top bar */}
-        <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}>
+        <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}>
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
             {/* Left: HOME + nav links */}
             <div className="flex items-center gap-1 overflow-x-auto flex-nowrap scrollbar-none flex-shrink-0 max-w-full">
@@ -1086,12 +1086,12 @@ export default function ExploreUniversitiesPage() {
                     sessionStorage.setItem('scrollToSection', 'destinations');
                     navigate('/');
                   }}
-                  className="flex items-center gap-1.5 text-gold/70 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 flex-shrink-0"
+                  className="flex items-center gap-1.5 text-gold/70 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-cream/5 flex-shrink-0"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                   Back
                 </button>
-              <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
+              <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
               {([
                 { label: 'About', id: 'about' },
                 { label: 'Services', id: 'services' },
@@ -1105,7 +1105,7 @@ export default function ExploreUniversitiesPage() {
                     sessionStorage.setItem('scrollToSection', id);
                     navigate('/');
                   }}
-                  className="text-cream/60 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0"
+                  className="text-cream/60 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-cream/5 whitespace-nowrap flex-shrink-0"
                 >
                   {label}
                 </button>
@@ -1114,7 +1114,7 @@ export default function ExploreUniversitiesPage() {
 
             {/* Center: Search */}
             <div className="relative flex-1 min-w-0 max-w-sm">
-              <svg className="absolute left-3 top-1/2 -translate-y-1/2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'rgba(255, 255, 255,0.5)' }}>
+              <svg className="absolute left-3 top-1/2 -translate-y-1/2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'rgb(var(--color-gold) / 0.5)' }}>
                 <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
               </svg>
               <input
@@ -1123,7 +1123,7 @@ export default function ExploreUniversitiesPage() {
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 className="w-full pl-9 pr-8 py-2 rounded-full font-body text-xs text-cream/90 placeholder:text-cream/60 outline-none"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255, 255, 255,0.25)' }}
+                style={{ background: 'rgb(var(--color-gold) / 0.06)', border: '1px solid rgb(var(--color-gold) / 0.25)' }}
               />
               {searchQuery && (
                 <button
@@ -1146,11 +1146,11 @@ export default function ExploreUniversitiesPage() {
         {/* Page header */}
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-12 pb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <div className="flex-1 min-w-0">
-            <div className="w-16 h-px mb-6" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
+            <div className="w-16 h-px mb-6" style={{ background: 'rgb(var(--color-gold) / 0.5)' }} />
             <h2 className="font-display font-bold text-kimono uppercase"
               style={{ fontSize: 'clamp(28px, 5vw, 52px)', letterSpacing: '0.05em', lineHeight: 1.1 }}>
               ALL PARTNER<br />
-              <span style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}>UNIVERSITIES</span>
+              <span style={{ WebkitTextStroke: '1px rgb(var(--color-gold) / 0.5)', color: 'transparent' }}>UNIVERSITIES</span>
             </h2>
             <p className="font-serif font-light text-cream/60 mt-4 max-w-[500px]" style={{ fontSize: 'clamp(14px, 1.5vw, 18px)', lineHeight: 1.7 }}>
               Browse all{' '}
@@ -1184,7 +1184,7 @@ export default function ExploreUniversitiesPage() {
               decoding="async"
               className="w-36 h-36 lg:w-44 lg:h-44 object-contain"
               style={{
-                filter: 'drop-shadow(0 0 24px rgba(255, 255, 255,0.18))',
+                filter: 'drop-shadow(0 0 24px rgb(var(--color-gold) / 0.18))',
               }}
             />
           </div>
@@ -1196,7 +1196,7 @@ export default function ExploreUniversitiesPage() {
             className="relative overflow-hidden"
             style={{
               background: 'linear-gradient(90deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.7) 50%, rgba(11,30,66,0.7) 100%)',
-              border: '1px solid rgba(255, 255, 255,0.2)',
+              border: '1px solid rgb(var(--color-gold) / 0.2)',
               borderRadius: '999px',
               height: '44px',
             }}
@@ -1220,9 +1220,9 @@ export default function ExploreUniversitiesPage() {
                   className="inline-flex items-center flex-shrink-0 font-body"
                   style={{
                     fontSize: '11px',
-                    color: '#E8EEF7',
-                    background: 'linear-gradient(90deg, rgba(255, 255, 255,0.18) 0%, rgba(255, 255, 255,0.06) 100%)',
-                    border: '1px solid rgba(255, 255, 255,0.25)',
+                    color: 'rgb(var(--color-cream))',
+                    background: 'linear-gradient(90deg, rgb(var(--color-gold) / 0.18) 0%, rgb(var(--color-gold) / 0.06) 100%)',
+                    border: '1px solid rgb(var(--color-gold) / 0.25)',
                     borderRadius: '999px',
                     height: '26px',
                     padding: '0 14px',
@@ -1231,7 +1231,7 @@ export default function ExploreUniversitiesPage() {
                     gap: '6px',
                   }}
                 >
-                  <span style={{ color: '#FFFFFF' }}>🎓</span> {p}
+                  <span style={{ color: 'rgb(var(--color-gold))' }}>🎓</span> {p}
                 </span>
               ))}
             </div>
@@ -1245,13 +1245,13 @@ export default function ExploreUniversitiesPage() {
             <div
               className="mb-5 flex items-center justify-between gap-3 px-4 py-2.5 rounded-full"
               style={{
-                background: 'linear-gradient(90deg, rgba(255, 255, 255,0.12) 0%, rgba(255, 255, 255,0.04) 100%)',
-                border: '1px solid rgba(255, 255, 255,0.4)',
+                background: 'linear-gradient(90deg, rgb(var(--color-gold) / 0.12) 0%, rgb(var(--color-gold) / 0.04) 100%)',
+                border: '1px solid rgb(var(--color-gold) / 0.4)',
                 animation: 'cityBannerIn 350ms ease-out',
               }}
             >
               <span className="font-body text-xs text-cream/80 flex items-center gap-2" style={{ letterSpacing: '0.08em' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(var(--color-gold))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
@@ -1280,18 +1280,18 @@ export default function ExploreUniversitiesPage() {
                   onClick={() => handleTypeFilter(filter)}
                   className="px-5 py-2 rounded-full font-body text-xs uppercase tracking-wider cursor-pointer"
                   style={{
-                    background: isActive ? '#FFFFFF' : 'transparent',
-                    color: isActive ? '#021635' : '#FFFFFF',
-                    border: `1px solid ${isActive ? '#FFFFFF' : 'rgba(255, 255, 255,0.4)'}`,
+                    background: isActive ? 'rgb(var(--color-gold))' : 'transparent',
+                    color: isActive ? '#021635' : 'rgb(var(--color-gold))',
+                    border: `1px solid ${isActive ? 'rgb(var(--color-gold))' : 'rgb(var(--color-gold) / 0.4)'}`,
                     fontWeight: isActive ? 700 : 500,
                     transition: 'background 250ms ease, color 250ms ease, border-color 250ms ease, transform 200ms ease',
                     letterSpacing: '0.12em',
                   }}
                   onMouseEnter={e => {
-                    if (!isActive) e.currentTarget.style.borderColor = '#FFFFFF';
+                    if (!isActive) e.currentTarget.style.borderColor = 'rgb(var(--color-gold))';
                   }}
                   onMouseLeave={e => {
-                    if (!isActive) e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.4)';
+                    if (!isActive) e.currentTarget.style.borderColor = 'rgb(var(--color-gold) / 0.4)';
                   }}
                 >
                   {filter} <span style={{ opacity: isActive ? 0.7 : 0.6 }}>({count})</span>
@@ -1313,7 +1313,7 @@ export default function ExploreUniversitiesPage() {
                   <button
                     onClick={() => setSearchQuery('')}
                     className="px-6 py-2 rounded-full font-body text-sm uppercase tracking-wider cursor-pointer"
-                    style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF' }}
+                    style={{ border: '1px solid rgb(var(--color-gold) / 0.4)', color: 'rgb(var(--color-gold))' }}
                   >
                     Clear Search
                   </button>
@@ -1322,7 +1322,7 @@ export default function ExploreUniversitiesPage() {
                   <button
                     onClick={() => handleTypeFilter('All')}
                     className="px-6 py-2 rounded-full font-body text-sm uppercase tracking-wider cursor-pointer"
-                    style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF' }}
+                    style={{ border: '1px solid rgb(var(--color-gold) / 0.4)', color: 'rgb(var(--color-gold))' }}
                   >
                     Show All Types
                   </button>
@@ -1331,7 +1331,7 @@ export default function ExploreUniversitiesPage() {
                   <button
                     onClick={() => setSelectedCity(null)}
                     className="px-6 py-2 rounded-full font-body text-sm uppercase tracking-wider cursor-pointer"
-                    style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF' }}
+                    style={{ border: '1px solid rgb(var(--color-gold) / 0.4)', color: 'rgb(var(--color-gold))' }}
                   >
                     Show All Cities
                   </button>
@@ -1345,8 +1345,8 @@ export default function ExploreUniversitiesPage() {
                   key={uni.name}
                   className="uni-card rounded-2xl overflow-hidden cursor-pointer group relative flex flex-col"
                   style={{
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.07)',
+                    background: 'rgb(var(--color-gold) / 0.03)',
+                    border: '1px solid rgb(var(--color-gold) / 0.07)',
                     transformStyle: 'preserve-3d',
                     willChange: 'transform',
                     transition: 'transform 180ms ease-out, border-color 300ms ease, background 300ms ease, box-shadow 300ms ease',
@@ -1362,9 +1362,9 @@ export default function ExploreUniversitiesPage() {
                     const rotateX = ((y / rect.height) - 0.5) * -8;
                     el.style.transition = 'transform 80ms ease-out, border-color 200ms ease, background 200ms ease, box-shadow 250ms ease';
                     el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-                    el.style.borderColor = 'rgba(255, 255, 255,0.55)';
-                    el.style.background = 'rgba(255,255,255,0.06)';
-                    el.style.boxShadow = `0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255, 255, 255,0.35), inset 0 1px 0 rgba(255, 255, 255,0.15)`;
+                    el.style.borderColor = 'rgb(var(--color-gold) / 0.55)';
+                    el.style.background = 'rgb(var(--color-gold) / 0.06)';
+                    el.style.boxShadow = `0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgb(var(--color-gold) / 0.35), inset 0 1px 0 rgb(var(--color-gold) / 0.15)`;
                     const dot = el.querySelector('.tilt-dot') as HTMLElement | null;
                     if (dot) {
                       dot.style.left = `${x}px`;
@@ -1376,15 +1376,15 @@ export default function ExploreUniversitiesPage() {
                     if (prefersReducedMotion) {
                       e.currentTarget.style.transform = 'translateY(-6px)';
                       e.currentTarget.style.borderColor = `${uni.accent}60`;
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                      e.currentTarget.style.background = 'rgb(var(--color-gold) / 0.06)';
                     }
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget;
                     el.style.transition = 'transform 500ms ease, border-color 400ms ease, background 400ms ease, box-shadow 400ms ease';
                     el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0)';
-                    el.style.borderColor = 'rgba(255,255,255,0.07)';
-                    el.style.background = 'rgba(255,255,255,0.03)';
+                    el.style.borderColor = 'rgb(var(--color-gold) / 0.07)';
+                    el.style.background = 'rgb(var(--color-gold) / 0.03)';
                     el.style.boxShadow = 'none';
                     const dot = el.querySelector('.tilt-dot') as HTMLElement | null;
                     if (dot) dot.style.opacity = '0';
@@ -1394,8 +1394,8 @@ export default function ExploreUniversitiesPage() {
                   <span
                     className="tilt-dot absolute w-2.5 h-2.5 rounded-full pointer-events-none"
                     style={{
-                      background: '#FFFFFF',
-                      boxShadow: '0 0 14px rgba(255, 255, 255,0.9), 0 0 4px rgba(255,215,0,0.6)',
+                      background: 'rgb(var(--color-gold))',
+                      boxShadow: '0 0 14px rgb(var(--color-gold) / 0.9), 0 0 4px rgba(255,215,0,0.6)',
                       transform: 'translate(-50%, -50%)',
                       opacity: 0,
                       transition: 'opacity 250ms ease',
@@ -1429,7 +1429,7 @@ export default function ExploreUniversitiesPage() {
                     <div className="absolute top-3 left-3">
                       <span
                         className="px-2.5 py-1 rounded-full text-[9px] font-body uppercase tracking-wider"
-                        style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700, letterSpacing: '0.12em' }}
+                        style={{ background: 'rgb(var(--color-gold))', color: '#021635', fontWeight: 700, letterSpacing: '0.12em' }}
                       >
                         ★ Featured
                       </span>
@@ -1438,9 +1438,9 @@ export default function ExploreUniversitiesPage() {
                       <span
                         className="px-2 py-0.5 rounded-full text-[9px] font-body uppercase tracking-wider"
                         style={{
-                          background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgba(255, 255, 255,0.2)',
-                          color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF',
-                          border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgba(255, 255, 255,0.4)'}`,
+                          background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgb(var(--color-gold) / 0.2)',
+                          color: uni.type === 'Public' ? '#D4F87A' : 'rgb(var(--color-gold))',
+                          border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgb(var(--color-gold) / 0.4)'}`,
                         }}
                       >
                         {uni.type}
@@ -1482,10 +1482,10 @@ export default function ExploreUniversitiesPage() {
 
                     <div className="flex flex-wrap gap-1">
                       {uni.programmes.slice(0, 3).map(p => (
-                        <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse" style={{ background: 'rgba(255,255,255,0.05)' }}>{p}</span>
+                        <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse" style={{ background: 'rgb(var(--color-gold) / 0.05)' }}>{p}</span>
                       ))}
                       {uni.programmes.length > 3 && (
-                        <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgba(255, 255, 255,0.08)' }}>+{uni.programmes.length - 3} more</span>
+                        <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgb(var(--color-gold) / 0.08)' }}>+{uni.programmes.length - 3} more</span>
                       )}
                     </div>
 

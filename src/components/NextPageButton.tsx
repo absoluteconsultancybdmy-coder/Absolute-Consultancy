@@ -52,8 +52,8 @@ function NextPageButton() {
   if (!isHome) return null;
 
   const visible = nearBottom;
-  const baseShadow = '0 8px 24px rgba(255, 255, 255,0.45), 0 0 32px rgba(212,175,55,0.25)';
-  const hoverShadow = '0 12px 32px rgba(255, 255, 255,0.6), 0 0 48px rgba(212,175,55,0.4)';
+  const baseShadow = '0 8px 24px rgb(var(--color-gold) / 0.45), 0 0 32px rgba(212,175,55,0.25)';
+  const hoverShadow = '0 12px 32px rgb(var(--color-gold) / 0.6), 0 0 48px rgba(212,175,55,0.4)';
 
   return (
     <button
@@ -71,8 +71,8 @@ function NextPageButton() {
         })`,
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? 'auto' : 'none',
-        background: 'linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%)',
-        color: '#031D4C',
+        background: 'linear-gradient(135deg, rgb(var(--color-gold)) 0%, #D4AF37 100%)',
+        color: 'rgb(var(--color-mist))',
         padding: isMobile ? '10px 18px' : '14px 26px',
         fontSize: isMobile ? 14 : 15,
         borderRadius: 9999,

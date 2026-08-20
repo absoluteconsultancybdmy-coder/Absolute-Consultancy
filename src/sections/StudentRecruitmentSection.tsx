@@ -82,7 +82,7 @@ export default function StudentRecruitmentSection() {
           className="w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = '0'; }}
         />
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-cream/[0.06]" />
       </div>
 
 
@@ -90,14 +90,14 @@ export default function StudentRecruitmentSection() {
       {/* Top gold hairline */}
       <div
         className="hairline-draw absolute top-0 left-0 right-0 h-px z-10"
-        style={{ background: 'rgba(255, 255, 255,0.2)' }}
+        style={{ background: 'rgb(var(--color-gold) / 0.2)' }}
       />
 
       {/* Animated background glow */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255, 255, 255,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgb(var(--color-gold) / 0.06) 0%, transparent 70%)',
         }}
       />
 
@@ -129,7 +129,7 @@ export default function StudentRecruitmentSection() {
           style={{
             fontSize: 'clamp(120px, 25vw, 350px)',
             letterSpacing: '-0.02em',
-            WebkitTextStroke: '1px rgba(255, 255, 255,0.03)',
+            WebkitTextStroke: '1px rgb(var(--color-gold) / 0.03)',
             color: 'transparent',
             lineHeight: 1,
           }}

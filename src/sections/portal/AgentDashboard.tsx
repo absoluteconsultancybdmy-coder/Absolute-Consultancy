@@ -135,10 +135,10 @@ export default function AgentDashboard() {
             body="Students linked to your agency will appear here once they are assigned to you."
           />
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-white/10">
+          <div className="overflow-x-auto rounded-lg border border-cream/10">
             <table className="w-full min-w-[560px] border-collapse">
               <thead>
-                <tr className="border-b border-white/10 bg-white/[0.02]">
+                <tr className="border-b border-cream/10 bg-cream/[0.02]">
                   {['Name', 'Email', 'Phone', 'Country', 'Joined'].map((h) => (
                     <th
                       key={h}
@@ -151,7 +151,7 @@ export default function AgentDashboard() {
               </thead>
               <tbody>
                 {students.map((st) => (
-                  <tr key={st.id} className="border-b border-white/5 last:border-0">
+                  <tr key={st.id} className="border-b border-cream/5 last:border-0">
                     <td className="px-4 py-3 font-body text-sm text-kimono">{st.full_name ?? '—'}</td>
                     <td className="px-4 py-3 font-body text-sm text-mouse">{st.email ?? '—'}</td>
                     <td className="px-4 py-3 font-body text-sm text-mouse">{st.phone ?? '—'}</td>
@@ -172,7 +172,7 @@ export default function AgentDashboard() {
         ) : (
           <ul className="space-y-3">
             {applications.map((app) => (
-              <li key={app.id} className="rounded-lg border border-white/10 bg-white/[0.02] p-5">
+              <li key={app.id} className="rounded-lg border border-cream/10 bg-cream/[0.02] p-5">
                 <div className="flex flex-wrap items-center gap-3">
                   <p className="font-body text-base text-kimono">{app.courses?.name}</p>
                   <StatusPill status={app.status} />
@@ -193,7 +193,7 @@ export default function AgentDashboard() {
               { label: 'Approved', value: totals.approved },
               { label: 'Paid', value: totals.paid },
             ].map((card) => (
-              <div key={card.label} className="rounded-lg border border-white/10 bg-white/[0.02] p-5">
+              <div key={card.label} className="rounded-lg border border-cream/10 bg-cream/[0.02] p-5">
                 <p className="font-body text-xs uppercase tracking-wider text-mouse">{card.label}</p>
                 <p className="mt-2 font-display text-2xl text-gold">{formatMoney(card.value)}</p>
               </div>
@@ -206,10 +206,10 @@ export default function AgentDashboard() {
               body="A commission is recorded against each application. Amounts and payment status are set by Absolute Consultancy and shown here read-only."
             />
           ) : (
-            <div className="overflow-x-auto rounded-lg border border-white/10">
+            <div className="overflow-x-auto rounded-lg border border-cream/10">
               <table className="w-full min-w-[560px] border-collapse">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.02]">
+                  <tr className="border-b border-cream/10 bg-cream/[0.02]">
                     {['Course', 'Amount', 'Status', 'Paid'].map((h) => (
                       <th
                         key={h}
@@ -222,7 +222,7 @@ export default function AgentDashboard() {
                 </thead>
                 <tbody>
                   {commissions.map((c) => (
-                    <tr key={c.id} className="border-b border-white/5 last:border-0">
+                    <tr key={c.id} className="border-b border-cream/5 last:border-0">
                       <td className="px-4 py-3 font-body text-sm text-kimono">
                         {c.applications?.courses?.name ?? '—'}
                       </td>

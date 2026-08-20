@@ -31,7 +31,7 @@ export const STATUS_LABEL: Record<ApplicationStatus, string> = {
 };
 
 const STATUS_TONE: Record<ApplicationStatus, string> = {
-  draft: 'border-white/15 text-mouse',
+  draft: 'border-cream/15 text-mouse',
   submitted: 'border-gold/40 text-gold',
   under_review: 'border-gold/40 text-gold',
   offer_received: 'border-lime/40 text-lime',
@@ -40,7 +40,7 @@ const STATUS_TONE: Record<ApplicationStatus, string> = {
   visa_approved: 'border-lime/40 text-lime',
   enrolled: 'border-lime/60 text-lime',
   rejected: 'border-red-500/40 text-red-300',
-  withdrawn: 'border-white/15 text-mouse',
+  withdrawn: 'border-cream/15 text-mouse',
 };
 
 export function StatusPill({ status }: { status: ApplicationStatus }) {
@@ -91,7 +91,7 @@ export function DashboardChrome({
 
   return (
     <div className="min-h-[100dvh] bg-mist">
-      <header className="border-b border-white/10">
+      <header className="border-b border-cream/10">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
           <Link
             to="/"
@@ -105,7 +105,7 @@ export function DashboardChrome({
             </span>
             <button
               onClick={handleSignOut}
-              className="rounded-md border border-white/15 px-3 py-1.5 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
+              className="rounded-md border border-cream/15 px-3 py-1.5 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
             >
               Sign out
             </button>
@@ -118,7 +118,7 @@ export function DashboardChrome({
           {heading}
         </h1>
 
-        <div className="mt-8 flex gap-1 overflow-x-auto border-b border-white/10">
+        <div className="mt-8 flex gap-1 overflow-x-auto border-b border-cream/10">
           {tabs.map((t) => (
             <button
               key={t.id}
@@ -145,7 +145,7 @@ export function DashboardChrome({
 
 export function EmptyState({ title, body, action }: { title: string; body: string; action?: ReactNode }) {
   return (
-    <div className="rounded-lg border border-white/10 bg-white/[0.02] px-6 py-14 text-center">
+    <div className="rounded-lg border border-cream/10 bg-cream/[0.02] px-6 py-14 text-center">
       <p className="font-display text-lg uppercase tracking-wide text-kimono">{title}</p>
       <p className="mx-auto mt-3 max-w-md font-body text-sm leading-relaxed text-mouse">{body}</p>
       {action && <div className="mt-6">{action}</div>}

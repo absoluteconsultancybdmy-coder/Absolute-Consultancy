@@ -59,8 +59,8 @@ export default function UniversityLogo({
   const display = NAME_OVERRIDES[shortName] ?? shortName;
   const initials = getInitials(shortName);
   const light = isLight(accent);
-  const textColor = light ? '#1a1a1a' : '#ffffff';
-  const bgColor = light ? 'rgba(255,255,255,0.96)' : accent;
+  const textColor = light ? '#1a1a1a' : 'rgb(var(--color-gold))';
+  const bgColor = light ? 'rgb(var(--color-gold) / 0.96)' : accent;
 
   if (file) {
     return (
@@ -70,7 +70,7 @@ export default function UniversityLogo({
           width: size,
           height: size,
           borderRadius: '14px',
-          boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255, 255, 255,0.18)',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgb(var(--color-gold) / 0.18)',
           padding: '8px',
         }}
       >
@@ -93,7 +93,7 @@ export default function UniversityLogo({
         height: size,
         borderRadius: '14px',
         background: bgColor,
-        boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255, 255, 255,0.18)',
+        boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgb(var(--color-gold) / 0.18)',
       }}
     >
       <div
@@ -105,7 +105,7 @@ export default function UniversityLogo({
           width: size * 0.7,
           height: size * 0.7,
           borderRadius: '50%',
-          background: 'rgba(255,255,255,0.08)',
+          background: 'rgb(var(--color-gold) / 0.08)',
         }}
       />
       <div
@@ -146,7 +146,7 @@ export default function UniversityLogo({
           fontSize: size * 0.11,
           fontWeight: 500,
           letterSpacing: '0.1em',
-          color: light ? 'rgba(0,0,0,0.35)' : 'rgba(255,255,255,0.55)',
+          color: light ? 'rgba(0,0,0,0.35)' : 'rgb(var(--color-gold) / 0.55)',
         }}
       >
         {initials}

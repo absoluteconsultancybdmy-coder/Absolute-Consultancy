@@ -91,19 +91,19 @@ function TestimonialCard({ t }: { t: ParentTestimonial }) {
       style={{
         width: '360px',
         maxWidth: '100%',
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255, 255, 255,0.15)',
+        background: 'rgb(var(--color-gold) / 0.04)',
+        border: '1px solid rgb(var(--color-gold) / 0.15)',
         backdropFilter: 'blur(6px)',
         WebkitBackdropFilter: 'blur(6px)',
         transition: 'border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.45)';
+        e.currentTarget.style.borderColor = 'rgb(var(--color-gold) / 0.45)';
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 24px rgba(255, 255, 255,0.15)';
+        e.currentTarget.style.boxShadow = '0 6px 24px rgb(var(--color-gold) / 0.15)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.15)';
+        e.currentTarget.style.borderColor = 'rgb(var(--color-gold) / 0.15)';
         e.currentTarget.style.transform = 'translateY(0)';
         e.currentTarget.style.boxShadow = 'none';
       }}

@@ -66,7 +66,7 @@ export default function AboutSection() {
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44" id="about">
       <div className="absolute inset-0 z-0">
         <img src={`${import.meta.env.BASE_URL}images/Firm.avif`} alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-cream/[0.06]" />
       </div>
 
 
@@ -93,7 +93,7 @@ export default function AboutSection() {
         <div
           ref={bioRef}
           className="relative rounded-3xl overflow-hidden mb-24"
-          style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgba(255, 255, 255,0.2)' }}
+          style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.2)' }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
@@ -114,7 +114,7 @@ export default function AboutSection() {
               }} />
               <div className="absolute top-6 left-6">
                 <span className="px-4 py-2 rounded-full text-[10px] font-body uppercase tracking-widest"
-                  style={{ background: 'rgba(255, 255, 255,0.9)', color: '#031D4C', fontWeight: 600 }}>
+                  style={{ background: 'rgb(var(--color-gold) / 0.9)', color: 'rgb(var(--color-mist))', fontWeight: 600 }}>
                   ✓ Certified Education Counsellor
                 </span>
               </div>
@@ -122,14 +122,14 @@ export default function AboutSection() {
 
             {/* Right — COO Bio */}
             <div className="flex flex-col justify-center p-10 lg:p-14">
-              <div className="hairline-draw w-12 h-px mb-8" style={{ background: '#FFFFFF' }} />
+              <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgb(var(--color-gold))' }} />
               <p className="small-caps text-gold/70 mb-3" style={{ fontSize: '11px' }}>Chief Operating Officer</p>
               <h3
                 className="font-display font-bold text-cream mb-6"
                 style={{ fontSize: 'clamp(28px, 4vw, 44px)', letterSpacing: '0.03em', lineHeight: 1.1 }}
               >
                 The Face Behind<br />
-                <span style={{ color: '#FFFFFF' }}>Every Success Story</span>
+                <span style={{ color: 'rgb(var(--color-gold))' }}>Every Success Story</span>
               </h3>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '16px', lineHeight: 1.8 }}>
                 With over a year's experience in Malaysian higher education consultancy, our COO personally
@@ -176,8 +176,8 @@ export default function AboutSection() {
                 <a
                   href="mailto:coo@absoluteconsultancyfirm.com"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-body text-sm uppercase tracking-widest"
-                  style={{ background: 'rgba(255, 255, 255,0.15)', color: '#FFFFFF', border: '1px solid rgba(255, 255, 255,0.3)', transition: 'transform 300ms ease, box-shadow 300ms ease' }}
-                  onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgba(255, 255, 255,0.2)'; }}
+                  style={{ background: 'rgb(var(--color-gold) / 0.15)', color: 'rgb(var(--color-gold))', border: '1px solid rgb(var(--color-gold) / 0.3)', transition: 'transform 300ms ease, box-shadow 300ms ease' }}
+                  onMouseEnter={e => { const el = e.currentTarget; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 8px 24px rgb(var(--color-gold) / 0.2)'; }}
                   onMouseLeave={e => { const el = e.currentTarget; el.style.transform = 'translateY(0)'; el.style.boxShadow = 'none'; }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -192,7 +192,7 @@ export default function AboutSection() {
         </div>
 
         {/* Bottom text + video */}
-        <div className="relative rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgba(255, 255, 255,0.2)' }}>
+        <div className="relative rounded-3xl overflow-hidden" style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.2)' }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 p-10 lg:p-14">
             <div>
               <p className="font-serif font-light text-cream/70 mb-8" style={{ fontSize: '17px', lineHeight: 1.8 }}>
@@ -214,7 +214,7 @@ export default function AboutSection() {
                     Latest Video From COO
                   </span>
                 </div>
-                <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', maxWidth: '560px', border: '1px solid rgba(255, 255, 255,0.2)' }}>
+                <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', maxWidth: '560px', border: '1px solid rgb(var(--color-gold) / 0.2)' }}>
                   <iframe
                     src="https://www.youtube.com/embed/tdCG0MCL0V0?autoplay=0&mute=0&rel=0&modestbranding=1"
                     title="COO - Latest Video"
@@ -227,7 +227,7 @@ export default function AboutSection() {
               </div>
             </div>
             <div className="relative pl-8">
-              <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgba(255, 255, 255,0.5)' }} />
+              <div className="absolute left-0 top-0 bottom-0 w-px" style={{ backgroundColor: 'rgb(var(--color-gold) / 0.5)' }} />
               <div className="space-y-10">
                 {[
                   { year: 'Founded 2024', text: 'Started in Kuala Lumpur with a mission to help international students navigate Malaysian universities.' },
@@ -241,7 +241,7 @@ export default function AboutSection() {
                     {'cta' in item && item.cta && (
                       <button
                         onClick={() => setShowVideoModal(true)}
-                        className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255, 255, 255,0.4)]"
+                        className="mt-4 inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgb(var(--color-gold) / 0.4)]"
                         style={{ background: 'var(--color-cream)', color: 'var(--color-mist)', fontWeight: 700, animation: 'pulse-gold 2s ease-in-out infinite' }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -268,11 +268,11 @@ export default function AboutSection() {
         >
           <div
             className="relative w-full max-w-[1000px] rounded-3xl overflow-hidden"
-            style={{ background: '#031D4C', border: '1px solid rgba(255, 255, 255,0.3)', boxShadow: '0 0 60px rgba(255, 255, 255,0.15)' }}
+            style={{ background: 'rgb(var(--color-mist))', border: '1px solid rgb(var(--color-gold) / 0.3)', boxShadow: '0 0 60px rgb(var(--color-gold) / 0.15)' }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(255, 255, 255,0.15) 0%, rgba(255, 255, 255,0.05) 100%)', borderBottom: '1px solid rgba(255, 255, 255,0.2)' }}>
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgb(var(--color-gold) / 0.15) 0%, rgb(var(--color-gold) / 0.05) 100%)', borderBottom: '1px solid rgb(var(--color-gold) / 0.2)' }}>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--color-gold)' }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="#031D4C">
@@ -288,9 +288,9 @@ export default function AboutSection() {
                 onClick={() => setShowVideoModal(false)}
                 aria-label="Close video"
                 className="group w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-red-500/20 hover:scale-110"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}
+                style={{ background: 'rgb(var(--color-gold) / 0.08)', border: '1px solid rgb(var(--color-gold) / 0.15)' }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8EEF7" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgb(var(--color-cream))" strokeWidth="2" strokeLinecap="round" className="group-hover:stroke-red-400 transition-colors">
                   <line x1="18" y1="6" x2="6" y2="18" />
                   <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
@@ -310,13 +310,13 @@ export default function AboutSection() {
             </div>
 
             {/* Modal Footer */}
-            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(255, 255, 255,0.08) 0%, rgba(0,0,0,0.5) 100%)', borderTop: '1px solid rgba(255, 255, 255,0.15)' }}>
+            <div className="flex items-center justify-between px-6 py-4" style={{ background: 'linear-gradient(135deg, rgb(var(--color-gold) / 0.08) 0%, rgba(0,0,0,0.5) 100%)', borderTop: '1px solid rgb(var(--color-gold) / 0.15)' }}>
               <p className="font-body text-cream/70 text-[10px] uppercase tracking-wider">Press ESC or click outside to close</p>
               <button
                 onClick={() => setShowVideoModal(false)}
                 aria-label="Close video"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-body text-[11px] uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-white/10"
-                style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: '#E8EEF7' }}
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full font-body text-[11px] uppercase tracking-widest cursor-pointer transition-all duration-300 hover:bg-cream/10"
+                style={{ background: 'rgb(var(--color-gold) / 0.06)', border: '1px solid rgb(var(--color-gold) / 0.12)', color: 'rgb(var(--color-cream))' }}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <line x1="18" y1="6" x2="6" y2="18" />

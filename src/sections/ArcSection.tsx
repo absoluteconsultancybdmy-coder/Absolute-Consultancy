@@ -50,8 +50,8 @@ export default function ArcSection() {
       id="arc"
       className="relative w-full py-32 lg:py-44 overflow-hidden bg-mist"
     >
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
-      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
+      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} />
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
@@ -59,7 +59,7 @@ export default function ArcSection() {
           style={{
             fontSize: 'clamp(120px, 22vw, 320px)',
             letterSpacing: '-0.02em',
-            WebkitTextStroke: '1px rgba(255, 255, 255,0.04)',
+            WebkitTextStroke: '1px rgb(var(--color-gold) / 0.04)',
             color: 'transparent',
             lineHeight: 1,
           }}
@@ -71,7 +71,7 @@ export default function ArcSection() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 75% 50%, rgba(255, 255, 255,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 50% at 75% 50%, rgb(var(--color-gold) / 0.06) 0%, transparent 70%)',
         }}
       />
 
@@ -133,7 +133,7 @@ export default function ArcSection() {
                   className="w-px h-6 md:h-px md:w-16 lg:w-24"
                   style={{
                     background:
-                      'linear-gradient(to bottom, rgba(255, 255, 255,0.4), rgba(255, 255, 255,0.15))',
+                      'linear-gradient(to bottom, rgb(var(--color-gold) / 0.4), rgb(var(--color-gold) / 0.15))',
                   }}
                 />
               )}

@@ -49,7 +49,7 @@ function WhatsAppWidget() {
         style={{
           padding: '6px 12px',
           background: 'rgba(2, 22, 53,0.95)',
-          border: '1px solid rgba(255, 255, 255,0.4)',
+          border: '1px solid rgb(var(--color-gold) / 0.4)',
           color: 'var(--color-kimono)',
           fontFamily: 'Lato, sans-serif',
           fontSize: 11,
@@ -65,7 +65,7 @@ function WhatsAppWidget() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
-        className="relative flex items-center justify-center rounded-full text-white shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none"
+        className="relative flex items-center justify-center rounded-full text-kimono shadow-lg transition-transform duration-300 hover:scale-110 focus:outline-none"
         style={{
           width: 60,
           height: 60,
@@ -91,7 +91,7 @@ function WhatsAppWidget() {
             width: 14,
             height: 14,
             borderRadius: '50%',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: 'rgb(var(--color-gold))',
             border: '2px solid #031D4C',
             opacity: showDot ? 1 : 0,
             transform: showDot ? 'scale(1)' : 'scale(0.4)',

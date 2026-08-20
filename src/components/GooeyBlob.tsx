@@ -10,10 +10,10 @@ interface GooeyBlobProps {
 function GooeyBlob({
   blobCount = 4,
   colors = [
-    'rgba(255, 255, 255,0.3)',
-    'rgba(255, 255, 255,0.4)',
-    'rgba(255, 255, 255,0.2)',
-    'rgba(255, 255, 255,0.35)',
+    'rgb(var(--color-gold) / 0.3)',
+    'rgb(var(--color-gold) / 0.4)',
+    'rgb(var(--color-gold) / 0.2)',
+    'rgb(var(--color-gold) / 0.35)',
   ],
   className = 'absolute inset-0 w-full h-full pointer-events-none',
   filterId = 'gooey-footer',

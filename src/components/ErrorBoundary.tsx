@@ -45,7 +45,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           style={{
             minHeight: '40vh',
             background: 'rgba(2, 22, 53,0.4)',
-            border: '1px solid rgba(255, 255, 255,0.15)',
+            border: '1px solid rgb(var(--color-gold) / 0.15)',
             color: 'rgba(245,232,211,0.7)',
             padding: '32px 16px',
             textAlign: 'center',

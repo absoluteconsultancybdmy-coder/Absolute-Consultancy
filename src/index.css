@@ -8,58 +8,76 @@
 
 @layer base {
   :root {
-    --background: 219 92% 15%;
-    --foreground: 0 0% 98%;
-    --card: 219 92% 15%;
-    --card-foreground: 0 0% 98%;
-    --popover: 219 92% 15%;
-    --popover-foreground: 0 0% 98%;
+    --background: 0 0% 100%;
+    --foreground: 216 67% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 67% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 67% 12%;
     --primary: 216 78% 21%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 219 70% 20%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 219 40% 25%;
-    --muted-foreground: 216 25% 68%;
+    --secondary: 214 40% 96%;
+    --secondary-foreground: 216 67% 12%;
+    --muted: 214 32% 94%;
+    --muted-foreground: 216 20% 45%;
     --accent: 78 89% 73%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 219 40% 28%;
-    --input: 219 40% 28%;
-    --ring: 0 0% 100%;
+    --border: 214 28% 88%;
+    --input: 214 28% 88%;
+    --ring: 216 92% 15%;
     --radius: 0.625rem;
 
     --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-    --color-mist: #031D4C;
-    --color-navy: #021635;
-    --color-gold: #FFFFFF;
-    --color-cream: #E8EEF7;
-    --color-kimono: #FAFAFA;
-    --color-lime: #D4F87A;
-    --color-mouse: #93A4C0;
+    /* Brand tokens are RGB channel triplets, not hex, for two reasons:
+       Tailwind opacity modifiers (text-cream/60) need channels, and a
+       .on-navy container can re-point these same names so one class works
+       on both the white canvas and the navy blocks. */
+    --color-mist: 255 255 255;   /* page canvas */
+    --color-navy: 3 29 76;       /* brand navy */
+    --color-gold: 3 29 76;       /* accent (navy on white) */
+    --color-kimono: 10 27 51;    /* headings */
+    --color-cream: 51 66 92;     /* body copy */
+    --color-mouse: 94 110 138;   /* muted copy */
+    --color-lime: 88 124 43;     /* success, darkened to read on white */
+  }
+
+  /* Applied to the navy cards and bands. Children need no changes.
+     The attribute selector catches the inline navy-gradient blocks without
+     needing a class added to each one; #052458 is the gradient's second stop
+     and appears nowhere else. */
+  .on-navy,
+  [style*="#052458"] {
+    --color-mist: 3 29 76;
+    --color-gold: 255 255 255;
+    --color-kimono: 250 250 250;
+    --color-cream: 232 238 247;
+    --color-mouse: 147 164 192;
+    --color-lime: 212 248 122;
   }
 
   /* ── Theme variables ──────────────────────────────────────────────── */
   [data-theme="dark"] {
-    --bg-base: #031D4C;
-    --bg-section: #052458;
-    --text-primary: #E8EEF7;
-    --text-secondary: #C4D0E4;
-    --text-muted: #93A4C0;
-    --color-mist: #031D4C;
-    --color-surface: #031D4C;
+    --bg-base: rgb(var(--color-gold));
+    --bg-section: #F4F7FC;
+    --text-primary: #0A1B33;
+    --text-secondary: #33425C;
+    --text-muted: #5E6E8A;
+    /* Brand tokens intentionally not overridden here: :root governs the
+       canvas. This block only carries the legacy bg and text vars. */
   }
 
   [data-theme="light"] {
-    --bg-base: #FFFFFF;
+    --bg-base: rgb(var(--color-gold));
     --bg-section: #F4F7FC;
     --text-primary: #031D4C;
     --text-secondary: #333333;
     --text-muted: #666666;
-    --color-mist: #FFFFFF;
-    --color-surface: #FFFFFF;
+    --color-mist: rgb(var(--color-gold));
+    --color-surface: rgb(var(--color-gold));
     /* Flip the brand "light" tokens to dark so any element using
-       var(--color-kimono) or var(--color-cream) in inline styles
+       rgb(var(--color-kimono)) or rgb(var(--color-cream)) in inline styles
        automatically becomes readable on the cream background. */
     --color-kimono: #031D4C;
     --color-cream: #031D4C;
@@ -76,7 +94,7 @@
   a:focus-visible,
   button:focus-visible,
   [role="button"]:focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid rgb(var(--color-gold));
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -84,7 +102,7 @@
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid rgb(var(--color-gold));
     outline-offset: 1px;
   }
 
@@ -98,13 +116,13 @@
     left: 0;
     z-index: 9999;
     padding: 12px 20px;
-    background: var(--color-mist);
-    color: var(--color-kimono);
+    background: rgb(var(--color-mist));
+    color: rgb(var(--color-kimono));
     font-family: 'Lato', sans-serif;
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    border: 1px solid var(--color-gold);
+    border: 1px solid rgb(var(--color-gold));
     border-radius: 0 0 8px 0;
     text-decoration: none;
     transition: top 200ms var(--ease-standard);
@@ -113,12 +131,12 @@
   .skip-link:focus,
   .skip-link:focus-visible {
     top: 0;
-    outline: 2px solid var(--color-gold);
+    outline: 2px solid rgb(var(--color-gold));
     outline-offset: 2px;
   }
 
   body {
-    background-color: var(--color-mist);
+    background-color: rgb(var(--color-mist));
     color: var(--text-primary);
     font-family: 'Lato', sans-serif;
     font-weight: 300;
@@ -162,7 +180,7 @@
     color: #031D4C;
   }
   [data-theme="light"] .nav-link[aria-current="page"] {
-    color: var(--color-gold);
+    color: rgb(var(--color-gold));
   }
 
   /* Sections that use bg-mist as their outer page background:
@@ -191,7 +209,7 @@
      After the variable flip, this becomes a translucent light cream
      surface, so we lighten the gold border for contrast. */
   [data-theme="light"] nav.theme-aware-nav {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgb(var(--color-gold) / 0.25);
   }
 
   /* Light mode: form inputs that inherit kimono text */
@@ -208,13 +226,13 @@
     color: var(--bg-base);
   }
   [data-theme="light"] .pill-button-primary:hover {
-    background-color: var(--color-navy);
-    color: #E8EEF7;
+    background-color: rgb(var(--color-navy));
+    color: rgb(var(--color-cream));
   }
 
   /* ── Light mode: comprehensive overrides for hardcoded inline styles ──
-     Most section components use inline `style={{ background: '#031D4C' }}`,
-     `style={{ color: '#E8EEF7' }}`, etc. that bypass the CSS-variable system.
+     Most section components use inline `style={{ background: 'rgb(var(--color-mist))' }}`,
+     `style={{ color: 'rgb(var(--color-cream))' }}`, etc. that bypass the CSS-variable system.
      React serializes these into the DOM style attribute (browsers normalise
      hex → rgb()), so we target both forms with attribute substring matches.
      This keeps the fix scoped to src/index.css — no source-file rewrites. */
@@ -222,7 +240,7 @@
   /* Force the body & outer .bg-mist sections to cream */
   [data-theme="light"] body,
   [data-theme="light"] .bg-mist {
-    background-color: #E8EEF7 !important;
+    background-color: rgb(var(--color-cream)) !important;
     color: #031D4C !important;
   }
 
@@ -245,8 +263,8 @@
   [data-theme="light"] [style*="background: #021029"],
   [data-theme="light"] [style*="background:#021029"],
   [data-theme="light"] [style*="background: rgb(5, 5, 5)"] {
-    background-color: #E8EEF7 !important;
-    background: #E8EEF7 !important;
+    background-color: rgb(var(--color-cream)) !important;
+    background: rgb(var(--color-cream)) !important;
     color: #031D4C !important;
   }
 
@@ -260,7 +278,7 @@
   [data-theme="light"] [style*="linear-gradient(180deg, #021029"],
   [data-theme="light"] [style*="linear-gradient(180deg, #031D4C"],
   [data-theme="light"] [style*="radial-gradient(ellipse at 20% 50%, rgba(11,42,92"] {
-    background: linear-gradient(135deg, #E8EEF7 0%, #FFF7E6 100%) !important;
+    background: linear-gradient(135deg, rgb(var(--color-cream)) 0%, #FFF7E6 100%) !important;
     color: #031D4C !important;
   }
 
@@ -273,15 +291,15 @@
   }
 
   /* Hardcoded light text → dark text (cream, kimono, near-white) */
-  [data-theme="light"] [style*="color: #E8EEF7"],
-  [data-theme="light"] [style*="color:#E8EEF7"],
+  [data-theme="light"] [style*="color: rgb(var(--color-cream))"],
+  [data-theme="light"] [style*="color:rgb(var(--color-cream))"],
   [data-theme="light"] [style*="color: rgb(245, 232, 211)"],
   [data-theme="light"] [style*="color:rgb(245, 232, 211)"],
   [data-theme="light"] [style*="color: #FAFAFA"],
   [data-theme="light"] [style*="color:#FAFAFA"],
   [data-theme="light"] [style*="color: rgb(250, 250, 250)"],
-  [data-theme="light"] [style*="color: #FFFFFF"],
-  [data-theme="light"] [style*="color:#FFFFFF"],
+  [data-theme="light"] [style*="color: rgb(var(--color-gold))"],
+  [data-theme="light"] [style*="color:rgb(var(--color-gold))"],
   [data-theme="light"] [style*="color: rgb(255, 255, 255)"] {
     color: #031D4C !important;
   }
@@ -297,7 +315,7 @@
   /* Tailwind utility classes that resolve to light text */
   [data-theme="light"] .text-cream,
   [data-theme="light"] .text-kimono,
-  [data-theme="light"] .text-white {
+  [data-theme="light"] .text-kimono {
     color: #031D4C !important;
   }
 
@@ -308,10 +326,10 @@
 
   /* ── Preserve brand accents ───────────────────────────────────────── */
   [data-theme="light"] .text-gold,
-  [data-theme="light"] [style*="color: #FFFFFF"],
-  [data-theme="light"] [style*="color:#FFFFFF"],
+  [data-theme="light"] [style*="color: rgb(var(--color-gold))"],
+  [data-theme="light"] [style*="color:rgb(var(--color-gold))"],
   [data-theme="light"] [style*="color: rgb(201, 162, 52)"] {
-    color: #FFFFFF !important;
+    color: rgb(var(--color-gold)) !important;
   }
 
   /* Lime accent (#D4F87A) is too light on cream — deepen for contrast */
@@ -332,21 +350,21 @@
   /* ── Gold-backed buttons keep their dark text, but the button itself
      must stay gold so the call-to-action pops on cream. */
   [data-theme="light"] .bg-gold,
-  [data-theme="light"] [style*="background: #FFFFFF"],
-  [data-theme="light"] [style*="background-color: #FFFFFF"] {
-    background-color: #FFFFFF !important;
+  [data-theme="light"] [style*="background: rgb(var(--color-gold))"],
+  [data-theme="light"] [style*="background-color: rgb(var(--color-gold))"] {
+    background-color: rgb(var(--color-gold)) !important;
     color: #031D4C !important;
   }
 
   /* ── Glass cards: dark translucent → light translucent ────────────── */
   [data-theme="light"] .glass-card {
-    background: rgba(255, 255, 255, 0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background: rgb(var(--color-gold) / 0.6) !important;
+    border: 1px solid rgb(var(--color-gold) / 0.4) !important;
     color: #031D4C !important;
   }
   [data-theme="light"] .glass-panel {
-    background: rgba(255, 255, 255, 0.7) !important;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    background: rgb(var(--color-gold) / 0.7) !important;
+    border: 1px solid rgb(var(--color-gold) / 0.5) !important;
     color: #031D4C !important;
   }
 
@@ -363,7 +381,7 @@
 
   /* ── Footer ────────────────────────────────────────────────────────── */
   [data-theme="light"] footer {
-    background-color: #E8EEF7 !important;
+    background-color: rgb(var(--color-cream)) !important;
     color: #031D4C !important;
   }
   [data-theme="light"] footer .text-mouse,
@@ -374,7 +392,7 @@
   /* ── Form inputs (in light cards) ──────────────────────────────────── */
   [data-theme="light"] .form-input-underline {
     color: #031D4C !important;
-    border-bottom-color: rgba(255, 255, 255, 0.6) !important;
+    border-bottom-color: rgb(var(--color-gold) / 0.6) !important;
   }
   [data-theme="light"] .form-input-underline::placeholder {
     color: rgba(2, 22, 53, 0.4) !important;
@@ -383,11 +401,11 @@
   /* ── Pill buttons: invert for light surfaces ──────────────────────── */
   [data-theme="light"] .pill-button-primary {
     background-color: #031D4C !important;
-    color: #E8EEF7 !important;
+    color: rgb(var(--color-cream)) !important;
   }
   [data-theme="light"] .pill-button-primary:hover {
-    background-color: var(--color-navy) !important;
-    color: #E8EEF7 !important;
+    background-color: rgb(var(--color-navy)) !important;
+    color: rgb(var(--color-cream)) !important;
   }
   [data-theme="light"] .pill-button-outline {
     background-color: transparent !important;
@@ -396,25 +414,25 @@
   }
   [data-theme="light"] .pill-button-outline:hover {
     background-color: #031D4C !important;
-    color: #E8EEF7 !important;
+    color: rgb(var(--color-cream)) !important;
   }
 
   /* ── Skip link stays readable ─────────────────────────────────────── */
   [data-theme="light"] .skip-link {
-    background: #E8EEF7 !important;
+    background: rgb(var(--color-cream)) !important;
     color: #031D4C !important;
   }
 
   /* ── Polaroid photo frames stay white (they hold photos) ──────────── */
   [data-theme="light"] .polaroid,
   [data-theme="light"] .polaroid-hero {
-    background: #FFFFFF !important;
+    background: rgb(var(--color-gold)) !important;
     color: #031D4C !important;
   }
 
   /* ── WebKit scrollbar track inside light cards ───────────────────── */
   [data-theme="light"] .dest-scroll::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgb(var(--color-gold) / 0.15) !important;
   }
 }
 
@@ -423,8 +441,8 @@
   .glass-card {
     position: relative;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgb(var(--color-gold) / 0.04);
+    border: 1px solid rgb(var(--color-gold) / 0.1);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     border-radius: 16px;
@@ -432,16 +450,16 @@
   }
 
   .glass-card:hover {
-    border-color: var(--color-lime);
+    border-color: rgb(var(--color-lime));
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgb(var(--color-gold) / 0.15);
   }
 
   .glass-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, transparent 40%);
+    background: radial-gradient(circle at center, rgb(var(--color-gold) / 0.12) 0%, transparent 40%);
     opacity: 0;
     transition: opacity 400ms ease;
     pointer-events: none;
@@ -454,7 +472,7 @@
   /* Glass panel (stronger blur) */
   .glass-panel {
     background: rgba(2, 22, 53, 0.55);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgb(var(--color-gold) / 0.3);
     border-radius: 16px;
   }
 
@@ -500,7 +518,7 @@
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-gold);
+    background-color: rgb(var(--color-gold));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 300ms var(--ease-standard);
@@ -512,7 +530,7 @@
 
   .nav-link[aria-current="page"]::after {
     transform: scaleX(1);
-    background-color: var(--color-gold);
+    background-color: rgb(var(--color-gold));
     opacity: 0.85;
   }
 
@@ -558,30 +576,30 @@
   }
 
   .pill-button-primary {
-    background-color: var(--color-cream);
-    color: var(--color-mist);
+    background-color: rgb(var(--color-cream));
+    color: rgb(var(--color-mist));
   }
 
   .pill-button-primary:hover {
-    background-color: var(--color-lime);
-    color: var(--color-navy);
+    background-color: rgb(var(--color-lime));
+    color: rgb(var(--color-navy));
   }
 
   .pill-button-outline {
     background-color: transparent;
-    color: var(--color-gold);
-    border: 1px solid var(--color-gold);
+    color: rgb(var(--color-gold));
+    border: 1px solid rgb(var(--color-gold));
   }
 
   .pill-button-outline:hover {
-    background-color: var(--color-gold);
-    color: var(--color-navy);
+    background-color: rgb(var(--color-gold));
+    color: rgb(var(--color-navy));
   }
 
   /* Hairline rule */
   .hairline {
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgb(var(--color-gold) / 0.4);
   }
 
   /* Animated hairline — draws on as it enters the viewport */
@@ -619,8 +637,8 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: var(--color-navy);
-    border: 2px solid var(--color-gold);
+    background-color: rgb(var(--color-navy));
+    border: 2px solid rgb(var(--color-gold));
   }
 
   /* Photo cluster */
@@ -669,12 +687,12 @@
   }
 
   .dest-scroll::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgb(var(--color-gold) / 0.05);
     border-radius: 2px;
   }
 
   .dest-scroll::-webkit-scrollbar-thumb {
-    background: var(--color-gold);
+    background: rgb(var(--color-gold));
     border-radius: 2px;
   }
 
@@ -683,9 +701,9 @@
     position: relative;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgb(var(--color-gold) / 0.4);
     padding: 12px 0;
-    color: var(--color-kimono);
+    color: rgb(var(--color-kimono));
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
@@ -695,11 +713,11 @@
   }
 
   .form-input-underline:focus {
-    border-bottom-color: var(--color-lime);
+    border-bottom-color: rgb(var(--color-lime));
   }
 
   .form-input-underline::placeholder {
-    color: var(--color-mouse);
+    color: rgb(var(--color-mouse));
     font-size: 14px;
   }
 
@@ -710,22 +728,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--color-gold);
+    border: 1px solid rgb(var(--color-gold));
     border-radius: 50%;
-    color: var(--color-gold);
+    color: rgb(var(--color-gold));
     transition: all 300ms var(--ease-standard);
   }
 
   .social-icon:hover {
-    background-color: var(--color-gold);
-    color: var(--color-navy);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    background-color: rgb(var(--color-gold));
+    color: rgb(var(--color-navy));
+    box-shadow: 0 0 20px rgb(var(--color-gold) / 0.4);
   }
 }
 
 @layer utilities {
   .text-stroke-gold {
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
+    -webkit-text-stroke: 2px rgb(var(--color-gold) / 0.6);
     color: transparent;
   }
 
@@ -741,7 +759,7 @@
   left: 0;
   width: 8px;
   height: 8px;
-  background-color: var(--color-navy);
+  background-color: rgb(var(--color-navy));
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -754,7 +772,7 @@
   width: 40px;
   height: 40px;
   background-color: transparent;
-  border: 1px solid var(--color-gold);
+  border: 1px solid rgb(var(--color-gold));
 }
 
 @media (pointer: coarse) {
@@ -793,8 +811,8 @@
 
 /* ── Gold pulse animation for video CTA ── */
 @keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255,0.5); }
-  50% { box-shadow: 0 0 20px 6px rgba(255, 255, 255,0.25); }
+  0%, 100% { box-shadow: 0 0 0 0 rgb(var(--color-gold) / 0.5); }
+  50% { box-shadow: 0 0 20px 6px rgb(var(--color-gold) / 0.25); }
 }
 
 /* ── TrustBar marquee keyframes ── */
@@ -823,8 +841,8 @@
 
 /* ── Theme toggle: light-mode styling ───────────────────────────── */
 [data-theme="light"] .theme-toggle {
-  background-color: rgba(255, 255, 255, 0.75) !important;
-  border-color: rgba(255, 255, 255, 0.7) !important;
+  background-color: rgb(var(--color-gold) / 0.75) !important;
+  border-color: rgb(var(--color-gold) / 0.7) !important;
   color: #052458 !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }

@@ -172,7 +172,7 @@ export default function StudentDashboard() {
             {shortlist.map((row) => (
               <li
                 key={row.id}
-                className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
+                className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
               >
                 <div className="min-w-0">
                   <p className="font-body text-base text-kimono">{row.courses?.name}</p>
@@ -193,7 +193,7 @@ export default function StudentDashboard() {
                   <button
                     onClick={() => removeFromShortlist(row.id)}
                     disabled={busyId === row.id}
-                    className="rounded-md border border-white/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-red-500/40 hover:text-red-300 disabled:opacity-50"
+                    className="rounded-md border border-cream/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-red-500/40 hover:text-red-300 disabled:opacity-50"
                   >
                     Remove
                   </button>
@@ -212,7 +212,7 @@ export default function StudentDashboard() {
           {applications.map((app) => (
             <li
               key={app.id}
-              className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
+              className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">

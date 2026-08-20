@@ -260,9 +260,9 @@ function PillButton({
       disabled={disabled}
       className="px-5 py-2.5 rounded-full font-body text-[13px] tracking-wide transition-all duration-300 focus:outline-none"
       style={{
-        background: active ? '#FFFFFF' : 'rgba(255,255,255,0.04)',
-        color: active ? '#031D4C' : disabled ? 'rgba(255,255,255,0.25)' : 'var(--color-kimono)',
-        border: active ? '1px solid #FFFFFF' : '1px solid rgba(255,255,255,0.12)',
+        background: active ? 'rgb(var(--color-gold))' : 'rgb(var(--color-gold) / 0.04)',
+        color: active ? '#031D4C' : disabled ? 'rgb(var(--color-gold) / 0.25)' : 'var(--color-kimono)',
+        border: active ? '1px solid rgb(var(--color-gold))' : '1px solid rgb(var(--color-gold) / 0.12)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         fontWeight: active ? 600 : 400,
         opacity: disabled ? 0.5 : 1,
@@ -282,8 +282,8 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
     <div
       className="rounded-2xl p-5 flex flex-col gap-3"
       style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255, 255, 255,0.25)',
+        background: 'rgb(var(--color-gold) / 0.04)',
+        border: '1px solid rgb(var(--color-gold) / 0.25)',
         backdropFilter: 'blur(6px)',
         WebkitBackdropFilter: 'blur(6px)',
       }}
@@ -291,7 +291,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
       <div className="flex items-start gap-3">
         <div
           className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0"
-          style={{ border: '1px solid rgba(255, 255, 255,0.3)' }}
+          style={{ border: '1px solid rgb(var(--color-gold) / 0.3)' }}
         >
           <img
             src={uni.campusImage}
@@ -320,7 +320,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
           <span
             key={p}
             className="text-[10px] px-2 py-0.5 rounded-full font-body text-cream/70"
-            style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ background: 'rgb(var(--color-gold) / 0.06)', border: '1px solid rgb(var(--color-gold) / 0.08)' }}
           >
             {p}
           </span>
@@ -328,7 +328,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
         {uni.programmes.length > 3 && (
           <span
             className="text-[10px] px-2 py-0.5 rounded-full font-body text-gold/60"
-            style={{ background: 'rgba(255, 255, 255,0.08)' }}
+            style={{ background: 'rgb(var(--color-gold) / 0.08)' }}
           >
             +{uni.programmes.length - 3} more
           </span>
@@ -343,7 +343,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
           style={{
             background: 'transparent',
             color: 'var(--color-gold)',
-            border: '1px solid rgba(255, 255, 255,0.4)',
+            border: '1px solid rgb(var(--color-gold) / 0.4)',
           }}
         >
           View Details
@@ -352,7 +352,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
           href={waHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full font-body text-[11px] uppercase tracking-widest text-white transition-transform duration-200 hover:scale-[1.02] focus:outline-none"
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-full font-body text-[11px] uppercase tracking-widest text-kimono transition-transform duration-200 hover:scale-[1.02] focus:outline-none"
           style={{ backgroundColor: '#25D366' }}
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -490,7 +490,7 @@ export default function MatcherSection() {
           <SectionLabel name="Match Me" />
         </div>
         <div ref={headerRef} className="mb-14" style={{ opacity: 0 }}>
-          <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
+          <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgb(var(--color-gold) / 0.5)' }} />
           <p
             className="font-body uppercase tracking-[0.25em] text-gold/80 mb-4"
             style={{ fontSize: 12 }}
@@ -509,7 +509,7 @@ export default function MatcherSection() {
             <br />
             <ScrambledText
               text="is right for you?"
-              style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}
+              style={{ WebkitTextStroke: '1px rgb(var(--color-gold) / 0.5)', color: 'transparent' }}
             />
           </h2>
           <p
@@ -544,13 +544,13 @@ export default function MatcherSection() {
             </div>
             <div
               className="w-full h-[2px] rounded-full overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.08)' }}
+              style={{ background: 'rgb(var(--color-gold) / 0.08)' }}
             >
               <div
                 className="h-full transition-all duration-500"
                 style={{
                   width: `${progressPct}%`,
-                  background: 'linear-gradient(90deg, #FFFFFF 0%, #D4AF37 100%)',
+                  background: 'linear-gradient(90deg, rgb(var(--color-gold)) 0%, #D4AF37 100%)',
                   transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               />
@@ -561,8 +561,8 @@ export default function MatcherSection() {
             <div
               className="rounded-3xl p-8 lg:p-10"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255, 255, 255,0.2)',
+                background: 'rgb(var(--color-gold) / 0.03)',
+                border: '1px solid rgb(var(--color-gold) / 0.2)',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
               }}
@@ -620,8 +620,8 @@ export default function MatcherSection() {
                 <div
                   className="rounded-3xl p-10 text-center"
                   style={{
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid rgba(255,255,255,0.08)',
+                    background: 'rgb(var(--color-gold) / 0.03)',
+                    border: '1px solid rgb(var(--color-gold) / 0.08)',
                   }}
                 >
                   <p className="font-serif text-cream/70 text-lg mb-2">

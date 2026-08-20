@@ -9,7 +9,7 @@ interface Globe3DProps {
   height?: number;
 }
 
-const GOLD = '#FFFFFF';
+const GOLD = 'rgb(var(--color-gold))';
 const GOLD_BRIGHT = '#FFE3A0';
 
 export default function Globe3D({ className = '', height = 520 }: Globe3DProps) {
@@ -58,7 +58,7 @@ export default function Globe3D({ className = '', height = 520 }: Globe3DProps) 
       startLng: DHAKA[0],
       endLat: KL[1],
       endLng: KL[0],
-      color: ['rgba(255, 227, 160, 0.9)', 'rgba(255, 255, 255, 0.6)'],
+      color: ['rgba(255, 227, 160, 0.9)', 'rgb(var(--color-gold) / 0.6)'],
     },
   ];
 

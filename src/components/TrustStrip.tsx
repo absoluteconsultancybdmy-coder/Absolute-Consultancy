@@ -21,8 +21,8 @@ function TrustStrip() {
       style={{
         background: 'linear-gradient(90deg, #031D4C 0%, #052458 50%, #031D4C 100%)',
         height: '60px',
-        borderTop: '1px solid rgba(255, 255, 255,0.2)',
-        borderBottom: '1px solid rgba(255, 255, 255,0.2)',
+        borderTop: '1px solid rgb(var(--color-gold) / 0.2)',
+        borderBottom: '1px solid rgb(var(--color-gold) / 0.2)',
       }}
       role="complementary"
       aria-label="Trust signals"

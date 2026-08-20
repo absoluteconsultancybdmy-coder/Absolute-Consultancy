@@ -106,7 +106,7 @@ export default function SignUpPage() {
           <div
             role="radiogroup"
             aria-label="Account type"
-            className="mb-6 grid grid-cols-2 gap-2 rounded-md border border-white/10 p-1"
+            className="mb-6 grid grid-cols-2 gap-2 rounded-md border border-cream/10 p-1"
           >
             {(['student', 'agent'] as const).map((r) => (
               <button

@@ -108,12 +108,12 @@ export default function PrivacyPage() {
     <div style={{ minHeight: '100vh', background: '#021635' }}>
       <div
         className="sticky top-0 z-50"
-        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}
+        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
           <button
             onClick={() => navigate('/')}
-            className="flex items-center gap-1.5 text-gold/70 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5"
+            className="flex items-center gap-1.5 text-gold/70 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-cream/5"
             aria-label="Back to home"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
@@ -122,10 +122,10 @@ export default function PrivacyPage() {
             </svg>
             Back
           </button>
-          <div className="w-px h-4 mx-1" style={{ background: 'rgba(255, 255, 255,0.2)' }} aria-hidden="true" />
+          <div className="w-px h-4 mx-1" style={{ background: 'rgb(var(--color-gold) / 0.2)' }} aria-hidden="true" />
           <span
             className="font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg whitespace-nowrap"
-            style={{ background: 'rgba(255, 255, 255,0.1)', border: '1px solid rgba(255, 255, 255,0.3)', color: 'var(--color-gold)' }}
+            style={{ background: 'rgb(var(--color-gold) / 0.1)', border: '1px solid rgb(var(--color-gold) / 0.3)', color: 'var(--color-gold)' }}
             aria-current="page"
           >
             Privacy
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 255, 255,0.10) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgb(var(--color-gold) / 0.10) 0%, transparent 70%)' }}
         />
         <div className="relative z-10 max-w-[820px] mx-auto px-6 lg:px-10">
           <p
@@ -169,7 +169,7 @@ export default function PrivacyPage() {
             className="rounded-2xl p-8 lg:p-10 mb-8"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.55) 100%)',
-              border: '1px solid rgba(255, 255, 255,0.2)',
+              border: '1px solid rgb(var(--color-gold) / 0.2)',
             }}
           >
             <p
@@ -204,7 +204,7 @@ export default function PrivacyPage() {
                     >
                       {section.title}
                     </h2>
-                    <div className="mt-3 h-px" style={{ background: 'linear-gradient(90deg, rgba(255, 255, 255,0.5) 0%, transparent 100%)' }} />
+                    <div className="mt-3 h-px" style={{ background: 'linear-gradient(90deg, rgb(var(--color-gold) / 0.5) 0%, transparent 100%)' }} />
                   </div>
                 </div>
                 <div className="space-y-3 pl-0 sm:pl-10">
@@ -225,8 +225,8 @@ export default function PrivacyPage() {
           <div
             className="mt-14 p-6 lg:p-8 rounded-2xl"
             style={{
-              background: 'rgba(255, 255, 255,0.06)',
-              border: '1px solid rgba(255, 255, 255,0.18)',
+              background: 'rgb(var(--color-gold) / 0.06)',
+              border: '1px solid rgb(var(--color-gold) / 0.18)',
             }}
           >
             <p

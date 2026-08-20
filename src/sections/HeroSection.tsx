@@ -328,7 +328,7 @@ export default function HeroSection() {
             style={{
               fontSize: 'clamp(60px, 12vw, 180px)',
               lineHeight: 0.85,
-              WebkitTextStroke: '1.5px rgba(255, 255, 255, 0.55)',
+              WebkitTextStroke: '1.5px rgb(var(--color-gold) / 0.55)',
               color: 'transparent',
               marginTop: 0,
               letterSpacing: '0.03em',
@@ -358,7 +358,7 @@ export default function HeroSection() {
           height={600}
           className="h-[78vh] max-h-[600px] w-auto object-contain"
           style={{
-            filter: 'drop-shadow(-8px 0 60px rgba(255, 255, 255, 0.18))',
+            filter: 'drop-shadow(-8px 0 60px rgb(var(--color-gold) / 0.18))',
           }}
           loading="eager"
           decoding="async"
@@ -368,7 +368,7 @@ export default function HeroSection() {
         <div
           className="absolute top-[15%] -left-[80px] w-[280px] h-[280px] rounded-full pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, rgba(255, 255, 255,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgb(var(--color-gold) / 0.12) 0%, transparent 70%)',
             filter: 'blur(48px)',
           }}
         />
@@ -399,7 +399,7 @@ export default function HeroSection() {
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
               el.style.transform = `rotate(${item.rotation}deg) translateY(-14px) scale(1.03)`;
-              el.style.boxShadow = '0 24px 48px rgba(255, 255, 255,0.2), 0 8px 16px rgba(0,0,0,0.25)';
+              el.style.boxShadow = '0 24px 48px rgb(var(--color-gold) / 0.2), 0 8px 16px rgba(0,0,0,0.25)';
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
@@ -509,10 +509,10 @@ export default function HeroSection() {
         >
           <div
             className="relative w-[90vw] max-w-[960px] rounded-2xl overflow-hidden"
-            style={{ background: '#031D4C', border: '1px solid rgba(255, 255, 255,0.3)' }}
+            style={{ background: 'rgb(var(--color-mist))', border: '1px solid rgb(var(--color-gold) / 0.3)' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-5 py-3" style={{ background: 'rgba(255, 255, 255,0.1)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}>
+            <div className="flex items-center justify-between px-5 py-3" style={{ background: 'rgb(var(--color-gold) / 0.1)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}>
               <span className="font-body uppercase tracking-widest text-gold text-[11px]">Watch on Website</span>
               <div className="flex items-center gap-3">
                 <a
@@ -533,7 +533,7 @@ export default function HeroSection() {
                   onClick={() => setActiveVideo(null)}
                   aria-label="Close video"
                   className="w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
-                  style={{ background: 'rgba(255,255,255,0.1)', color: '#E8EEF7', fontSize: '16px', lineHeight: 1 }}
+                  style={{ background: 'rgb(var(--color-gold) / 0.1)', color: 'rgb(var(--color-cream))', fontSize: '16px', lineHeight: 1 }}
                 >
                   ✕
                 </button>

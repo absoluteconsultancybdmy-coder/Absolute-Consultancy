@@ -43,21 +43,21 @@ export default function JourneyHero() {
         className="absolute inset-0 z-0"
         style={{
           background:
-            'radial-gradient(ellipse 70% 60% at 20% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 85% 100%, rgba(255, 255, 255,0.12) 0%, transparent 60%), linear-gradient(180deg, rgba(2, 22, 53,0.55) 0%, rgba(11,26,51,0.7) 100%)',
+            'radial-gradient(ellipse 70% 60% at 20% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 85% 100%, rgb(var(--color-gold) / 0.12) 0%, transparent 60%), linear-gradient(180deg, rgba(2, 22, 53,0.55) 0%, rgba(11,26,51,0.7) 100%)',
         }}
       />
       <div
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.5) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgb(var(--color-gold) / 0.5) 50%, transparent 100%)',
         }}
       />
       <div
         className="absolute inset-x-0 bottom-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.3) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgb(var(--color-gold) / 0.3) 50%, transparent 100%)',
         }}
       />
 

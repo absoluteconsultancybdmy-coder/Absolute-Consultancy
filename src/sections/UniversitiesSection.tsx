@@ -199,7 +199,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
     >
       <div
         className="relative w-full max-w-[900px] max-h-[85dvh] overflow-y-auto rounded-3xl"
-        style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgba(255, 255, 255,0.3)', WebkitOverflowScrolling: 'touch' }}
+        style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgb(var(--color-gold) / 0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
@@ -207,7 +207,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
           onClick={onClose}
           aria-label="Close university details"
           className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center text-cream/70 hover:text-cream transition-colors"
-          style={{ background: 'rgba(255,255,255,0.1)' }}
+          style={{ background: 'rgb(var(--color-gold) / 0.1)' }}
         >
           ✕
         </button>
@@ -218,7 +218,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,30,66,1) 0%, transparent 60%)' }} />
           <div className="absolute bottom-4 left-6 right-16">
             <span className="px-3 py-1 rounded-full text-[10px] font-body uppercase tracking-widest mb-2 inline-block"
-              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgba(255, 255, 255,0.2)', color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgba(255, 255, 255,0.4)'}` }}>
+              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgb(var(--color-gold) / 0.2)', color: uni.type === 'Public' ? '#D4F87A' : 'rgb(var(--color-gold))', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgb(var(--color-gold) / 0.4)'}` }}>
               {uni.type} University
             </span>
             <h2 className="font-display font-bold text-kimono" style={{ fontSize: 'clamp(20px, 3vw, 32px)', letterSpacing: '0.02em' }}>{uni.name}</h2>
@@ -228,7 +228,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
 
         <div className="p-6 lg:p-8">
           {/* Stats row */}
-          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgba(255, 255, 255,0.08)', border: '1px solid rgba(255, 255, 255,0.15)' }}>
+          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgb(var(--color-gold) / 0.08)', border: '1px solid rgb(var(--color-gold) / 0.15)' }}>
             {[
               { label: 'Founded', value: uni.founded },
               { label: 'Students', value: uni.students },
@@ -250,14 +250,14 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
               <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Programmes</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {uni.programmes.map(p => (
-                  <span key={p} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>{p}</span>
+                  <span key={p} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgb(var(--color-gold) / 0.07)', border: '1px solid rgb(var(--color-gold) / 0.1)' }}>{p}</span>
                 ))}
               </div>
 
               <h3 className="font-body font-semibold text-gold mb-3 uppercase tracking-widest text-xs">Study Levels</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {uni.studyLevels.map(s => (
-                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.1)' }}>{s}</span>
+                  <span key={s} className="text-[11px] px-3 py-1 rounded-full font-body text-cream/70" style={{ background: 'rgb(var(--color-gold) / 0.07)', border: '1px solid rgb(var(--color-gold) / 0.1)' }}>{s}</span>
                 ))}
               </div>
 
@@ -265,7 +265,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
               <ul className="space-y-2">
                 {uni.highlights.map(h => (
                   <li key={h} className="flex items-center gap-2 text-cream/70 text-sm font-body">
-                    <span style={{ color: '#FFFFFF' }}>✓</span> {h}
+                    <span style={{ color: 'rgb(var(--color-gold))' }}>✓</span> {h}
                   </li>
                 ))}
               </ul>
@@ -278,7 +278,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
                 href={`https://wa.me/60175631621?text=Hi, I'm interested in studying at ${uni.name}. Please help me with the application.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-body text-sm uppercase tracking-widest text-white transition-all duration-300 hover:scale-[1.02] mb-3"
+                className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-body text-sm uppercase tracking-widest text-kimono transition-all duration-300 hover:scale-[1.02] mb-3"
                 style={{ background: '#25D366' }}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -314,31 +314,31 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
       className="rounded-xl p-6 flex flex-col gap-4 cursor-pointer group"
       style={{
         opacity: 0,
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'rgb(var(--color-gold) / 0.03)',
+        border: '1px solid rgb(var(--color-gold) / 0.07)',
         transition: 'border-color 300ms ease, transform 300ms ease, background 300ms ease',
       }}
       onMouseEnter={e => {
         const el = e.currentTarget;
         el.style.borderColor = `${uni.accent}60`;
         el.style.transform = 'translateY(-6px)';
-        el.style.background = 'rgba(255,255,255,0.06)';
+        el.style.background = 'rgb(var(--color-gold) / 0.06)';
       }}
       onMouseLeave={e => {
         const el = e.currentTarget;
-        el.style.borderColor = 'rgba(255,255,255,0.07)';
+        el.style.borderColor = 'rgb(var(--color-gold) / 0.07)';
         el.style.transform = 'translateY(0)';
-        el.style.background = 'rgba(255,255,255,0.03)';
+        el.style.background = 'rgb(var(--color-gold) / 0.03)';
       }}
     >
 
       <div className="flex items-start justify-between gap-2">
         <span className="px-2 py-1 rounded-full text-[9px] font-body uppercase tracking-wider flex-shrink-0"
-          style={{ background: `${uni.accent}30`, color: '#FFFFFF', border: `1px solid ${uni.accent}40` }}>
+          style={{ background: `${uni.accent}30`, color: 'rgb(var(--color-gold))', border: `1px solid ${uni.accent}40` }}>
           {uni.tag}
         </span>
         <span className="text-[10px] font-body uppercase tracking-wider"
-          style={{ color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF' }}>
+          style={{ color: uni.type === 'Public' ? '#D4F87A' : 'rgb(var(--color-gold))' }}>
           {uni.type}
         </span>
       </div>
@@ -355,10 +355,10 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
 
       <div className="flex flex-wrap gap-1">
         {uni.programmes.slice(0, 4).map(p => (
-          <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse" style={{ background: 'rgba(255,255,255,0.05)' }}>{p}</span>
+          <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse" style={{ background: 'rgb(var(--color-gold) / 0.05)' }}>{p}</span>
         ))}
         {uni.programmes.length > 4 && (
-          <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgba(255, 255, 255,0.08)' }}>+{uni.programmes.length - 4} more</span>
+          <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgb(var(--color-gold) / 0.08)' }}>+{uni.programmes.length - 4} more</span>
         )}
       </div>
 
@@ -406,11 +406,11 @@ export default function UniversitiesSection() {
 
           {/* Header */}
           <div ref={headerRef} className="mb-16" style={{ opacity: 0 }}>
-            <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
+            <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgb(var(--color-gold) / 0.5)' }} />
             <h2 className="font-display font-bold text-kimono uppercase"
               style={{ fontSize: 'clamp(36px, 6.5vw, 80px)', letterSpacing: '0.05em', lineHeight: 1.05 }}>
               <ScrambledText text="OUR PARTNER" /><br />
-              <ScrambledText text="UNIVERSITIES" style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }} />
+              <ScrambledText text="UNIVERSITIES" style={{ WebkitTextStroke: '1px rgb(var(--color-gold) / 0.5)', color: 'transparent' }} />
             </h2>
             <p className="font-serif font-light text-cream/60 mt-6 max-w-[560px]" style={{ fontSize: 'clamp(16px, 1.8vw, 20px)', lineHeight: 1.75 }}>
               We are officially partnered with Malaysia's leading universities. Click any university to explore campus photos, programmes, and watch the campus tour video.
@@ -418,7 +418,7 @@ export default function UniversitiesSection() {
             <div className="flex flex-wrap gap-4 mt-8">
               {['Free Offer Letter', '99% Visa Rate', 'Certified Counsellors', 'End-to-End Support'].map(badge => (
                 <span key={badge} className="px-4 py-2 rounded-full text-[11px] font-body uppercase tracking-wider"
-                  style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF' }}>
+                  style={{ border: '1px solid rgb(var(--color-gold) / 0.4)', color: 'rgb(var(--color-gold))' }}>
                   ✓ {badge}
                 </span>
               ))}

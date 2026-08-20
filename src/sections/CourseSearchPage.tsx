@@ -157,7 +157,7 @@ export default function CourseSearchPage() {
         </p>
 
         {!isSupabaseConfigured ? (
-          <div className="mt-10 rounded-lg border border-white/10 bg-white/[0.02] px-6 py-12 text-center">
+          <div className="mt-10 rounded-lg border border-cream/10 bg-cream/[0.02] px-6 py-12 text-center">
             <p className="font-body text-sm text-mouse">
               The course catalogue is not available on this deployment yet.{' '}
               <Link to="/#contact" className="text-gold hover:underline">
@@ -181,7 +181,7 @@ export default function CourseSearchPage() {
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder="e.g. computer science, business, nursing"
                 aria-label="Search courses"
-                className="flex-1 rounded-md border border-white/10 bg-black/40 px-4 py-3 font-body text-sm text-kimono placeholder:text-mouse outline-none transition-colors focus:border-gold/60"
+                className="flex-1 rounded-md border border-cream/10 bg-cream/[0.06] px-4 py-3 font-body text-sm text-kimono placeholder:text-mouse outline-none transition-colors focus:border-gold/60"
               />
               <button
                 type="submit"
@@ -196,7 +196,7 @@ export default function CourseSearchPage() {
                 aria-label="Qualification level"
                 value={qualification}
                 onChange={(e) => setParam({ level: e.target.value })}
-                className="rounded-md border border-white/10 bg-black/40 px-3 py-2.5 font-body text-sm text-kimono outline-none focus:border-gold/60"
+                className="rounded-md border border-cream/10 bg-cream/[0.06] px-3 py-2.5 font-body text-sm text-kimono outline-none focus:border-gold/60"
               >
                 <option value="">All qualifications</option>
                 {QUALIFICATIONS.map((qual) => (
@@ -210,7 +210,7 @@ export default function CourseSearchPage() {
                 aria-label="University"
                 value={universityId}
                 onChange={(e) => setParam({ uni: e.target.value })}
-                className="min-w-0 flex-1 rounded-md border border-white/10 bg-black/40 px-3 py-2.5 font-body text-sm text-kimono outline-none focus:border-gold/60"
+                className="min-w-0 flex-1 rounded-md border border-cream/10 bg-cream/[0.06] px-3 py-2.5 font-body text-sm text-kimono outline-none focus:border-gold/60"
               >
                 <option value="">All universities</option>
                 {universities.map((u) => (
@@ -223,7 +223,7 @@ export default function CourseSearchPage() {
               {(q || qualification || universityId) && (
                 <button
                   onClick={() => setParams(new URLSearchParams(), { replace: true })}
-                  className="rounded-md border border-white/15 px-4 py-2.5 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
+                  className="rounded-md border border-cream/15 px-4 py-2.5 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
                 >
                   Clear
                 </button>
@@ -251,7 +251,7 @@ export default function CourseSearchPage() {
                 />
               </div>
             ) : results.length === 0 ? (
-              <div className="mt-6 rounded-lg border border-white/10 bg-white/[0.02] px-6 py-14 text-center">
+              <div className="mt-6 rounded-lg border border-cream/10 bg-cream/[0.02] px-6 py-14 text-center">
                 <p className="font-display text-lg uppercase tracking-wide text-kimono">
                   No matches
                 </p>
@@ -264,7 +264,7 @@ export default function CourseSearchPage() {
                 {results.map((c) => (
                   <li
                     key={c.id}
-                    className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/[0.02] p-5 transition-colors hover:border-gold/30 sm:flex-row sm:items-center sm:justify-between"
+                    className="flex flex-col gap-4 rounded-lg border border-cream/10 bg-cream/[0.02] p-5 transition-colors hover:border-gold/30 sm:flex-row sm:items-center sm:justify-between"
                   >
                     <div className="min-w-0">
                       <p className="font-body text-base text-kimono">{c.name}</p>
@@ -288,14 +288,14 @@ export default function CourseSearchPage() {
                         <button
                           onClick={() => save(c.id)}
                           disabled={savingId === c.id || saved.has(c.id)}
-                          className="rounded-md border border-white/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-60"
+                          className="rounded-md border border-cream/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-60"
                         >
                           {saved.has(c.id) ? 'Saved' : 'Save'}
                         </button>
                       ) : (
                         <Link
                           to="/portal/login?next=/courses"
-                          className="rounded-md border border-white/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
+                          className="rounded-md border border-cream/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold"
                         >
                           Sign in to save
                         </Link>
@@ -311,7 +311,7 @@ export default function CourseSearchPage() {
                 <button
                   onClick={() => setParam({ page: String(page - 1) })}
                   disabled={page <= 1}
-                  className="rounded-md border border-white/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-40"
+                  className="rounded-md border border-cream/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-40"
                 >
                   Previous
                 </button>
@@ -321,7 +321,7 @@ export default function CourseSearchPage() {
                 <button
                   onClick={() => setParam({ page: String(page + 1) })}
                   disabled={page >= pages}
-                  className="rounded-md border border-white/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-40"
+                  className="rounded-md border border-cream/15 px-4 py-2 font-body text-xs text-mouse transition-colors hover:border-gold/50 hover:text-gold disabled:opacity-40"
                 >
                   Next
                 </button>

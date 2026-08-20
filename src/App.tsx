@@ -133,7 +133,7 @@ function SectionFallback() {
         className="absolute inset-x-0 top-0 h-px animate-pulse"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.45) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgb(var(--color-gold) / 0.45) 50%, transparent 100%)',
         }}
       />
       <div className="absolute inset-0 flex items-center justify-center">

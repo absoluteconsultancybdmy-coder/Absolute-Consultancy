@@ -197,7 +197,7 @@ export default function Navigation() {
         }}
       >
         {/* Gold hairline top */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
 
         <nav className="flex flex-col items-center gap-8">
           {navLinks.map((link, i) => (
@@ -268,7 +268,7 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
       </div>
     </>
   );
