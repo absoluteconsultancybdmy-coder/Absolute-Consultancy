@@ -186,7 +186,7 @@ export default function Navigation() {
 
       {/* Full-screen overlay menu — shown at every size */}
       <div
-        className="fixed inset-0 z-50 flex flex-col justify-center items-center"
+        className="on-navy fixed inset-0 z-50 flex flex-col justify-center items-center"
         style={{
           background: 'rgba(2, 22, 53,0.97)',
           backdropFilter: 'blur(8px)',
@@ -196,6 +196,17 @@ export default function Navigation() {
           transition: 'opacity 400ms cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
+        <button
+          onClick={() => setMenuOpen(false)}
+          aria-label="Close menu"
+          className="absolute top-6 right-5 sm:right-8 z-10 p-3 text-kimono/80 transition-colors hover:text-kimono"
+          style={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'all' : 'none' }}
+        >
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+
         {/* Gold hairline top */}
         <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgb(var(--color-gold) / 0.3)' }} />
 

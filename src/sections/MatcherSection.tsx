@@ -280,7 +280,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
 
   return (
     <div
-      className="on-navy rounded-2xl p-5 flex flex-col gap-3"
+      className="rounded-2xl p-5 flex flex-col gap-3"
       style={{
         background: 'rgb(var(--color-gold) / 0.04)',
         border: '1px solid rgb(var(--color-gold) / 0.25)',
@@ -470,7 +470,7 @@ export default function MatcherSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-32 lg:py-44 overflow-hidden"
+      className="on-navy relative w-full py-32 lg:py-44 overflow-hidden"
       id="matcher"
     >
       <div className="absolute inset-0 z-0">
