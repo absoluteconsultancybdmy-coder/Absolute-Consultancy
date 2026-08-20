@@ -40,3 +40,6 @@ public/Screenshot/
 public/splash-preview.mp4
 public/splash-slowmo.mp4
 
+
+# Superseded logo files — the originals remain in git history.
+design/logo-source/replaced/

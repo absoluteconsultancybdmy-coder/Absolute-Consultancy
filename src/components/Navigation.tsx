@@ -104,7 +104,7 @@ export default function Navigation() {
             onClick={() => scrollTo('#hero')}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <img src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Absolute Consultancy Firm" width={192} height={40} className="h-10 w-auto" decoding="async" />
+            <img src={`${import.meta.env.BASE_URL}images/logo.webp`} alt="Absolute Consultancy Firm" width={40} height={40} className="h-10 w-auto" decoding="async" />
             <span className="small-caps text-kimono hidden sm:inline tracking-wider" style={{ fontSize: '12px' }}>
               ABSOLUTE CONSULTANCY
             </span>

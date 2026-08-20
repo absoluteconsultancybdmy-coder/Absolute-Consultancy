@@ -1,72 +1,74 @@
 {
   "name": "Absolute Consultancy Firm",
   "short_name": "Absolute",
-  "description": "Bangladeshi students to Malaysian universities — free consultation, EMGS visa support, 99% visa success rate.",
+  "description": "Bangladeshi students to Malaysian universities \u2014 free consultation, EMGS visa support, 99% visa success rate.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui", "browser"],
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
   "orientation": "portrait",
   "background_color": "#0A0A0A",
   "theme_color": "#0A0A0A",
   "lang": "en",
   "dir": "ltr",
-  "categories": ["education", "business", "lifestyle"],
+  "categories": [
+    "education",
+    "business",
+    "lifestyle"
+  ],
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-128.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-144.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-152.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "maskable any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-384.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/logo.png",
+      "src": "/images/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable any"
     }
   ],
   "shortcuts": [
@@ -76,7 +78,11 @@
       "description": "Start your university application in under 2 minutes",
       "url": "/?source=apply#contact",
       "icons": [
-        { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
       ]
     },
     {
@@ -85,7 +91,11 @@
       "description": "Browse all 25+ partner Malaysian universities",
       "url": "/explore",
       "icons": [
-        { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
       ]
     },
     {
@@ -94,7 +104,11 @@
       "description": "WhatsApp our admissions team in seconds",
       "url": "/#contact",
       "icons": [
-        { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
       ]
     },
     {
@@ -103,7 +117,11 @@
       "description": "See the step-by-step admission process",
       "url": "/journey",
       "icons": [
-        { "src": "/images/logo.png", "sizes": "192x192", "type": "image/png" }
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
       ]
     }
   ],
@@ -113,14 +131,14 @@
       "sizes": "1280x720",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Absolute Consultancy Firm — homepage"
+      "label": "Absolute Consultancy Firm \u2014 homepage"
     },
     {
       "src": "/images/hero-graduate.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Absolute Consultancy Firm — mobile hero"
+      "label": "Absolute Consultancy Firm \u2014 mobile hero"
     }
   ],
   "share_target": {
