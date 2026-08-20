@@ -53,7 +53,7 @@ export default function CustomCursor() {
         // Ring: expand to 28px outlined circle
         ring.style.width = '28px';
         ring.style.height = '28px';
-        ring.style.borderColor = 'rgba(201, 162, 52, 0.9)';
+        ring.style.borderColor = 'rgba(255, 255, 255, 0.9)';
         ring.style.opacity = '1';
       }
     };
@@ -69,7 +69,7 @@ export default function CustomCursor() {
         dot.style.opacity = '1';
         ring.style.width = '28px';
         ring.style.height = '28px';
-        ring.style.borderColor = 'rgba(201, 162, 52, 0.35)';
+        ring.style.borderColor = 'rgba(255, 255, 255, 0.35)';
         ring.style.opacity = '0.5';
       }
     };
@@ -135,7 +135,7 @@ export default function CustomCursor() {
           width: '6px',
           height: '6px',
           borderRadius: '50%',
-          backgroundColor: '#C9A234',
+          backgroundColor: '#FFFFFF',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9999,
@@ -153,7 +153,7 @@ export default function CustomCursor() {
           width: '28px',
           height: '28px',
           borderRadius: '50%',
-          border: '1px solid rgba(201, 162, 52, 0.35)',
+          border: '1px solid rgba(255, 255, 255, 0.35)',
           backgroundColor: 'transparent',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',

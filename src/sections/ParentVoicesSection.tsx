@@ -92,18 +92,18 @@ function TestimonialCard({ t }: { t: ParentTestimonial }) {
         width: '360px',
         maxWidth: '100%',
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(201,162,52,0.15)',
+        border: '1px solid rgba(255, 255, 255,0.15)',
         backdropFilter: 'blur(6px)',
         WebkitBackdropFilter: 'blur(6px)',
         transition: 'border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(201,162,52,0.45)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.45)';
         e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 24px rgba(201,162,52,0.15)';
+        e.currentTarget.style.boxShadow = '0 6px 24px rgba(255, 255, 255,0.15)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(201,162,52,0.15)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.15)';
         e.currentTarget.style.transform = 'translateY(0)';
         e.currentTarget.style.boxShadow = 'none';
       }}
@@ -266,7 +266,7 @@ export default function ParentVoicesSection() {
           What parents say about us
         </h2>
         <p
-          className="font-serif font-light text-cream/50 mt-5 max-w-[480px]"
+          className="font-serif font-light text-cream/60 mt-5 max-w-[480px]"
           style={{ fontSize: 'clamp(15px, 1.6vw, 19px)', lineHeight: 1.75 }}
         >
           Real feedback from Bangladeshi parents who trusted us with their children&apos;s future.

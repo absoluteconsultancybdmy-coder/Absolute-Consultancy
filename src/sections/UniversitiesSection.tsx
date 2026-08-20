@@ -199,7 +199,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
     >
       <div
         className="relative w-full max-w-[900px] max-h-[85dvh] overflow-y-auto rounded-3xl"
-        style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '1px solid rgba(201,162,52,0.3)', WebkitOverflowScrolling: 'touch' }}
+        style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '1px solid rgba(255, 255, 255,0.3)', WebkitOverflowScrolling: 'touch' }}
         onClick={e => e.stopPropagation()}
       >
         {/* Close button */}
@@ -218,7 +218,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,30,66,1) 0%, transparent 60%)' }} />
           <div className="absolute bottom-4 left-6 right-16">
             <span className="px-3 py-1 rounded-full text-[10px] font-body uppercase tracking-widest mb-2 inline-block"
-              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgba(201,162,52,0.2)', color: uni.type === 'Public' ? '#D4F87A' : '#C9A234', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgba(201,162,52,0.4)'}` }}>
+              style={{ background: uni.type === 'Public' ? 'rgba(212,248,122,0.2)' : 'rgba(255, 255, 255,0.2)', color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF', border: `1px solid ${uni.type === 'Public' ? 'rgba(212,248,122,0.4)' : 'rgba(255, 255, 255,0.4)'}` }}>
               {uni.type} University
             </span>
             <h2 className="font-display font-bold text-kimono" style={{ fontSize: 'clamp(20px, 3vw, 32px)', letterSpacing: '0.02em' }}>{uni.name}</h2>
@@ -228,7 +228,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
 
         <div className="p-6 lg:p-8">
           {/* Stats row */}
-          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgba(201,162,52,0.08)', border: '1px solid rgba(201,162,52,0.15)' }}>
+          <div className="grid grid-cols-3 gap-4 mb-8 p-4 rounded-2xl" style={{ background: 'rgba(255, 255, 255,0.08)', border: '1px solid rgba(255, 255, 255,0.15)' }}>
             {[
               { label: 'Founded', value: uni.founded },
               { label: 'Students', value: uni.students },
@@ -265,7 +265,7 @@ const UniversityModal = memo(function UniversityModal({ uni, onClose }: { uni: U
               <ul className="space-y-2">
                 {uni.highlights.map(h => (
                   <li key={h} className="flex items-center gap-2 text-cream/70 text-sm font-body">
-                    <span style={{ color: '#C9A234' }}>✓</span> {h}
+                    <span style={{ color: '#FFFFFF' }}>✓</span> {h}
                   </li>
                 ))}
               </ul>
@@ -334,11 +334,11 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
 
       <div className="flex items-start justify-between gap-2">
         <span className="px-2 py-1 rounded-full text-[9px] font-body uppercase tracking-wider flex-shrink-0"
-          style={{ background: `${uni.accent}30`, color: '#C9A234', border: `1px solid ${uni.accent}40` }}>
+          style={{ background: `${uni.accent}30`, color: '#FFFFFF', border: `1px solid ${uni.accent}40` }}>
           {uni.tag}
         </span>
         <span className="text-[10px] font-body uppercase tracking-wider"
-          style={{ color: uni.type === 'Public' ? '#D4F87A' : '#C9A234' }}>
+          style={{ color: uni.type === 'Public' ? '#D4F87A' : '#FFFFFF' }}>
           {uni.type}
         </span>
       </div>
@@ -355,15 +355,15 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
 
       <div className="flex flex-wrap gap-1">
         {uni.programmes.slice(0, 4).map(p => (
-          <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse/70" style={{ background: 'rgba(255,255,255,0.05)' }}>{p}</span>
+          <span key={p} className="text-[9px] px-2 py-0.5 rounded font-body text-mouse" style={{ background: 'rgba(255,255,255,0.05)' }}>{p}</span>
         ))}
         {uni.programmes.length > 4 && (
-          <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgba(201,162,52,0.08)' }}>+{uni.programmes.length - 4} more</span>
+          <span className="text-[9px] px-2 py-0.5 rounded font-body text-gold/60" style={{ background: 'rgba(255, 255, 255,0.08)' }}>+{uni.programmes.length - 4} more</span>
         )}
       </div>
 
       <div className="mt-auto flex items-center justify-between">
-        <span className="text-[10px] font-body text-mouse/50">{uni.ranking}</span>
+        <span className="text-[10px] font-body text-mouse">{uni.ranking}</span>
         <span className="text-[11px] font-body text-gold/70 group-hover:text-gold transition-colors flex items-center gap-1">
           View Details
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
@@ -397,7 +397,7 @@ export default function UniversitiesSection() {
       {selectedUni && <UniversityModal uni={selectedUni} onClose={closeModal} />}
 
       <section className="relative w-full py-32 lg:py-44" id="destinations"
-        style={{ backgroundColor: '#0B1A33', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
+        style={{ backgroundColor: '#021635', backgroundImage: 'radial-gradient(ellipse at 20% 50%, rgba(11,42,92,0.6) 0%, transparent 60%)' }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10">
 
           <div className="mb-8 lg:mb-10">
@@ -406,19 +406,19 @@ export default function UniversitiesSection() {
 
           {/* Header */}
           <div ref={headerRef} className="mb-16" style={{ opacity: 0 }}>
-            <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
+            <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
             <h2 className="font-display font-bold text-kimono uppercase"
               style={{ fontSize: 'clamp(36px, 6.5vw, 80px)', letterSpacing: '0.05em', lineHeight: 1.05 }}>
               <ScrambledText text="OUR PARTNER" /><br />
-              <ScrambledText text="UNIVERSITIES" style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }} />
+              <ScrambledText text="UNIVERSITIES" style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }} />
             </h2>
-            <p className="font-serif font-light text-cream/55 mt-6 max-w-[560px]" style={{ fontSize: 'clamp(16px, 1.8vw, 20px)', lineHeight: 1.75 }}>
+            <p className="font-serif font-light text-cream/60 mt-6 max-w-[560px]" style={{ fontSize: 'clamp(16px, 1.8vw, 20px)', lineHeight: 1.75 }}>
               We are officially partnered with Malaysia's leading universities. Click any university to explore campus photos, programmes, and watch the campus tour video.
             </p>
             <div className="flex flex-wrap gap-4 mt-8">
               {['Free Offer Letter', '99% Visa Rate', 'Certified Counsellors', 'End-to-End Support'].map(badge => (
                 <span key={badge} className="px-4 py-2 rounded-full text-[11px] font-body uppercase tracking-wider"
-                  style={{ border: '1px solid rgba(201,162,52,0.4)', color: '#C9A234' }}>
+                  style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF' }}>
                   ✓ {badge}
                 </span>
               ))}

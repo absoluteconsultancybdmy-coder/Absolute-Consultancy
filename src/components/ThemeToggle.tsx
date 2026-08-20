@@ -18,12 +18,12 @@ function ThemeToggle() {
         top: '88px',
         width: 42,
         height: 42,
-        backgroundColor: 'rgba(10, 10, 10, 0.55)',
+        backgroundColor: 'rgba(2, 22, 53, 0.55)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        border: '1px solid rgba(201, 162, 52, 0.55)',
+        border: '1px solid rgba(255, 255, 255, 0.55)',
         boxShadow: '0 6px 20px rgba(0, 0, 0, 0.25)',
-        color: '#C9A234',
+        color: '#FFFFFF',
         cursor: 'pointer',
       }}
     >

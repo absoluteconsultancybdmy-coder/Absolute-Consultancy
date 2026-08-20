@@ -181,7 +181,7 @@ export default function CourseSearchPage() {
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder="e.g. computer science, business, nursing"
                 aria-label="Search courses"
-                className="flex-1 rounded-md border border-white/10 bg-black/40 px-4 py-3 font-body text-sm text-kimono placeholder:text-mouse/50 outline-none transition-colors focus:border-gold/60"
+                className="flex-1 rounded-md border border-white/10 bg-black/40 px-4 py-3 font-body text-sm text-kimono placeholder:text-mouse outline-none transition-colors focus:border-gold/60"
               />
               <button
                 type="submit"

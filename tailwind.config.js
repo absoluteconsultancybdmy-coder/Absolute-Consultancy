@@ -39,13 +39,13 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         // Custom brand colors
-        mist: "var(--color-mist, #0A0A0A)",
-        navy: "#0B2A5C",
-        gold: "#C9A234",
-        cream: "#F5E8D3",
+        mist: "var(--color-mist, #031D4C)",
+        navy: "#021635",
+        gold: "#FFFFFF",
+        cream: "#E8EEF7",
         kimono: "#FAFAFA",
         lime: "#D4F87A",
-        mouse: "#888888",
+        mouse: "#93A4C0",
       },
       fontFamily: {
         display: ['Oswald', 'sans-serif'],
@@ -61,8 +61,8 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        gold: "0 8px 32px rgba(201,162,52,0.15)",
-        "gold-lg": "0 12px 40px rgba(201,162,52,0.25)",
+        gold: "0 8px 32px rgba(255,255,255,0.15)",
+        "gold-lg": "0 12px 40px rgba(255,255,255,0.22)",
         glass: "0 4px 24px rgba(0,0,0,0.15)",
       },
       transitionDuration: {

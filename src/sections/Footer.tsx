@@ -205,12 +205,12 @@ function NewsletterSignup() {
           }
           className="px-4 py-3 rounded-full font-body text-sm w-full sm:w-[260px] focus:outline-none"
           style={{
-            background: 'rgba(10,10,10,0.6)',
+            background: 'rgba(2, 22, 53,0.6)',
             color: 'var(--color-kimono)',
             border:
               status.kind === 'error'
                 ? '1px solid rgba(220,90,90,0.6)'
-                : '1px solid rgba(201,162,52,0.35)',
+                : '1px solid rgba(255, 255, 255,0.35)',
             letterSpacing: '0.02em',
           }}
         />
@@ -241,7 +241,7 @@ function NewsletterSignup() {
           </span>
         )}
         {status.kind === 'idle' && (
-          <span className="text-mouse/55">
+          <span className="text-mouse">
             We send 1 email per month. Unsubscribe anytime. We never share your email.
           </span>
         )}
@@ -288,7 +288,7 @@ export default function Footer() {
       <GooeyBlob blobCount={4} className="absolute inset-0 -z-10 pointer-events-none hidden md:block" />
 
       {/* Top gold hairline */}
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.3)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
@@ -301,7 +301,7 @@ export default function Footer() {
               Malaysia<br />
               Est. 2024 · Registered Education Consultancy
             </p>
-            <p className="font-serif font-light text-mouse/60" style={{ fontSize: '13px', lineHeight: 1.6 }}>
+            <p className="font-serif font-light text-mouse" style={{ fontSize: '13px', lineHeight: 1.6 }}>
               Helping elite students from Malaysia<br />
               and Bangladesh reach the world's<br />
               finest universities since 2024.
@@ -318,7 +318,9 @@ export default function Footer() {
                   onClick={() => scrollTo(link.href)}
                   aria-current={isActive(link.href) ? 'page' : undefined}
                   className={`nav-link small-caps cursor-pointer bg-transparent text-left transition-colors duration-200 ${
-                    isActive(link.href) ? 'text-gold' : 'text-kimono/60 hover:text-kimono'
+                    isActive(link.href)
+                      ? 'text-gold underline underline-offset-4 decoration-1'
+                      : 'text-kimono/60 hover:text-kimono'
                   }`}
                   style={{ fontSize: '11px' }}
                 >
@@ -365,7 +367,7 @@ export default function Footer() {
         {/* Business Verification */}
         <div
           className="mb-10 p-6 rounded-lg"
-          style={{ background: 'rgba(201,162,52,0.06)', border: '1px solid rgba(201,162,52,0.15)' }}
+          style={{ background: 'rgba(255, 255, 255,0.06)', border: '1px solid rgba(255, 255, 255,0.15)' }}
         >
           <p className="font-body uppercase tracking-[0.2em] text-gold/80 mb-4" style={{ fontSize: '10px' }}>
             ✦ Business Verification
@@ -374,39 +376,39 @@ export default function Footer() {
             Official Status Confirmation — Absolute Consultancy Firm
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mb-4">
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Company Name</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Company Name</span><br />
               Absolute Consultancy Firm
             </p>
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Registered Trade License</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Registered Trade License</span><br />
               04-046-18947
             </p>
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Head Office</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Head Office</span><br />
               Old Kachari Road, Naogaon Sadar, Naogaon-6500
             </p>
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Sub Office</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Sub Office</span><br />
               Persiaran Multimedia, Cyber 11, 63000 Cyberjaya, Selangor
             </p>
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Email</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Email</span><br />
               <span className="text-gold/60">contact@absoluteconsultancyfirm.com</span>
             </p>
-            <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-              <span className="text-mouse/40">Phone</span><br />
+            <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+              <span className="text-mouse">Phone</span><br />
               <span className="text-gold/60">+60 17-563 1621</span>
             </p>
           </div>
-          <p className="font-body text-mouse/60" style={{ fontSize: '12px', lineHeight: 1.8 }}>
-            <span className="text-mouse/40">Operating Hours:</span> 24/7
+          <p className="font-body text-mouse" style={{ fontSize: '12px', lineHeight: 1.8 }}>
+            <span className="text-mouse">Operating Hours:</span> 24/7
           </p>
-          <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(201,162,52,0.1)' }}>
-            <p className="font-body text-mouse/50" style={{ fontSize: '11px', lineHeight: 1.7 }}>
+          <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(255, 255, 255,0.1)' }}>
+            <p className="font-body text-mouse" style={{ fontSize: '11px', lineHeight: 1.7 }}>
               <span className="text-gold/50 font-semibold">Verification Statement</span> — Absolute Consultancy Firm is a legally registered consultancy service permitted to operate student application and support activities for international education.
             </p>
-            <p className="font-body text-mouse/40 mt-2" style={{ fontSize: '11px' }}>
+            <p className="font-body text-mouse mt-2" style={{ fontSize: '11px' }}>
               Issued 2025
             </p>
           </div>
@@ -416,7 +418,7 @@ export default function Footer() {
         <div
           id="newsletter"
           className="mb-10 p-6 rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 scroll-mt-24"
-          style={{ background: 'rgba(11,42,92,0.18)', border: '1px solid rgba(201,162,52,0.25)' }}
+          style={{ background: 'rgba(11,42,92,0.18)', border: '1px solid rgba(255, 255, 255,0.25)' }}
         >
           <div className="flex-1 min-w-0">
             <p
@@ -432,7 +434,7 @@ export default function Footer() {
               Get monthly guides for studying in Malaysia
             </p>
             <p
-              className="font-body text-mouse/70 mt-1"
+              className="font-body text-mouse mt-1"
               style={{ fontSize: 12, lineHeight: 1.6 }}
             >
               University picks, visa tips, and student stories — once a month.
@@ -447,7 +449,7 @@ export default function Footer() {
           className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
           style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
         >
-          <p className="text-mouse/70 font-body" style={{ fontSize: '11px' }}>
+          <p className="text-mouse font-body" style={{ fontSize: '11px' }}>
             &copy; {new Date().getFullYear()} Absolute Consultancy Firm. All Rights Reserved.
           </p>
           <div className="flex items-center gap-4">
@@ -456,26 +458,26 @@ export default function Footer() {
               onClick={() => navigate('/privacy')}
               aria-current={location.pathname === '/privacy' ? 'page' : undefined}
               className={`font-body transition-colors duration-200 ${
-                location.pathname === '/privacy' ? 'text-gold' : 'text-mouse/70 hover:text-gold'
+                location.pathname === '/privacy' ? 'text-gold' : 'text-mouse hover:text-gold'
               }`}
               style={{ fontSize: '11px' }}
             >
               Privacy
             </button>
-            <span className="text-mouse/30" aria-hidden="true">·</span>
+            <span className="text-mouse" aria-hidden="true">·</span>
             <button
               type="button"
               onClick={() => navigate('/terms')}
               aria-current={location.pathname === '/terms' ? 'page' : undefined}
               className={`font-body transition-colors duration-200 ${
-                location.pathname === '/terms' ? 'text-gold' : 'text-mouse/70 hover:text-gold'
+                location.pathname === '/terms' ? 'text-gold' : 'text-mouse hover:text-gold'
               }`}
               style={{ fontSize: '11px' }}
             >
               Terms
             </button>
-            <span className="text-mouse/30 hidden sm:inline" aria-hidden="true">·</span>
-            <p className="text-mouse/70 font-body italic hidden sm:block" style={{ fontSize: '11px' }}>
+            <span className="text-mouse hidden sm:inline" aria-hidden="true">·</span>
+            <p className="text-mouse font-body italic hidden sm:block" style={{ fontSize: '11px' }}>
               Designed for students who dare to dream further.
             </p>
           </div>

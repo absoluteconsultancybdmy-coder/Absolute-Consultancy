@@ -45,8 +45,8 @@ function BackToTop() {
         bottom: 96,
         width: 44,
         height: 44,
-        backgroundColor: '#C9A234',
-        color: '#0A0A0A',
+        backgroundColor: '#FFFFFF',
+        color: '#031D4C',
         boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
         zIndex: 40,
         opacity: visible ? 1 : 0,
@@ -55,7 +55,7 @@ function BackToTop() {
         transition: 'opacity 300ms ease, transform 300ms ease, background-color 200ms ease',
       }}
       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#D4AF37')}
-      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#C9A234')}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#FFFFFF')}
     >
       <svg
         width="20"

@@ -442,7 +442,7 @@ function RelatedCard({ post, onOpen }: { post: BlogPostMeta; onOpen: (slug: stri
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.borderColor = 'rgba(201,162,52,0.45)';
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.45)';
         e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
         e.currentTarget.style.boxShadow = '0 18px 40px rgba(0,0,0,0.4)';
       }}
@@ -470,15 +470,15 @@ function RelatedCard({ post, onOpen }: { post: BlogPostMeta; onOpen: (slug: stri
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0.55) 100%)',
+              'linear-gradient(180deg, rgba(2, 22, 53,0.25) 0%, rgba(2, 22, 53,0) 35%, rgba(2, 22, 53,0.55) 100%)',
           }}
         />
         <div className="absolute top-3 left-3">
           <span
             className="px-2.5 py-1 rounded-full text-[9px] font-body uppercase"
             style={{
-              background: '#C9A234',
-              color: '#0A0A0A',
+              background: '#FFFFFF',
+              color: '#031D4C',
               fontWeight: 700,
               letterSpacing: '0.18em',
             }}
@@ -512,7 +512,7 @@ function RelatedCard({ post, onOpen }: { post: BlogPostMeta; onOpen: (slug: stri
           {post.excerpt}
         </p>
         <div className="mt-auto pt-4 flex items-center justify-between" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-          <span className="font-body text-cream/50" style={{ fontSize: '11px' }}>
+          <span className="font-body text-cream/60" style={{ fontSize: '11px' }}>
             {post.date} · {post.readTime}
           </span>
           <span
@@ -658,10 +658,10 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <div style={{ minHeight: '100vh', background: '#0B1A33' }}>
+      <div style={{ minHeight: '100vh', background: '#021635' }}>
         <div
           className="sticky top-0 z-50"
-          style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}
+          style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}
         >
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3">
             <button
@@ -698,7 +698,7 @@ export default function BlogPostPage() {
           <button
             onClick={() => navigate('/')}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.18em] cursor-pointer transition-all duration-300 hover:scale-[1.03]"
-            style={{ background: '#C9A234', color: '#0B1A33', fontWeight: 700 }}
+            style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700 }}
           >
             Back to home
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -711,7 +711,7 @@ export default function BlogPostPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0B1A33' }}>
+    <div style={{ minHeight: '100vh', background: '#021635' }}>
       <style>{`
         .blog-h2 {
           font-family: 'Oswald', sans-serif;
@@ -733,7 +733,7 @@ export default function BlogPostPage() {
           top: 0.45em;
           bottom: 0.45em;
           width: 3px;
-          background: linear-gradient(180deg, #C9A234 0%, rgba(201,162,52,0.2) 100%);
+          background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255,0.2) 100%);
           border-radius: 2px;
         }
         .blog-p {
@@ -744,7 +744,7 @@ export default function BlogPostPage() {
           line-height: 1.85;
           margin-bottom: 1.1rem;
         }
-        .blog-p strong { color: #F5E8D3; font-weight: 600; }
+        .blog-p strong { color: #E8EEF7; font-weight: 600; }
         .blog-ul, .blog-ol {
           font-family: 'Cormorant Garamond', serif;
           color: rgba(245, 232, 211, 0.78);
@@ -755,7 +755,7 @@ export default function BlogPostPage() {
         }
         .blog-ol { list-style: decimal; }
         .blog-ol > li { margin-bottom: 0.65rem; padding-left: 0.4rem; }
-        .blog-ol > li::marker { color: #C9A234; font-weight: 700; }
+        .blog-ol > li::marker { color: #FFFFFF; font-weight: 700; }
         .blog-ul { list-style: none; }
         .blog-ul > li {
           position: relative;
@@ -769,16 +769,16 @@ export default function BlogPostPage() {
           top: 0.85em;
           width: 8px;
           height: 8px;
-          background: #C9A234;
+          background: #FFFFFF;
           transform: rotate(45deg);
         }
-        .blog-ul > li strong { color: #F5E8D3; font-weight: 600; }
+        .blog-ul > li strong { color: #E8EEF7; font-weight: 600; }
         .blog-callout {
           margin: 2rem 0 2.25rem;
           padding: 1.5rem 1.75rem;
           border-radius: 16px;
-          background: linear-gradient(135deg, rgba(201,162,52,0.10) 0%, rgba(11,42,92,0.35) 100%);
-          border: 1px solid rgba(201,162,52,0.35);
+          background: linear-gradient(135deg, rgba(255, 255, 255,0.10) 0%, rgba(11,42,92,0.35) 100%);
+          border: 1px solid rgba(255, 255, 255,0.35);
           position: relative;
           overflow: hidden;
         }
@@ -787,14 +787,14 @@ export default function BlogPostPage() {
           position: absolute;
           left: 0; top: 0; bottom: 0;
           width: 3px;
-          background: #C9A234;
+          background: #FFFFFF;
         }
         .blog-callout-eyebrow {
           font-family: 'Lato', sans-serif;
           font-size: 10px;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: #C9A234;
+          color: #FFFFFF;
           font-weight: 700;
           margin-bottom: 0.5rem;
         }
@@ -812,7 +812,7 @@ export default function BlogPostPage() {
 
       <div
         className="sticky top-0 z-50"
-        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}
+        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1 overflow-x-auto flex-nowrap scrollbar-none flex-shrink-0 max-w-full">
@@ -826,7 +826,7 @@ export default function BlogPostPage() {
               </svg>
               Back
             </button>
-            <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(201,162,52,0.2)' }} />
+            <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
             {TOP_NAV.map(({ label, id }) => (
               <button
                 key={label}
@@ -834,14 +834,14 @@ export default function BlogPostPage() {
                   sessionStorage.setItem('scrollToSection', id);
                   navigate('/');
                 }}
-                className="text-cream/40 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0"
+                className="text-cream/60 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0"
               >
                 {label}
               </button>
             ))}
             <span
               className="text-gold font-body text-xs uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0"
-              style={{ background: 'rgba(201,162,52,0.12)', border: '1px solid rgba(201,162,52,0.4)' }}
+              style={{ background: 'rgba(255, 255, 255,0.12)', border: '1px solid rgba(255, 255, 255,0.4)' }}
             >
               ✦ {post.category}
             </span>
@@ -856,15 +856,15 @@ export default function BlogPostPage() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,162,52,0.10) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 255, 255,0.10) 0%, transparent 70%)' }}
         />
         <div className="relative z-10 max-w-[860px] mx-auto px-6 lg:px-10">
           <div data-anim style={{ opacity: 0 }}>
             <span
               className="inline-block px-3 py-1.5 rounded-full font-body uppercase"
               style={{
-                background: '#C9A234',
-                color: '#0A0A0A',
+                background: '#FFFFFF',
+                color: '#031D4C',
                 fontSize: '10px',
                 fontWeight: 700,
                 letterSpacing: '0.22em',
@@ -892,8 +892,8 @@ export default function BlogPostPage() {
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
-                background: 'rgba(201,162,52,0.15)',
-                border: '1px solid rgba(201,162,52,0.35)',
+                background: 'rgba(255, 255, 255,0.15)',
+                border: '1px solid rgba(255, 255, 255,0.35)',
                 overflow: 'hidden',
               }}
             >
@@ -921,9 +921,9 @@ export default function BlogPostPage() {
             </div>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-body text-cream/65" style={{ fontSize: '12.5px' }}>
               <span>By <span className="text-cream">{post.author}</span></span>
-              <span className="text-cream/30">·</span>
+              <span className="text-cream/60">·</span>
               <span>{post.date}</span>
-              <span className="text-cream/30">·</span>
+              <span className="text-cream/60">·</span>
               <span className="flex items-center gap-1.5">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="9" />
@@ -960,7 +960,7 @@ export default function BlogPostPage() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  'linear-gradient(180deg, rgba(10,10,10,0.45) 0%, rgba(10,10,10,0) 30%, rgba(10,10,10,0.65) 100%)',
+                  'linear-gradient(180deg, rgba(2, 22, 53,0.45) 0%, rgba(2, 22, 53,0) 30%, rgba(2, 22, 53,0.65) 100%)',
               }}
             />
           </div>
@@ -973,14 +973,14 @@ export default function BlogPostPage() {
 
           <div
             className="mt-16 pt-10 flex flex-wrap items-center gap-3 justify-center"
-            style={{ borderTop: '1px solid rgba(201,162,52,0.18)' }}
+            style={{ borderTop: '1px solid rgba(255, 255, 255,0.18)' }}
           >
             <a
               href={`https://wa.me/60175631621?text=${encodeURIComponent(`Hi, I'd like to discuss: ${post.title}`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest transition-all duration-300 hover:scale-[1.03]"
-              style={{ background: '#C9A234', color: '#0B1A33', fontWeight: 700, letterSpacing: '0.16em', boxShadow: '0 8px 24px rgba(201,162,52,0.3)' }}
+              style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700, letterSpacing: '0.16em', boxShadow: '0 8px 24px rgba(255, 255, 255,0.3)' }}
             >
               Talk to a counsellor
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -990,7 +990,7 @@ export default function BlogPostPage() {
             <button
               onClick={() => navigate('/')}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-[1.03]"
-              style={{ border: '1px solid rgba(201,162,52,0.4)', color: '#C9A234', fontWeight: 600, letterSpacing: '0.18em', background: 'transparent' }}
+              style={{ border: '1px solid rgba(255, 255, 255,0.4)', color: '#FFFFFF', fontWeight: 600, letterSpacing: '0.18em', background: 'transparent' }}
             >
               Back to all articles
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
@@ -1003,18 +1003,18 @@ export default function BlogPostPage() {
 
       <section
         className="relative w-full py-16 lg:py-20 overflow-hidden"
-        style={{ borderTop: '1px solid rgba(201,162,52,0.18)', borderBottom: '1px solid rgba(201,162,52,0.18)' }}
+        style={{ borderTop: '1px solid rgba(255, 255, 255,0.18)', borderBottom: '1px solid rgba(255, 255, 255,0.18)' }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201,162,52,0.06) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255, 255, 255,0.06) 0%, transparent 70%)' }}
         />
         <div className="relative z-10 max-w-[1100px] mx-auto px-6 lg:px-10">
           <div
             className="rounded-3xl p-7 md:p-10 lg:p-12 mb-10 lg:mb-14"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.55) 0%, rgba(11,42,92,0.4) 100%)',
-              border: '1px solid rgba(201,162,52,0.25)',
+              border: '1px solid rgba(255, 255, 255,0.25)',
             }}
           >
             <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
@@ -1022,7 +1022,7 @@ export default function BlogPostPage() {
                 {post.authorPhoto ? (
                   <div
                     className="w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden"
-                    style={{ border: '2px solid rgba(201,162,52,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
+                    style={{ border: '2px solid rgba(255, 255, 255,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
                   >
                     <img
                       src={post.authorPhoto}
@@ -1040,7 +1040,7 @@ export default function BlogPostPage() {
                 ) : (
                   <div
                     className="w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)', border: '2px solid rgba(201,162,52,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
+                    style={{ background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)', border: '2px solid rgba(255, 255, 255,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
                     aria-hidden="true"
                   >
                     <span
@@ -1066,7 +1066,7 @@ export default function BlogPostPage() {
                   {post.author}
                 </h3>
                 <p
-                  className="font-body uppercase tracking-[0.2em] text-cream/45 mb-4"
+                  className="font-body uppercase tracking-[0.2em] text-cream/60 mb-4"
                   style={{ fontSize: '10.5px' }}
                 >
                   {post.authorRole} · {post.authorCredentials}
@@ -1088,7 +1088,7 @@ export default function BlogPostPage() {
           <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
             <div className="flex items-end justify-between flex-wrap gap-6 mb-10">
               <div>
-                <div data-anim className="w-12 h-px mb-4" style={{ background: 'rgba(201,162,52,0.5)', opacity: 0 }} />
+                <div data-anim className="w-12 h-px mb-4" style={{ background: 'rgba(255, 255, 255,0.5)', opacity: 0 }} />
                 <p
                   data-anim
                   className="font-body uppercase tracking-[0.32em] text-gold/70 mb-3"
@@ -1101,7 +1101,7 @@ export default function BlogPostPage() {
                   className="font-display font-bold text-kimono uppercase"
                   style={{ fontSize: 'clamp(24px, 3.5vw, 36px)', letterSpacing: '0.04em', opacity: 0 }}
                 >
-                  Related <span style={{ color: '#C9A234' }}>articles</span>
+                  Related <span style={{ color: '#FFFFFF' }}>articles</span>
                 </h2>
               </div>
             </div>
@@ -1120,20 +1120,20 @@ export default function BlogPostPage() {
                 onClick={() => navigate('/')}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-body text-xs uppercase transition-all duration-300 hover:scale-[1.03] cursor-pointer"
                 style={{
-                  border: '1px solid rgba(201,162,52,0.5)',
-                  color: '#C9A234',
+                  border: '1px solid rgba(255, 255, 255,0.5)',
+                  color: '#FFFFFF',
                   letterSpacing: '0.18em',
                   fontWeight: 600,
-                  background: 'rgba(201,162,52,0.04)',
+                  background: 'rgba(255, 255, 255,0.04)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(201,162,52,0.10)';
-                  e.currentTarget.style.borderColor = 'rgba(201,162,52,0.8)';
-                  e.currentTarget.style.boxShadow = '0 8px 28px rgba(201,162,52,0.22)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255,0.10)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.8)';
+                  e.currentTarget.style.boxShadow = '0 8px 28px rgba(255, 255, 255,0.22)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(201,162,52,0.04)';
-                  e.currentTarget.style.borderColor = 'rgba(201,162,52,0.5)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255,0.04)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.5)';
                   e.currentTarget.style.boxShadow = 'none';
                 }}
               >
@@ -1147,9 +1147,9 @@ export default function BlogPostPage() {
         </section>
       )}
 
-      <footer className="relative w-full py-10" style={{ borderTop: '1px solid rgba(201,162,52,0.12)' }}>
+      <footer className="relative w-full py-10" style={{ borderTop: '1px solid rgba(255, 255, 255,0.12)' }}>
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 flex flex-wrap items-center justify-between gap-3">
-          <p className="font-body text-cream/40" style={{ fontSize: '11px', letterSpacing: '0.1em' }}>
+          <p className="font-body text-cream/60" style={{ fontSize: '11px', letterSpacing: '0.1em' }}>
             © {new Date().getFullYear()} Absolute Consultancy Firm · Bangladesh → Malaysia
           </p>
           <button

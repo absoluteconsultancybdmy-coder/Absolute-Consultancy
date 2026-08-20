@@ -44,8 +44,8 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           className="relative w-full flex items-center justify-center"
           style={{
             minHeight: '40vh',
-            background: 'rgba(10,10,10,0.4)',
-            border: '1px solid rgba(201,162,52,0.15)',
+            background: 'rgba(2, 22, 53,0.4)',
+            border: '1px solid rgba(255, 255, 255,0.15)',
             color: 'rgba(245,232,211,0.7)',
             padding: '32px 16px',
             textAlign: 'center',

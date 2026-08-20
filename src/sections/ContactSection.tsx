@@ -46,7 +46,7 @@ export default function ContactSection() {
     <section ref={sectionRef} className="relative w-full py-32 lg:py-44 overflow-hidden" id="contact">
       <div className="absolute inset-0 z-0">
         <img src={`${import.meta.env.BASE_URL}images/contact-bg.jpg`} alt="Campus" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.75) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(2, 22, 53,0.75) 0%, rgba(2, 22, 53,0.45) 50%, rgba(2, 22, 53,0.75) 100%)' }} />
       </div>
 
 
@@ -107,7 +107,7 @@ export default function ContactSection() {
           {/* Right — COO Contact Card */}
           <div ref={cooCardRef} className="max-w-[360px] lg:ml-auto" style={{ opacity: 0 }}>
             {/* COO photo card */}
-            <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(201,162,52,0.2)' }}>
+            <div className="rounded-2xl overflow-hidden mb-6" style={{ border: '1px solid rgba(255, 255, 255,0.2)' }}>
               <div className="h-[280px] overflow-hidden">
                 <img src={`${import.meta.env.BASE_URL}images/coo-profile2.png`} alt="COO" width={360} height={280} loading="lazy" decoding="async"
                   className="w-full h-full object-cover object-top" onError={(e) => { e.currentTarget.style.opacity = '0.2'; }} />

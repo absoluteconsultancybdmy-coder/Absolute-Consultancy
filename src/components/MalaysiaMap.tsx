@@ -46,8 +46,8 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
       >
         <defs>
           <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="rgba(201,162,52,0.18)" />
-            <stop offset="100%" stopColor="rgba(201,162,52,0)" />
+            <stop offset="0%" stopColor="rgba(255, 255, 255,0.18)" />
+            <stop offset="100%" stopColor="rgba(255, 255, 255,0)" />
           </radialGradient>
           <filter id="pinGlow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="1.5" result="blur" />
@@ -88,7 +88,7 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
              C 92 62, 88 54, 86 46
              C 84 38, 80 30, 78 22 Z"
           fill="rgba(11,42,92,0.45)"
-          stroke="rgba(201,162,52,0.55)"
+          stroke="rgba(255, 255, 255,0.55)"
           strokeWidth="1.2"
           strokeLinejoin="round"
         />
@@ -107,7 +107,7 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
              C 270 154, 258 150, 250 148
              C 244 147, 242 146, 246 144 Z"
           fill="rgba(11,42,92,0.45)"
-          stroke="rgba(201,162,52,0.55)"
+          stroke="rgba(255, 255, 255,0.55)"
           strokeWidth="1.2"
           strokeLinejoin="round"
         />
@@ -116,7 +116,7 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
         <path
           d="M 170 105 C 200 110, 220 115, 248 130"
           fill="none"
-          stroke="rgba(201,162,52,0.18)"
+          stroke="rgba(255, 255, 255,0.18)"
           strokeWidth="0.8"
           strokeDasharray="2,3"
         />
@@ -151,7 +151,7 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
                   cx={pin.cx}
                   cy={pin.cy}
                   r="11"
-                  fill="rgba(201,162,52,0.4)"
+                  fill="rgba(255, 255, 255,0.4)"
                   className="map-pin-active-aura"
                 />
               )}
@@ -159,14 +159,14 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
                 cx={pin.cx}
                 cy={pin.cy}
                 r={isSelected ? 11 : isHovered ? 9 : 6}
-                fill={isSelected ? 'rgba(201,162,52,0.45)' : 'rgba(201,162,52,0.18)'}
+                fill={isSelected ? 'rgba(255, 255, 255,0.45)' : 'rgba(255, 255, 255,0.18)'}
                 style={{ transition: 'r 200ms ease, fill 200ms ease' }}
               />
               <circle
                 cx={pin.cx}
                 cy={pin.cy}
                 r={isSelected ? 5.5 : isHovered ? 4.5 : 3.2}
-                fill={isSelected ? '#FFE3A0' : '#C9A234'}
+                fill={isSelected ? '#FFE3A0' : '#FFFFFF'}
                 stroke="rgba(255,255,255,0.5)"
                 strokeWidth="0.5"
                 filter="url(#pinGlow)"
@@ -181,14 +181,14 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
                     width={Math.max(pin.label.length * 6.2 + (isSelected ? 32 : 16), 80)}
                     height="22"
                     rx="4"
-                    fill={isSelected ? 'rgba(201,162,52,0.95)' : 'rgba(10,10,10,0.92)'}
-                    stroke="rgba(201,162,52,0.5)"
+                    fill={isSelected ? 'rgba(255, 255, 255,0.95)' : 'rgba(2, 22, 53,0.92)'}
+                    stroke="rgba(255, 255, 255,0.5)"
                     strokeWidth="0.6"
                   />
                   <text
                     x={pin.cx + 16}
                     y={pin.cy + 2}
-                    fill={isSelected ? '#0B1A33' : '#F5E8D3'}
+                    fill={isSelected ? '#021635' : '#E8EEF7'}
                     style={{ fontSize: '9px', fontFamily: 'system-ui, sans-serif', letterSpacing: '0.05em', fontWeight: isSelected ? 700 : 400 }}
                   >
                     {pin.label} · {pin.count}{isSelected ? ' ✓' : ''}
@@ -203,7 +203,7 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
         <text
           x="125"
           y="125"
-          fill="rgba(201,162,52,0.45)"
+          fill="rgba(255, 255, 255,0.45)"
           style={{ fontSize: '7px', fontFamily: 'system-ui, sans-serif', letterSpacing: '0.25em', textTransform: 'uppercase' }}
         >
           PENINSULAR
@@ -211,16 +211,16 @@ export default function MalaysiaMap({ selectedPin, onPinSelect }: MalaysiaMapPro
         <text
           x="290"
           y="168"
-          fill="rgba(201,162,52,0.45)"
+          fill="rgba(255, 255, 255,0.45)"
           style={{ fontSize: '7px', fontFamily: 'system-ui, sans-serif', letterSpacing: '0.25em', textTransform: 'uppercase' }}
         >
           BORNEO
         </text>
       </svg>
 
-      <div className="mt-2 flex items-center justify-between font-body text-cream/45" style={{ fontSize: '10px', letterSpacing: '0.15em' }}>
+      <div className="mt-2 flex items-center justify-between font-body text-cream/60" style={{ fontSize: '10px', letterSpacing: '0.15em' }}>
         <span className="flex items-center gap-2">
-          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#C9A234', boxShadow: '0 0 6px rgba(201,162,52,0.6)' }} />
+          <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: '#FFFFFF', boxShadow: '0 0 6px rgba(255, 255, 255,0.6)' }} />
           {selectedPin ? `FILTER: ${selectedPin.toUpperCase()}` : `${PINS.reduce((sum, p) => sum + p.count, 0)} PARTNER LOCATIONS`}
         </span>
         <span className="uppercase">{interactive ? 'TAP A PIN' : '13 CITIES'}</span>

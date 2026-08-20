@@ -104,15 +104,15 @@ function QuickApply() {
         style={{
           padding: '12px 24px',
           borderRadius: 9999,
-          background: 'linear-gradient(135deg, #C9A234 0%, #D4AF37 100%)',
-          color: '#0A0A0A',
+          background: 'linear-gradient(135deg, #FFFFFF 0%, #D4AF37 100%)',
+          color: '#031D4C',
           fontFamily: 'Lato, sans-serif',
           fontWeight: 700,
           fontSize: 12,
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
           boxShadow:
-            '0 10px 30px rgba(201,162,52,0.4), 0 0 0 1px rgba(201,162,52,0.5)',
+            '0 10px 30px rgba(255, 255, 255,0.4), 0 0 0 1px rgba(255, 255, 255,0.5)',
           animation: reducedMotion ? undefined : 'qa-pulse 2.4s ease-in-out infinite',
         }}
       >
@@ -122,10 +122,10 @@ function QuickApply() {
       <style>{`
         @keyframes qa-pulse {
           0%, 100% {
-            box-shadow: 0 10px 30px rgba(201,162,52,0.4), 0 0 0 1px rgba(201,162,52,0.5);
+            box-shadow: 0 10px 30px rgba(255, 255, 255,0.4), 0 0 0 1px rgba(255, 255, 255,0.5);
           }
           50% {
-            box-shadow: 0 14px 40px rgba(201,162,52,0.6), 0 0 0 2px rgba(201,162,52,0.85);
+            box-shadow: 0 14px 40px rgba(255, 255, 255,0.6), 0 0 0 2px rgba(255, 255, 255,0.85);
           }
         }
       `}</style>

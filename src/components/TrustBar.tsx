@@ -61,11 +61,11 @@ export default function TrustBar() {
       <span
         key={`${keyPrefix}-${i}`}
         className="inline-flex items-center gap-2 px-8 font-body uppercase flex-shrink-0"
-        style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(201,162,52,0.85)' }}
+        style={{ fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(255, 255, 255,0.85)' }}
       >
         <span>{badge.icon}</span>
         <span>{badge.text}</span>
-        <span style={{ color: 'rgba(201,162,52,0.3)', marginLeft: '16px' }}>·</span>
+        <span style={{ color: 'rgba(255, 255, 255,0.3)', marginLeft: '16px' }}>·</span>
       </span>
     ));
 
@@ -73,8 +73,8 @@ export default function TrustBar() {
     <div
       className="fixed top-20 left-0 right-0 z-40 overflow-hidden"
       style={{
-        background: 'linear-gradient(90deg, #0B1E42 0%, #0B2A5C 50%, #0B1E42 100%)',
-        borderBottom: '1px solid rgba(201,162,52,0.25)',
+        background: 'linear-gradient(90deg, #031D4C 0%, #052458 50%, #031D4C 100%)',
+        borderBottom: '1px solid rgba(255, 255, 255,0.25)',
         height: '36px',
       }}
     >

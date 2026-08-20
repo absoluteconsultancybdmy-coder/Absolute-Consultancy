@@ -212,7 +212,7 @@ export default function SignUpPage() {
             </SubmitButton>
           </div>
 
-          <p className="mt-4 font-body text-xs leading-relaxed text-mouse/70">
+          <p className="mt-4 font-body text-xs leading-relaxed text-mouse">
             By creating an account you agree to our{' '}
             <Link to="/terms" className="text-gold/80 hover:underline">
               Terms

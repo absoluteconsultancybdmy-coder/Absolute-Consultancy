@@ -48,8 +48,8 @@ function WhatsAppWidget() {
         className="absolute right-full mr-3 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         style={{
           padding: '6px 12px',
-          background: 'rgba(10,10,10,0.95)',
-          border: '1px solid rgba(201,162,52,0.4)',
+          background: 'rgba(2, 22, 53,0.95)',
+          border: '1px solid rgba(255, 255, 255,0.4)',
           color: 'var(--color-kimono)',
           fontFamily: 'Lato, sans-serif',
           fontSize: 11,
@@ -91,8 +91,8 @@ function WhatsAppWidget() {
             width: 14,
             height: 14,
             borderRadius: '50%',
-            backgroundColor: '#C9A234',
-            border: '2px solid #0A0A0A',
+            backgroundColor: '#FFFFFF',
+            border: '2px solid #031D4C',
             opacity: showDot ? 1 : 0,
             transform: showDot ? 'scale(1)' : 'scale(0.4)',
             transition: 'opacity 600ms ease, transform 600ms ease',

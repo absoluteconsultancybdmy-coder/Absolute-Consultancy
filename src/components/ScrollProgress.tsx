@@ -58,8 +58,8 @@ function ScrollProgress() {
           height: '100%',
           width: `${progress}%`,
           background:
-            'linear-gradient(90deg, rgba(201,162,52,0.4) 0%, #C9A234 50%, rgba(201,162,52,0.9) 100%)',
-          boxShadow: '0 0 8px rgba(201,162,52,0.6)',
+            'linear-gradient(90deg, rgba(255, 255, 255,0.4) 0%, #FFFFFF 50%, rgba(255, 255, 255,0.9) 100%)',
+          boxShadow: '0 0 8px rgba(255, 255, 255,0.6)',
           transition: reduceMotion ? 'none' : 'width 200ms ease',
         }}
       />

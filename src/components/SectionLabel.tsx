@@ -32,7 +32,7 @@ function SectionLabel({ name, className = '' }: SectionLabelProps) {
         className="h-px w-8 sm:w-14 md:w-20"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(201,162,52,0.55) 100%)',
+            'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.55) 100%)',
         }}
         aria-hidden="true"
       />
@@ -49,7 +49,7 @@ function SectionLabel({ name, className = '' }: SectionLabelProps) {
         className="h-px w-8 sm:w-14 md:w-20"
         style={{
           background:
-            'linear-gradient(270deg, transparent 0%, rgba(201,162,52,0.55) 100%)',
+            'linear-gradient(270deg, transparent 0%, rgba(255, 255, 255,0.55) 100%)',
         }}
         aria-hidden="true"
       />

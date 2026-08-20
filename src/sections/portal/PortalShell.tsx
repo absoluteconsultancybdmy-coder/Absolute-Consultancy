@@ -22,7 +22,7 @@ export function PortalShell({
         className="absolute inset-x-0 top-0 h-px"
         style={{
           background:
-            'linear-gradient(90deg, transparent 0%, rgba(201,162,52,0.45) 50%, transparent 100%)',
+            'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.45) 50%, transparent 100%)',
         }}
         aria-hidden="true"
       />
@@ -76,14 +76,14 @@ export function Field({
         {label}
       </label>
       {children}
-      {hint && <p className="mt-1.5 font-body text-xs text-mouse/70">{hint}</p>}
+      {hint && <p className="mt-1.5 font-body text-xs text-mouse">{hint}</p>}
     </div>
   );
 }
 
 export const inputClass =
   'w-full rounded-md border border-white/10 bg-black/40 px-3.5 py-2.5 font-body text-sm text-kimono ' +
-  'placeholder:text-mouse/50 outline-none transition-colors focus:border-gold/60 focus:ring-1 focus:ring-gold/30';
+  'placeholder:text-mouse outline-none transition-colors focus:border-gold/60 focus:ring-1 focus:ring-gold/30';
 
 export function SubmitButton({
   children,

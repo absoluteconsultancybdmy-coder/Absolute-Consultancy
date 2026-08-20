@@ -9,7 +9,7 @@ const HERO_DOTS = Array.from({ length: 30 }, (_, i) => ({
   height: Math.random() * 4 + 2,
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
-  background: i % 3 === 0 ? '#C9A234' : i % 3 === 1 ? '#D4AF37' : '#FFD700',
+  background: i % 3 === 0 ? '#FFFFFF' : i % 3 === 1 ? '#D4AF37' : '#FFD700',
 }));
 
 const GUIDES = FULL_GUIDES.map(g => ({
@@ -125,8 +125,8 @@ function GuideModal({ guide, onClose }: { guide: Guide; onClose: () => void }) {
         aria-labelledby="guide-modal-title"
         className="relative w-full max-w-[820px] max-h-[85vh] overflow-y-auto rounded-3xl"
         style={{
-          background: 'linear-gradient(135deg, #0B1E42 0%, #0B2A5C 100%)',
-          border: '1px solid rgba(201,162,52,0.3)',
+          background: 'linear-gradient(135deg, #031D4C 0%, #052458 100%)',
+          border: '1px solid rgba(255, 255, 255,0.3)',
           WebkitOverflowScrolling: 'touch',
         }}
         onClick={e => e.stopPropagation()}
@@ -159,7 +159,7 @@ function GuideModal({ guide, onClose }: { guide: Guide; onClose: () => void }) {
           >
             {guide.title}
           </h2>
-          <div className="flex items-center gap-3 mt-4 pb-6" style={{ borderBottom: '1px solid rgba(201,162,52,0.18)' }}>
+          <div className="flex items-center gap-3 mt-4 pb-6" style={{ borderBottom: '1px solid rgba(255, 255, 255,0.18)' }}>
             <span className="font-body text-mouse flex items-center gap-1.5" style={{ fontSize: '11px' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
@@ -184,8 +184,8 @@ function GuideModal({ guide, onClose }: { guide: Guide; onClose: () => void }) {
                     style={{
                       width: 22,
                       height: 22,
-                      background: 'rgba(201,162,52,0.15)',
-                      color: '#C9A234',
+                      background: 'rgba(255, 255, 255,0.15)',
+                      color: '#FFFFFF',
                       fontSize: 10,
                       letterSpacing: 0,
                     }}
@@ -206,9 +206,9 @@ function GuideModal({ guide, onClose }: { guide: Guide; onClose: () => void }) {
 
           <div
             className="mt-8 pt-6 flex flex-wrap items-center justify-between gap-3"
-            style={{ borderTop: '1px solid rgba(201,162,52,0.18)' }}
+            style={{ borderTop: '1px solid rgba(255, 255, 255,0.18)' }}
           >
-            <p className="font-body text-cream/50" style={{ fontSize: '11px' }}>
+            <p className="font-body text-cream/60" style={{ fontSize: '11px' }}>
               Need help applying this guide to your own journey?
             </p>
             <a
@@ -298,8 +298,8 @@ export default function ResourcesPage() {
     <>
       <style>{`@media (prefers-reduced-motion: reduce) { .hero-dot { animation: none !important; } }`}</style>
 
-      <div style={{ minHeight: '100vh', background: '#0B1A33' }}>
-        <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}>
+      <div style={{ minHeight: '100vh', background: '#021635' }}>
+        <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}>
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-1 overflow-x-auto flex-nowrap scrollbar-none flex-shrink-0 max-w-full">
               <button
@@ -309,7 +309,7 @@ export default function ResourcesPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                 Back
               </button>
-              <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(201,162,52,0.2)' }} />
+              <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
               {TOP_NAV.map(({ label, id }) => (
                 <button
                   key={label}
@@ -317,14 +317,14 @@ export default function ResourcesPage() {
                     sessionStorage.setItem('scrollToSection', id);
                     navigate('/');
                   }}
-                  className="text-cream/40 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0"
+                  className="text-cream/60 hover:text-gold transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0"
                 >
                   {label}
                 </button>
               ))}
               <span
                 className="text-gold font-body text-xs uppercase tracking-wider px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0"
-                style={{ background: 'rgba(201,162,52,0.12)', border: '1px solid rgba(201,162,52,0.4)' }}
+                style={{ background: 'rgba(255, 255, 255,0.12)', border: '1px solid rgba(255, 255, 255,0.4)' }}
               >
                 ✦ Resources
               </span>
@@ -332,7 +332,7 @@ export default function ResourcesPage() {
 
             <div className="flex-1" />
 
-            <span className="font-body text-xs text-cream/40 whitespace-nowrap flex-shrink-0">
+            <span className="font-body text-xs text-cream/60 whitespace-nowrap flex-shrink-0">
               {headerCount} guides
             </span>
           </div>
@@ -343,8 +343,8 @@ export default function ResourcesPage() {
           className="relative overflow-hidden"
           style={{
             minHeight: '30vh',
-            background: 'linear-gradient(135deg, #0A0A0A 0%, #0B1E42 50%, #0A0A0A 100%)',
-            borderBottom: '1px solid rgba(201,162,52,0.15)',
+            background: 'linear-gradient(135deg, #031D4C 0%, #031D4C 50%, #031D4C 100%)',
+            borderBottom: '1px solid rgba(255, 255, 255,0.15)',
           }}
         >
           <div className="absolute inset-0 overflow-hidden">
@@ -358,14 +358,14 @@ export default function ResourcesPage() {
                   left: dot.left,
                   top: dot.top,
                   background: dot.background,
-                  boxShadow: '0 0 8px rgba(201,162,52,0.5)',
+                  boxShadow: '0 0 8px rgba(255, 255, 255,0.5)',
                   opacity: 0,
                 }}
               />
             ))}
           </div>
 
-          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(201,162,52,0.08) 0%, transparent 60%)' }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255,0.08) 0%, transparent 60%)' }} />
 
           <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10 py-16 lg:py-20 flex flex-col items-center text-center">
             <p
@@ -386,24 +386,24 @@ export default function ResourcesPage() {
             >
               Your complete guide to<br />
               <span style={{
-                background: 'linear-gradient(135deg, #C9A234 0%, #FFD700 50%, #D4AF37 100%)',
+                background: 'linear-gradient(135deg, #FFFFFF 0%, #FFD700 50%, #D4AF37 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                filter: 'drop-shadow(0 0 24px rgba(201,162,52,0.3))',
+                filter: 'drop-shadow(0 0 24px rgba(255, 255, 255,0.3))',
               }}>
                 studying in Malaysia
               </span>
             </h1>
             <p
-              className="hero-sub font-serif font-light text-cream/55 mt-6"
+              className="hero-sub font-serif font-light text-cream/60 mt-6"
               style={{ fontSize: 'clamp(14px, 1.4vw, 17px)', lineHeight: 1.7, maxWidth: '640px', opacity: 0 }}
             >
               Practical guides, checklists, and resources to help you navigate every step of your journey from Bangladesh to Malaysia.
             </p>
             <div className="mt-8 flex items-center justify-center gap-2 hero-sub" style={{ opacity: 0 }}>
-              <div className="w-12 h-px" style={{ background: 'rgba(201,162,52,0.4)' }} />
-              <div className="w-2 h-2 rounded-full" style={{ background: '#C9A234' }} />
-              <div className="w-12 h-px" style={{ background: 'rgba(201,162,52,0.4)' }} />
+              <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
+              <div className="w-2 h-2 rounded-full" style={{ background: '#FFFFFF' }} />
+              <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
             </div>
           </div>
         </div>
@@ -411,7 +411,7 @@ export default function ResourcesPage() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-14 pb-6">
           <div className="flex items-end justify-between gap-4 mb-6 flex-wrap">
             <div>
-              <div className="w-12 h-px mb-4" style={{ background: 'rgba(201,162,52,0.5)' }} />
+              <div className="w-12 h-px mb-4" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
               <h2 className="font-display font-bold text-kimono uppercase" style={{ fontSize: 'clamp(20px, 3vw, 28px)', letterSpacing: '0.05em' }}>
                 Featured Resource
               </h2>
@@ -421,16 +421,16 @@ export default function ResourcesPage() {
           <div
             className="featured-guide relative overflow-hidden rounded-3xl p-6 md:p-8 lg:p-10 grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-8 items-center"
             style={{
-              background: 'linear-gradient(135deg, rgba(201,162,52,0.08) 0%, rgba(11,30,66,0.4) 100%)',
-              border: '1.5px solid rgba(201,162,52,0.45)',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(201,162,52,0.15)',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255,0.08) 0%, rgba(11,30,66,0.4) 100%)',
+              border: '1.5px solid rgba(255, 255, 255,0.45)',
+              boxShadow: '0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(255, 255, 255,0.15)',
               opacity: 0,
             }}
           >
             <div className="absolute top-5 left-5">
               <span
                 className="px-3 py-1 rounded-full text-[10px] font-body uppercase"
-                style={{ background: '#C9A234', color: '#0B1A33', fontWeight: 700, letterSpacing: '0.18em' }}
+                style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700, letterSpacing: '0.18em' }}
               >
                 ★ Most Popular
               </span>
@@ -445,7 +445,7 @@ export default function ResourcesPage() {
                 style={{ fontSize: 'clamp(22px, 3.2vw, 34px)', letterSpacing: '0.02em', lineHeight: 1.15 }}
               >
                 The Complete 2026 Guide:<br />
-                <span style={{ color: '#C9A234' }}>Bangladesh → Malaysia</span>
+                <span style={{ color: '#FFFFFF' }}>Bangladesh → Malaysia</span>
               </h3>
               <p className="font-serif font-light text-cream/65 mt-5" style={{ fontSize: 'clamp(13px, 1.3vw, 15px)', lineHeight: 1.7, maxWidth: '520px' }}>
                 A 24-page PDF covering university selection, EMGS visa process, scholarships, accommodation, and life in Malaysia.
@@ -455,12 +455,12 @@ export default function ResourcesPage() {
                 <button
                   onClick={handleDownloadPdf}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest cursor-pointer transition-all duration-300 hover:scale-[1.03]"
-                  style={{ background: '#C9A234', color: '#0B1A33', fontWeight: 700, letterSpacing: '0.16em', boxShadow: '0 8px 24px rgba(201,162,52,0.35)' }}
+                  style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700, letterSpacing: '0.16em', boxShadow: '0 8px 24px rgba(255, 255, 255,0.35)' }}
                 >
                   Download Free PDF
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 4v12M6 12l6 6 6-6M5 20h14"/></svg>
                 </button>
-                <span className="font-body text-mouse/70" style={{ fontSize: '11px' }}>
+                <span className="font-body text-mouse" style={{ fontSize: '11px' }}>
                   No sign-up required
                 </span>
               </div>
@@ -475,12 +475,12 @@ export default function ResourcesPage() {
                 <div
                   key={stat.label}
                   className="text-center p-4 rounded-2xl"
-                  style={{ background: 'rgba(11,26,51,0.55)', border: '1px solid rgba(201,162,52,0.2)' }}
+                  style={{ background: 'rgba(11,26,51,0.55)', border: '1px solid rgba(255, 255, 255,0.2)' }}
                 >
                   <p className="font-display font-bold text-gold" style={{ fontSize: 'clamp(15px, 1.8vw, 20px)', letterSpacing: '0.04em' }}>
                     {stat.value}
                   </p>
-                  <p className="font-body text-cream/50 uppercase tracking-wider mt-1" style={{ fontSize: '9px', letterSpacing: '0.2em' }}>
+                  <p className="font-body text-cream/60 uppercase tracking-wider mt-1" style={{ fontSize: '9px', letterSpacing: '0.2em' }}>
                     {stat.label}
                   </p>
                 </div>
@@ -492,11 +492,11 @@ export default function ResourcesPage() {
         <div ref={gridRef} className="max-w-[1280px] mx-auto px-6 lg:px-10 pt-6 pb-16">
           <div className="flex items-end justify-between gap-4 mb-6 flex-wrap">
             <div>
-              <div className="w-12 h-px mb-4" style={{ background: 'rgba(201,162,52,0.5)' }} />
+              <div className="w-12 h-px mb-4" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
               <h2 className="font-display font-bold text-kimono uppercase" style={{ fontSize: 'clamp(20px, 3vw, 28px)', letterSpacing: '0.05em' }}>
                 All Guides
               </h2>
-              <p className="font-serif font-light text-cream/50 mt-2" style={{ fontSize: '13px', lineHeight: 1.6 }}>
+              <p className="font-serif font-light text-cream/60 mt-2" style={{ fontSize: '13px', lineHeight: 1.6 }}>
                 Bite-sized reading for every stage of your journey.
               </p>
             </div>
@@ -526,9 +526,9 @@ export default function ResourcesPage() {
                   const rotateX = ((y / rect.height) - 0.5) * -8;
                   el.style.transition = 'transform 80ms ease-out, border-color 200ms ease, background 200ms ease, box-shadow 250ms ease';
                   el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-                  el.style.borderColor = 'rgba(201,162,52,0.55)';
+                  el.style.borderColor = 'rgba(255, 255, 255,0.55)';
                   el.style.background = 'rgba(255,255,255,0.06)';
-                  el.style.boxShadow = `0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,162,52,0.35), inset 0 1px 0 rgba(201,162,52,0.15)`;
+                  el.style.boxShadow = `0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255, 255, 255,0.35), inset 0 1px 0 rgba(255, 255, 255,0.15)`;
                   const dot = el.querySelector('.tilt-dot') as HTMLElement | null;
                   if (dot) {
                     dot.style.left = `${x}px`;
@@ -560,8 +560,8 @@ export default function ResourcesPage() {
                 <span
                   className="tilt-dot absolute w-2.5 h-2.5 rounded-full pointer-events-none"
                   style={{
-                    background: '#C9A234',
-                    boxShadow: '0 0 14px rgba(201,162,52,0.9), 0 0 4px rgba(255,215,0,0.6)',
+                    background: '#FFFFFF',
+                    boxShadow: '0 0 14px rgba(255, 255, 255,0.9), 0 0 4px rgba(255,215,0,0.6)',
                     transform: 'translate(-50%, -50%)',
                     opacity: 0,
                     transition: 'opacity 250ms ease',
@@ -574,16 +574,16 @@ export default function ResourcesPage() {
                   <span
                     className="px-2.5 py-1 rounded-full text-[9px] font-body uppercase"
                     style={{
-                      background: 'rgba(201,162,52,0.12)',
-                      color: '#C9A234',
-                      border: '1px solid rgba(201,162,52,0.3)',
+                      background: 'rgba(255, 255, 255,0.12)',
+                      color: '#FFFFFF',
+                      border: '1px solid rgba(255, 255, 255,0.3)',
                       fontWeight: 700,
                       letterSpacing: '0.15em',
                     }}
                   >
                     {guide.category}
                   </span>
-                  <span style={{ color: 'rgba(201,162,52,0.6)' }} className="flex-shrink-0">
+                  <span style={{ color: 'rgba(255, 255, 255,0.6)' }} className="flex-shrink-0">
                     {guide.icon}
                   </span>
                 </div>
@@ -610,7 +610,7 @@ export default function ResourcesPage() {
                 </p>
 
                 <div className="mt-auto flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                  <span className="font-body text-mouse/60 flex items-center gap-1.5" style={{ fontSize: '11px' }}>
+                  <span className="font-body text-mouse flex items-center gap-1.5" style={{ fontSize: '11px' }}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
                     {guide.readingTime}
                   </span>
@@ -629,7 +629,7 @@ export default function ResourcesPage() {
             className="rounded-3xl p-8 md:p-10 text-center"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.5) 0%, rgba(11,42,92,0.3) 100%)',
-              border: '1px solid rgba(201,162,52,0.2)',
+              border: '1px solid rgba(255, 255, 255,0.2)',
             }}
           >
             <p
@@ -642,10 +642,10 @@ export default function ResourcesPage() {
               className="font-display font-bold text-kimono"
               style={{ fontSize: 'clamp(20px, 3vw, 28px)', letterSpacing: '0.03em', lineHeight: 1.2 }}
             >
-              Read our full <span style={{ color: '#C9A234' }}>FAQ section</span>
+              Read our full <span style={{ color: '#FFFFFF' }}>FAQ section</span>
             </h3>
             <p
-              className="font-serif font-light text-cream/55 mt-3 mx-auto"
+              className="font-serif font-light text-cream/60 mt-3 mx-auto"
               style={{ fontSize: '14px', lineHeight: 1.7, maxWidth: '520px' }}
             >
               Get answers to the most common questions about admissions, visas, fees, and life in Malaysia.
@@ -653,7 +653,7 @@ export default function ResourcesPage() {
             <Link
               to="/"
               className="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-full font-body text-xs uppercase tracking-widest transition-all duration-300 hover:scale-[1.03]"
-              style={{ border: '1px solid rgba(201,162,52,0.5)', color: '#C9A234', letterSpacing: '0.16em' }}
+              style={{ border: '1px solid rgba(255, 255, 255,0.5)', color: '#FFFFFF', letterSpacing: '0.16em' }}
             >
               Open FAQ
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

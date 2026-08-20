@@ -8,61 +8,61 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
+    --background: 219 92% 15%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 4%;
+    --card: 219 92% 15%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 4%;
+    --popover: 219 92% 15%;
     --popover-foreground: 0 0% 98%;
     --primary: 216 78% 21%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 10%;
+    --secondary: 219 70% 20%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 53%;
+    --muted: 219 40% 25%;
+    --muted-foreground: 216 25% 68%;
     --accent: 78 89% 73%;
     --accent-foreground: 0 0% 4%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 43 62% 49%;
+    --border: 219 40% 28%;
+    --input: 219 40% 28%;
+    --ring: 0 0% 100%;
     --radius: 0.625rem;
 
     --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-    --color-mist: #0A0A0A;
-    --color-navy: #0B2A5C;
-    --color-gold: #C9A234;
-    --color-cream: #F5E8D3;
+    --color-mist: #031D4C;
+    --color-navy: #021635;
+    --color-gold: #FFFFFF;
+    --color-cream: #E8EEF7;
     --color-kimono: #FAFAFA;
     --color-lime: #D4F87A;
-    --color-mouse: #888888;
+    --color-mouse: #93A4C0;
   }
 
   /* ── Theme variables ──────────────────────────────────────────────── */
   [data-theme="dark"] {
-    --bg-base: #0A0A0A;
-    --bg-section: #0B1A33;
-    --text-primary: #F5E8D3;
-    --text-secondary: #cccccc;
-    --text-muted: #888888;
-    --color-mist: #0A0A0A;
-    --color-surface: #0A0A0A;
+    --bg-base: #031D4C;
+    --bg-section: #052458;
+    --text-primary: #E8EEF7;
+    --text-secondary: #C4D0E4;
+    --text-muted: #93A4C0;
+    --color-mist: #031D4C;
+    --color-surface: #031D4C;
   }
 
   [data-theme="light"] {
-    --bg-base: #F5E8D3;
-    --bg-section: #F5E8D3;
-    --text-primary: #0A0A0A;
+    --bg-base: #FFFFFF;
+    --bg-section: #F4F7FC;
+    --text-primary: #031D4C;
     --text-secondary: #333333;
     --text-muted: #666666;
-    --color-mist: #F5E8D3;
-    --color-surface: #F5E8D3;
+    --color-mist: #FFFFFF;
+    --color-surface: #FFFFFF;
     /* Flip the brand "light" tokens to dark so any element using
        var(--color-kimono) or var(--color-cream) in inline styles
        automatically becomes readable on the cream background. */
-    --color-kimono: #0A0A0A;
-    --color-cream: #0A0A0A;
+    --color-kimono: #031D4C;
+    --color-cream: #031D4C;
   }
 
   /* Smooth background-color transition when toggling theme */
@@ -156,10 +156,10 @@
   /* ── Light mode: re-color page-level text & nav ───────────────── */
   [data-theme="light"] .nav-link,
   [data-theme="light"] .nav-text {
-    color: rgba(10, 10, 10, 0.75);
+    color: rgba(2, 22, 53, 0.75);
   }
   [data-theme="light"] .nav-link:hover {
-    color: #0A0A0A;
+    color: #031D4C;
   }
   [data-theme="light"] .nav-link[aria-current="page"] {
     color: var(--color-gold);
@@ -182,16 +182,16 @@
   [data-theme="light"] .bg-mist.text-mouse {
     color: var(--text-muted);
   }
-  [data-theme="light"] .text-kimono\/75 { color: rgba(10, 10, 10, 0.75) !important; }
-  [data-theme="light"] .text-kimono\/80 { color: rgba(10, 10, 10, 0.8) !important; }
-  [data-theme="light"] .text-kimono\/60 { color: rgba(10, 10, 10, 0.6) !important; }
-  [data-theme="light"] .text-kimono\/50 { color: rgba(10, 10, 10, 0.5) !important; }
+  [data-theme="light"] .text-kimono\/75 { color: rgba(2, 22, 53, 0.75) !important; }
+  [data-theme="light"] .text-kimono\/80 { color: rgba(2, 22, 53, 0.8) !important; }
+  [data-theme="light"] .text-kimono\/60 { color: rgba(2, 22, 53, 0.6) !important; }
+  [data-theme="light"] .text-kimono\/50 { color: rgba(2, 22, 53, 0.5) !important; }
 
   /* Light mode: navigation bar uses bg-mist/95 (translucent dark).
      After the variable flip, this becomes a translucent light cream
      surface, so we lighten the gold border for contrast. */
   [data-theme="light"] nav.theme-aware-nav {
-    border-bottom: 1px solid rgba(201, 162, 52, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
   }
 
   /* Light mode: form inputs that inherit kimono text */
@@ -209,12 +209,12 @@
   }
   [data-theme="light"] .pill-button-primary:hover {
     background-color: var(--color-navy);
-    color: #F5E8D3;
+    color: #E8EEF7;
   }
 
   /* ── Light mode: comprehensive overrides for hardcoded inline styles ──
-     Most section components use inline `style={{ background: '#0A0A0A' }}`,
-     `style={{ color: '#F5E8D3' }}`, etc. that bypass the CSS-variable system.
+     Most section components use inline `style={{ background: '#031D4C' }}`,
+     `style={{ color: '#E8EEF7' }}`, etc. that bypass the CSS-variable system.
      React serializes these into the DOM style attribute (browsers normalise
      hex → rgb()), so we target both forms with attribute substring matches.
      This keeps the fix scoped to src/index.css — no source-file rewrites. */
@@ -222,49 +222,49 @@
   /* Force the body & outer .bg-mist sections to cream */
   [data-theme="light"] body,
   [data-theme="light"] .bg-mist {
-    background-color: #F5E8D3 !important;
-    color: #0A0A0A !important;
+    background-color: #E8EEF7 !important;
+    color: #031D4C !important;
   }
 
   /* Hardcoded solid-dark backgrounds → cream */
-  [data-theme="light"] [style*="background: #0A0A0A"],
-  [data-theme="light"] [style*="background:#0A0A0A"],
+  [data-theme="light"] [style*="background: #031D4C"],
+  [data-theme="light"] [style*="background:#031D4C"],
   [data-theme="light"] [style*="background: rgb(10, 10, 10)"],
   [data-theme="light"] [style*="background:rgb(10, 10, 10)"],
-  [data-theme="light"] [style*="background-color: #0A0A0A"],
-  [data-theme="light"] [style*="background-color:#0A0A0A"],
+  [data-theme="light"] [style*="background-color: #031D4C"],
+  [data-theme="light"] [style*="background-color:#031D4C"],
   [data-theme="light"] [style*="background-color: rgb(10, 10, 10)"],
   [data-theme="light"] [style*="background-color:rgb(10, 10, 10)"],
-  [data-theme="light"] [style*="background: #0B1A33"],
-  [data-theme="light"] [style*="background:#0B1A33"],
+  [data-theme="light"] [style*="background: #021635"],
+  [data-theme="light"] [style*="background:#021635"],
   [data-theme="light"] [style*="background: rgb(11, 26, 51)"],
   [data-theme="light"] [style*="background:rgb(11, 26, 51)"],
-  [data-theme="light"] [style*="background-color: #0B1A33"],
-  [data-theme="light"] [style*="background-color:#0B1A33"],
+  [data-theme="light"] [style*="background-color: #021635"],
+  [data-theme="light"] [style*="background-color:#021635"],
   [data-theme="light"] [style*="background-color: rgb(11, 26, 51)"],
-  [data-theme="light"] [style*="background: #050505"],
-  [data-theme="light"] [style*="background:#050505"],
+  [data-theme="light"] [style*="background: #021029"],
+  [data-theme="light"] [style*="background:#021029"],
   [data-theme="light"] [style*="background: rgb(5, 5, 5)"] {
-    background-color: #F5E8D3 !important;
-    background: #F5E8D3 !important;
-    color: #0A0A0A !important;
+    background-color: #E8EEF7 !important;
+    background: #E8EEF7 !important;
+    color: #031D4C !important;
   }
 
   /* Hardcoded dark navy gradients → light cream gradients (e.g. University
      cards, About "stats panel", Hero video wrapper, Explore page hero) */
-  [data-theme="light"] [style*="linear-gradient(135deg, #0B1E42"],
+  [data-theme="light"] [style*="linear-gradient(135deg, #031D4C"],
   [data-theme="light"] [style*="linear-gradient(135deg, rgb(11, 30, 66)"],
-  [data-theme="light"] [style*="linear-gradient(135deg, #0B2A5C"],
+  [data-theme="light"] [style*="linear-gradient(135deg, #052458"],
   [data-theme="light"] [style*="linear-gradient(135deg, rgb(11, 42, 92)"],
-  [data-theme="light"] [style*="linear-gradient(135deg, #0A0A0A"],
-  [data-theme="light"] [style*="linear-gradient(180deg, #050505"],
-  [data-theme="light"] [style*="linear-gradient(180deg, #0A0A0A"],
+  [data-theme="light"] [style*="linear-gradient(135deg, #031D4C"],
+  [data-theme="light"] [style*="linear-gradient(180deg, #021029"],
+  [data-theme="light"] [style*="linear-gradient(180deg, #031D4C"],
   [data-theme="light"] [style*="radial-gradient(ellipse at 20% 50%, rgba(11,42,92"] {
-    background: linear-gradient(135deg, #F5E8D3 0%, #FFF7E6 100%) !important;
-    color: #0A0A0A !important;
+    background: linear-gradient(135deg, #E8EEF7 0%, #FFF7E6 100%) !important;
+    color: #031D4C !important;
   }
 
-  /* Translucent dark overlays (rgba(10,10,10,*) / rgba(0,0,0,*)) → light */
+  /* Translucent dark overlays (rgba(2, 22, 53,*) / rgba(0,0,0,*)) → light */
   [data-theme="light"] [style*="rgba(10, 10, 10"],
   [data-theme="light"] [style*="rgba(10,10,10"],
   [data-theme="light"] [style*="rgba(0, 0, 0, 0."],
@@ -273,8 +273,8 @@
   }
 
   /* Hardcoded light text → dark text (cream, kimono, near-white) */
-  [data-theme="light"] [style*="color: #F5E8D3"],
-  [data-theme="light"] [style*="color:#F5E8D3"],
+  [data-theme="light"] [style*="color: #E8EEF7"],
+  [data-theme="light"] [style*="color:#E8EEF7"],
   [data-theme="light"] [style*="color: rgb(245, 232, 211)"],
   [data-theme="light"] [style*="color:rgb(245, 232, 211)"],
   [data-theme="light"] [style*="color: #FAFAFA"],
@@ -283,7 +283,7 @@
   [data-theme="light"] [style*="color: #FFFFFF"],
   [data-theme="light"] [style*="color:#FFFFFF"],
   [data-theme="light"] [style*="color: rgb(255, 255, 255)"] {
-    color: #0A0A0A !important;
+    color: #031D4C !important;
   }
 
   /* Translucent cream / white text on dark cards → dark translucent text */
@@ -291,14 +291,14 @@
   [data-theme="light"] [style*="color: rgba(245,232,211"],
   [data-theme="light"] [style*="color: rgba(255, 255, 255,"],
   [data-theme="light"] [style*="color: rgba(255,255,255,"] {
-    color: rgba(10, 10, 10, 0.85) !important;
+    color: rgba(2, 22, 53, 0.85) !important;
   }
 
   /* Tailwind utility classes that resolve to light text */
   [data-theme="light"] .text-cream,
   [data-theme="light"] .text-kimono,
   [data-theme="light"] .text-white {
-    color: #0A0A0A !important;
+    color: #031D4C !important;
   }
 
   /* text-mouse (#888) is muted gray — in light mode use a darker muted gray */
@@ -308,10 +308,10 @@
 
   /* ── Preserve brand accents ───────────────────────────────────────── */
   [data-theme="light"] .text-gold,
-  [data-theme="light"] [style*="color: #C9A234"],
-  [data-theme="light"] [style*="color:#C9A234"],
+  [data-theme="light"] [style*="color: #FFFFFF"],
+  [data-theme="light"] [style*="color:#FFFFFF"],
   [data-theme="light"] [style*="color: rgb(201, 162, 52)"] {
-    color: #C9A234 !important;
+    color: #FFFFFF !important;
   }
 
   /* Lime accent (#D4F87A) is too light on cream — deepen for contrast */
@@ -324,47 +324,47 @@
 
   /* Navy brand color stays as-is for emphasis (it's already dark) */
   [data-theme="light"] .text-navy,
-  [data-theme="light"] [style*="color: #0B2A5C"],
+  [data-theme="light"] [style*="color: #052458"],
   [data-theme="light"] [style*="color: rgb(11, 42, 92)"] {
-    color: #0B2A5C !important;
+    color: #052458 !important;
   }
 
   /* ── Gold-backed buttons keep their dark text, but the button itself
      must stay gold so the call-to-action pops on cream. */
   [data-theme="light"] .bg-gold,
-  [data-theme="light"] [style*="background: #C9A234"],
-  [data-theme="light"] [style*="background-color: #C9A234"] {
-    background-color: #C9A234 !important;
-    color: #0A0A0A !important;
+  [data-theme="light"] [style*="background: #FFFFFF"],
+  [data-theme="light"] [style*="background-color: #FFFFFF"] {
+    background-color: #FFFFFF !important;
+    color: #031D4C !important;
   }
 
   /* ── Glass cards: dark translucent → light translucent ────────────── */
   [data-theme="light"] .glass-card {
     background: rgba(255, 255, 255, 0.6) !important;
-    border: 1px solid rgba(201, 162, 52, 0.4) !important;
-    color: #0A0A0A !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    color: #031D4C !important;
   }
   [data-theme="light"] .glass-panel {
     background: rgba(255, 255, 255, 0.7) !important;
-    border: 1px solid rgba(201, 162, 52, 0.5) !important;
-    color: #0A0A0A !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    color: #031D4C !important;
   }
 
   /* ── Navigation: light, with gold underline accents ────────────────── */
   [data-theme="light"] nav,
   [data-theme="light"] .theme-aware-nav {
     background-color: rgba(245, 232, 211, 0.95) !important;
-    color: #0A0A0A !important;
+    color: #031D4C !important;
   }
   [data-theme="light"] .nav-link,
   [data-theme="light"] .nav-text {
-    color: rgba(10, 10, 10, 0.75) !important;
+    color: rgba(2, 22, 53, 0.75) !important;
   }
 
   /* ── Footer ────────────────────────────────────────────────────────── */
   [data-theme="light"] footer {
-    background-color: #F5E8D3 !important;
-    color: #0A0A0A !important;
+    background-color: #E8EEF7 !important;
+    color: #031D4C !important;
   }
   [data-theme="light"] footer .text-mouse,
   [data-theme="light"] footer [style*="color: rgba(212,248,122"] {
@@ -373,48 +373,48 @@
 
   /* ── Form inputs (in light cards) ──────────────────────────────────── */
   [data-theme="light"] .form-input-underline {
-    color: #0A0A0A !important;
-    border-bottom-color: rgba(201, 162, 52, 0.6) !important;
+    color: #031D4C !important;
+    border-bottom-color: rgba(255, 255, 255, 0.6) !important;
   }
   [data-theme="light"] .form-input-underline::placeholder {
-    color: rgba(10, 10, 10, 0.4) !important;
+    color: rgba(2, 22, 53, 0.4) !important;
   }
 
   /* ── Pill buttons: invert for light surfaces ──────────────────────── */
   [data-theme="light"] .pill-button-primary {
-    background-color: #0A0A0A !important;
-    color: #F5E8D3 !important;
+    background-color: #031D4C !important;
+    color: #E8EEF7 !important;
   }
   [data-theme="light"] .pill-button-primary:hover {
     background-color: var(--color-navy) !important;
-    color: #F5E8D3 !important;
+    color: #E8EEF7 !important;
   }
   [data-theme="light"] .pill-button-outline {
     background-color: transparent !important;
-    color: #0A0A0A !important;
-    border-color: #0A0A0A !important;
+    color: #031D4C !important;
+    border-color: #031D4C !important;
   }
   [data-theme="light"] .pill-button-outline:hover {
-    background-color: #0A0A0A !important;
-    color: #F5E8D3 !important;
+    background-color: #031D4C !important;
+    color: #E8EEF7 !important;
   }
 
   /* ── Skip link stays readable ─────────────────────────────────────── */
   [data-theme="light"] .skip-link {
-    background: #F5E8D3 !important;
-    color: #0A0A0A !important;
+    background: #E8EEF7 !important;
+    color: #031D4C !important;
   }
 
   /* ── Polaroid photo frames stay white (they hold photos) ──────────── */
   [data-theme="light"] .polaroid,
   [data-theme="light"] .polaroid-hero {
     background: #FFFFFF !important;
-    color: #0A0A0A !important;
+    color: #031D4C !important;
   }
 
   /* ── WebKit scrollbar track inside light cards ───────────────────── */
   [data-theme="light"] .dest-scroll::-webkit-scrollbar-track {
-    background: rgba(201, 162, 52, 0.15) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
   }
 }
 
@@ -434,14 +434,14 @@
   .glass-card:hover {
     border-color: var(--color-lime);
     transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(201, 162, 52, 0.15);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.15);
   }
 
   .glass-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(201, 162, 52, 0.12) 0%, transparent 40%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.12) 0%, transparent 40%);
     opacity: 0;
     transition: opacity 400ms ease;
     pointer-events: none;
@@ -453,8 +453,8 @@
 
   /* Glass panel (stronger blur) */
   .glass-panel {
-    background: rgba(10, 10, 10, 0.55);
-    border: 1px solid rgba(201, 162, 52, 0.3);
+    background: rgba(2, 22, 53, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
   }
 
@@ -581,7 +581,7 @@
   /* Hairline rule */
   .hairline {
     height: 1px;
-    background-color: rgba(201, 162, 52, 0.4);
+    background-color: rgba(255, 255, 255, 0.4);
   }
 
   /* Animated hairline — draws on as it enters the viewport */
@@ -683,7 +683,7 @@
     position: relative;
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(201, 162, 52, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 12px 0;
     color: var(--color-kimono);
     font-family: 'Lato', sans-serif;
@@ -719,13 +719,13 @@
   .social-icon:hover {
     background-color: var(--color-gold);
     color: var(--color-navy);
-    box-shadow: 0 0 20px rgba(201, 162, 52, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
   }
 }
 
 @layer utilities {
   .text-stroke-gold {
-    -webkit-text-stroke: 2px rgba(201, 162, 52, 0.6);
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.6);
     color: transparent;
   }
 
@@ -793,8 +793,8 @@
 
 /* ── Gold pulse animation for video CTA ── */
 @keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,52,0.5); }
-  50% { box-shadow: 0 0 20px 6px rgba(201,162,52,0.25); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255,0.5); }
+  50% { box-shadow: 0 0 20px 6px rgba(255, 255, 255,0.25); }
 }
 
 /* ── TrustBar marquee keyframes ── */
@@ -824,7 +824,7 @@
 /* ── Theme toggle: light-mode styling ───────────────────────────── */
 [data-theme="light"] .theme-toggle {
   background-color: rgba(255, 255, 255, 0.75) !important;
-  border-color: rgba(201, 162, 52, 0.7) !important;
-  color: #0B2A5C !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  color: #052458 !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }

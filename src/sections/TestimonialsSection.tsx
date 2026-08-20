@@ -75,7 +75,7 @@ function StarRating() {
   return (
     <div className="flex gap-1">
       {[...Array(5)].map((_, i) => (
-        <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#C9A234">
+        <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ))}
@@ -141,20 +141,20 @@ export default function TestimonialsSection() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}>
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.55) 50%, rgba(10,10,10,0.7) 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(2, 22, 53,0.65) 0%, rgba(2, 22, 53,0.55) 50%, rgba(2, 22, 53,0.7) 100%)' }} />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">
           <SectionLabel name="STUDENT STORIES" />
         </div>
         <div ref={headingRef} className="mb-16" style={{ opacity: 0 }}>
-          <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
+          <div className="hairline-draw w-12 h-px mb-8" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
           <h2 className="font-display font-bold text-kimono uppercase"
             style={{ fontSize: 'clamp(36px, 6vw, 76px)', letterSpacing: '0.05em', lineHeight: 1.05 }}>
             <ScrambledText text="STUDENT" />{' '}
-            <ScrambledText text="STORIES" style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }} />
+            <ScrambledText text="STORIES" style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }} />
           </h2>
-          <p className="font-serif font-light text-cream/50 mt-5 max-w-[480px]"
+          <p className="font-serif font-light text-cream/60 mt-5 max-w-[480px]"
             style={{ fontSize: 'clamp(15px, 1.6vw, 19px)', lineHeight: 1.75 }}>
             Real students. Real outcomes. From Dhaka to KL, from Chittagong to Cyberjaya —
             these are the people we exist for.
@@ -191,9 +191,9 @@ export default function TestimonialsSection() {
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.borderColor = 'rgba(201,162,52,0.25)';
+              el.style.borderColor = 'rgba(255, 255, 255,0.25)';
               el.style.transform = 'translateY(-4px)';
-              el.style.boxShadow = '0 8px 32px rgba(201,162,52,0.15)';
+              el.style.boxShadow = '0 8px 32px rgba(255, 255, 255,0.15)';
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
@@ -212,7 +212,7 @@ export default function TestimonialsSection() {
             </blockquote>
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ backgroundColor: t.color, border: '1px solid rgba(201,162,52,0.3)' }}>
+                style={{ backgroundColor: t.color, border: '1px solid rgba(255, 255, 255,0.3)' }}>
                 <span className="font-body text-[11px] font-bold text-kimono tracking-wider">{t.initials}</span>
               </div>
               <div>
@@ -238,11 +238,11 @@ export default function TestimonialsSection() {
                   setActiveIndex(i);
                 }}
                 className="h-px transition-all duration-300"
-                style={{ width: activeIndex === i ? '24px' : '12px', background: activeIndex === i ? '#C9A234' : 'rgba(201,162,52,0.25)' }}
+                style={{ width: activeIndex === i ? '24px' : '12px', background: activeIndex === i ? '#FFFFFF' : 'rgba(255, 255, 255,0.25)' }}
               />
             ))}
           </div>
-          <span className="small-caps text-mouse/40" style={{ fontSize: '10px' }}>Drag to explore</span>
+          <span className="small-caps text-mouse" style={{ fontSize: '10px' }}>Drag to explore</span>
         </div>
       </div>
     </section>

@@ -142,8 +142,8 @@ export default function BlogSection() {
     const rotateX = ((y / rect.height) - 0.5) * -6;
     el.style.transition = 'transform 80ms ease-out, border-color 200ms ease, background 200ms ease, box-shadow 250ms ease';
     el.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-    el.style.borderColor = 'rgba(201,162,52,0.55)';
-    el.style.boxShadow = '0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,162,52,0.35), inset 0 1px 0 rgba(201,162,52,0.15)';
+    el.style.borderColor = 'rgba(255, 255, 255,0.55)';
+    el.style.boxShadow = '0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255, 255, 255,0.35), inset 0 1px 0 rgba(255, 255, 255,0.15)';
   };
 
   const handleTiltLeave = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -166,12 +166,12 @@ export default function BlogSection() {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(ellipse 60% 50% at 85% 10%, rgba(201,162,52,0.10) 0%, transparent 60%), radial-gradient(ellipse 55% 45% at 15% 90%, rgba(11,42,92,0.40) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 85% 10%, rgba(255, 255, 255,0.10) 0%, transparent 60%), radial-gradient(ellipse 55% 45% at 15% 90%, rgba(11,42,92,0.40) 0%, transparent 60%)',
         }}
       />
 
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
-      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
+      <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">
@@ -195,11 +195,11 @@ export default function BlogSection() {
               opacity: 0,
             }}
           >
-            From our <span style={{ color: '#C9A234' }}>blog</span>
+            From our <span style={{ color: '#FFFFFF' }}>blog</span>
           </h2>
           <p
             data-anim
-            className="font-serif font-light text-cream/55 mt-6 max-w-[640px]"
+            className="font-serif font-light text-cream/60 mt-6 max-w-[640px]"
             style={{ fontSize: 'clamp(15px, 1.5vw, 18px)', lineHeight: 1.7, opacity: 0 }}
           >
             Practical advice, university insights, and the latest news for Bangladeshi students heading to Malaysia.
@@ -209,9 +209,9 @@ export default function BlogSection() {
             className="mt-8 flex items-center justify-center gap-2"
             style={{ opacity: 0 }}
           >
-            <div className="w-12 h-px" style={{ background: 'rgba(201,162,52,0.4)' }} />
-            <div className="w-2 h-2 rounded-full" style={{ background: '#C9A234' }} />
-            <div className="w-12 h-px" style={{ background: 'rgba(201,162,52,0.4)' }} />
+            <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
+            <div className="w-2 h-2 rounded-full" style={{ background: '#FFFFFF' }} />
+            <div className="w-12 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
           </div>
         </div>
 
@@ -263,15 +263,15 @@ export default function BlogSection() {
                   className="absolute inset-0 pointer-events-none"
                   style={{
                     background:
-                      'linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0.55) 100%)',
+                      'linear-gradient(180deg, rgba(2, 22, 53,0.25) 0%, rgba(2, 22, 53,0) 35%, rgba(2, 22, 53,0.55) 100%)',
                   }}
                 />
                 <div className="absolute top-3 left-3">
                   <span
                     className="px-2.5 py-1 rounded-full text-[9px] font-body uppercase"
                     style={{
-                      background: '#C9A234',
-                      color: '#0A0A0A',
+                      background: '#FFFFFF',
+                      color: '#031D4C',
                       fontWeight: 700,
                       letterSpacing: '0.18em',
                     }}
@@ -326,8 +326,8 @@ export default function BlogSection() {
                     <div
                       className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: 'rgba(201,162,52,0.15)',
-                        border: '1px solid rgba(201,162,52,0.35)',
+                        background: 'rgba(255, 255, 255,0.15)',
+                        border: '1px solid rgba(255, 255, 255,0.35)',
                       }}
                     >
                       <span
@@ -337,9 +337,9 @@ export default function BlogSection() {
                         KM
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5 min-w-0 font-body text-cream/55" style={{ fontSize: '11px' }}>
+                    <div className="flex items-center gap-1.5 min-w-0 font-body text-cream/60" style={{ fontSize: '11px' }}>
                       <span className="truncate">By {post.author}</span>
-                      <span className="text-cream/30">·</span>
+                      <span className="text-cream/60">·</span>
                       <span className="flex items-center gap-1 flex-shrink-0">
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <circle cx="12" cy="12" r="9" />
@@ -372,20 +372,20 @@ export default function BlogSection() {
             onClick={() => navigate('/resources')}
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-body text-xs uppercase transition-all duration-300 hover:scale-[1.03] cursor-pointer"
             style={{
-              border: '1px solid rgba(201,162,52,0.5)',
-              color: '#C9A234',
+              border: '1px solid rgba(255, 255, 255,0.5)',
+              color: '#FFFFFF',
               letterSpacing: '0.18em',
               fontWeight: 600,
-              background: 'rgba(201,162,52,0.04)',
+              background: 'rgba(255, 255, 255,0.04)',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(201,162,52,0.10)';
-              e.currentTarget.style.borderColor = 'rgba(201,162,52,0.8)';
-              e.currentTarget.style.boxShadow = '0 8px 28px rgba(201,162,52,0.22)';
+              e.currentTarget.style.background = 'rgba(255, 255, 255,0.10)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.8)';
+              e.currentTarget.style.boxShadow = '0 8px 28px rgba(255, 255, 255,0.22)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(201,162,52,0.04)';
-              e.currentTarget.style.borderColor = 'rgba(201,162,52,0.5)';
+              e.currentTarget.style.background = 'rgba(255, 255, 255,0.04)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.5)';
               e.currentTarget.style.boxShadow = 'none';
             }}
           >

@@ -214,9 +214,9 @@ export default function TeamPage() {
     const rotateX = ((y / rect.height) - 0.5) * -8;
     el.style.transition = 'transform 80ms ease-out, border-color 200ms ease, background 200ms ease, box-shadow 250ms ease';
     el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-    el.style.borderColor = 'rgba(201,162,52,0.55)';
+    el.style.borderColor = 'rgba(255, 255, 255,0.55)';
     el.style.background = 'rgba(255,255,255,0.06)';
-    el.style.boxShadow = '0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(201,162,52,0.35), inset 0 1px 0 rgba(201,162,52,0.15)';
+    el.style.boxShadow = '0 25px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255, 255, 255,0.35), inset 0 1px 0 rgba(255, 255, 255,0.15)';
     const dot = el.querySelector('.tilt-dot') as HTMLElement | null;
     if (dot) {
       dot.style.left = `${x}px`;
@@ -228,7 +228,7 @@ export default function TeamPage() {
   const handleTiltEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!prefersReducedMotion) return;
     e.currentTarget.style.transform = 'translateY(-6px)';
-    e.currentTarget.style.borderColor = 'rgba(201,162,52,0.4)';
+    e.currentTarget.style.borderColor = 'rgba(255, 255, 255,0.4)';
     e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
   };
 
@@ -249,10 +249,10 @@ export default function TeamPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0B1A33' }}>
+    <div style={{ minHeight: '100vh', background: '#021635' }}>
       <div
         className="sticky top-0 z-50"
-        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(201,162,52,0.15)' }}
+        style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255, 255, 255,0.15)' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
           <div className="flex items-center gap-1 overflow-x-auto flex-nowrap scrollbar-none flex-shrink-0 max-w-full">
@@ -266,7 +266,7 @@ export default function TeamPage() {
               </svg>
               Back
             </button>
-            <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(201,162,52,0.2)' }} />
+            <div className="w-px h-4 mx-1 flex-shrink-0" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
             {([
               { label: 'About', id: 'about', active: false },
               { label: 'Services', id: 'services', active: false },
@@ -283,9 +283,9 @@ export default function TeamPage() {
                   navigate('/');
                 }}
                 className={`transition-colors cursor-pointer font-body text-xs uppercase tracking-wider px-2 py-1.5 rounded-lg hover:bg-white/5 whitespace-nowrap flex-shrink-0 ${
-                  active ? 'text-gold' : 'text-cream/40 hover:text-gold'
+                  active ? 'text-gold' : 'text-cream/60 hover:text-gold'
                 }`}
-                style={active ? { background: 'rgba(201,162,52,0.1)', border: '1px solid rgba(201,162,52,0.3)' } : undefined}
+                style={active ? { background: 'rgba(255, 255, 255,0.1)', border: '1px solid rgba(255, 255, 255,0.3)' } : undefined}
                 aria-current={active ? 'page' : undefined}
               >
                 {label}
@@ -302,7 +302,7 @@ export default function TeamPage() {
       >
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,162,52,0.10) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 255, 255,0.10) 0%, transparent 70%)' }}
         />
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-10">
           <p
@@ -335,13 +335,13 @@ export default function TeamPage() {
                 className="pillar-card rounded-2xl p-7 lg:p-8 relative overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.55) 100%)',
-                  border: '1px solid rgba(201,162,52,0.2)',
+                  border: '1px solid rgba(255, 255, 255,0.2)',
                   opacity: 0,
                 }}
               >
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center mb-5"
-                  style={{ background: 'rgba(201,162,52,0.12)', color: '#C9A234', border: '1px solid rgba(201,162,52,0.3)' }}
+                  style={{ background: 'rgba(255, 255, 255,0.12)', color: '#FFFFFF', border: '1px solid rgba(255, 255, 255,0.3)' }}
                 >
                   <PillarIcon kind={pillar.icon} />
                 </div>
@@ -359,7 +359,7 @@ export default function TeamPage() {
                 </p>
                 <div
                   className="absolute -bottom-px left-0 right-0 h-px"
-                  style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,162,52,0.5) 50%, transparent 100%)' }}
+                  style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255,0.5) 50%, transparent 100%)' }}
                 />
               </article>
             ))}
@@ -378,10 +378,10 @@ export default function TeamPage() {
                 className="font-display font-bold text-kimono leading-[1] uppercase"
                 style={{ fontSize: 'clamp(28px, 4.5vw, 48px)', letterSpacing: '0.04em' }}
               >
-                Real people, <span style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}>real care</span>
+                Real people, <span style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}>real care</span>
               </h2>
             </div>
-            <div className="w-20 h-px" style={{ background: 'rgba(201,162,52,0.4)' }} />
+            <div className="w-20 h-px" style={{ background: 'rgba(255, 255, 255,0.4)' }} />
           </div>
 
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -404,8 +404,8 @@ export default function TeamPage() {
                 <span
                   className="tilt-dot absolute w-2.5 h-2.5 rounded-full pointer-events-none"
                   style={{
-                    background: '#C9A234',
-                    boxShadow: '0 0 14px rgba(201,162,52,0.9), 0 0 4px rgba(255,215,0,0.6)',
+                    background: '#FFFFFF',
+                    boxShadow: '0 0 14px rgba(255, 255, 255,0.9), 0 0 4px rgba(255,215,0,0.6)',
                     transform: 'translate(-50%, -50%)',
                     opacity: 0,
                     transition: 'opacity 250ms ease',
@@ -419,7 +419,7 @@ export default function TeamPage() {
                     {member.photo ? (
                       <div
                         className="w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden"
-                        style={{ border: '2px solid rgba(201,162,52,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
+                        style={{ border: '2px solid rgba(255, 255, 255,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
                       >
                         <img
                           src={member.photo}
@@ -435,7 +435,7 @@ export default function TeamPage() {
                     ) : (
                       <div
                         className="w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center bg-gradient-to-br from-navy to-mist"
-                        style={{ border: '2px solid rgba(201,162,52,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
+                        style={{ border: '2px solid rgba(255, 255, 255,0.4)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}
                         aria-hidden="true"
                       >
                         <span
@@ -448,7 +448,7 @@ export default function TeamPage() {
                     )}
                     <span
                       className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center"
-                      style={{ background: '#C9A234', color: '#0B1A33', boxShadow: '0 4px 12px rgba(201,162,52,0.4)' }}
+                      style={{ background: '#FFFFFF', color: '#021635', boxShadow: '0 4px 12px rgba(255, 255, 255,0.4)' }}
                       aria-hidden="true"
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -479,9 +479,9 @@ export default function TeamPage() {
                   {member.bio}
                 </p>
 
-                <div className="mt-auto pt-4" style={{ borderTop: '1px solid rgba(201,162,52,0.25)' }}>
+                <div className="mt-auto pt-4" style={{ borderTop: '1px solid rgba(255, 255, 255,0.25)' }}>
                   <p
-                    className="font-body text-cream/55 uppercase tracking-wider"
+                    className="font-body text-cream/60 uppercase tracking-wider"
                     style={{ fontSize: '10.5px', letterSpacing: '0.12em', lineHeight: 1.5 }}
                   >
                     {member.credentials}
@@ -496,10 +496,10 @@ export default function TeamPage() {
       <section ref={statsRef} className="relative w-full py-20 lg:py-24 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(201,162,52,0.06) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255, 255, 255,0.06) 0%, transparent 70%)' }}
         />
-        <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
-        <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
+        <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
+        <div className="hairline-draw absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-10">
           <div className="text-center mb-12">
             <p className="font-body uppercase tracking-[0.4em] text-gold/70" style={{ fontSize: '11px' }}>
@@ -537,12 +537,12 @@ export default function TeamPage() {
             className="rounded-3xl p-10 lg:p-14 relative overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.85) 0%, rgba(11,42,92,0.7) 100%)',
-              border: '1px solid rgba(201,162,52,0.25)',
+              border: '1px solid rgba(255, 255, 255,0.25)',
             }}
           >
             <div
               className="absolute inset-0 pointer-events-none"
-              style={{ background: 'radial-gradient(circle at 50% 0%, rgba(201,162,52,0.18) 0%, transparent 60%)' }}
+              style={{ background: 'radial-gradient(circle at 50% 0%, rgba(255, 255, 255,0.18) 0%, transparent 60%)' }}
             />
             <p
               className="relative font-body uppercase tracking-[0.32em] text-gold/70 mb-4"
@@ -565,7 +565,7 @@ export default function TeamPage() {
             <button
               onClick={goToContact}
               className="relative inline-flex items-center gap-3 px-9 py-4 rounded-full font-body text-xs uppercase tracking-[0.2em] cursor-pointer transition-all duration-300 hover:scale-[1.03]"
-              style={{ background: '#C9A234', color: '#0B1A33', fontWeight: 700, boxShadow: '0 8px 28px rgba(201,162,52,0.3)' }}
+              style={{ background: '#FFFFFF', color: '#021635', fontWeight: 700, boxShadow: '0 8px 28px rgba(255, 255, 255,0.3)' }}
             >
               Book a Free Consultation
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

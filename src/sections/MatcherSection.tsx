@@ -260,9 +260,9 @@ function PillButton({
       disabled={disabled}
       className="px-5 py-2.5 rounded-full font-body text-[13px] tracking-wide transition-all duration-300 focus:outline-none"
       style={{
-        background: active ? '#C9A234' : 'rgba(255,255,255,0.04)',
-        color: active ? '#0A0A0A' : disabled ? 'rgba(255,255,255,0.25)' : 'var(--color-kimono)',
-        border: active ? '1px solid #C9A234' : '1px solid rgba(255,255,255,0.12)',
+        background: active ? '#FFFFFF' : 'rgba(255,255,255,0.04)',
+        color: active ? '#031D4C' : disabled ? 'rgba(255,255,255,0.25)' : 'var(--color-kimono)',
+        border: active ? '1px solid #FFFFFF' : '1px solid rgba(255,255,255,0.12)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         fontWeight: active ? 600 : 400,
         opacity: disabled ? 0.5 : 1,
@@ -283,7 +283,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
       className="rounded-2xl p-5 flex flex-col gap-3"
       style={{
         background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(201,162,52,0.25)',
+        border: '1px solid rgba(255, 255, 255,0.25)',
         backdropFilter: 'blur(6px)',
         WebkitBackdropFilter: 'blur(6px)',
       }}
@@ -291,7 +291,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
       <div className="flex items-start gap-3">
         <div
           className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0"
-          style={{ border: '1px solid rgba(201,162,52,0.3)' }}
+          style={{ border: '1px solid rgba(255, 255, 255,0.3)' }}
         >
           <img
             src={uni.campusImage}
@@ -328,7 +328,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
         {uni.programmes.length > 3 && (
           <span
             className="text-[10px] px-2 py-0.5 rounded-full font-body text-gold/60"
-            style={{ background: 'rgba(201,162,52,0.08)' }}
+            style={{ background: 'rgba(255, 255, 255,0.08)' }}
           >
             +{uni.programmes.length - 3} more
           </span>
@@ -343,7 +343,7 @@ function ResultCard({ uni, onView }: { uni: MatcherUni; onView: () => void }) {
           style={{
             background: 'transparent',
             color: 'var(--color-gold)',
-            border: '1px solid rgba(201,162,52,0.4)',
+            border: '1px solid rgba(255, 255, 255,0.4)',
           }}
         >
           View Details
@@ -478,7 +478,7 @@ export default function MatcherSection() {
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse at 50% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), linear-gradient(180deg, #050505 0%, #0A0A0A 100%)',
+              'radial-gradient(ellipse at 50% 0%, rgba(11,42,92,0.55) 0%, transparent 60%), linear-gradient(180deg, #021029 0%, #031D4C 100%)',
           }}
         />
       </div>
@@ -490,7 +490,7 @@ export default function MatcherSection() {
           <SectionLabel name="Match Me" />
         </div>
         <div ref={headerRef} className="mb-14" style={{ opacity: 0 }}>
-          <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(201,162,52,0.5)' }} />
+          <div className="hairline-draw w-16 h-px mb-8" style={{ background: 'rgba(255, 255, 255,0.5)' }} />
           <p
             className="font-body uppercase tracking-[0.25em] text-gold/80 mb-4"
             style={{ fontSize: 12 }}
@@ -509,7 +509,7 @@ export default function MatcherSection() {
             <br />
             <ScrambledText
               text="is right for you?"
-              style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}
+              style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}
             />
           </h2>
           <p
@@ -550,7 +550,7 @@ export default function MatcherSection() {
                 className="h-full transition-all duration-500"
                 style={{
                   width: `${progressPct}%`,
-                  background: 'linear-gradient(90deg, #C9A234 0%, #D4AF37 100%)',
+                  background: 'linear-gradient(90deg, #FFFFFF 0%, #D4AF37 100%)',
                   transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 }}
               />
@@ -562,7 +562,7 @@ export default function MatcherSection() {
               className="rounded-3xl p-8 lg:p-10"
               style={{
                 background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(201,162,52,0.2)',
+                border: '1px solid rgba(255, 255, 255,0.2)',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
               }}

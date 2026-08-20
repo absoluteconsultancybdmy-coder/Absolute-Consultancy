@@ -19,10 +19,10 @@ function TrustStrip() {
     <div
       className="relative w-full overflow-hidden"
       style={{
-        background: 'linear-gradient(90deg, #0B1E42 0%, #0B2A5C 50%, #0B1E42 100%)',
+        background: 'linear-gradient(90deg, #031D4C 0%, #052458 50%, #031D4C 100%)',
         height: '60px',
-        borderTop: '1px solid rgba(201,162,52,0.2)',
-        borderBottom: '1px solid rgba(201,162,52,0.2)',
+        borderTop: '1px solid rgba(255, 255, 255,0.2)',
+        borderBottom: '1px solid rgba(255, 255, 255,0.2)',
       }}
       role="complementary"
       aria-label="Trust signals"

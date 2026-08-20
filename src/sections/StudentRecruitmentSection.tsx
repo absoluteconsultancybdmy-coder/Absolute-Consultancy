@@ -90,14 +90,14 @@ export default function StudentRecruitmentSection() {
       {/* Top gold hairline */}
       <div
         className="hairline-draw absolute top-0 left-0 right-0 h-px z-10"
-        style={{ background: 'rgba(201,162,52,0.2)' }}
+        style={{ background: 'rgba(255, 255, 255,0.2)' }}
       />
 
       {/* Animated background glow */}
       <div
         className="absolute inset-0 pointer-events-none z-10"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201,162,52,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(255, 255, 255,0.06) 0%, transparent 70%)',
         }}
       />
 
@@ -112,7 +112,7 @@ export default function StudentRecruitmentSection() {
             style={{
               width: `${2 + Math.random() * 4}px`,
               height: `${2 + Math.random() * 4}px`,
-              background: `rgba(201,162,52,${0.1 + Math.random() * 0.2})`,
+              background: `rgba(255, 255, 255,${0.1 + Math.random() * 0.2})`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animation: `float ${6 + Math.random() * 8}s ease-in-out infinite`,
@@ -129,7 +129,7 @@ export default function StudentRecruitmentSection() {
           style={{
             fontSize: 'clamp(120px, 25vw, 350px)',
             letterSpacing: '-0.02em',
-            WebkitTextStroke: '1px rgba(201,162,52,0.03)',
+            WebkitTextStroke: '1px rgba(255, 255, 255,0.03)',
             color: 'transparent',
             lineHeight: 1,
           }}

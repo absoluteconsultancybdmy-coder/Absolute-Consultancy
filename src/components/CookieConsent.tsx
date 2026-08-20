@@ -72,11 +72,11 @@ function CookieConsent() {
       <div
         className="relative rounded-2xl p-5 sm:p-6"
         style={{
-          background: 'rgba(10, 10, 10, 0.92)',
+          background: 'rgba(2, 22, 53, 0.92)',
           backdropFilter: 'blur(14px)',
           WebkitBackdropFilter: 'blur(14px)',
-          border: '1px solid rgba(201, 162, 52, 0.45)',
-          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(201, 162, 52, 0.08)',
+          border: '1px solid rgba(255, 255, 255, 0.45)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08)',
         }}
       >
         <div
@@ -84,7 +84,7 @@ function CookieConsent() {
           className="absolute -top-px left-6 right-6 h-px"
           style={{
             background:
-              'linear-gradient(90deg, transparent 0%, rgba(201, 162, 52, 0.7) 50%, transparent 100%)',
+              'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, transparent 100%)',
           }}
         />
 
@@ -93,8 +93,8 @@ function CookieConsent() {
             aria-hidden="true"
             className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
             style={{
-              background: 'rgba(201, 162, 52, 0.12)',
-              border: '1px solid rgba(201, 162, 52, 0.35)',
+              background: 'rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(255, 255, 255, 0.35)',
             }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-gold)' }}>

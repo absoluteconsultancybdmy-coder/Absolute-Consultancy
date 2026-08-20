@@ -19,7 +19,7 @@ interface LazySectionProps {
 
 const DEFAULT_FALLBACK_STYLE: CSSProperties = {
   minHeight: '60vh',
-  background: 'rgba(10,10,10,0.4)',
+  background: 'rgba(2, 22, 53,0.4)',
 };
 
 function DefaultFallback({ minHeight }: { minHeight: string }) {

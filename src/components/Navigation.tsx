@@ -118,7 +118,9 @@ export default function Navigation() {
                 onClick={() => scrollTo(link.href)}
                 aria-current={isActive(link.href) ? 'page' : undefined}
                 className={`nav-link small-caps cursor-pointer bg-transparent transition-colors duration-200 ${
-                  isActive(link.href) ? 'text-gold' : 'text-kimono/75 hover:text-kimono'
+                  isActive(link.href)
+                    ? 'text-gold underline underline-offset-[6px] decoration-1'
+                    : 'text-kimono/75 hover:text-kimono'
                 }`}
               >
                 {link.label}
@@ -186,7 +188,7 @@ export default function Navigation() {
       <div
         className="fixed inset-0 z-50 lg:hidden flex flex-col justify-center items-center"
         style={{
-          background: 'rgba(10,10,10,0.97)',
+          background: 'rgba(2, 22, 53,0.97)',
           backdropFilter: 'blur(8px)',
           WebkitBackdropFilter: 'blur(8px)',
           opacity: menuOpen ? 1 : 0,
@@ -195,7 +197,7 @@ export default function Navigation() {
         }}
       >
         {/* Gold hairline top */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.3)' }} />
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
 
         <nav className="flex flex-col items-center gap-8">
           {navLinks.map((link, i) => (
@@ -204,7 +206,9 @@ export default function Navigation() {
               onClick={() => scrollTo(link.href)}
               aria-current={isActive(link.href) ? 'page' : undefined}
               className={`font-display font-bold cursor-pointer bg-transparent uppercase transition-colors duration-200 ${
-                isActive(link.href) ? 'text-gold' : 'text-kimono/80 hover:text-gold'
+                isActive(link.href)
+                  ? 'text-gold underline underline-offset-8 decoration-2'
+                  : 'text-kimono/80 hover:text-gold'
               }`}
               style={{
                 fontSize: 'clamp(28px, 8vw, 48px)',
@@ -264,7 +268,7 @@ export default function Navigation() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.3)' }} />
+        <div className="absolute bottom-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.3)' }} />
       </div>
     </>
   );

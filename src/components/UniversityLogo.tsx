@@ -70,7 +70,7 @@ export default function UniversityLogo({
           width: size,
           height: size,
           borderRadius: '14px',
-          boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(201,162,52,0.18)',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255, 255, 255,0.18)',
           padding: '8px',
         }}
       >
@@ -93,7 +93,7 @@ export default function UniversityLogo({
         height: size,
         borderRadius: '14px',
         background: bgColor,
-        boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(201,162,52,0.18)',
+        boxShadow: '0 4px 14px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255, 255, 255,0.18)',
       }}
     >
       <div

@@ -101,7 +101,7 @@ function FaqItem({ faq, isOpen, onToggle, index }: FaqItemProps) {
   return (
     <div
       className="border-b transition-colors duration-300"
-      style={{ borderColor: isOpen ? 'rgba(201,162,52,0.35)' : 'rgba(201,162,52,0.12)' }}
+      style={{ borderColor: isOpen ? 'rgba(255, 255, 255,0.35)' : 'rgba(255, 255, 255,0.12)' }}
     >
       <button
         type="button"
@@ -135,8 +135,8 @@ function FaqItem({ faq, isOpen, onToggle, index }: FaqItemProps) {
           style={{
             width: '36px',
             height: '36px',
-            background: isOpen ? 'rgba(201,162,52,0.15)' : 'rgba(201,162,52,0.06)',
-            border: '1px solid rgba(201,162,52,0.35)',
+            background: isOpen ? 'rgba(255, 255, 255,0.15)' : 'rgba(255, 255, 255,0.06)',
+            border: '1px solid rgba(255, 255, 255,0.35)',
             transition: 'background 300ms ease',
             willChange: 'transform',
           }}
@@ -147,7 +147,7 @@ function FaqItem({ faq, isOpen, onToggle, index }: FaqItemProps) {
             height="14"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#C9A234"
+            stroke="#FFFFFF"
             strokeWidth="1.8"
             strokeLinecap="round"
           >
@@ -260,11 +260,11 @@ export default function FaqSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(201,162,52,0.04) 0%, transparent 60%)',
+            'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255, 255, 255,0.04) 0%, transparent 60%)',
         }}
       />
 
-      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(201,162,52,0.2)' }} />
+      <div className="hairline-draw absolute top-0 left-0 right-0 h-px" style={{ background: 'rgba(255, 255, 255,0.2)' }} />
 
       <div className="relative z-10 max-w-[920px] mx-auto px-6 lg:px-10">
         <div className="mb-8 lg:mb-10">
@@ -284,7 +284,7 @@ export default function FaqSection() {
             <ScrambledText text="FREQUENTLY" />{' '}
             <ScrambledText
               text="ASKED"
-              style={{ WebkitTextStroke: '1px rgba(201,162,52,0.5)', color: 'transparent' }}
+              style={{ WebkitTextStroke: '1px rgba(255, 255, 255,0.5)', color: 'transparent' }}
             />
           </h2>
           <p
@@ -299,7 +299,7 @@ export default function FaqSection() {
           className="rounded-2xl p-2 sm:p-4 lg:p-6"
           style={{
             background: 'rgba(255,255,255,0.025)',
-            border: '1px solid rgba(201,162,52,0.15)',
+            border: '1px solid rgba(255, 255, 255,0.15)',
             backdropFilter: 'blur(4px)',
             WebkitBackdropFilter: 'blur(4px)',
           }}
@@ -318,14 +318,14 @@ export default function FaqSection() {
 
         <div className="mt-12 text-center">
           <p
-            className="font-serif font-light text-cream/50"
+            className="font-serif font-light text-cream/60"
             style={{ fontSize: 'clamp(14px, 1.4vw, 16px)', lineHeight: 1.6 }}
           >
             Still have questions?{' '}
             <a
               href="#contact"
               className="text-gold underline-offset-4 hover:underline"
-              style={{ textDecorationColor: 'rgba(201,162,52,0.5)' }}
+              style={{ textDecorationColor: 'rgba(255, 255, 255,0.5)' }}
             >
               Speak to our counsellors
             </a>
