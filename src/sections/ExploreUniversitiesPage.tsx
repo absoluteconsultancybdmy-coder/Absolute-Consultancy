@@ -1077,7 +1077,7 @@ export default function ExploreUniversitiesPage() {
       {/* Main Content — always rendered underneath */}
       <div ref={contentRef} style={{ opacity: splashVisible ? 0 : 1, minHeight: '100vh', background: 'rgb(var(--color-mist))' }}>
         {/* Top bar */}
-        <div className="sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}>
+        <div className="on-navy sticky top-0 z-50" style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}>
           <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
             {/* Left: HOME + nav links */}
             <div className="flex items-center gap-1 overflow-x-auto flex-nowrap scrollbar-none flex-shrink-0 max-w-full">
@@ -1193,7 +1193,7 @@ export default function ExploreUniversitiesPage() {
         {/* Recently placed marquee (md+) */}
         <div className="hidden md:block max-w-[1280px] mx-auto px-6 lg:px-10 mb-10">
           <div
-            className="relative overflow-hidden"
+            className="on-navy relative overflow-hidden"
             style={{
               background: 'linear-gradient(90deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.7) 50%, rgba(11,30,66,0.7) 100%)',
               border: '1px solid rgb(var(--color-gold) / 0.2)',
@@ -1281,7 +1281,7 @@ export default function ExploreUniversitiesPage() {
                   className="px-5 py-2 rounded-full font-body text-xs uppercase tracking-wider cursor-pointer"
                   style={{
                     background: isActive ? 'rgb(var(--color-gold))' : 'transparent',
-                    color: isActive ? '#021635' : 'rgb(var(--color-gold))',
+                    color: isActive ? '#FFFFFF' : 'rgb(var(--color-gold))',
                     border: `1px solid ${isActive ? 'rgb(var(--color-gold))' : 'rgb(var(--color-gold) / 0.4)'}`,
                     fontWeight: isActive ? 700 : 500,
                     transition: 'background 250ms ease, color 250ms ease, border-color 250ms ease, transform 200ms ease',
@@ -1404,7 +1404,10 @@ export default function ExploreUniversitiesPage() {
                     aria-hidden="true"
                   />
 
-                  <div className="relative overflow-hidden" style={{ height: '200px', flexShrink: 0 }}>
+                  {/* The scrim over the photo is dark, so the tokens inside it
+                      have to resolve to their on-navy values or the title and
+                      badges come out navy-on-navy. */}
+                  <div className="on-navy relative overflow-hidden" style={{ height: '200px', flexShrink: 0 }}>
                     <div
                       className="absolute inset-0"
                       style={{
