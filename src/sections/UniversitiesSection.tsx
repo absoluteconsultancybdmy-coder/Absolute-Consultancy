@@ -1,6 +1,7 @@
 import { memo, useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TiltCard from '../components/TiltCard';
+import UniversityLogo from '../components/UniversityLogo';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from '../hooks/useLenis';
@@ -351,7 +352,10 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
         </span>
       </div>
 
-      {uni.logo && (
+      {/* Monash has no mark in the partner catalogue, so rather than leave a
+          gap in the grid it falls back to the accent-coloured wordmark tile.
+          Hidden from assistive tech either way: the name follows directly. */}
+      {uni.logo ? (
         <img
           src={uni.logo}
           alt=""
@@ -361,6 +365,10 @@ const UniversityCard = memo(function UniversityCard({ uni, index, onClick }: { u
           decoding="async"
           className="h-11 w-auto max-w-[120px] object-contain object-left"
         />
+      ) : (
+        <div aria-hidden="true">
+          <UniversityLogo shortName={uni.shortName} accent={uni.accent} size={44} />
+        </div>
       )}
 
       <div>
