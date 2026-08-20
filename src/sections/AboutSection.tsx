@@ -66,7 +66,7 @@ export default function AboutSection() {
     <section ref={sectionRef} className="on-navy relative w-full py-32 lg:py-44" id="about">
       <div className="absolute inset-0 z-0">
         <img src={`${import.meta.env.BASE_URL}images/Firm.avif`} alt="" width={1920} height={1080} loading="lazy" decoding="async" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.opacity = '0'; }} />
-        <div className="absolute inset-0 bg-cream/[0.06]" />
+        <div className="absolute inset-0 bg-mist/70" />
       </div>
 
 

@@ -103,7 +103,7 @@ export default function ServicesSection() {
           className="w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = '0'; }}
         />
-        <div className="absolute inset-0 bg-cream/[0.06]" />
+        <div className="absolute inset-0 bg-mist/70" />
       </div>
 
 
