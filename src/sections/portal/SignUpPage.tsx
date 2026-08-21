@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import type { UserRole } from '../../lib/supabase';
 import {
   PortalShell,
   Field,
@@ -17,13 +16,13 @@ export default function SignUpPage() {
   const { signUp, configured } = useAuth();
   const navigate = useNavigate();
 
-  const [role, setRole] = useState<UserRole>('student');
+  const [role, setRole] = useState<'student' | 'agent'>('student');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [country, setCountry] = useState('');
-  const [agencyName, setAgencyName] = useState('');
 
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -37,8 +36,8 @@ export default function SignUpPage() {
       setError(`Password must be at least ${MIN_PASSWORD} characters.`);
       return;
     }
-    if (role === 'agent' && !agencyName.trim()) {
-      setError('Agency name is required for an agent account.');
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
       return;
     }
 
@@ -48,17 +47,15 @@ export default function SignUpPage() {
         email: email.trim(),
         password,
         fullName: fullName.trim(),
-        role,
         phone: phone.trim() || undefined,
         country: country.trim() || undefined,
-        agencyName: role === 'agent' ? agencyName.trim() : undefined,
       });
 
       if (needsConfirmation) {
         setSent(true);
         setPending(false);
       } else {
-        navigate(role === 'agent' ? '/portal/agent' : '/portal/student', { replace: true });
+        navigate('/portal/student', { replace: true });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not create the account.');
@@ -87,7 +84,7 @@ export default function SignUpPage() {
   return (
     <PortalShell
       title="Create account"
-      subtitle="Students track applications. Agents manage a student roster and commissions."
+      subtitle="Create a student account, or request approved access for your education agency."
       footer={
         <>
           Already registered?{' '}
@@ -97,32 +94,58 @@ export default function SignUpPage() {
         </>
       }
     >
+      <fieldset className="mb-7 grid grid-cols-2 gap-2 rounded-md border border-cream/15 p-1">
+        <legend className="sr-only">Account type</legend>
+        {(['student', 'agent'] as const).map((r) => (
+          <label
+            key={r}
+            className={`cursor-pointer rounded px-3 py-2.5 text-center font-display text-xs uppercase tracking-wider transition-colors ${
+              role === r ? 'bg-gold text-mist' : 'text-mouse hover:text-kimono'
+            }`}
+          >
+            <input
+              type="radio"
+              name="accountType"
+              value={r}
+              checked={role === r}
+              onChange={() => setRole(r)}
+              className="sr-only"
+            />
+            {r === 'student' ? 'Student' : 'Education agent'}
+          </label>
+        ))}
+      </fieldset>
+
       {!configured ? (
         <NotConfiguredNotice />
-      ) : (
-        <form onSubmit={onSubmit} noValidate>
-          {error && <FormAlert kind="error">{error}</FormAlert>}
-
-          <div
-            role="radiogroup"
-            aria-label="Account type"
-            className="mb-6 grid grid-cols-2 gap-2 rounded-md border border-cream/10 p-1"
+      ) : role === 'agent' ? (
+        <div className="rounded-xl border border-cream/15 bg-mist p-5 sm:p-6">
+          <p className="font-display text-lg uppercase tracking-wide text-kimono">
+            Agent access is approved
+          </p>
+          <p className="mt-3 font-body text-sm leading-relaxed text-mouse">
+            To protect student records and commission data, agent accounts are created after
+            Absolute Consultancy verifies the agency and its authorised contact.
+          </p>
+          <a
+            href="https://wa.me/60175631621?text=I%27d%20like%20to%20request%20access%20to%20the%20Absolute%20Consultancy%20agent%20portal."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex rounded-md bg-gold px-5 py-3 font-display text-xs uppercase tracking-wider text-mist transition-transform hover:-translate-y-0.5"
           >
-            {(['student', 'agent'] as const).map((r) => (
-              <button
-                key={r}
-                type="button"
-                role="radio"
-                aria-checked={role === r}
-                onClick={() => setRole(r)}
-                className={`rounded px-3 py-2.5 font-display text-xs uppercase tracking-wider transition-colors ${
-                  role === r ? 'bg-gold text-mist' : 'text-mouse hover:text-kimono'
-                }`}
-              >
-                {r === 'student' ? 'Student' : 'Agent'}
-              </button>
-            ))}
-          </div>
+            Request agent access
+          </a>
+          <p className="mt-4 font-body text-xs leading-relaxed text-mouse">
+            Already approved?{' '}
+            <Link to="/portal/login" className="text-gold hover:underline">
+              Sign in here
+            </Link>
+            .
+          </p>
+        </div>
+      ) : (
+        <form onSubmit={onSubmit}>
+          {error && <FormAlert kind="error">{error}</FormAlert>}
 
           <Field label="Full name" id="fullName">
             <input
@@ -135,20 +158,6 @@ export default function SignUpPage() {
               className={inputClass}
             />
           </Field>
-
-          {role === 'agent' && (
-            <Field label="Agency name" id="agencyName">
-              <input
-                id="agencyName"
-                type="text"
-                autoComplete="organization"
-                required
-                value={agencyName}
-                onChange={(e) => setAgencyName(e.target.value)}
-                className={inputClass}
-              />
-            </Field>
-          )}
 
           <Field label="Email" id="email">
             <input
@@ -163,22 +172,32 @@ export default function SignUpPage() {
             />
           </Field>
 
-          <Field
-            label="Password"
-            id="password"
-            hint={`At least ${MIN_PASSWORD} characters.`}
-          >
-            <input
-              id="password"
-              type="password"
-              autoComplete="new-password"
-              required
-              minLength={MIN_PASSWORD}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={inputClass}
-            />
-          </Field>
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
+            <Field label="Password" id="password" hint={`At least ${MIN_PASSWORD} characters.`}>
+              <input
+                id="password"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={MIN_PASSWORD}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={inputClass}
+              />
+            </Field>
+            <Field label="Confirm password" id="confirmPassword">
+              <input
+                id="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={MIN_PASSWORD}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={inputClass}
+              />
+            </Field>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
             <Field label="Phone (optional)" id="phone">
@@ -192,7 +211,6 @@ export default function SignUpPage() {
                 placeholder="+880…"
               />
             </Field>
-
             <Field label="Country (optional)" id="country">
               <input
                 id="country"
@@ -207,21 +225,14 @@ export default function SignUpPage() {
           </div>
 
           <div className="mt-2">
-            <SubmitButton pending={pending}>
-              {role === 'agent' ? 'Create agent account' : 'Create student account'}
-            </SubmitButton>
+            <SubmitButton pending={pending}>Create student account</SubmitButton>
           </div>
 
           <p className="mt-4 font-body text-xs leading-relaxed text-mouse">
             By creating an account you agree to our{' '}
-            <Link to="/terms" className="text-gold/80 hover:underline">
-              Terms
-            </Link>{' '}
+            <Link to="/terms" className="text-gold/80 hover:underline">Terms</Link>{' '}
             and{' '}
-            <Link to="/privacy" className="text-gold/80 hover:underline">
-              Privacy Policy
-            </Link>
-            .
+            <Link to="/privacy" className="text-gold/80 hover:underline">Privacy Policy</Link>.
           </p>
         </form>
       )}

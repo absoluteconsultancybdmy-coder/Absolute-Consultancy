@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, type ReactNode } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useLenis } from './hooks/useLenis';
 import { useIdleCallback } from './hooks/useIdleCallback';
 import Navigation from './components/Navigation';
@@ -190,7 +190,6 @@ function SectionBoundary({ name, children, minHeight = '60vh' }: SectionBoundary
 function HomePage() {
   return (
     <div className="relative min-h-[100dvh] bg-mist">
-      <ScrollHandler />
       <CustomCursor />
       <Navigation />
       <TrustBar />
@@ -241,12 +240,14 @@ export default function App() {
   // Keying on the path remounts the tree on navigation, which restarts the
   // enter animation — a plain class would only ever play once.
   const { pathname } = useLocation();
+  const isPortal = pathname.startsWith('/portal');
   return (
     <>
-      <SplashScreen />
-      <ScrollProgress />
+      <ScrollHandler />
+      {!isPortal && <SplashScreen />}
+      {!isPortal && <ScrollProgress />}
       <a href="#main-content" className="skip-link">Skip to main content</a>
-      <FilmGrain />
+      {!isPortal && <FilmGrain />}
       <div key={pathname} className="relative route-enter" style={{ zIndex: 1 }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -315,6 +316,10 @@ export default function App() {
             }
           />
           <Route
+            path="/portal"
+            element={<Navigate to="/portal/login" replace />}
+          />
+          <Route
             path="/portal/login"
             element={
               <Suspense fallback={<SectionFallback />}>
@@ -360,11 +365,15 @@ export default function App() {
           />
         </Routes>
       </div>
-      <WhatsAppWidget />
-      <BackToTop />
-      <NextPageButton />
-      <CookieConsent />
-      <QuickApply />
+      {!isPortal && (
+        <>
+          <WhatsAppWidget />
+          <BackToTop />
+          <NextPageButton />
+          <CookieConsent />
+          <QuickApply />
+        </>
+      )}
       {/* <ThemeToggle /> hidden — theme toggle not final */}
     </>
   );

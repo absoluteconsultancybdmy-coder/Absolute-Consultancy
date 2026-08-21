@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import {
   DashboardChrome,
   EmptyState,
+  ProfileSettings,
   Spinner,
   StatusPill,
   formatDate,
@@ -35,14 +36,126 @@ interface ApplicationRow {
   courses: CourseSummary | null;
 }
 
+const JOURNEY_STEPS = [
+  'Free consultation',
+  'University shortlist',
+  'Application & offer',
+  'EMGS student pass',
+  'Visa & pre-departure',
+  'Arrival in Malaysia',
+];
+
+function StudentOverview({
+  shortlist,
+  applications,
+  onTab,
+}: {
+  shortlist: ShortlistRow[];
+  applications: ApplicationRow[];
+  onTab: (tab: string) => void;
+}) {
+  const statuses = new Set(applications.map((app) => app.status));
+  const stage = statuses.has('enrolled')
+    ? 5
+    : statuses.has('visa_approved')
+      ? 4
+      : statuses.has('visa_processing')
+        ? 3
+        : applications.length > 0
+          ? 2
+          : shortlist.length > 0
+            ? 1
+            : 0;
+  const drafts = applications.filter((app) => app.status === 'draft').length;
+  const active = applications.filter(
+    (app) => !['enrolled', 'rejected', 'withdrawn'].includes(app.status)
+  ).length;
+  const offers = applications.filter((app) =>
+    ['offer_received', 'offer_accepted'].includes(app.status)
+  ).length;
+  const next = drafts > 0
+    ? { title: 'Send your draft for review', body: `${drafts} draft application${drafts === 1 ? ' is' : 's are'} waiting for your confirmation.`, tab: 'applications', label: 'Review applications' }
+    : applications.length === 0 && shortlist.length > 0
+      ? { title: 'Choose a course to apply for', body: 'Your shortlist is ready. Start an application when you have found the right fit.', tab: 'shortlist', label: 'Open shortlist' }
+      : applications.length === 0
+        ? { title: 'Build your university shortlist', body: 'Search programmes across our Malaysian university partners and save the strongest options.', tab: 'shortlist', label: 'Start shortlisting' }
+        : { title: 'Follow your application updates', body: 'Your consultancy team will update each application as it moves through review, offer, and visa stages.', tab: 'applications', label: 'View applications' };
+
+  return (
+    <div className="space-y-6">
+      <section className="on-navy grid gap-6 rounded-xl bg-navy p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div>
+          <p className="font-body text-xs uppercase tracking-[0.22em] text-mouse">Next action</p>
+          <h2 className="mt-3 font-display text-2xl uppercase tracking-wide text-kimono sm:text-3xl">
+            {next.title}
+          </h2>
+          <p className="mt-3 max-w-xl font-body text-sm leading-relaxed text-mouse">{next.body}</p>
+        </div>
+        {next.tab === 'shortlist' && shortlist.length === 0 ? (
+          <Link
+            to="/courses"
+            className="inline-flex w-fit rounded-md bg-kimono px-5 py-3 font-display text-xs uppercase tracking-wider text-mist"
+          >
+            Browse courses
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={() => onTab(next.tab)}
+            className="w-fit rounded-md bg-kimono px-5 py-3 font-display text-xs uppercase tracking-wider text-mist"
+          >
+            {next.label}
+          </button>
+        )}
+      </section>
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {[
+          { label: 'Saved courses', value: shortlist.length },
+          { label: 'Active applications', value: active },
+          { label: 'Offers received', value: offers },
+        ].map((item) => (
+          <div key={item.label} className="rounded-xl border border-cream/15 bg-white p-5">
+            <p className="font-body text-xs uppercase tracking-wider text-mouse">{item.label}</p>
+            <p className="mt-3 font-display text-3xl tabular-nums text-kimono">{item.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <section className="rounded-xl border border-cream/15 bg-white p-5 sm:p-7">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="font-body text-xs uppercase tracking-wider text-mouse">Your study journey</p>
+            <h2 className="mt-2 font-display text-xl uppercase tracking-wide text-kimono">
+              {JOURNEY_STEPS[stage]}
+            </h2>
+          </div>
+          <span className="font-body text-xs text-mouse">Stage {stage + 1} of {JOURNEY_STEPS.length}</span>
+        </div>
+        <ol className="mt-7 grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {JOURNEY_STEPS.map((step, index) => (
+            <li key={step} aria-current={index === stage ? 'step' : undefined}>
+              <div className={`h-1 rounded-full ${index <= stage ? 'bg-gold' : 'bg-cream/15'}`} />
+              <p className={`mt-2 font-body text-xs leading-snug ${index === stage ? 'font-semibold text-kimono' : 'text-mouse'}`}>
+                {step}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+  );
+}
+
 export default function StudentDashboard() {
   const { session } = useAuth();
-  const [tab, setTab] = useState('shortlist');
+  const [tab, setTab] = useState('overview');
   const [shortlist, setShortlist] = useState<ShortlistRow[]>([]);
   const [applications, setApplications] = useState<ApplicationRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [confirmingId, setConfirmingId] = useState<string | null>(null);
 
   // RLS scopes both of these to the signed-in student, so no filter is needed
   // here — the policy is the filter.
@@ -121,39 +234,50 @@ export default function StudentDashboard() {
     setTab('applications');
   }
 
-  async function submitApplication(id: string) {
+  async function sendForReview(id: string) {
     if (!supabase) return;
     setBusyId(id);
     const { error: err } = await supabase
       .from('applications')
-      .update({ status: 'submitted' })
+      .update({ status: 'submitted', submitted_at: new Date().toISOString() })
       .eq('id', id);
     if (err) setError(err.message);
     else await load();
     setBusyId(null);
+    setConfirmingId(null);
   }
 
   return (
     <DashboardChrome
       heading="My dashboard"
+      description="Your courses, applications, and Malaysia study journey in one place."
       active={tab}
       onTab={setTab}
       tabs={[
+        { id: 'overview', label: 'Overview' },
         { id: 'shortlist', label: 'Shortlist', count: shortlist.length },
         { id: 'applications', label: 'Applications', count: applications.length },
+        { id: 'profile', label: 'My profile' },
       ]}
     >
       {error && (
         <div
           role="alert"
-          className="mb-6 rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 font-body text-sm text-red-200"
+          className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-md border border-red-600/25 bg-red-50 px-4 py-3 font-body text-sm text-red-800"
         >
-          {error}
+          <span>{error}</span>
+          <button type="button" onClick={load} className="font-semibold underline underline-offset-4">
+            Try again
+          </button>
         </div>
       )}
 
       {loading ? (
         <Spinner />
+      ) : tab === 'overview' ? (
+        <StudentOverview shortlist={shortlist} applications={applications} onTab={setTab} />
+      ) : tab === 'profile' ? (
+        <ProfileSettings />
       ) : tab === 'shortlist' ? (
         shortlist.length === 0 ? (
           <EmptyState
@@ -234,13 +358,41 @@ export default function StudentDashboard() {
                 </p>
               </div>
               {app.status === 'draft' && (
-                <button
-                  onClick={() => submitApplication(app.id)}
-                  disabled={busyId === app.id}
-                  className="shrink-0 rounded-md bg-gold px-4 py-2 font-display text-xs uppercase tracking-wider text-mist transition-shadow hover:shadow-gold disabled:opacity-50"
-                >
-                  Submit
-                </button>
+                <div className="shrink-0">
+                  {confirmingId === app.id ? (
+                    <div className="max-w-xs rounded-md border border-gold/20 bg-mist p-3">
+                      <p className="font-body text-xs leading-relaxed text-mouse">
+                        Send this draft to Absolute Consultancy for review? Your counsellor will
+                        confirm documents before any university submission.
+                      </p>
+                      <div className="mt-3 flex gap-2">
+                        <button
+                          type="button"
+                          onClick={() => sendForReview(app.id)}
+                          disabled={busyId === app.id}
+                          className="rounded-md bg-gold px-3 py-2 font-display text-[11px] uppercase tracking-wider text-mist disabled:opacity-50"
+                        >
+                          Confirm
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setConfirmingId(null)}
+                          className="rounded-md border border-cream/20 px-3 py-2 font-body text-xs text-mouse"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setConfirmingId(app.id)}
+                      className="rounded-md bg-gold px-4 py-2 font-display text-xs uppercase tracking-wider text-mist transition-shadow hover:shadow-gold"
+                    >
+                      Send for review
+                    </button>
+                  )}
+                </div>
               )}
             </Reveal>
           ))}

@@ -18,22 +18,36 @@ import {
  * side and see a confusing failure. The role decides where they land instead.
  */
 export default function LoginPage() {
-  const { signIn, resetPassword, session, profile, configured } = useAuth();
+  const {
+    signIn,
+    resetPassword,
+    updatePassword,
+    signOut,
+    session,
+    profile,
+    configured,
+  } = useAuth();
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(
-    params.get('confirmed') ? 'Email confirmed — you can sign in now.' : null
+    params.get('confirmed')
+      ? 'Email confirmed — you can sign in now.'
+      : params.get('reset')
+        ? 'Password updated. Sign in with your new password.'
+        : null
   );
+  const isRecovery = params.get('recovery') === '1';
 
   // Wait for the profile before redirecting: the role determines the landing
   // page, and it arrives a moment after the session does.
   useEffect(() => {
-    if (!session || !profile) return;
+    if (isRecovery || !session || !profile) return;
     const target = params.get('next');
     if (target?.startsWith('/')) {
       navigate(target, { replace: true });
@@ -42,7 +56,7 @@ export default function LoginPage() {
     navigate(profile.role === 'agent' ? '/portal/agent' : '/portal/student', {
       replace: true,
     });
-  }, [session, profile, navigate, params]);
+  }, [session, profile, navigate, params, isRecovery]);
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -72,6 +86,77 @@ export default function LoginPage() {
     }
   }
 
+  async function onRecover(e: FormEvent) {
+    e.preventDefault();
+    setError(null);
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+    setPending(true);
+    try {
+      await updatePassword(password);
+      await signOut();
+      navigate('/portal/login?reset=1', { replace: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not update your password.');
+      setPending(false);
+    }
+  }
+
+  if (isRecovery) {
+    return (
+      <PortalShell
+        title="Choose a new password"
+        subtitle="Use at least 8 characters and keep it different from passwords you use elsewhere."
+        footer={
+          <Link to="/portal/login" className="text-gold hover:underline">
+            Back to sign in
+          </Link>
+        }
+      >
+        {!configured ? (
+          <NotConfiguredNotice />
+        ) : (
+          <form onSubmit={onRecover}>
+            {error && <FormAlert kind="error">{error}</FormAlert>}
+            <Field label="New password" id="newPassword" hint="At least 8 characters.">
+              <input
+                id="newPassword"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={inputClass}
+              />
+            </Field>
+            <Field label="Confirm new password" id="confirmPassword">
+              <input
+                id="confirmPassword"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                className={inputClass}
+              />
+            </Field>
+            <div className="mt-6">
+              <SubmitButton pending={pending}>Update password</SubmitButton>
+            </div>
+          </form>
+        )}
+      </PortalShell>
+    );
+  }
+
   return (
     <PortalShell
       title="Sign in"
@@ -88,7 +173,7 @@ export default function LoginPage() {
       {!configured ? (
         <NotConfiguredNotice />
       ) : (
-        <form onSubmit={onSubmit} noValidate>
+        <form onSubmit={onSubmit}>
           {error && <FormAlert kind="error">{error}</FormAlert>}
           {notice && <FormAlert kind="success">{notice}</FormAlert>}
 
