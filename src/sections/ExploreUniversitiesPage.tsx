@@ -152,26 +152,8 @@ const allUniversities: University[] = [
     website: 'https://cyberjaya.edu.my',
   },
   {
-    name: 'International Islamic University Malaysia (IIUM)',
-    shortName: 'IIUM',
-    location: 'Gombak, Selangor',
-    type: 'Public',
-    programmes: ['Islamic Studies', 'Law', 'Engineering', 'Medicine', 'Economics', 'IT', 'Architecture'],
-    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
-    accent: '#006400',
-    tag: 'Top Public Islamic',
-    founded: '1983',
-    students: '30,000+',
-    ranking: 'QS World Top 601+',
-    description: 'A premier public university established by the Organisation of Islamic Cooperation. IIUM integrates Islamic values with modern academic disciplines, renowned for its Law, Engineering, and Medicine programmes.',
-    highlights: ['Established by OIC', '100+ Countries Represented', 'Dual-Language (English & Arabic)', 'Top Islamic Law Programme', 'Affordable Public Fees', 'Beautiful Gombak Campus'],
-    campusImage: `${import.meta.env.BASE_URL}images/IIUM.jpeg`,
-    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
-    website: 'https://www.iium.edu.my',
-  },
-  {
     name: 'Kuala Lumpur University of Science and Technology (KLUST)',
-    shortName: 'IUKL',
+    shortName: 'KLUST',
     location: 'Kajang, Selangor',
     type: 'Private',
     programmes: ['Engineering', 'IT', 'Business', 'Design', 'Hospitality', 'Education'],
@@ -263,25 +245,6 @@ const allUniversities: University[] = [
     logo: `${import.meta.env.BASE_URL}images/university-logos/segi.webp`,
     campusTourVideo: 'https://www.youtube.com/embed/6mnJu2Oy7OI',
     website: 'https://www.segi.edu.my',
-  },
-  {
-    name: 'Universiti Kuala Lumpur (UNIKL)',
-    shortName: 'UniKL',
-    location: 'Kuala Lumpur',
-    type: 'Public',
-    programmes: ['Engineering', 'IT', 'Business', 'Aviation', 'Medical Sciences', 'Design'],
-    studyLevels: ['Foundation', 'Diploma', 'Bachelor', 'Master', 'PhD'],
-    accent: '#1A237E',
-    tag: 'Technical Focus',
-    founded: '2002',
-    students: '15,000+',
-    ranking: 'MQA Accredited',
-    description: 'UniKL is a multi-campus technical university owned by Majlis Amanah Rakyat (MARA). It specialises in engineering, aviation, and technical education with 14 institutes across Malaysia, producing highly skilled technical graduates.',
-    highlights: ['MARA-Owned University', '14 Institutes Nationwide', 'Aviation & Aerospace Focus', 'Strong Technical Training', 'Industry Partnerships', 'Affordable Public Fees'],
-    campusImage: `${import.meta.env.BASE_URL}images/UniversityKualaLumpur.jpeg`,
-    logo: `${import.meta.env.BASE_URL}images/university-logos/unikl.webp`,
-    campusTourVideo: 'https://www.youtube.com/embed/zBK8Q8wpldg',
-    website: 'https://www.unikl.edu.my',
   },
   {
     name: 'Universiti Tun Abdul Razak (UNIRAZAK)',
@@ -1297,7 +1260,16 @@ export default function ExploreUniversitiesPage() {
           )}
           {/* Type filter pills */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            {(['All', 'Private', 'Public'] as const).map(filter => {
+            {/* Only offer a type that is actually represented. The firm places
+                students privately, so the public pill would otherwise sit there
+                reading (0) — and with one type left, All duplicates it. */}
+            {(['All', 'Private', 'Public'] as const)
+              .filter(filter => {
+                const present = [typeCounts.private, typeCounts.public].filter(Boolean).length;
+                if (present < 2) return false;
+                return filter === 'All' || (filter === 'Private' ? typeCounts.private : typeCounts.public) > 0;
+              })
+              .map(filter => {
               const count = filter === 'All' ? typeCounts.all : filter === 'Private' ? typeCounts.private : typeCounts.public;
               const isActive = typeFilter === filter;
               return (
