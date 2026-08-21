@@ -26,6 +26,22 @@ it appears mid-edit. Commit small and often.
 - `npx tsc --noEmit -p tsconfig.app.json` before you commit. `npm run build` runs
   `tsc`, so a type error anywhere fails the Vercel deploy for everyone.
 
+## Working as a pair
+
+Every task is split between both agents, roughly half each. Neither is the
+other's reviewer by default — both write code.
+
+1. **Plan before building.** Agree what each half is and where the seam runs,
+   then state the plan before either agent edits a file.
+2. **Split along file boundaries, never inside one file.** The seam has to fall
+   where the ownership table already falls, or one agent's save silently
+   overwrites the other's.
+3. **Say so when a task will not halve.** A three-line CSS fix has no seam.
+   Inventing one costs more than doing the work.
+
+Claude reaches Codex through the `codex` MCP server (`claude mcp add codex --
+codex mcp-server`), not by driving the desktop app.
+
 ## Project facts
 
 - Vite 7 + React 19 + TS, Tailwind 3.4, React Router 7 lazy routes.
