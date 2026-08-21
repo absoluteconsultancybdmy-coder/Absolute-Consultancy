@@ -251,7 +251,7 @@ export default function TeamPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'rgb(var(--color-mist))' }}>
       <div
-        className="sticky top-0 z-50"
+        className="on-navy sticky top-0 z-50"
         style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
@@ -332,7 +332,7 @@ export default function TeamPage() {
             {pillars.map((pillar) => (
               <article
                 key={pillar.label}
-                className="pillar-card rounded-2xl p-7 lg:p-8 relative overflow-hidden"
+                className="on-navy pillar-card rounded-2xl p-7 lg:p-8 relative overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.55) 100%)',
                   border: '1px solid rgb(var(--color-gold) / 0.2)',
@@ -448,7 +448,7 @@ export default function TeamPage() {
                     )}
                     <span
                       className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center"
-                      style={{ background: 'rgb(var(--color-gold))', color: '#021635', boxShadow: '0 4px 12px rgb(var(--color-gold) / 0.4)' }}
+                      style={{ background: 'rgb(var(--color-gold))', color: '#FFFFFF', boxShadow: '0 4px 12px rgb(var(--color-gold) / 0.4)' }}
                       aria-hidden="true"
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -534,7 +534,7 @@ export default function TeamPage() {
       <section className="relative w-full pb-24 lg:pb-32 pt-8">
         <div className="max-w-[900px] mx-auto px-6 lg:px-10 text-center">
           <div
-            className="rounded-3xl p-10 lg:p-14 relative overflow-hidden"
+            className="on-navy rounded-3xl p-10 lg:p-14 relative overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.85) 0%, rgba(11,42,92,0.7) 100%)',
               border: '1px solid rgb(var(--color-gold) / 0.25)',

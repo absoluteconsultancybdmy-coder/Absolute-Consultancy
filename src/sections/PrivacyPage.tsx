@@ -107,7 +107,7 @@ export default function PrivacyPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'rgb(var(--color-mist))' }}>
       <div
-        className="sticky top-0 z-50"
+        className="on-navy sticky top-0 z-50"
         style={{ background: 'rgba(11,26,51,0.95)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgb(var(--color-gold) / 0.15)' }}
       >
         <div className="max-w-[1280px] mx-auto px-6 lg:px-10 py-3 flex flex-wrap items-center gap-2">
@@ -166,7 +166,7 @@ export default function PrivacyPage() {
       <section className="relative w-full pb-24">
         <div className="max-w-[820px] mx-auto px-6 lg:px-10">
           <div
-            className="rounded-2xl p-8 lg:p-10 mb-8"
+            className="on-navy rounded-2xl p-8 lg:p-10 mb-8"
             style={{
               background: 'linear-gradient(135deg, rgba(11,30,66,0.7) 0%, rgba(11,42,92,0.55) 100%)',
               border: '1px solid rgb(var(--color-gold) / 0.2)',
